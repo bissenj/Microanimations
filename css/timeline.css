@@ -1,0 +1,190 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    /* padding: 0;
+    margin: 0; */
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.footer {
+    height: 200vh;
+    background-color: #ccc;
+    padding: 20px;
+}
+
+.timeline-container { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 100px 20px;
+    padding-bottom: 40px;
+    background-color: rgb(228, 228, 228);        
+    }
+.timeline {
+    position: relative;
+    border-bottom: 1px solid black;        
+    width: 100%;
+    height: 1px;
+    background-color: #444;        
+    }
+.event-marker {
+    position: absolute;
+    bottom: -10px;
+    left: 0px;  
+    width: 60px;
+    height: 105px;        
+    }
+.event-marker:hover {
+    cursor:pointer;
+    }     
+    
+.horizontal-scroller {
+    display: grid;
+    gap: 2em;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+
+    overflow-x : auto;
+    overscroll-behavior-inline: contain;
+
+    block-size: 40%;
+    padding: 2em;         
+    
+    transform:scale(0.98);        
+    transition: 0.3s ease-in-out;
+    }
+    /* .horizontal-scroller::-webkit-scrollbar {
+    display: none;
+    } */
+    .horizontal-scroller:hover {
+    cursor:grab;
+    }
+    
+    .horizontal-scroller:focus {
+    /* Since we're adding a tab focus to get the keypress event handler, need to remove the 
+        border outline which gets created on focus.
+        */
+    outline:none;          
+    }
+        
+    .event-details-element {
+    inline-size: 100%;        
+    background:rgb(122, 190, 254);
+    border-radius: 5px;
+    padding: 20px;
+    }
+    .event-header { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid gold;
+    }
+
+
+    /* TIMELINE */
+    .event-circle {
+    position: absolute;     
+    bottom: 0px;  
+    left: 10px;
+    z-index: 3;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;        
+    border: 4px solid black;
+    background-color: white;
+    }
+    .event-arm {
+    position: absolute;
+    bottom: 20px;
+    left: 19px;
+    z-index: 3;
+
+    width: 2px;
+    height: 30px;
+    border-bottom: 1px solid black;
+    background-color: black;        
+    }
+    .event-text {
+    position: absolute;
+    bottom: 75px;
+    left: 0px; 
+    z-index: 3;     
+
+    transform: rotateZ(-35deg);
+    transform-origin: center;
+    width: 4em;
+    font-size: 1.5em;
+    }
+    .event-selected {
+    position: absolute;
+    bottom: 6px;
+    left: 28px;
+    z-index: 2;
+
+    width: 2px;
+    height: 8px;
+    border-bottom: 1px solid black;
+    background-color: black;
+    transition: width 0.5s        
+    }
+    .no-transition {
+    transition: none !important;
+    }
+
+
+/*  YEAR MARKERS */
+.year-marker {
+    position: relative;
+    top: 0px;
+    left: 10px;        
+}    
+.year-arm {
+    position: absolute;
+    top: -5px;
+    left: 8px;
+    width: 1px;
+    height: 11px;        
+    background-color: black;        
+}
+.year-text {
+    position: absolute;
+    top: 64px;
+    left: -40px;        
+    transform: rotateZ(90deg);
+    transform-origin: center;
+    width: 4em;
+    font-size: 1.5em;
+    }
+
+/* Globals */     
+.fade-to-back {
+    opacity: 0.3;
+    z-index: 1;
+    }  
+
+.mouseDown {
+    transform: scale(1);
+    opacity: 0.8;                                
+    }
+
+#debug * div {
+    padding: 2px;
+}
+#debug .label {
+    font-size: 0.9em;        
+    color: #444;
+    text-transform: uppercase;
+
+}
+#debug .value {
+    padding-left: 20px;
+    font-size: 1.1em;
+}
+

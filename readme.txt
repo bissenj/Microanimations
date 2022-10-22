@@ -13,6 +13,7 @@ Goals:
 7.  Cool background image section transitions
 8.  Locomotive Mouse  [https://www.niarratravel.com/]
 - 9.  Horizontal drag sliders [Zaneray.com, https://miti-navi.com/en/miti-one]
+  9a. Velocity based horizontal dragging and swiping
 10.  Mouse position reveal  [https://www.niarratravel.com/example-itinerary/cape-wine-wildlife-and-waterfalls/]
 11.  Path animation [https://www.niarratravel.com/example-itinerary/cape-wine-wildlife-and-waterfalls/]
 12.  Paralaxx footer [https://www.niarratravel.com/]
