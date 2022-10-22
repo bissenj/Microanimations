@@ -1,0 +1,693 @@
+<html>
+<head>
+<title>Timeline Example</title> 
+
+<style>
+
+    * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        /* padding: 0;
+        margin: 0; */
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .footer {
+        height: 200vh;
+        background-color: #ccc;
+        padding: 20px;
+    }
+
+    #debug * div {
+        padding: 2px;
+    }
+    #debug .label {
+        font-size: 0.9em;
+        /* font-weight: 700; */
+        color: #444;
+        text-transform: uppercase;
+
+    }
+    #debug .value {
+        padding-left: 20px;
+        font-size: 1.1em;
+    }
+    
+     .timeline-container { 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 100px 20px;
+        padding-bottom: 40px;
+        background-color: rgb(228, 228, 228);        
+     }
+     .timeline {
+        position: relative;
+        border-bottom: 1px solid black;        
+        width: 100%;
+        height: 1px;
+        background-color: #444;        
+     }
+     .event-marker {
+        position: absolute;
+        bottom: -10px;
+        left: 0px;  
+        width: 60px;
+        height: 105px;
+        /* border: 1px solid black;     */
+     }
+     .event-marker:hover {
+        cursor:pointer;
+     }
+     
+     /*  https://stackoverflow.com/questions/68195040/scroll-snap-for-div-that-looks-like-an-iphone-in-html */
+     .horizontal-scroller {
+        display: grid;
+        gap: 2em;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+
+        overflow-x : auto;
+        overscroll-behavior-inline: contain;
+
+        block-size: 40%;
+        padding: 2em; 
+        /* padding: 10px; */
+        
+        transform:scale(0.98);
+
+        /* scroll-behavior: smooth; */
+        transition: 0.3s ease-in-out;
+     }
+     /* .horizontal-scroller::-webkit-scrollbar {
+        display: none;
+     } */
+     .horizontal-scroller:hover {
+        cursor:grab;
+     }
+     
+     .horizontal-scroller:focus {
+        /* Since we're adding a tab focus to get the keypress event handler, need to remove the 
+           border outline which gets created on focus.
+         */
+        outline:none;  
+        /* transform: scale(1); */
+     }
+
+     .mouseDown {
+        transform: scale(1);
+        opacity: 0.8;        
+        /* filter:blur(1px); */
+        /* background-color: red; */
+        /* scroll-snap-type: none !important; */
+        /* scroll-snap-type: inline proximity; */
+        /* scroll-behavior: none !important; */
+      }
+     .snaps-inline {
+        /* scroll-snap-type: inline mandatory; */
+        /* scroll-padding-inline: 2em; */
+     }
+     .snaps-inline > * {
+        /* scroll-snap-align:start; */
+     }
+     
+
+
+     /* https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6 */
+     .horizontal-slider-nope {
+        -webkit-overflow-scrolling: touch;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space:nowrap;
+        display: block;
+        cursor: grab;        
+     }
+     .event-details-element {
+        inline-size: 100%;        
+        background:rgb(122, 190, 254);
+        border-radius: 5px;
+        padding: 20px;
+     }
+     .event-header { 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-bottom: 2px solid gold;
+     }
+
+
+
+     /* TIMELINE */
+     .event-circle {
+        position: absolute;     
+        bottom: 0px;  
+        left: 10px;
+        z-index: 3;
+
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;        
+        border: 4px solid black;
+        background-color: white;
+     }
+     .event-arm {
+        position: absolute;
+        bottom: 20px;
+        left: 19px;
+        z-index: 3;
+
+        width: 2px;
+        height: 30px;
+        border-bottom: 1px solid black;
+        background-color: black;        
+     }
+     .event-text {
+        position: absolute;
+        bottom: 75px;
+        left: 0px; 
+        z-index: 3;     
+
+        transform: rotateZ(-35deg);
+        transform-origin: center;
+        width: 4em;
+        font-size: 1.5em;
+     }
+     .event-selected {
+        position: absolute;
+        bottom: 6px;
+        left: 28px;
+        z-index: 2;
+
+        width: 2px;
+        height: 8px;
+        border-bottom: 1px solid black;
+        background-color: black;
+        transition: width 0.5s
+        /* transition: width 1.0s cubic-bezier(0.165, 0.840, 0.440, 1.000); */
+        /* transition-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);  */
+     }
+     .no-transition {
+        transition: none !important;
+     }
+    
+
+    /*  YEAR MARKERS */
+    .year-marker {
+        position: relative;
+        top: 0px;
+        left: 10px;        
+    }    
+    .year-arm {
+        position: absolute;
+        top: -5px;
+        left: 8px;
+        width: 1px;
+        height: 11px;
+        /* border-bottom: 1px solid black; */
+        background-color: black;        
+    }
+    .year-text {
+        position: absolute;
+        top: 64px;
+        left: -40px;        
+        transform: rotateZ(90deg);
+        transform-origin: center;
+        width: 4em;
+        font-size: 1.5em;
+     }
+
+     /* Globals */
+     .fade-out {
+        opacity: 0;
+        /* transform: translate(-200%) */
+     }   
+     .fade-to-back {
+        opacity: 0.3;
+        z-index: 1;
+     }  
+</style>
+
+</head>
+
+<body>
+    <h1>JS Timeline Example</h1>
+    <div class='timeline-container'>
+        <button id="backBtn"> Back </button>
+        <div class="timeline"></div>
+        <button id="forwardBtn"> Forward </button>
+    </div>
+    <div class='horizontal-scroller snaps-inline'></div>
+    <div class='footer'>
+        <span id="ScrollLeft"></span>
+        <div id="debug"></div>
+    </div>
+</body>
+
+<script src="/js/animation.js"></script>
+
+<script>
+
+
+// Data
+const events = [
+    {yearStart: 1998, yearEnd:2003, name: "University of Wisconsin - Platteville", tools: ".NET, JAVA, Visual Basic", description: "Graduated with a degree in Computer Science and a focus on Software Engineering."},
+    {yearStart: 2000, yearEnd:2006, name: "Wisconsin Air National Guard", tools: "HTML, CSS, Javascript", description: "Computer support and a bit of web development in the Air National Guard"},
+    {yearStart: 2004, yearEnd:2014, name: "Northwestern Mutual", tools: "Java, .Net, Message Queues, Middleware", description: "Worked in a number of roles and teams during my 10 years at Northwestern Mutual."}, 
+    {yearStart: 2014, yearEnd:2021, name: "NAH", tools: "Web Design, Marketing, Planning, Leading", description: "Owned small business"}, 
+    {yearStart: 2018, yearEnd:2021, name: "M.J. Electric", tools:"Javascript, .Net, React, Adobe XD", description: "Worked on the web development team."}, 
+    {yearStart: 2021, yearEnd:2023, name: "Self Employed", tools: "React, Remix, Figma", description: "Taking a break to live life."}, 
+]
+//console.log("Events: ", events);
+
+// ----------------------------------------------------------------------------------------------------------
+// ------------------------------ Event Handlers ------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+window.onload = () => {
+    document.querySelector('.timeline').addEventListener('click', handleEventClick, false);
+    document.querySelector('#backBtn').addEventListener('click', () => {handleButtonClick(-1)}, false);
+    document.querySelector('#forwardBtn').addEventListener('click', () => {handleButtonClick(1)}, false);
+
+    // Div needs a [tab index] or the key press events won't work.
+    document.querySelector('.horizontal-scroller').setAttribute("tabindex", 0);
+    document.querySelector('.horizontal-scroller').addEventListener('keydown', function(e) {
+            console.log("Key Press");
+            const key = event.key; // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
+            switch (event.key) {
+                case "ArrowLeft":
+                    console.log("Left Key Pressed")
+                    modifySelectedIndex(-1);                    
+                    break;
+                case "ArrowRight":
+                    console.log("Right Key Pressed")
+                    modifySelectedIndex(1);
+                    break;                
+            }
+        });
+    document.querySelector('.horizontal-scroller').addEventListener('scroll', function(e) {        
+        debugPrintScrollPosition();
+        // let scrollX = this.scrollLeft;
+        // console.log("Scroll", scrollX);
+        // document.getElementById("ScrollLeft").innerText = scrollX;
+    });
+}
+
+
+// Attempts to increment or decrement the selected index and 
+// then update the timeline and slide show.
+function modifySelectedIndex(direction) {
+    let newIndex = selectedIndex + direction;    
+    if (newIndex >= 0 && newIndex < events.length) {
+        console.log("Updating selected index from", selectedIndex, " to ", newIndex);
+        // Do stuff.
+        selectedIndex = newIndex;
+
+        // Update the timeline
+        setNewSelectedEvent(selectedIndex);
+        
+        // Update the slide show
+        // find event details container related to this event and scroll there.
+        let eventDetails = document.querySelector(`.event-details-element[data-index="${selectedIndex}"]`);
+        snapScrollHorizontal(eventDetails);    
+        
+        //eventDetails.scrollIntoView({behavior: "smooth", inline: "center"});    
+        // setTimeout(function () {
+        //     // hack - for some reason it won't smooth scroll here without the delay.
+        //    eventDetails.scrollIntoView({behavior: "smooth", inline: "center", block: 'nearest'});  
+        // }, 100);
+    
+    }
+}
+
+function handleButtonClick(direction) {
+    console.log("handleButtonClick", direction);
+    if (direction < 0 && selectedIndex > 0) selectedIndex += direction;
+    if (direction > 0 && selectedIndex < events.length-1) selectedIndex += direction;
+    console.log("Selected Index is now: ", selectedIndex);
+
+    setNewSelectedEvent(selectedIndex);
+
+    // find event details container related to this event and scroll there.
+    let eventDetails = document.querySelector(`.event-details-element[data-index="${selectedIndex}"]`);
+    eventDetails.scrollIntoView({behavior: "smooth", inline: "center"});    
+}
+function handleEventClick(e) {        
+    //BUG:
+        // if .event-selected is clicked it will reload the same event.
+
+
+    // Get the Parent Container
+    let el = event.target;    
+    if (el.className != 'event-marker') {
+        el = el.parentElement;
+    }
+
+    // Get the index
+    let index = parseInt(el.dataset.index);
+    setNewSelectedEvent(index);
+
+    // find event details container related to this event and scroll there.
+    let eventDetails = document.querySelector(`.event-details-element[data-index="${index}"]`);
+    eventDetails.scrollIntoView({behavior: "smooth", inline: "center"});    
+}   
+ 
+// Updates the Timeline control
+function setNewSelectedEvent(index) {
+
+    selectedIndex = index;
+
+    // Figure out the selected year and get its corresponding Event
+    // let year = parseInt(el.dataset.year);
+    // let selectedEvent = events.filter(function(item) { return item.yearStart == year});
+    // console.log(selectedEvent);
+    // let yearEnd = selectedEvent[0].yearEnd;
+    let year = events[index].yearStart;
+    let yearEnd = events[index].yearEnd;
+
+
+    // reset fields
+    //console.log("searching for faded markers");
+    const markers = document.querySelectorAll('.fade-to-back');       
+    //console.log("Markers found: ", markers.length, markers); 
+    markers.forEach(marker => {
+        //console.log("removing fade");
+        marker.classList.remove('fade-to-back');
+    });
+
+
+    // Loop through all our events
+    events.map((event) => {
+        // Fade details out
+        //document.querySelector('.event-details-element').classList.add('fade-out');
+
+        const remove = (event.yearStart === year) ? false : true; 
+        //console.log(event.yearStart, year, remove);       
+        
+        // Determine if any events are in the middle of the selected timeline        
+        if ((year != event.yearStart) && (year < event.yearStart) && (event.yearStart < yearEnd)) {
+            let markerEl = document.getElementById(`${event.yearStart}Marker`);
+            //console.log("adding fade");
+            markerEl.classList.add('fade-to-back');            
+        } //console.log(year, event.yearStart, yearEnd);
+
+        if (!remove) {            
+            window.setTimeout(() => {updateSelectedEvent(event, remove);}, 50);
+
+            //document.querySelector('.event-details-container').style.opacity = 0.0;
+            // window.setTimeout(() => {                
+            //     renderEventHeader(event.yearStart, event.yearEnd, event.name, document.querySelector('.event-header'));
+            //     renderEventSummary(event.tools, event.description, document.querySelector('.event-summary'));
+            //     //document.querySelector('.event-details-element').classList.remove('fade-out');
+            //     //document.querySelector('.event-details-container').style.opacity = 1.0;
+            // }, 1000);
+        }
+        else {
+            updateSelectedEvent(event, remove);
+        }
+    });
+}
+
+// https://codepen.io/thenutz/pen/VwYeYEE
+function handleMouseDown(e) {
+    //console.log("mouse down");
+    
+    mouseState.isDown = true;
+    mouseState.startX = e.pageX - mouseState.parentElement.offsetLeft;
+    mouseState.scrollLeft = mouseState.parentElement.scrollLeft;
+    mouseState.parentElement.classList.add('mouseDown');
+
+    //console.log("Mouse State: ", mouseState);
+}
+function handleMouseUp(e) { 
+    //console.log("mouse up", selectedIndex, mouseState.direction);
+
+    // Reset Stuff 1
+    mouseState.isDown = false;   
+    mouseState.parentElement.classList.remove('mouseDown'); 
+
+    if (mouseState.direction == 0) return;
+
+
+/// DEBUGGING
+    // let dude = document.querySelector(`.event-details-element[data-index="4"]`);
+    // //let dude = document.querySelector(`'.event-details-element[data-index=${1}]'`);
+    // // Make this the active Event
+    // snapScrollHorizontal(dude);
+    // return;
+
+
+    // Calculate which element is most visible on the screen and scroll to it.
+    let elements = document.querySelectorAll('.event-details-element');
+    let elementsInView = [];
+    
+    elements.forEach((element) => {
+        const bounding = element.getBoundingClientRect();
+
+        const width = (window.innerWidth || document.documentElement.clientWidth);
+        if (            
+            (bounding.left >= 0 && bounding.left < width) ||
+            (bounding.right >= 0 && bounding.right < width)            
+        ) {             
+            elementsInView.push(element);
+        } else {
+            //console.log('Not in the viewport... whomp whomp');
+        }
+    });
+
+    if (elementsInView.length > 0) { 
+        //console.log("Elements in View: ", elementsInView);           
+        let el = elementsInView[0];
+        if (mouseState.direction < 0) {
+            el = elementsInView[elementsInView.length -1];  // Get the last element (which should be the right most one)
+        }
+
+        // Make this the active Event        
+        //el.scrollIntoView({behavior: "smooth", inline: "center", block:'nearest'});
+        snapScrollHorizontal(el);
+
+        const index = parseInt(el.dataset.index);        
+        if (index != selectedIndex) {
+            setNewSelectedEvent(index);
+        }
+    }
+
+    // Reset stuff 2
+    //mouseState.isDown = false;    
+    mouseState.direction = 0;
+}
+function handleMouseMove(e) {
+
+    // DEBUG
+    debugPrintScrollPosition();
+
+    // if the mouse is not clicked, don't proceed.
+    if (!mouseState.isDown) return;
+    e.preventDefault();
+
+    //console.log("mouse move");
+    //console.log("PageX: ", e.pageX, "OffsetLeft: ", mouseState.parentElement.offsetLeft);
+
+    const x = e.pageX - mouseState.parentElement.offsetLeft;
+    const walk = (x - mouseState.startX) * 1;    
+    mouseState.parentElement.scrollLeft = mouseState.scrollLeft - walk;
+    //console.log("X: ", x, "Walk: ", walk);
+
+    mouseState.direction = (walk > 0) ? 1 : -1;
+    //console.log(mouseState.direction);
+}
+
+
+
+// ----------------------------------------------------------------------------------------------------------
+// ------------------------------ Render Methods ------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------------
+function renderEventMarker(index, event, parentEl, offsetX, offsetWidth) {    
+    // console.log(event.yearStart, offsetWidth);
+    let displayEndCapHtml = 'display:none;';
+    // // if (offsetWidth > 0) {
+    //     let markers = events.find(ev => ev.yearStart === event.yearEnd); 
+    //     console.log(event.yearEnd, markers);   
+    //     displayEndCapHtml = (markers === undefined) ? ';' : 'display:none;';
+    // // }
+
+
+
+    let html = `<div id='${event.yearStart}Marker' data-year=${event.yearStart} data-index=${index} class='event-marker' style='left:${offsetX}px'>
+                    <div class='event-circle'></div>
+                    <div class='event-arm'></div>
+                    <div class='event-text'>${event.yearStart}</div>
+                    <div class='event-selected' style='width:${offsetWidth}; overflow-y: hidden; display: flex; flex-direction: row; justify-content: flex-end;'>
+                        <div style='${displayEndCapHtml} width: 20px; height: 20px; background-color: red;'></div>
+                    </div>
+                </div>`;
+
+    // Turn it into a node so we can attach an event handler to it.
+    // NOTE:  this is going to create and extra parent div but I'm OK with that as it means 
+    //        i can still use html strings and get an event listener instead of creating elements the long way.
+    // let newEl = document.createElement('div');    
+    // newEl.innerHTML = html;
+    
+    // // Add event listener
+    // newEl.addEventListener('click', handleEventClick, false);
+
+    // // Append to parent
+    // parentEl.append(newEl);
+
+    parentEl.innerHTML += html;
+
+    //let newEl = document.getElementById(`${event.yearStart}Marker`);
+    //newEl.addEventListener('click', handleEventClick, false);
+}
+
+function renderYearTick(year, parentEl, offsetX) {
+
+    // Check if there is an event marker for this year.  If so, don't do anything.    
+    //let markers = document.querySelector(`.event-details-element[data-year="${selectedIndex}"]`);
+    let markers = events.find(event => event.yearStart == year);
+    
+    if (markers !== undefined) return;
+
+
+    let html = "";
+    if (year % 5 === 0) {
+        html = `<div class='year-marker' style='left:${offsetX}px'>                    
+                        <div class='year-arm' style='height: ${25}px; top: -12px;'></div>                    
+                        <div class='year-text' style='display:none'>${year}</div>                    
+                    </div>`;
+    }
+    else {
+        html = `<div class='year-marker'>                    
+                        <div class='year-arm' style='left:${offsetX}px'></div>                    
+                    </div>`;
+    }
+
+    parentEl.innerHTML += html;
+}
+
+function renderEventHeader(yearStart, yearEnd, name, parentEl) {
+    let html = `<div>${yearStart} - ${yearEnd}</div>
+                <div>${name}</div>
+                `;
+    parentEl.innerHTML = html;
+}
+function renderEventSummary(tools, summary, parentEl) {
+    let html = `<div class='event-tools'>${tools}</div>
+                <div>At a glance:</div>
+                <div class='event-summary'>${summary}</div>
+                `;
+    parentEl.innerHTML = html;
+}
+
+function renderEventsHorizontal(events, parentEl) {
+
+    parentEl.innerHTML = "";
+
+    // loop through all the events
+    events.map((event, index) => {
+
+        // Create an element and attach event listeners, then template the rest of the element's contents.
+
+        let container = document.createElement("div");
+        container.classList.add('event-details-element');
+        container.dataset.index = index;
+        container.addEventListener('mousedown', handleMouseDown);
+        container.addEventListener('mouseup', handleMouseUp);
+        container.addEventListener('mousemove', handleMouseMove);
+        container.addEventListener('mouseleave', (e) => { if (mouseState.isDown) handleMouseUp(e);});
+        
+        let html = `<h1>Event Details Container</h1>                    
+                    <!-- Event Header -->
+                    <div class='event-header'>
+                        <div>${event.yearStart} - ${event.yearEnd}</div>
+                        <div>${event.name}
+                    </div>
+                    <!-- Event Summary -->
+                    <div class='event-summary'>
+                        <div class='event-tools'>${event.tools}</div>
+                        <div>At a glance:</div>
+                        <div class='event-summary'>${event.summary}</div>
+                    </div>
+                    <!-- Event Body -->
+                    <div class='event-body'></div>
+                    `;
+        container.innerHTML = html;
+        parentEl.appendChild(container);
+    });
+
+    // Set up the data needed for animations on these.
+    initAnimations('.event-details-element');
+}
+
+// Updates the details slideshow
+function updateSelectedEvent(event, reset = false) {
+    //console.log("updateSelectedEvent(): ", event);
+    let container = document.getElementById(`${event.yearStart}Marker`);
+    let el = document.getElementById(`${event.yearStart}Marker`).querySelector('.event-selected');        
+    
+    //console.log(event, reset);
+    //let selectedEvent = events[index];
+    let width = (event.yearEnd - event.yearStart) * widthPerTick;
+    if (reset) {
+        width = 0;
+        el.classList.add('no-transition');
+    }
+    else {
+       el.classList.remove('no-transition');    
+    }
+    el.style.width = width;
+    
+    //renderYearTick(selectedEvent.yearEnd, timelineEl, width);
+}
+
+
+// Activate
+let selectedIndex = 0;
+const selectedYear = 2004;
+const startYear = 1995;
+const endYear = 2025;
+const timelineEl = document.querySelector('.timeline');
+const timelineWidth = timelineEl.offsetWidth;
+const numTicks = endYear - startYear;
+const widthPerTick = timelineWidth / numTicks;
+
+// Mouse variables
+let mouseState = { parentElement: document.querySelector('.horizontal-scroller'), 
+                   isDown:false, 
+                   startX:0, 
+                   scrollLeft:0,
+                   direction:0
+                }
+
+// Add year ticks to the timeline
+let s = startYear; let offsetX = -10;
+for(s; s <= endYear; s++) {    
+    renderYearTick(s, timelineEl, offsetX);
+    offsetX += widthPerTick;
+}
+
+events.map((event, index) => {
+    //console.log("event: ", event);
+    const offsetX = (event.yearStart - startYear) * widthPerTick - 20;
+    renderEventMarker(index, event, timelineEl, offsetX, 0);
+});
+
+renderEventsHorizontal(events, document.querySelector('.horizontal-scroller'));
+
+
+//Animate the marker
+// window.setTimeout(() => {    
+//     updateSelectedEvent(events[0]);    
+// }, 1000);
+
+// window.setTimeout(() => {    
+//     updateSelectedEvent(events[2]);
+//     updateSelectedEvent(events[1], true);
+// }, 500);
+
+</script>
+</html>
