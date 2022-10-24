@@ -5,32 +5,46 @@
 </head>
 
 <body>
-    <h1>JS Timeline Example</h1>
-    <div class='timeline-container'>
-        <button id="backBtn"> Back </button>
-        <div id="timeline" class="timeline"></div>
-        <button id="forwardBtn"> Forward </button>
+<section class='timeline-component'>
+
+    <!-- Header -->
+    <div class='timeline-header'>
+        <div class='heading'>
+            <span>work</span><span>Experience</span>
+        </div>
     </div>
+
+    <!-- Timeline Component -->
+    <div class='timeline-container'>
+        <button id="backBtn">  &#5130; </button>
+        <div id="timeline" class="timeline"></div>
+        <button id="forwardBtn"> &#5125; </button>
+    </div>
+
+    <!-- Slideshow Component -->
     <div class='horizontal-scroller snaps-inline'></div>
     <div class='footer'>
         <span id="ScrollLeft"></span>
         <div id="debug"></div>
     </div>
+
+</section>
 </body>
 
 <script src="/js/animation.js"></script>
+<script src="/data/data.js"></script>
 
 <script>
 
 // Data
-const events = [
-    {yearStart: 1998, yearEnd:2003, name: "University of Wisconsin - Platteville", tools: ".NET, JAVA, Visual Basic", description: "Graduated with a degree in Computer Science and a focus on Software Engineering."},
-    {yearStart: 2000, yearEnd:2006, name: "Wisconsin Air National Guard", tools: "HTML, CSS, Javascript", description: "Computer support and a bit of web development in the Air National Guard"},
-    {yearStart: 2004, yearEnd:2014, name: "Northwestern Mutual", tools: "Java, .Net, Message Queues, Middleware", description: "Worked in a number of roles and teams during my 10 years at Northwestern Mutual."}, 
-    {yearStart: 2014, yearEnd:2021, name: "NAH", tools: "Web Design, Marketing, Planning, Leading", description: "Owned small business"}, 
-    {yearStart: 2018, yearEnd:2021, name: "M.J. Electric", tools:"Javascript, .Net, React, Adobe XD", description: "Worked on the web development team."}, 
-    {yearStart: 2021, yearEnd:2023, name: "Self Employed", tools: "React, Remix, Figma", description: "Taking a break to live life."}, 
-]
+// const events = [
+//     {yearStart: 1998, yearEnd:2003, name: "University of Wisconsin - Platteville", tools: ".NET, JAVA, Visual Basic", description: "Graduated with a degree in Computer Science and a focus on Software Engineering."},
+//     {yearStart: 2000, yearEnd:2006, name: "Wisconsin Air National Guard", tools: "HTML, CSS, Javascript", description: "Computer support and a bit of web development in the Air National Guard"},
+//     {yearStart: 2004, yearEnd:2014, name: "Northwestern Mutual", tools: "Java, .Net, Message Queues, Middleware", description: "Worked in a number of roles and teams during my 10 years at Northwestern Mutual."}, 
+//     {yearStart: 2014, yearEnd:2021, name: "NAH", tools: "Web Design, Marketing, Planning, Leading", description: "Owned small business"}, 
+//     {yearStart: 2018, yearEnd:2021, name: "M.J. Electric", tools:"Javascript, .Net, React, Adobe XD", description: "Worked on the web development team."}, 
+//     {yearStart: 2021, yearEnd:2023, name: "Self Employed", tools: "React, Remix, Figma", description: "Taking a break to live life."}, 
+// ]
 
 // ----------------------------------------------------------------------------------------------------------
 // ------------------------------ Event Handlers ------------------------------------------------------------
@@ -121,9 +135,11 @@ function timeline_SetNewSelectedEvent(index) {
     let yearEnd = events[index].yearEnd;
 
     // Fade back in any elements which were behind another element during the last Timeline render.
-    const markers = document.querySelectorAll('.fade-to-back');           
+    //const markers = document.querySelectorAll('.fade-to-back');           
+    const markers = document.querySelectorAll('.event-marker');           
     markers.forEach(marker => {        
         marker.classList.remove('fade-to-back');
+        marker.classList.remove('selected');
     });
 
 
@@ -136,6 +152,11 @@ function timeline_SetNewSelectedEvent(index) {
             let markerEl = document.getElementById(`${event.yearStart}Marker`);            
             markerEl.classList.add('fade-to-back');            
         } 
+
+        if (year == event.yearStart || yearEnd == event.yearStart) {
+            let markerEl = document.getElementById(`${event.yearStart}Marker`);            
+            markerEl.classList.add('selected');            
+        }        
 
         // Check if we are on the new active event or not and update the timeline accordingly.        
         updateSelectedEvent(event, event.yearStart !== year);        
@@ -281,20 +302,26 @@ function renderEventsHorizontal(events, parentEl) {
         container.addEventListener('mousemove', handleMouseMove);
         container.addEventListener('mouseleave', (e) => { if (mouseState.isDown) handleMouseUp(e);});
         
-        let html = `<h1>Event Details Container</h1>                    
-                    <!-- Event Header -->
-                    <div class='event-header'>
-                        <div>${event.yearStart} - ${event.yearEnd}</div>
-                        <div>${event.name}
-                    </div>
-                    <!-- Event Summary -->
-                    <div class='event-summary'>
-                        <div class='event-tools'>${event.tools}</div>
-                        <div>At a glance:</div>
-                        <div class='event-summary'>${event.summary}</div>
-                    </div>
-                    <!-- Event Body -->
-                    <div class='event-body'></div>
+        let html = `
+                        <!-- Event Header -->
+                        <div class='event-header'>
+                            <div>${event.yearStart} - ${event.yearEnd}</div>
+                            <div>${event.name}</div>                        
+                        </div>
+
+                        <!-- Event Summary -->
+                        <div class='event-summary'>
+                            <div>
+                                <div class='event-tools'>${event.tools}</div>
+                                <div>At a glance:</div>
+                                <div>${event.summary}</div>
+                            </div>
+                            <div class='company-image'><img src='img/timeline/${event.image}'/></div>
+                        </div>
+                        
+                        <!-- Event Body -->
+                    <div class='event-body'>${event.story}</div>
+                    
                     `;
         container.innerHTML = html;
         parentEl.appendChild(container);

@@ -1,13 +1,29 @@
+:root {
+    --slideshow-background: black;
+    --timeline-foreground: white;
+    --timeline-selected-foreground: gold;
+}
+
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    /* padding: 0;
-    margin: 0; */
+    padding: 0;
+    margin: 0;
 }
 
 body {
     overflow-x: hidden;
+}
+
+section.timeline-component {
+    height: 100vh;
+    
+    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                url('../img/uphill_bw.jpg'); */
+      
+    background: url('../img/uphill_bw.jpg');
+    background-size: cover;    
 }
 
 .footer {
@@ -24,71 +40,170 @@ body {
     gap: 12px;
     padding: 100px 20px;
     padding-bottom: 40px;
-    background-color: rgb(228, 228, 228);        
-    }
+    /* background-color: rgba(0, 0, 0, 0.5);  */
+    /* background:rgba(217, 217,217, 0.25);        */
+
+    background: linear-gradient(rgba(217, 217,217, 0.25), rgba(217, 217,217, 0.25)), 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));    
+}
 .timeline {
     position: relative;
-    border-bottom: 1px solid black;        
+    border-bottom: 1px solid var(--timeline-foreground);        
     width: 100%;
     height: 1px;
-    background-color: #444;        
+    background-color: #444; 
+    color: var(--timeline-foreground);       
+}
+.timeline-header {
+    height: 80px;        
+    background-color: black;    
+}
+.timeline-header .heading {
+    height: 100%;
+    width: 400px;
+    margin-left: 60px;    
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    /* border: 1px solid gold; */
+}
+#forwardBtn, #backBtn {
+    border: none;
+    background: none;
+    color: var(--timeline-foreground);
+    font-size: 2.2em; 
+    margin-bottoM: 3px;   
+}
+
+#forwardBtn:hover, #backBtn:hover {
+    cursor: pointer;
+    color: var(--timeline-selected-foreground);
+}
+
+.timeline-header .heading span:nth-child(odd) {
+    font-size: 1.8em;
+    letter-spacing: 15px;
+    color: var(--timeline-selected-foreground);
+}
+.timeline-header .heading span:nth-child(even) {
+    font-size:2.3em;
+    letter-spacing: 10px;
+    margin-left: 20px;
+    color: var(--timeline-foreground);    
+}
+    
+.horizontal-scroller {
+    display: grid;
+    gap: 0em;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x : auto;
+    overscroll-behavior-inline: contain;
+    block-size: 100%;
+    transition: 0.3s ease-in-out;
+    background: linear-gradient(0deg,rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.6)); 
+                
+    /* background-color: var(--slideshow-background);     */
+    /* padding: 2em;          */    
+    /* transform:scale(0.98);         */    
+}
+    .horizontal-scroller::-webkit-scrollbar {
+    display: none;
     }
+.horizontal-scroller:hover {
+    cursor:grab;
+}
+    
+.horizontal-scroller:focus {
+    /* Since we're adding a tab focus to get the keypress event handler, need to remove the 
+        border outline which gets created on focus.
+        */
+outline:none;          
+}
+        
+.event-details-element {
+    inline-size: 100%;        
+    background:rgba(1, 1, 1, 0.5);        
+    color: white;   
+    font-size: 26px;
+    padding: 20px 80px;    
+}
+
+/* .event-container {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    max-width: 
+} */
+
+.event-header { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:flex-end;
+    border-bottom: 2px solid gold;    
+    }
+    .event-header div:nth-child(1) {
+        font-size: 2em;
+    }
+    .event-header div:nth-child(2) {
+        font-size: 1.1em;
+    }    
+.event-summary {
+    margin-top: 20px;    
+    display: flex;
+    justify-content: space-between;
+    }
+    .event-summary .event-tools {
+        font-size: 1.2em;
+        text-transform: uppercase;    
+    }
+    .event-summary div:nth-child(2) {
+        color: #777;    
+        text-transform: uppercase;
+    }
+    .event-summary .company-image {         
+        width: 250px;
+        height: 150px;    
+        border: 4px solid white;  
+        /* box-shadow: 0px 0px 4px #ccc;   */
+    }
+    .event-summary img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display:block;
+    }
+
+.event-body {
+    margin-top: 40px;
+    line-height: 40px;
+    /* border: 1px solid blue; */
+}
+
+
+    /* TIMELINE */
 .event-marker {
     position: absolute;
     bottom: -10px;
     left: 0px;  
     width: 60px;
-    height: 105px;        
-    }
+    height: 105px;            
+}
+.event-marker > * {
+    color: var(--timeline-foreground);  
+    background-color: var(--timeline-foreground);
+    border-color: var(--timeline-foreground);  
+}
+.event-marker.selected > * {    
+    color: var(--timeline-selected-foreground);  
+    background-color: var(--timeline-selected-foreground);
+    border-color: var(--timeline-selected-foreground);  
+}
 .event-marker:hover {
     cursor:pointer;
-    }     
-    
-.horizontal-scroller {
-    display: grid;
-    gap: 2em;
-    grid-auto-flow: column;
-    grid-auto-columns: 100%;
-
-    overflow-x : auto;
-    overscroll-behavior-inline: contain;
-
-    block-size: 40%;
-    padding: 2em;         
-    
-    transform:scale(0.98);        
-    transition: 0.3s ease-in-out;
-    }
-    /* .horizontal-scroller::-webkit-scrollbar {
-    display: none;
-    } */
-    .horizontal-scroller:hover {
-    cursor:grab;
-    }
-    
-    .horizontal-scroller:focus {
-    /* Since we're adding a tab focus to get the keypress event handler, need to remove the 
-        border outline which gets created on focus.
-        */
-    outline:none;          
-    }
-        
-    .event-details-element {
-    inline-size: 100%;        
-    background:rgb(122, 190, 254);
-    border-radius: 5px;
-    padding: 20px;
-    }
-    .event-header { 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-bottom: 2px solid gold;
-    }
-
-
-    /* TIMELINE */
-    .event-circle {
+}  
+.event-circle {
     position: absolute;     
     bottom: 0px;  
     left: 10px;
@@ -96,11 +211,12 @@ body {
 
     width: 20px;
     height: 20px;
-    border-radius: 50%;        
-    border: 4px solid black;
-    background-color: white;
-    }
-    .event-arm {
+    border-radius: 50%;  
+    border-width: 4px;      
+    /* border: 4px solid var(--timeline-foreground); */
+    /* background-color: var(--timeline-foreground); */
+}
+.event-arm {
     position: absolute;
     bottom: 20px;
     left: 19px;
@@ -108,10 +224,10 @@ body {
 
     width: 2px;
     height: 30px;
-    border-bottom: 1px solid black;
-    background-color: black;        
-    }
-    .event-text {
+    /* border-bottom: 1px solid var(--timeline-foreground); */
+    /* background-color: var(--timeline-foreground);         */
+}
+.event-text {
     position: absolute;
     bottom: 75px;
     left: 0px; 
@@ -121,22 +237,24 @@ body {
     transform-origin: center;
     width: 4em;
     font-size: 1.5em;
-    }
-    .event-selected {
+    /* color: var(--timeline-foreground);   */
+    background-color: rgba(0,0,0,0) !important;     
+}
+.event-selected {
     position: absolute;
-    bottom: 6px;
+    bottom: 5px;
     left: 28px;
     z-index: 2;
 
     width: 2px;
     height: 8px;
-    border-bottom: 1px solid black;
-    background-color: black;
+    border-bottom: 1px solid var(--timeline-selected-foreground);
+    /* background-color: var(--timeline-selected-foreground); */
     transition: width 0.5s        
-    }
-    .no-transition {
+}
+.no-transition {
     transition: none !important;
-    }
+}
 
 
 /*  YEAR MARKERS */
@@ -150,8 +268,8 @@ body {
     top: -5px;
     left: 8px;
     width: 1px;
-    height: 11px;        
-    background-color: black;        
+    height: 13px;        
+    background-color: var(--timeline-foreground);        
 }
 .year-text {
     position: absolute;
@@ -161,6 +279,7 @@ body {
     transform-origin: center;
     width: 4em;
     font-size: 1.5em;
+    color: var(--timeline-foreground)
     }
 
 /* Globals */     
