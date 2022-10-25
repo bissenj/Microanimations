@@ -338,9 +338,17 @@ function renderEventsHorizontal(events, parentEl) {
         let container = document.createElement("div");
         container.classList.add('event-details-element');
         container.dataset.index = index;
+
+        // Mouse Event Handlers
         container.addEventListener('mousedown', handleMouseDown);
         container.addEventListener('mouseup', handleMouseUp);
         container.addEventListener('mousemove', handleMouseMove);
+
+        // Touch Event Handlers
+        container.addEventListener('touchstart', handleMouseDown);
+        container.addEventListener('touchend', handleMouseUp);
+        container.addEventListener('touchmove', handleMouseMove);
+
         container.addEventListener('mouseleave', (e) => { if (mouseState.isDown) handleMouseUp(e);});
         
         let html = `
