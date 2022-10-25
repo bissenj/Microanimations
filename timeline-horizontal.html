@@ -216,7 +216,14 @@ function updateSelectedEventConnector(event, reset = false) {
 }
 
 // When the mouse is clicked, save the current state.
-function handleMouseDown(e) {    
+function handleMouseDown(e) {  
+
+    // Hack for TOUCH events
+    if (e.type == 'touchstart') {
+        e.pageX = e.changedTouches[0].pageX;
+    }
+
+    console.log('handleMouseDown(): ', e);  
     mouseState.isDown = true;
     mouseState.startX = e.pageX - mouseState.parentElement.offsetLeft;
     mouseState.scrollLeft = mouseState.parentElement.scrollLeft;
@@ -224,6 +231,8 @@ function handleMouseDown(e) {
 }
 // When the mouse button is let up, attempt to update the timeline and slideshow.
 function handleMouseUp(e) { 
+    console.log("handleMouseUp(): ", e, mouseState);
+
     // Reset Stuff - 1
     mouseState.isDown = false;   
     mouseState.parentElement.classList.remove('mouseDown'); 
@@ -259,12 +268,22 @@ function handleMouseUp(e) {
     // Reset stuff - 2    
     mouseState.direction = 0;
 }
-function handleMouseMove(e) {    
+function handleMouseMove(e) { 
+    
+    // Hack for TOUCH events
+    if (e.type == 'touchmove') {
+        e.pageX = e.changedTouches[0].pageX;
+    }
+    
+    //console.log("handleMouseMove(): ", e); 
     //debugPrintScrollPosition('.horizontal-scroller', 'ScrollLeft');
+    //console.log(mouseState);
 
     // if the mouse is not clicked, don't proceed.
     if (!mouseState.isDown) return;
-    e.preventDefault();
+
+
+    //e.preventDefault();
 
     // If there is an animation taking place, ignore this event. (or their will be JANK)
     if (mouseState.isAnimating) return;
@@ -280,6 +299,18 @@ function handleMouseMove(e) {
     }
 }
 
+function handleTouchStart(e) {
+    console.log("handleTouchStart");
+    handleMouseDown(e);
+}
+function handleTouchEnd(e) {
+    console.log("handleTouchEnd");
+    handleMouseUp(e);
+}
+function handleTouchMove(e) {
+    console.log("handleTouchMove");
+    handleMouseMove(e);
+}
 
 // ----------------------------------------------------------------------------------------------------------
 // ------------------------------ Render Methods ------------------------------------------------------------
@@ -339,15 +370,20 @@ function renderEventsHorizontal(events, parentEl) {
         container.classList.add('event-details-element');
         container.dataset.index = index;
 
+        // Pointer Event Handlers
+        // container.addEventListener('pointerdown', handleMouseDown);
+        // container.addEventListener('pointerup', handleMouseUp);
+        // container.addEventListener('pointermove', handleMouseMove);
+
         // Mouse Event Handlers
         container.addEventListener('mousedown', handleMouseDown);
         container.addEventListener('mouseup', handleMouseUp);
         container.addEventListener('mousemove', handleMouseMove);
 
         // Touch Event Handlers
-        container.addEventListener('touchstart', handleMouseDown);
-        container.addEventListener('touchend', handleMouseUp);
-        container.addEventListener('touchmove', handleMouseMove);
+        container.addEventListener('touchstart', handleTouchStart);
+        container.addEventListener('touchend', handleTouchEnd);
+        container.addEventListener('touchmove', handleTouchMove);
 
         container.addEventListener('mouseleave', (e) => { if (mouseState.isDown) handleMouseUp(e);});
         
