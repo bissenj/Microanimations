@@ -25,7 +25,7 @@ const events = [
         yearEnd:2014, 
         name: "Northwestern Mutual", 
         tools: "Java, .Net, Message Queues, Middleware", 
-        image: 'nwm.webp',
+        image: 'nwm.jpg',
         summary: 'Large IT Department (~2000).  Heavy on process.  Low tolerance for failure.  Very professional environment.', 
         story: 'I worked in a number of roles and teams during my 10 years at Northwestern Mutual.  During this time I gained rigorous testing experience, worked with teams on large and small project development, learned a methodology for understanding and preventing system failures, and had the importance of system tracing and logs ingrained in my head. '
     }, 

@@ -15,10 +15,11 @@
 //   2.  Uniform padding and gap on the scroll container.
 //   3.  Slide should be centered at end of animation.
 
-function slideShow_SnapScrollToNewSlide(el) {
-    snapScrollHorizontal(el)
+function slideShow_SnapScrollToNewSlide(el, onFinish) {
+
+    snapScrollHorizontal(el, onFinish)
 }
-function snapScrollHorizontal(el) {
+function snapScrollHorizontal(el, onFinish) {
  
     // Get the element index stored in DOM.  This is used to calculate how far 
     // the slide show needs to update.
@@ -48,8 +49,9 @@ function snapScrollHorizontal(el) {
 
     // These control how long and smooth our animation is.
     // More Frames and lower time delay = smoother animation.  
-    const FRAMES = 50; const timeDelay = 10;
+    const FRAMES = 60; const timeDelay = 10;
     let i = 0; let timeElapsed = 0; 
+    //console.log("animation start");          
     let loop = window.setInterval(() => {
 
         // Calculate the distance to update in this frame using one of several standard easing equations (ease-in, ease-out, ease-in-out);
@@ -70,10 +72,14 @@ function snapScrollHorizontal(el) {
 
             // Clean up 
             clearInterval(loop);
-            //debugAddToWatchList("Scroll Left (End)", parentEl.scrollLeft);            
+            //debugAddToWatchList("Scroll Left (End)", parentEl.scrollLeft);  
+            //console.log("animation done");   
+            onFinish(false);       
         }
         debugPrintInformation(watchList);
     }, timeDelay);
+
+    //console.log("ending animation");
 }
 
 

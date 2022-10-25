@@ -1,7 +1,22 @@
 :root {
-    --slideshow-background: black;
-    --timeline-foreground: white;
-    --timeline-selected-foreground: gold;
+    /* Dark Mode */
+    --slideshow-background: black; 
+    --slideshow-foreground: white;
+    --timeline-selected-foreground: gold; 
+
+    --gradient-dark-low:  0, 0, 0, 1;
+    --gradient-dark-high: 0, 0, 0, 0.85;
+    --gradient-dark-half: 0, 0, 0, 0.5;
+    
+
+    /* Light Mode */
+    /* --slideshow-background: white; 
+    --slideshow-foreground: black;
+    --timeline-selected-foreground: gold; 
+
+    --gradient-dark-low:  255, 255, 255, 1;
+    --gradient-dark-high: 255, 255, 255, 0.85;
+    --gradient-white-half: 255, 255, 255, 0.5; */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
@@ -18,20 +33,33 @@
 
 body {
     overflow-x: hidden;
+    /* overflow-y: hidden; */
 }
 
 section.timeline-component {
+
+    /* If using wrapper */
+    /* height: 100%; */
+    /* overflow-y: auto; */
+    /* background-color: black; */
+
+    height: 100vh;
+    background: url('../img/timeline/snow_up_bw_white.png');
+    background-size: cover;    
+}
+
+.timeline-wrapper {
     height: 100vh;
     
-    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('../img/uphill_bw.jpg'); */
+    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.0) 70%, rgba(0, 0, 0, 1)), 
+                url('../img/timeline/snow_up_bw_white.png'); */
       
-    background: url('../img/uphill_bw.jpg');
+    background: url('../img/timeline/snow_up_bw_white.png');
     background-size: cover;    
 }
 
 .footer {
-    height: 200vh;
+    height: 200px;
     background-color: #ccc;
     padding: 20px;
 }
@@ -52,15 +80,15 @@ section.timeline-component {
 }
 .timeline {
     position: relative;
-    border-bottom: 1px solid var(--timeline-foreground);        
+    border-bottom: 1px solid var(--slideshow-foreground);        
     width: 100%;
     height: 1px;
     background-color: #444; 
-    color: var(--timeline-foreground);       
+    color: var(--slideshow-foreground);       
 }
 .timeline-header {
     height: 80px;        
-    background-color: black;    
+    background-color: var(--slideshow-background);        
 }
 .timeline-header .heading {
     height: 100%;
@@ -74,7 +102,7 @@ section.timeline-component {
 #forwardBtn, #backBtn {
     border: none;
     background: none;
-    color: var(--timeline-foreground);
+    color: var(--slideshow-foreground);
     font-size: 2.2em; 
     margin-bottoM: 3px;   
 }
@@ -93,7 +121,7 @@ section.timeline-component {
     font-size:2.3em;
     letter-spacing: 10px;
     margin-left: 20px;
-    color: var(--timeline-foreground);    
+    color: var(--slideshow-foreground);    
 }
     
 .horizontal-scroller {
@@ -105,7 +133,7 @@ section.timeline-component {
     overscroll-behavior-inline: contain;
     /* block-size: 100%; */
     transition: 0.3s ease-in-out;
-    background: linear-gradient(0deg,rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.6)); 
+    background: linear-gradient(0deg,rgba(var(--gradient-dark-low)) 60%, rgba(var(--gradient-dark-high))); 
                 
     /* background-color: var(--slideshow-background);     */
     /* padding: 2em;          */    
@@ -128,14 +156,16 @@ section.timeline-component {
 .event-details-element {
     inline-size: 100%;  
     block-size: 100%;      
-    background:rgba(1, 1, 1, 0.5);        
+    /* background:rgba(1, 1, 1, 0.5);         */
+    background:rgba(var(--gradient-white-half));        
     
-    padding: 20px 90px;  
+    padding: 20px 15%;  
     padding-bottom: 60px;  
 
-    color: var(--timeline-foreground);   
+    color: var(--slideshow-foreground);   
     letter-spacing: 1px;    
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: 22px;
 
     /* overflow-y: scroll; */
 }
@@ -165,7 +195,9 @@ section.timeline-component {
     margin-top: 20px;    
     display: flex;
     justify-content: space-between;
-    line-height: 40px;  
+    /* line-height: 40px;   */
+    line-height: 33px;
+
     }
     .event-summary .event-tools {
         font-size: 1.1em;
@@ -187,7 +219,7 @@ section.timeline-component {
 
         border: 4px solid white;  
         margin-left: 40px;
-        /* box-shadow: 0px 0px 4px #ccc;   */
+        /* box-shadow: 0px 0px 4px #444;   */
     }
     .event-summary img {
         width: 100%;
@@ -197,10 +229,32 @@ section.timeline-component {
     }
 
 .event-body {
+    position: relative;
+    /* height: 200px; */
     margin-top: 40px;
     line-height: 40px;
+    overflow-y: hidden;
+    /* overflow-y: auto; */
     /* letter-spacing: 1px; */
     /* border: 1px solid blue; */
+}
+.event-body.small {
+    height: 350px;
+    /* border-bottom: 1px dashed #ccc; */
+    /* background: linear-gradient(0deg,rgba(0,0,0,1) 60%, rgba(0,0,0,0)); */
+
+}
+.event-body.small::after {
+    color:white;
+    content: '';
+    height: 100%;
+    width: 100%;
+    /* border-bottom: 1px dashed #ccc;     */
+    position: absolute;
+    top:0px;
+    z-index: 10;
+    background: red;
+    background: linear-gradient(0deg,rgba(0,0,0,1) 0%, rgba(0,0,0,0) 70%);
 }
 .event-body div:nth-child(1) {
     color: #777;    
@@ -232,8 +286,28 @@ section.timeline-component {
     text-orientation: sideways;
 }
 
+.event-body button.next {
+    display:none;
+    padding: 5px 20px;
+    float:right;
+    font-size: 0.8em;
+}
+.event-body button:hover {
+    transform:scale(1.1);
+    cursor: pointer;
+}
 
-    /* TIMELINE */
+.event-body button.more {  
+    position: absolute;
+    left: calc(50% - 40px);
+    bottom: 50px;
+    z-index: 20;    
+    padding: 5px 20px;    
+    font-size: 0.8em;
+}
+
+
+/* TIMELINE */
 .event-marker {
     position: absolute;
     bottom: -10px;
@@ -242,9 +316,9 @@ section.timeline-component {
     height: 105px;            
 }
 .event-marker > * {
-    color: var(--timeline-foreground);  
-    background-color: var(--timeline-foreground);
-    border-color: var(--timeline-foreground);  
+    color: var(--slideshow-foreground);  
+    background-color: var(--slideshow-foreground);
+    border-color: var(--slideshow-foreground);  
 }
 .event-marker.selected > * {    
     color: var(--timeline-selected-foreground);  
@@ -264,8 +338,8 @@ section.timeline-component {
     height: 20px;
     border-radius: 50%;  
     border-width: 4px;      
-    /* border: 4px solid var(--timeline-foreground); */
-    /* background-color: var(--timeline-foreground); */
+    /* border: 4px solid var(--slideshow-foreground); */
+    /* background-color: var(--slideshow-foreground); */
 }
 .event-arm {
     position: absolute;
@@ -275,8 +349,8 @@ section.timeline-component {
 
     width: 2px;
     height: 30px;
-    /* border-bottom: 1px solid var(--timeline-foreground); */
-    /* background-color: var(--timeline-foreground);         */
+    /* border-bottom: 1px solid var(--slideshow-foreground); */
+    /* background-color: var(--slideshow-foreground);         */
 }
 .event-text {
     position: absolute;
@@ -288,7 +362,7 @@ section.timeline-component {
     transform-origin: center;
     width: 4em;
     font-size: 1.5em;
-    /* color: var(--timeline-foreground);   */
+    /* color: var(--slideshow-foreground);   */
     background-color: rgba(0,0,0,0) !important;     
 }
 .event-selected {
@@ -320,7 +394,7 @@ section.timeline-component {
     left: 8px;
     width: 1px;
     height: 13px;        
-    background-color: var(--timeline-foreground);        
+    background-color: var(--slideshow-foreground);        
 }
 .year-text {
     position: absolute;
@@ -330,7 +404,7 @@ section.timeline-component {
     transform-origin: center;
     width: 4em;
     font-size: 1.5em;
-    color: var(--timeline-foreground)
+    color: var(--slideshow-foreground)
     }
 
 /* Globals */     
@@ -340,8 +414,8 @@ section.timeline-component {
     }  
 
 .mouseDown {
-    transform: scale(1);
-    opacity: 0.8;                                
+    /* transform: scale(1); */
+    /* opacity: 0.8;                                 */
     }
 
 #debug * div {

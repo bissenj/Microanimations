@@ -1,32 +1,44 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Timeline Example</title> 
-<link rel='stylesheet' href='css/timeline.css' />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Timeline Example</title> 
+  <link rel='stylesheet' href='css/timeline.css' />
 </head>
 
 <body>
+<section style="height:75vh; background-color: rgb(181, 181, 181); display:flex; align-items: center;justify-content: center;"><h1>This is a section</h1></section>
 <section class='timeline-component'>
+    <!-- <div class='timeline-wrapper'> -->
 
-    <!-- Header -->
-    <div class='timeline-header'>
-        <div class='heading'>
-            <span>work</span><span>Experience</span>
+        <!-- Header -->
+        <div class='timeline-header'>
+            <div class='heading'>
+                <span>work</span><span>Experience</span>
+            </div>
         </div>
-    </div>
 
-    <!-- Timeline Component -->
-    <div class='timeline-container'>
-        <button id="backBtn">  &#5130; </button>
-        <div id="timeline" class="timeline"></div>
-        <button id="forwardBtn"> &#5125; </button>
-    </div>
+        <!-- Timeline Component -->
+        <div class='timeline-container'>
+            <button id="backBtn">  &#5130; </button>
+            <div id="timeline" class="timeline"></div>
+            <button id="forwardBtn"> &#5125; </button>
+        </div>
 
-    <!-- Slideshow Component -->
-    <div class='horizontal-scroller snaps-inline'></div>
-    <div class='footer'>
-        <span id="ScrollLeft"></span>
-        <div id="debug"></div>
-    </div>
+        <!-- Slideshow Component -->
+        <div class='horizontal-scroller snaps-inline'></div>
+
+        <section style="height:75vh; background-color: rgb(181, 181, 181); display:flex; flex-direction: column; align-items: center;justify-content: center;">
+            <h1>This is the footer section</h1>
+            <div class='footer'>
+                <span id="ScrollLeft"></span>
+                <div id="debug"></div>
+            </div>
+        </section>
+        
+    <!-- </div> -->
 
 </section>
 </body>
@@ -74,7 +86,6 @@ window.onload = () => {
         });    
 }
 
-
 // Attempts to increment or decrement the selected index and 
 // then update the timeline and slide show.
 function updateSelectedIndexByDirection(direction) {
@@ -106,10 +117,21 @@ function handleEventMarkerClick(e) {
     updateSlideShow(index);
 }   
 
+function callback_updateAnimationState(state) {    
+    mouseState.isAnimating = state;
+    console.log("New State is: ", state);
+}
+
 // Central location for updating the UI Timeline and Slideshow)
 function updateSlideShow(index) {
 
+    // Ignore if there is already an animation taking place
+    if (mouseState.isAnimating) { console.log("Nope.  Currently animating"); return; }
+
+
     if (Number.isInteger(index)) {
+        callback_updateAnimationState(true);
+        //console.log("Start Animating");
 
         // Updates the Event Timeline
         timeline_SetNewSelectedEvent(index);
@@ -117,8 +139,10 @@ function updateSlideShow(index) {
         // find event details container related to the new index.
         let element = document.querySelector(`.event-details-element[data-index="${index}"]`);    
 
-        // Moves slideshow to the new slide
-        slideShow_SnapScrollToNewSlide(element);    
+        // Moves slideshow to the new slide        
+        slideShow_SnapScrollToNewSlide(element, callback_updateAnimationState);    
+
+        //console.log("Finished Animating");
     }
     else {
         console.error("index parameter is invalid.");
@@ -153,38 +177,39 @@ function timeline_SetNewSelectedEvent(index) {
             markerEl.classList.add('fade-to-back');            
         } 
 
+        // Set the selected event
         if (year == event.yearStart || yearEnd == event.yearStart) {
             let markerEl = document.getElementById(`${event.yearStart}Marker`);            
-            markerEl.classList.add('selected');            
+            markerEl.classList.add('selected');  
         }        
 
-        // Check if we are on the new active event or not and update the timeline accordingly.        
-        updateSelectedEvent(event, event.yearStart !== year);        
+        // Handle the animation for the selected event on the timeline (ie )
+        updateSelectedEventConnector(event, event.yearStart !== year);        
     });
 }
 
 // Updates the details slideshow
-function updateSelectedEvent(event, reset = false) {        
+function updateSelectedEventConnector(event, reset = false) {        
     let container = document.getElementById(`${event.yearStart}Marker`);
-    let el = document.getElementById(`${event.yearStart}Marker`).querySelector('.event-selected');            
-    
+    let el = document.getElementById(`${event.yearStart}Marker`).querySelector('.event-selected');
+            
     // FUTURE IMPROVEMENT - don't like how timeline is hardcoded here.
     let widthPerTick = document.querySelector('.timeline').dataset.widthPerTick;
     let width = (event.yearEnd - event.yearStart) * widthPerTick;
-
+    
     // Add a bit of a delay so the Timeline and Slide show move at the same time.
     let delay = (reset ? 0 : 250);
 
     window.setTimeout(() => {
         if (reset) {
-                width = 0;
-                el.classList.add('no-transition');
-            }
-            else {
-                el.classList.remove('no-transition');    
-            }
-            el.style.width = width;
-        }, delay)
+            width = 0;
+            el.classList.add('no-transition');
+        }
+        else {
+            el.classList.remove('no-transition');    
+        }        
+        el.style.width = `${width}px`;      // Kicks off the animation when this is the selected event.
+    }, delay)
 }
 
 // When the mouse is clicked, save the current state.
@@ -203,6 +228,16 @@ function handleMouseUp(e) {
     // If mouse was clicked but we haven't recorded any direction, assume user is not trying to 
     // update the slideshow
     if (mouseState.direction == 0) return;
+    
+
+    // If the walk is < WALK_THRESHOLD, user isn't trying to update slideshow
+    const WALK_THRESHOLD = 100;
+    if (Math.abs(mouseState.walk) < WALK_THRESHOLD) {
+        //console.log("Walk is < WALK_THRESHOLD");
+        mouseState.walk = 0;
+        updateSlideShow(selectedIndex);
+        return;
+    }
 
     // Calculate which slide is most visible on the screen and scroll to it.
     let slidesInView = getElementsOnScreen('.event-details-element');
@@ -228,27 +263,31 @@ function handleMouseMove(e) {
     if (!mouseState.isDown) return;
     e.preventDefault();
 
+    // If there is an animation taking place, ignore this event. (or their will be JANK)
+    if (mouseState.isAnimating) return;
+
     // Calculate how much the mouse has moved and update the scroll position
     const x = e.pageX - mouseState.parentElement.offsetLeft;
-    const walk = (x - mouseState.startX) * 1;    
-    mouseState.parentElement.scrollLeft = mouseState.scrollLeft - walk;
-    mouseState.direction = (walk > 0) ? 1 : -1;    
+    const walk = (x - mouseState.startX) * 1;   
+    if (Math.abs(walk) > 10)  {
+        mouseState.parentElement.scrollLeft = mouseState.scrollLeft - walk;
+        //console.log("walk: ", walk);
+        mouseState.direction = (walk > 0) ? 1 : -1;   
+        mouseState.walk = walk; 
+    }
 }
 
 
 // ----------------------------------------------------------------------------------------------------------
 // ------------------------------ Render Methods ------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------
-function renderEventMarker(index, event, parentEl, offsetX, offsetWidth) {   
-    let displayEndCapHtml = 'display:none;';    // Not used anymore    
-
+function renderEventMarker(index, event, parentEl, offsetX, offsetWidth) { 
+    console.log("offsetWidth: ", offsetWidth);      
     let html = `<div id='${event.yearStart}Marker' data-year=${event.yearStart} data-index=${index} class='event-marker' style='left:${offsetX}px'>
                     <div class='event-circle'></div>
                     <div class='event-arm'></div>
                     <div class='event-text'>${event.yearStart}</div>
-                    <div class='event-selected' style='width:${offsetWidth}; overflow-y: hidden; display: flex; flex-direction: row; justify-content: flex-end;'>
-                        <div style='${displayEndCapHtml} width: 20px; height: 20px; background-color: red;'></div>
-                    </div>
+                    <div class='event-selected' style='width:${offsetWidth};'></div>
                 </div>`;
 
     parentEl.innerHTML += html;    
@@ -263,13 +302,12 @@ function renderYearTick(year, parentEl, offsetX) {
     let html = "";
     if (year % 5 === 0) {
         html = `<div class='year-marker' style='left:${offsetX}px'>                    
-                        <div class='year-arm' style='height: ${25}px; top: -12px;'></div>                    
-                        <div class='year-text' style='display:none'>${year}</div>                    
+                        <div class='year-arm' style='height: ${25}px; top: -12px;'></div>                                            
                     </div>`;
     }
     else {
-        html = `<div class='year-marker'>                    
-                        <div class='year-arm' style='left:${offsetX}px'></div>                    
+        html = `<div class='year-marker' style='left:${offsetX}px'>                    
+                        <div class='year-arm'></div>                    
                     </div>`;
     }
 
@@ -320,24 +358,46 @@ function renderEventsHorizontal(events, parentEl) {
                         </div>
                         
                         <!-- Event Body -->
-                        <div class='event-body'>
+                        <div class='event-body small'>
                             <div>What I accomplished and how I grew:</div>
                             ${event.story}
-                        </div>
-                    
+                            <div><button class='next'>Next &#5125;</button></div>
+                            <div><button class='more'>More</button></div>                    
+                        </div>                        
                     `;
         container.innerHTML = html;
         parentEl.appendChild(container);
+
+        container.querySelector('.more').addEventListener('click', (e) => {
+            //console.log("click", e);
+            let target = e.target.parentElement.parentElement;
+            console.log(target);
+            
+            if (target.classList.contains('small')) {
+                target.classList.remove('small');
+            }
+            else {
+                target.classList.add('small');
+            }
+        });
+
     });
 }
 
 // This creates the timeline and gets it up and running.
 function initTimeline(timeline_selector, startYear, endYear) {
     let timelineEl = document.querySelector(timeline_selector);
+
+    // Clear the timeline (in case this is called for a refresh so we don't end up with a gazillion elements)
+    timelineEl.innerHTML = "";
     
     // Calculate some stuff needed for rendering
     const numTicks = endYear - startYear;
     const timelineWidth = timelineEl.offsetWidth;
+
+    //console.log(timelineEl.clientWidth); console.log(timelineEl.offsetWidth);
+    //console.log(timelineEl.getBoundingClientRect());
+
     const widthPerTick = timelineWidth / numTicks;
     timelineEl.dataset.widthPerTick = widthPerTick;     // Store this for later  <-- IMPROVE THIS
 
@@ -351,6 +411,9 @@ function initTimeline(timeline_selector, startYear, endYear) {
     // Add each event as a marker on the timeline
     events.map((event, index) => {    
         const offsetX = (event.yearStart - startYear) * widthPerTick - 20;      // WHY 20?
+        
+        // Need to update width here
+
         renderEventMarker(index, event, timelineEl, offsetX, 0);
     });
 
@@ -375,11 +438,17 @@ let mouseState = { parentElement: document.querySelector('.horizontal-scroller')
                    isDown:false, 
                    startX:0, 
                    scrollLeft:0,
-                   direction:0
+                   direction:0,
+                   walk:0,
+                   isAnimating: false
                 }
 
 // Fire up the timeline and slideshow!
 initTimeline('.timeline', 1995, 2025);
+window.onresize = () => {    
+    console.log("Resize!");
+    initTimeline('.timeline', 1995, 2025);
+}
 
 </script>
 </html>
