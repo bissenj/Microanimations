@@ -55,7 +55,7 @@ function snapScrollHorizontal(el, onFinish) {
     let loop = window.setInterval(() => {
 
         // Calculate the distance to update in this frame using one of several standard easing equations (ease-in, ease-out, ease-in-out);
-        let easingInterval = easeInOutQuint(timeElapsed, parentScrollLeft, distanceToTravel, timeDelay * FRAMES);        
+        let easingInterval = easeOutQuad(timeElapsed, parentScrollLeft, distanceToTravel, timeDelay * FRAMES);        
         //debugAddToWatchList("easeInOutInterval", easingInterval);
         
         // animate by scrolling the parent container a bit
@@ -111,6 +111,9 @@ function easeInOutCirc (t, b, c, d) {
 function easeInOutQuint (t, b, c, d) {
     if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
     return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+}
+function easeOutQuad (t, b, c, d) {
+    return -c * (t /= d) * (t - 2) + b;
 }
 
 
