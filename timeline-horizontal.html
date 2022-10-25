@@ -311,7 +311,7 @@ function renderEventsHorizontal(events, parentEl) {
 
                         <!-- Event Summary -->
                         <div class='event-summary'>
-                            <div>
+                            <div class='left'>
                                 <div class='event-tools'>${event.tools}</div>
                                 <div>At a glance:</div>
                                 <div>${event.summary}</div>
@@ -320,7 +320,10 @@ function renderEventsHorizontal(events, parentEl) {
                         </div>
                         
                         <!-- Event Body -->
-                    <div class='event-body'>${event.story}</div>
+                        <div class='event-body'>
+                            <div>What I accomplished and how I grew:</div>
+                            ${event.story}
+                        </div>
                     
                     `;
         container.innerHTML = html;

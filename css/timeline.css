@@ -4,12 +4,16 @@
     --timeline-selected-foreground: gold;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
@@ -99,15 +103,15 @@ section.timeline-component {
     grid-auto-columns: 100%;
     overflow-x : auto;
     overscroll-behavior-inline: contain;
-    block-size: 100%;
+    /* block-size: 100%; */
     transition: 0.3s ease-in-out;
-    background: linear-gradient(0deg,rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0.6)); 
+    background: linear-gradient(0deg,rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.6)); 
                 
     /* background-color: var(--slideshow-background);     */
     /* padding: 2em;          */    
     /* transform:scale(0.98);         */    
 }
-    .horizontal-scroller::-webkit-scrollbar {
+.horizontal-scroller::-webkit-scrollbar {
     display: none;
     }
 .horizontal-scroller:hover {
@@ -118,15 +122,22 @@ section.timeline-component {
     /* Since we're adding a tab focus to get the keypress event handler, need to remove the 
         border outline which gets created on focus.
         */
-outline:none;          
+    outline:none;          
 }
         
 .event-details-element {
-    inline-size: 100%;        
+    inline-size: 100%;  
+    block-size: 100%;      
     background:rgba(1, 1, 1, 0.5);        
-    color: white;   
-    font-size: 26px;
-    padding: 20px 80px;    
+    
+    padding: 20px 90px;  
+    padding-bottom: 60px;  
+
+    color: var(--timeline-foreground);   
+    letter-spacing: 1px;    
+    font-size: 20px;
+
+    /* overflow-y: scroll; */
 }
 
 /* .event-container {
@@ -141,31 +152,41 @@ outline:none;
     flex-direction: row;
     justify-content: space-between;
     align-items:flex-end;
-    border-bottom: 2px solid gold;    
+    border-bottom: 2px solid gold;      
     }
     .event-header div:nth-child(1) {
         font-size: 2em;
     }
     .event-header div:nth-child(2) {
         font-size: 1.1em;
+        margin-bottom: 5px;
     }    
 .event-summary {
     margin-top: 20px;    
     display: flex;
     justify-content: space-between;
+    line-height: 40px;  
     }
     .event-summary .event-tools {
-        font-size: 1.2em;
+        font-size: 1.1em;
+        letter-spacing: 4px;
         text-transform: uppercase;    
     }
-    .event-summary div:nth-child(2) {
+    .event-summary .left div:nth-child(2) {
         color: #777;    
-        text-transform: uppercase;
+        /* font-size: 0.9em; */
+        /* text-transform: uppercase; */
+        margin-top:20px;
+        /* margin-bottom: 0px; */
     }
     .event-summary .company-image {         
         width: 250px;
-        height: 150px;    
+        min-width:250px;
+        height: 150px; 
+        min-height: 150px;
+
         border: 4px solid white;  
+        margin-left: 40px;
         /* box-shadow: 0px 0px 4px #ccc;   */
     }
     .event-summary img {
@@ -178,7 +199,37 @@ outline:none;
 .event-body {
     margin-top: 40px;
     line-height: 40px;
+    /* letter-spacing: 1px; */
     /* border: 1px solid blue; */
+}
+.event-body div:nth-child(1) {
+    color: #777;    
+    /* font-size: 0.9em; */
+}
+.event-body p {
+    margin-top: 20px;
+}
+.event-body ul {
+    margin-left: 4em;
+}
+.event-body li {
+    margin: 10px 0px;
+}
+.event-body div.aside {
+    margin: 40px;
+    font-size: 0.8em;
+    /* border: 1px solid white; */
+    /* padding: 20px; */
+    /* border-top: 1px dashed white;    
+    border-bottom: 1px dashed white;  */
+    
+    color: black;
+    background-color: #fff;
+    padding: 4px 20px;
+    border-radius: 5px;
+}
+.event-body div.aside.heading {
+    text-orientation: sideways;
 }
 
 
