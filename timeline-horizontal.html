@@ -279,7 +279,7 @@ function handleMouseMove(e) {
         e.pageX = e.changedTouches[0].pageX;
     }
     
-    //console.log("handleMouseMove(): ", e); 
+    //console.log("handleMouseMove(): ", e.pageX); 
 
     //e.preventDefault();
 
@@ -288,7 +288,7 @@ function handleMouseMove(e) {
 
     // Calculate how much the mouse has moved and update the scroll position    
     const x = e.pageX - mouseState.parentElement.offsetLeft;    
-    const walk = (x - mouseState.startX) * 1.5; 
+    const walk = (x - mouseState.startX) * 1.0; 
 
     //console.log("e.pageX: ", Math.round(e.pageX, 2), " Walk: ", Math.round(walk, 2));
     const WALK_THRESHOLD = 0;  
