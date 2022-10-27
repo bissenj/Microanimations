@@ -127,6 +127,7 @@ function getElementsOnScreen(selector) {
     // Calculate which element is most visible on the screen and scroll to it.
     let elements = document.querySelectorAll(selector);
     let elementsInView = [];
+    let elementsInViewDebug = [];
     
     elements.forEach((element) => {
         const bounding = element.getBoundingClientRect();
@@ -137,10 +138,13 @@ function getElementsOnScreen(selector) {
             (bounding.right >= 0 && bounding.right < width)            
         ) {             
             elementsInView.push(element);
+            elementsInViewDebug.push(element.dataset.index);
         } else {
             //console.log('Not in the viewport...');
         }
     });
+
+    console.log("Elements in View: ", elementsInViewDebug);
     return elementsInView;
 }
 
