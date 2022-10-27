@@ -44,10 +44,10 @@
 </body>
 
 <script src="/js/animation.js"></script>
-<!-- <script src="/Microanimations/js/animation.js"></script> -->
+<script src="/Microanimations/js/animation.js"></script>
 
 <script src="/data/data.js"></script>
-<!-- <script src="/Microanimations/data/data.js"></script> -->
+<script src="/Microanimations/data/data.js"></script>
 
 <script>
 
@@ -517,13 +517,7 @@ function initTimeline(timeline_selector, startYear, endYear) {
 }
 
 
-
 // ------------------------------ DOCUMENT IS LOADED --------------------------------------------------------
-
-// On mobile browsers scrolling may trigger a resize event which will mess up our app in some cases.  Store 
-// the current dimentions so we can resize our app at the appropriate time.
-//var WINDOW_WIDTH = window.innerWidth; 
-//var WINDOW_HEIGHT = window.innerHeight;
 
 // Activate
 let selectedIndex = 0;
@@ -541,20 +535,14 @@ let mouseState = { parentElement: document.querySelector('.horizontal-scroller')
 // Fire up the timeline and slideshow!
 initTimeline('.timeline', 1995, 2025);
 
+
+// On mobile browsers scrolling may trigger a resize event which will mess up our app in some cases.  Store 
+// the current dimentions so we can resize our app at the appropriate time.
 const el = document.querySelector('.timeline-container');
 var TIMELINE_WIDTH = el.clientWidth;
 var TIMELINE_HEIGHT = el.clientHeight;
 
 window.onresize = () => {    
-
-   // Make sure the window actually resized;    
-   // if (window.innerWidth != WINDOW_WIDTH || window.innerHeight != WINDOW_HEIGHT) {
-        //console.log("Prior Width/Height: ", WINDOW_WIDTH, WINDOW_HEIGHT);
-        //console.log("Current Width/Height: ", window.innerWidth, window.innerHeight);
-        //WINDOW_WIDTH = window.innerWidth; 
-        //WINDOW_HEIGHT = window.innerHeight;
-   //}
-   //if (window.innerWidth != WINDOW_WIDTH || window.innerHeight != WINDOW_HEIGHT) {
 
     console.log("Resize Event Detected");
     console.log("Timeline Width/Height: ", TIMELINE_WIDTH, TIMELINE_HEIGHT);
