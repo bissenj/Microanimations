@@ -2,6 +2,10 @@
 cd C:\Users\Bash Warrior King\Desktop\2022\Programming\Work Techniques\Parallax (Oct 17-21)
 
 
+Github Pages
+https://github.com/aspenpeakstudios/Microanimations/settings/pages
+
+
 Goals:
 
 - 1.  Paralaxx Scrolling Basics
