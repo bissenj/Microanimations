@@ -316,6 +316,14 @@ function handleTouchStart(e) {
     handleMouseDown(e);
 }
 function handleTouchEnd(e) {
+
+    // NOTES:
+    //    On a touch device the 'touchend' event may occur before the touchmove events are done
+    //    (ie the container is still scrolling).  To handle that, we're going to run a timeout and 
+    //    compare the current scroll position against the last scroll position until they are the same
+    //    which will tell us when the scroll is finished, then we call the normal funcion to 
+    //    update the slideshow.
+
     let i = 0;  let end = 100;
     let finished = false;
     let lastScrollLeft = 0;
@@ -512,6 +520,11 @@ function initTimeline(timeline_selector, startYear, endYear) {
 
 // ------------------------------ DOCUMENT IS LOADED --------------------------------------------------------
 
+// On mobile browsers scrolling may trigger a resize event which will mess up our app in some cases.  Store 
+// the current dimentions so we can resize our app at the appropriate time.
+var WINDOW_WIDTH = window.innerWidth; 
+var WINDOW_HEIGHT = window.innerHeight;
+
 // Activate
 let selectedIndex = 0;
 
@@ -528,8 +541,12 @@ let mouseState = { parentElement: document.querySelector('.horizontal-scroller')
 // Fire up the timeline and slideshow!
 initTimeline('.timeline', 1995, 2025);
 window.onresize = () => {    
-    console.log("Resize!");
-    initTimeline('.timeline', 1995, 2025);
+
+    // Make sure the window actually resized;    
+    if (window.innerWidth != WINDOW_WIDTH || window.innerHeight != WINDOW_HEIGHT) {
+        console.log("Resize!");
+        initTimeline('.timeline', 1995, 2025);    
+    }
 }
 
 </script>
