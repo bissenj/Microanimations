@@ -148,9 +148,10 @@ section.timeline-component {
 .event-details-element-wrapper {
     inline-size: 100%;  
     block-size: 100%;      
-    background:rgba(255, 1, 1, 0.5);            
+    /* background:rgba(255, 1, 1, 0.5);             */
+    background:rgba(var(--gradient-white-half));  
         
-    padding: 20px max(40px, 10%);  
+    padding: 20px max(3em, 5%);  
     
 
     /* touch-action: none; */    
@@ -160,13 +161,17 @@ section.timeline-component {
 .event-details-element {
     inline-size: 100%;  
     block-size: 100%;     
-    background-color: black; 
+    /* background-color: black;  */
+    --slide-element-border: #333;
+    /* --slide-element-border: #111;  */
+    border-right: 1px solid var(--slide-element-border);
+    border-left: 1px solid var(--slide-element-border);
     /* background:rgba(1, 1, 1, 0.5);         */
     /* background:rgba(var(--gradient-white-half));   PUT THIS BACK!      */
     
     /* padding: 20px 15%;   PUT THIS BACK! */
     /* padding-bottom: 60px;   */
-    padding: 5%;
+    padding: 0px 3em;
 
     color: var(--slideshow-foreground);   
     letter-spacing: 1px;        
