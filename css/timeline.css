@@ -135,7 +135,7 @@ section.timeline-component {
     display: none;
     }
 .horizontal-scroller:hover {
-    cursor:grab;
+    /* cursor:grab; */
 }
     
 .horizontal-scroller:focus {
@@ -144,22 +144,38 @@ section.timeline-component {
         */
     outline:none;          
 }
-        
-.event-details-element {
+      
+.event-details-element-wrapper {
     inline-size: 100%;  
     block-size: 100%;      
-    /* background:rgba(1, 1, 1, 0.5);         */
-    background:rgba(var(--gradient-white-half));        
+    background:rgba(255, 1, 1, 0.5);            
+        
+    padding: 20px max(40px, 10%);  
     
-    padding: 20px 15%;  
-    padding-bottom: 60px;  
+
+    /* touch-action: none; */    
+    touch-action: pan-y;    
+}
+
+.event-details-element {
+    inline-size: 100%;  
+    block-size: 100%;     
+    background-color: black; 
+    /* background:rgba(1, 1, 1, 0.5);         */
+    /* background:rgba(var(--gradient-white-half));   PUT THIS BACK!      */
+    
+    /* padding: 20px 15%;   PUT THIS BACK! */
+    /* padding-bottom: 60px;   */
+    padding: 5%;
 
     color: var(--slideshow-foreground);   
-    letter-spacing: 1px;    
-    /* font-size: 20px; */
+    letter-spacing: 1px;        
     font-size: 22px;
 
     /* overflow-y: scroll; */
+}
+.event-details-element:hover {
+    cursor:grab;
 }
 
 /* .event-container {

@@ -407,6 +407,11 @@ function renderEventsHorizontal(events, parentEl) {
 
     // loop through all the events
     events.map((event, index) => {
+
+        // TESTING
+        let wrapper = document.createElement("div");
+        wrapper.classList.add('event-details-element-wrapper');
+
         // Create an element and attach event listeners, then template the rest of the element's contents.
         let container = document.createElement("div");
         container.classList.add('event-details-element');
@@ -456,7 +461,10 @@ function renderEventsHorizontal(events, parentEl) {
                         </div>                        
                     `;
         container.innerHTML = html;
-        parentEl.appendChild(container);
+        //parentEl.appendChild(container);
+
+        wrapper.appendChild(container);
+        parentEl.appendChild(wrapper);
 
         container.querySelector('.more').addEventListener('click', (e) => {
             //console.log("click", e);

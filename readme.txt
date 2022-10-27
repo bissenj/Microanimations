@@ -6,6 +6,12 @@ Github Pages
 https://github.com/aspenpeakstudios/Microanimations/settings/pages
 
 
+Remote Debugging
+  chrome://inspect#devices
+https://developer.chrome.com/docs/devtools/remote-debugging/
+
+
+
 Goals:
 
 - 1.  Paralaxx Scrolling Basics

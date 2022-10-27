@@ -26,7 +26,8 @@ function snapScrollHorizontal(el, onFinish) {
     let index = el.dataset.index;
     
     // Get the parent
-    const parentEl = el.parentElement;
+    //const parentEl = el.parentElement;
+    const parentEl = el.parentElement.parentElement;
 
     // Get the parents current scroll Left
     const parentScrollLeft = parentEl.scrollLeft;           
