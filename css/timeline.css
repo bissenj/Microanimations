@@ -159,13 +159,13 @@ section.timeline-component {
 }
 
 .event-details-element {
-    inline-size: 100%;  
-    block-size: 100%;     
+    /* inline-size: 100%;   */
+    /* block-size: 100%;      */
     /* background-color: black;  */
     --slide-element-border: #333;
-    /* --slide-element-border: #111;  */
-    border-right: 1px solid var(--slide-element-border);
-    border-left: 1px solid var(--slide-element-border);
+    /* --slide-element-border: #fff;  */
+    border-right: 1px dashed var(--slide-element-border);
+    border-left: 1px dashed var(--slide-element-border);
     /* background:rgba(1, 1, 1, 0.5);         */
     /* background:rgba(var(--gradient-white-half));   PUT THIS BACK!      */
     
@@ -175,7 +175,7 @@ section.timeline-component {
 
     color: var(--slideshow-foreground);   
     letter-spacing: 1px;        
-    font-size: 22px;
+    font-size: 22px;    
 
     /* overflow-y: scroll; */
 }
@@ -243,10 +243,11 @@ section.timeline-component {
 
 .event-body {
     position: relative;
-    /* height: 200px; */
+    /* height: 1200px; */
     margin-top: 40px;
     line-height: 40px;
     overflow-y: hidden;
+    /* transition: height 0.5s; */
     /* overflow-y: auto; */
     /* letter-spacing: 1px; */
     /* border: 1px solid blue; */
