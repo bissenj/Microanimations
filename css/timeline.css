@@ -43,10 +43,10 @@ section.timeline-component {
     /* overflow-y: auto; */
     /* background-color: black; */
 
-    height: 100vh;
-    width: 100vw;
+    height: 100vh;    
     background: url('../img/timeline/snow_up_bw_white.png');
-    background-size: cover;    
+    background-size: cover;   
+     /*background-size: container; background-repeat: no-repeat;  for small screens  */
 }
 
 
