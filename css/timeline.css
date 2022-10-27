@@ -159,6 +159,8 @@ section.timeline-component {
 }
 
 .event-details-element {
+    margin: 0 auto;
+    max-width: 1024px;
     /* inline-size: 100%;   */
     /* block-size: 100%;      */
     /* background-color: black;  */
@@ -247,7 +249,7 @@ section.timeline-component {
     margin-top: 40px;
     line-height: 40px;
     overflow-y: hidden;
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     max-height: 10000px;
     transition: max-height 1.5s;
     /* overflow-y: auto; */
