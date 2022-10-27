@@ -451,7 +451,9 @@ function renderEventsHorizontal(events, parentEl) {
                             </div>
                             <div class='company-image'><img src='img/timeline/${event.image}'/></div>
                         </div>
-                        
+                    `;
+        if (event.story.length > 1000) {            
+            html += `
                         <!-- Event Body -->
                         <div class='event-body small'>
                             <div>What I accomplished and how I grew:</div>
@@ -460,24 +462,54 @@ function renderEventsHorizontal(events, parentEl) {
                             <div><button class='more'>More</button></div>                    
                         </div>                        
                     `;
+        }
+        else {
+            html += `
+                    <!-- Event Body -->
+                    <div class='event-body'>
+                        <div>What I accomplished and how I grew:</div>
+                        ${event.story}
+                        <div><button class='next'>Next &#5125;</button></div>                            
+                    </div>                        
+                `;
+        }
         container.innerHTML = html;
         //parentEl.appendChild(container);
 
         wrapper.appendChild(container);
         parentEl.appendChild(wrapper);
 
-        container.querySelector('.more').addEventListener('click', (e) => {
-            //console.log("click", e);
-            let target = e.target.parentElement.parentElement;
-            console.log(target);
+        let moreButton = container.querySelector('.more');
+        if (moreButton) {
+            moreButton.addEventListener('click', (e) => {
+                let target = e.target.parentElement.parentElement;
+                console.log(target);
             
-            if (target.classList.contains('small')) {
-                target.classList.remove('small');
-            }
-            else {
-                target.classList.add('small');
-            }
-        });
+                if (target.classList.contains('small')) {
+                    target.classList.remove('small');
+                    e.target.innerText = 'Less...';                    
+                }
+                else {
+                    target.classList.add('small');
+                    e.target.innerText = 'More...';
+                    //document.querySelector('.timeline-header').scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                    document.querySelector('.timeline-header').scrollIntoView({behavior: "smooth"});
+                }               
+            });
+        }
+
+        // container.querySelector('.more').addEventListener('click', (e) => {
+        //     //console.log("click", e);
+        //     let target = e.target.parentElement.parentElement;
+        //     console.log(target);
+            
+        //     if (target.classList.contains('small')) {
+        //         target.classList.remove('small');
+        //     }
+        //     else {
+        //         target.classList.add('small');
+        //     }
+        // });
 
     });
 }
