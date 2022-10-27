@@ -113,7 +113,7 @@ function handleEventMarkerClick(e) {
 
 function callback_updateAnimationState(state) {    
     mouseState.isAnimating = state;
-    console.log("New State is: ", state);
+    //console.log("New State is: ", state);
 }
 
 // Central location for updating the UI Timeline and Slideshow)
@@ -125,22 +125,22 @@ function updateSlideShow(index) {
 
 
     if (Number.isInteger(index)) {
-        callback_updateAnimationState(true);
-        //console.log("Start Animating");
+        callback_updateAnimationState(true);        // Let the app know we are animating
 
-        // If we are not changing to a new event, don't update the timeline
-        if (index != selectedIndex) {
-            // Updates the Event Timeline
+        //window.setTimeout(() =>{
+            //console.log("Start Animating");
+
+            // If we are not changing to a new event, don't update the timeline
             timeline_SetNewSelectedEvent(index);
-        }
+            
+            // find event details container related to the new index.
+            let element = document.querySelector(`.event-details-element[data-index="${index}"]`);    
 
-        // find event details container related to the new index.
-        let element = document.querySelector(`.event-details-element[data-index="${index}"]`);    
+            // Moves slideshow to the new slide        
+            slideShow_SnapScrollToNewSlide(element, callback_updateAnimationState);    
 
-        // Moves slideshow to the new slide        
-        slideShow_SnapScrollToNewSlide(element, callback_updateAnimationState);    
-
-        //console.log("Finished Animating");
+            //console.log("Finished Animating");
+        //}, 500);
     }
     else {
         console.error("index parameter is invalid.");
@@ -248,22 +248,26 @@ function handleMouseUp(e) {
         return;
     }
 
-    // Calculate which slide is most visible on the screen and scroll to it.
-    let slidesInView = getElementsOnScreen('.event-details-element');
-    
-    // Choose the new slide and move to it.
-    if (slidesInView.length > 0) {        
-        let el = slidesInView[0];
-        if (mouseState.direction < 0) {
-            el = slidesInView[slidesInView.length -1];  // Get the last element (which should be the right most one)
+    // window.setTimeout(() =>{
+
+        // Calculate which slide is most visible on the screen and scroll to it.
+        let slidesInView = getElementsOnScreen('.event-details-element');
+        
+        // Choose the new slide and move to it.
+        if (slidesInView.length > 0) {        
+            let el = slidesInView[0];
+            if (mouseState.direction < 0) {
+                el = slidesInView[slidesInView.length -1];  // Get the last element (which should be the right most one)
+            }
+
+            const index = parseInt(el.dataset.index);        
+            updateSlideShow(index);
         }
 
-        const index = parseInt(el.dataset.index);        
-        updateSlideShow(index);
-    }
+        // Reset stuff - 2    
+        mouseState.direction = 0;
 
-    // Reset stuff - 2    
-    mouseState.direction = 0;
+    // }, 500);
 }
 function handleMouseMove(e) { 
     
@@ -312,8 +316,30 @@ function handleTouchStart(e) {
     handleMouseDown(e);
 }
 function handleTouchEnd(e) {
-    //console.log("handleTouchEnd");
-    handleMouseUp(e);
+    let i = 0;  let end = 100;
+    let finished = false;
+    let lastScrollLeft = 0;
+    let loop = window.setInterval(() => {
+
+        let scrollerEl = document.querySelector('.horizontal-scroller');        
+        //console.log("scroll left: ", scrollerEl.scrollLeft);
+        if (lastScrollLeft == scrollerEl.scrollLeft) {
+            console.log("scrolling finished");
+            finished = true;
+        }
+        else {
+            lastScrollLeft = scrollerEl.scrollLeft;
+        }
+
+        i+=1;                       // update so we get out of the loop eventually.        
+        if (i >= end || finished) {     
+            console.log("handleTouchEnd");
+            handleMouseUp(e);
+
+            // Clean up 
+            clearInterval(loop);
+        }    
+    }, 50);
 }
 function handleTouchMove(e) {
     //console.log("handleTouchMove");
@@ -391,7 +417,8 @@ function renderEventsHorizontal(events, parentEl) {
         // Touch Event Handlers
         container.addEventListener('touchstart', handleTouchStart);
         container.addEventListener('touchend', handleTouchEnd);
-        container.addEventListener('touchmove', handleTouchMove);
+        container.addEventListener('touchcancel', (e) => {console.log("cancel")});
+        container.addEventListener('touchmove', handleTouchMove, {passive: true});
 
         container.addEventListener('mouseleave', (e) => { if (mouseState.isDown) handleMouseUp(e);});
         

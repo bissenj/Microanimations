@@ -38,4 +38,8 @@ https://oxygen4fun.supadezign.com/tutorials/masking-images-videos-in-css/
 https://crustac.fr/en/home/
 
 
-Test
+
+
+
+Touch End Issues
+- https://stackoverflow.com/questions/71239600/detect-when-touch-scroll-animation-finishes-within-a-div-there-is-no-scrollan
