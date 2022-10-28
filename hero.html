@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
+  <title>Hero Example</title> 
+  <link rel='stylesheet' href='css/hero.css' />
+</head>
+
+<body>
+
+    <!-- Hero Image -->
+    <section class='landing'>             
+        <div class='background'></div>
+
+        <div class='gradient-up'></div>
+                
+        <div class='nav-carousel'>            
+            <ul>
+                <li data-index=0></li>
+                <li data-index=1></li>
+                <li data-index=2></li>
+                <li></li>
+                <li></li>
+        </div>
+
+        <div class='gradient-down'></div>
+
+        <div class='logo'>
+            <img src='/img/hero/logo.png'/>
+        </div>
+
+        <div class='nav-menu'>
+            <ul class='text-with-contrast'>
+                <li>About</li>
+                <li>Projects</li>
+                <li>Work</li>
+                <li>Contact</li>
+            <ul>
+        </div>
+
+        <div class='profession text-with-contrast'>
+            Full Stack Developer | UI Developer | Designer
+        </div>
+    </section>
+
+    <!-- About -->
+    <section>        
+        <p>Hi, I'm John</p>
+        <p style='text-align:right';>For over two decades I have used my software development and design skills to help companies reach their goals.  I take work  seriously and make sure projects succeed.  I can lead.  I can be led.  I like to mentor but am humble enough to recognize everyone can teach me something.  Mountains and Code is a combination of some of my professional work and some of my outside interests.  Thanks for being here and I hope you enjoy it.</p>
+    </section>
+
+    <!-- Projets -->
+    <section>Projects</section>
+
+    <!-- Work -->
+    <section>Work History</section>
+
+    <!-- Contact -->
+    <section>Contact</section>
+
+</body>
+
+<script>
+
+    // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
+    const el = document.querySelector('.landing'); 
+    const backgroundEl = document.querySelector('.background'); 
+    const DAMPER = 100;  
+
+    // Animate the background image and decorative dashed lines
+    el.addEventListener('mousemove', (function(e) {
+        //console.log(e);
+        var amountMovedX = (e.pageX * -1 / DAMPER);
+        var amountMovedY = (e.pageY * -1 / DAMPER);
+        backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+
+        // Update the pseudo selector animation
+        let gradientUpEl = document.querySelector('.gradient-up');    
+        gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
+        
+        let gradientDownEl = document.querySelector('.gradient-down');
+        gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
+    }));
+    // animate the decorative dashed lines when section has focus
+    el.addEventListener('mouseover', (function(e) {        
+        let gradientUpEl = document.querySelector('.gradient-up');    
+        let gradientDownEl = document.querySelector('.gradient-down');
+        gradientUpEl.classList.add('animate');
+        gradientDownEl.classList.add('animate');
+    }));
+    // save resources by stopping animation when section no longer has focus
+    el.addEventListener('mouseleave', (function(e) {        
+        let gradientUpEl = document.querySelector('.gradient-up');    
+        let gradientDownEl = document.querySelector('.gradient-down');
+        gradientUpEl.classList.remove('animate');
+        gradientDownEl.classList.remove('animate');
+    }));
+    
+
+    // EFFECT 2:  Image Carousel
+    const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
+    const carouselEls = document.querySelectorAll('.nav-carousel li');
+    console.log("Carousel Els: ", carouselEls);
+    carouselEls.forEach((item) => {        
+        item.addEventListener('click', () => {
+            let index = item.dataset.index;
+            console.log("Index: ", index, backgrounds[index], backgroundEl);
+            if (index) {      
+                backgroundEl.classList.remove('fade-in');
+                backgroundEl.classList.add('fade-out');
+                window.setTimeout(() => {
+                    backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
+                    backgroundEl.style.backgroundSize = "cover";
+                    backgroundEl.style.backgroundRepeat = "no-repeat";
+                    console.log('New background setting: ', backgroundEl.style.background);
+                    backgroundEl.classList.remove('fade-out');
+                    backgroundEl.classList.add('fade-in');
+                }, 600);                                 
+            }
+            else {
+                console.error("No index found on this link");
+            }
+        })
+    });
+
+
+    // EFFECT 3:  DASHED LINE ANIMATIONS
+
+
+
+
+</script>
+
+
+</html>

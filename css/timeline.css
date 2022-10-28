@@ -216,7 +216,7 @@ section.timeline-component {
 
     }
     .event-summary .left {
-        font-size: 1.0em;
+        /* font-size: 1.0em; */
     }
     .event-summary .event-tools {
         font-size: 1.1em;

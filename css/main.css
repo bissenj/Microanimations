@@ -1,3 +1,17 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;   
+    
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
 html { border: 0px solid brown;}
 
 body {
@@ -94,6 +108,22 @@ section {
 .video video { 
     width: 50%;
 }
+
+section fieldset {
+    padding: 20px;
+    margin: 20px;
+    width: 100%;    
+}
+section ul {
+    height: 100%;
+    width: 100%;
+    display: flex;    
+    justify-content: space-between;    
+}
+section ul li {    
+    list-style: none;
+}
+
 
 
 /* ----------------------------------------------------------------- */
