@@ -129,8 +129,8 @@ function getElementsOnScreen(selector) {
     let elementsInView = [];
     
     // let elementsInViewDebug = [];
-    // let closestElement = [];
-    // let closestElementDistance = 99999;
+     let closestElement = [];
+     let closestElementDistance = 99999;
         
     elements.forEach((element) => {
         const bounding = element.getBoundingClientRect();
@@ -143,21 +143,21 @@ function getElementsOnScreen(selector) {
             elementsInView.push(element);
 
             // V2 - find the element that is the most on screen
-            // let variance = Math.round(Math.abs(bounding.left - 0) + Math.abs(bounding.right - width));
-            // try {
-            //     let x = Math.round((variance / width) * 100); 
-            //     console.log("Percent: ", x);
-            // }
-            // catch (e) {
-            //     console.log(e);
-            // }
+            let variance = Math.round(Math.abs(bounding.left - 0) + Math.abs(bounding.right - width));
+            try {
+                let x = Math.round((variance / width) * 100); 
+                console.log("Percent: ", x);
+            }
+            catch (e) {
+                console.log(e);
+            }
             
 
-            // if (variance < closestElementDistance) {
-            //     closestElement[0] = element;
-            //     closestElementDistance = variance;
-            //     console.log("Closest element is: ", element.dataset.index, variance);
-            // }
+            if (variance < closestElementDistance) {
+                closestElement[0] = element;
+                closestElementDistance = variance;
+                console.log("Closest element is: ", element.dataset.index, variance);
+            }
             
             // debugging
             //elementsInViewDebug.push(element.dataset.index);
@@ -168,8 +168,8 @@ function getElementsOnScreen(selector) {
     });
 
     //console.log("Elements in View: ", elementsInViewDebug);
-    return elementsInView;
-    //return closestElement;
+    //return elementsInView;
+    return closestElement;
 }
 
 
