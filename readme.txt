@@ -10,6 +10,9 @@ Remote Debugging                  - https://developer.chrome.com/docs/devtools/r
 chrome://inspect#devices
 
 
+Paralaxx:
+https://medium.com/@dailyfire/pure-css-parallax-simple-tricks-da102d0ffdb9
+
 
 
 Goals:

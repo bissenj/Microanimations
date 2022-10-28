@@ -129,16 +129,16 @@ section ul li {
 /* ----------------------------------------------------------------- */
 
 section.one {
-    display: none; 
+    /* display: none;  */
 }
 
 section.two { 
-    display: none; 
+    /* display: none;  */
 }
 
 section.three { 
     /* background-color: yellow;     */
-    display:none;
+    /* display:none; */
 }
 
 .yellow-bk { 

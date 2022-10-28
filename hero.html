@@ -11,39 +11,42 @@
 <body>
 
     <!-- Hero Image -->
-    <section class='landing'>             
-        <div class='background'></div>
+    <section class='landing'>  
 
-        <div class='gradient-up'></div>
-                
-        <div class='gradient-line'></div>
-        <div class='nav-carousel'>            
-            <ul>
-                <li data-index=0></li>
-                <li data-index=1></li>
-                <li data-index=2></li>
-                <li></li>
-                <li></li>
-        </div>
+        <div class='background scroll' data-rate='0.4'></div>
 
-        <div class='gradient-down'></div>
+        <!-- <div class='foreground'> -->
+            <div class='gradient-up'></div>
+                    
+            <div class='gradient-line'></div>
+            <div class='nav-carousel'>            
+                <ul>
+                    <li data-index=0></li>
+                    <li data-index=1></li>
+                    <li data-index=2></li>
+                    <li></li>
+                    <li></li>
+            </div>
 
-        <div class='logo'>
-            <!-- <img src='/img/hero/logo.png'/> -->
-        </div>
+            <div class='gradient-down'></div>
 
-        <div class='nav-menu'>
-            <ul class='text-with-contrast'>
-                <li>About</li>
-                <li>Projects</li>
-                <li>Work</li>
-                <li>Contact</li>
-            <ul>
-        </div>
+            <div class='logo'>
+                <!-- <img src='/img/hero/logo.png'/> -->
+            </div>
 
-        <div class='profession text-with-contrast'>
-            Full Stack | UI Developer | Designer
-        </div>
+            <div class='nav-menu'>
+                <ul class='text-with-contrast'>
+                    <li>About</li>
+                    <li>Projects</li>
+                    <li>Work</li>
+                    <li>Contact</li>
+                <ul>
+            </div>
+
+            <div class='profession text-with-contrast'>
+                Full Stack | UI Developer | Designer
+            </div>
+        <!-- </div> -->
     </section>
 
     <!-- About -->
@@ -97,22 +100,8 @@
         gradientUpEl.classList.remove('animate');
         gradientDownEl.classList.remove('animate');
     }));
-    el.addEventListener('touchmove', (e) => {
-        e.pageX = e.changedTouches[0].pageX;
-        e.pageY = e.changedTouches[0].pageY;
-        
-        var amountMovedX = (e.pageX * -1 / DAMPER);
-        var amountMovedY = (e.pageY * -1 / DAMPER);
-        backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+    
 
-        // Update the pseudo selector animation
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
-        
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
-
-    });
     
 
     // EFFECT 2:  Image Carousel
@@ -148,7 +137,23 @@
     });
 
 
-    // EFFECT 3:  DASHED LINE ANIMATIONS
+    
+    // EFFECT 3:  PARALAXX
+
+    window.addEventListener('scroll', () => {
+        const target = document.querySelectorAll('.scroll');
+
+        var index = 0; length = target.length;
+        for (0; index < target.length; index++) {
+            let current = target[index];
+            var pos = window.pageYOffset * current.dataset.rate;
+            
+            const move = 'translate3d(0px, '+pos+'px, 0px)';            
+            current.style.transform = move;             
+        }
+    })
+
+
 
 
 
