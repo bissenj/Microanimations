@@ -44,8 +44,9 @@ section .background {
 
     inline-size: 100%;
     block-size: 100%;
-    background: url('../img/hero/huckleberry-lookout.jpg');
-    background-size: cover;
+    background: rgba(0, 0, 0, 0.5);
+    background: url('../img/hero/huckleberry-lookout.jpg'); 
+    background-size: cover; 
     background-repeat: no-repeat;
 
     transform:scale(1.2);
@@ -54,17 +55,17 @@ section .background {
     transition: opacity 0.5s;    
 }
 
-section .background-1 {
+section .background-0 {
     background: url('../img/hero/huckleberry-lookout.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
-section .background-2 {
+section .background-1 {
     background: url('../img/hero/whitefish.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
-section .background-3 {
+section .background-2 {
     background: url('../img/hero/lakemcdonald.jpg');
     background-size: cover;
     background-repeat: no-repeat;

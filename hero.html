@@ -28,7 +28,7 @@
         <div class='gradient-down'></div>
 
         <div class='logo'>
-            <img src='/img/hero/logo.png'/>
+            <!-- <img src='/img/hero/logo.png'/> -->
         </div>
 
         <div class='nav-menu'>
@@ -112,9 +112,11 @@
                 backgroundEl.classList.add('fade-out');
                 window.setTimeout(() => {
                     // remove previous
-                    backgroundEl.classList.remove('background-1', 'background-2', 'background-3');
+                    backgroundEl.classList.remove('background-1');
+                    backgroundEl.classList.remove('background-2');
+                    backgroundEl.classList.remove('background-3');
 
-                    backgroundEl.classList.add(`'background-${index}'`);
+                    backgroundEl.classList.add(`background-${index}`);
                     // backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
                     // backgroundEl.style.backgroundSize = "cover";
                     // backgroundEl.style.backgroundRepeat = "no-repeat";
