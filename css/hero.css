@@ -54,6 +54,22 @@ section .background {
     transition: opacity 0.5s;    
 }
 
+section .background-1 {
+    background: url('../img/hero/huckleberry-lookout.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+section .background-2 {
+    background: url('../img/hero/whitefish.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+section .background-3 {
+    background: url('../img/hero/lakemcdonald.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .fade-out {
     opacity: 0;   
 }
@@ -95,10 +111,21 @@ section:nth-child(5) {
     grid-area: cc;
     margin: auto;
     /* border: 1px solid red;     */
+    background: url('../img/hero/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    height: 100%;
+    max-height:400px;
+    width: 100%;
+    max-width: 400px;
+
+    filter: drop-shadow(4px 4px 4px #444);
 }
 
 .logo img {
-    display: block;
+    display: none;
+    /* display: block; */
     height: 100%;
     max-height:400px;
     width: 100%;

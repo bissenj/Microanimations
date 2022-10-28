@@ -111,10 +111,14 @@
                 backgroundEl.classList.remove('fade-in');
                 backgroundEl.classList.add('fade-out');
                 window.setTimeout(() => {
-                    backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
-                    backgroundEl.style.backgroundSize = "cover";
-                    backgroundEl.style.backgroundRepeat = "no-repeat";
-                    console.log('New background setting: ', backgroundEl.style.background);
+                    // remove previous
+                    backgroundEl.classList.remove('background-1', 'background-2', 'background-3');
+
+                    backgroundEl.classList.add(`'background-${index}'`);
+                    // backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
+                    // backgroundEl.style.backgroundSize = "cover";
+                    // backgroundEl.style.backgroundRepeat = "no-repeat";
+                    // console.log('New background setting: ', backgroundEl.style.background);
                     backgroundEl.classList.remove('fade-out');
                     backgroundEl.classList.add('fade-in');
                 }, 600);                                 
