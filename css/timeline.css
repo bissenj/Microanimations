@@ -179,6 +179,7 @@ section.timeline-component {
     letter-spacing: 1px;        
     font-size: 22px;    
 
+    overflow-y: hidden;   /* THIS CAUSES FAST TOUCH SCROLLING FOR SOME REASON */
     /* overflow-y: scroll; */
 }
 .event-details-element:hover {
@@ -213,6 +214,9 @@ section.timeline-component {
     /* line-height: 40px;   */
     line-height: 33px;
 
+    }
+    .event-summary .left {
+        font-size: 1.0em;
     }
     .event-summary .event-tools {
         font-size: 1.1em;

@@ -218,7 +218,7 @@ function handleMouseDown(e) {
         e.pageX = e.changedTouches[0].pageX;
     }
 
-    console.log('handleMouseDown(): ', e);  
+    console.log('handleMouseDown(): ', e.target);  
 
     mouseState.isDown = true;
     mouseState.startX = e.pageX - mouseState.parentElement.offsetLeft;
@@ -437,13 +437,14 @@ function renderEventsHorizontal(events, parentEl) {
         
         let html = `
                         <!-- Event Header -->
-                        <div class='event-header'>
+                        <div class='event-header'>                        
                             <div>${event.yearStart} - ${event.yearEnd}</div>
                             <div>${event.name}</div>                        
                         </div>
 
                         <!-- Event Summary -->
-                        <div class='event-summary'>
+                        <!-- <div class='event-summary'> -->
+                            <div class='event-summary'>
                             <div class='left'>
                                 <div class='event-tools'>${event.tools}</div>
                                 <div>At a glance:</div>
