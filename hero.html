@@ -42,7 +42,7 @@
         </div>
 
         <div class='profession text-with-contrast'>
-            Full Stack Developer | UI Developer | Designer
+            Full Stack | UI Developer | Designer
         </div>
     </section>
 
@@ -71,8 +71,7 @@
     const DAMPER = 100;  
 
     // Animate the background image and decorative dashed lines
-    el.addEventListener('mousemove', (function(e) {
-        //console.log(e);
+    el.addEventListener('mousemove', (function(e) {        
         var amountMovedX = (e.pageX * -1 / DAMPER);
         var amountMovedY = (e.pageY * -1 / DAMPER);
         backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
@@ -98,6 +97,22 @@
         gradientUpEl.classList.remove('animate');
         gradientDownEl.classList.remove('animate');
     }));
+    el.addEventListener('touchmove', (e) => {
+        e.pageX = e.changedTouches[0].pageX;
+        e.pageY = e.changedTouches[0].pageY;
+        
+        var amountMovedX = (e.pageX * -1 / DAMPER);
+        var amountMovedY = (e.pageY * -1 / DAMPER);
+        backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+
+        // Update the pseudo selector animation
+        let gradientUpEl = document.querySelector('.gradient-up');    
+        gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
+        
+        let gradientDownEl = document.querySelector('.gradient-down');
+        gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
+
+    });
     
 
     // EFFECT 2:  Image Carousel

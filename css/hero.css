@@ -166,7 +166,7 @@ section:nth-child(5) {
 .profession {    
     position: absolute;    
     top: 50%;
-    right: -225px;      
+    right: -180px;      
     transform-origin:center;
     transform:rotate(90deg);
 
