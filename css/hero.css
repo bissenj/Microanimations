@@ -118,7 +118,7 @@ section .background-2 {
 } */
 
 
-section.landing { display :none; }
+/* section.landing { display :none; } */
 
 /* ABOUT */
 section.about {    
@@ -202,8 +202,8 @@ section.about {
 .diagonal-rects div {    
     display: inline-block;
     min-width: 33%;
-    min-height: 200px;
-    max-height: 200px;
+    min-height: 180px;
+    max-height: 180px;
     border: 10px solid white;    
 }
 
@@ -271,6 +271,7 @@ section.about {
 
 .diagonal-rects div:nth-child(4) {
     min-width: 45%;
+    min-height: 260px;
 
     position: relative;
     overflow:hidden;
@@ -295,6 +296,7 @@ section.about {
 
 .diagonal-rects div:nth-child(5) {
     min-width: 55%;
+    min-height: 260px;
 
     position: relative;
     overflow:hidden;
