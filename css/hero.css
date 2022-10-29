@@ -166,18 +166,18 @@ section.about {
     overflow-x: hidden;
     padding: 5px;
     position: absolute;
-    right: -20px;
+    right: -32px;
     /* margin-right: -20px; */
-    width: 60%;
+    width: 65%;
     color: white;
     background-color: black;
-    transform: skew(45deg); 
+    transform: skew(60deg); 
 }
 
 .slant div {
     display: flex;
     justify-content: space-between;
-    transform: skew(-45deg);
+    transform: skew(-60deg);
     margin-left: 20px;
     padding-right: 40px;
     padding-left: 10px;
@@ -197,7 +197,7 @@ section.about {
     /* grid-auto-rows: 200px;  */
     background-color:white;  /* cheap way to cover the row gap on inline-block  */
     transform-origin: 0 0;  
-    transform: rotate(30deg);
+    transform: rotate(30deg) translate(-40px, -40px);
 }
 .diagonal-rects div {    
     display: inline-block;
@@ -323,7 +323,7 @@ section.about {
     z-index: 1;
     bottom: 0px;
     /* left: 0px; */
-    width: 50%;
+    width: 60%;
     height: 400px;
     background: linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5));
     /* background-color: red; */
