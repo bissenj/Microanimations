@@ -19,10 +19,12 @@ section {
     place-content: center;
     
     color: white;     
-    font-size: 3em;     
+    font-size: 3em;  
+    
+    overflow-x: hidden;
 }
 
-section:nth-child(1) { 
+section:nth-child(1) {     
     /* display: block;        */
     box-shadow: 0px 4px 6px #444;   
     z-index: 2;
@@ -40,6 +42,7 @@ section:nth-child(1) {
     /* perspective: 8px; */
     /* perspective-origin: 0%;     */
     /* transform-style: preserve-3d; */
+    /* display: none; */
 }
 
 section .foreground {    
@@ -76,7 +79,9 @@ section .background {
     /* transform:scale(1.2); */
     /* background-position: 2px 3px; */
     /* transition: transform .5s;  */ 
-    transition: opacity 0.5s;         
+    transition: opacity 0.5s;   
+    
+    /* box-shadow: 0 0 18px 18px #444 inset; */
 }
 
 section .background-0 {
@@ -112,12 +117,221 @@ section .background-2 {
 
 } */
 
-section:nth-child(2) {    
-    grid-template-rows: 100px 1fr 200px;
+
+section.landing { display :none; }
+
+/* ABOUT */
+section.about {    
+    position: relative;
+    height: 150vh;
+    width:100%;
+    display: block;
+    overflow-y: hidden;
+    /* place-content: start; */
+    /* grid-template-rows: 1fr 100px 4fr; */
+
     background-color: white;
     color: black;
-    padding: 20%;
+    /* padding: 10%; */
+
+    border-bottom: 20px solid white;
+
+    /* background-color: red; */
 }
+
+.intro {
+    display: block;
+    letter-spacing: 4px;
+    line-height: 40px;    
+    
+    /* margin: 60px; */
+    /* margin-bottom: 10px; */
+}
+.intro p:nth-child(1) {
+    margin-left: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.intro p:nth-child(2) { 
+    margin-left: 25%;
+    margin-right: 16px;
+    margin-bottom: 8px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 40px;    
+    text-align: right;    
+}
+
+.slant {
+    overflow-x: hidden;
+    padding: 5px;
+    position: absolute;
+    right: -20px;
+    /* margin-right: -20px; */
+    width: 60%;
+    color: white;
+    background-color: black;
+    transform: skew(45deg); 
+}
+
+.slant div {
+    display: flex;
+    justify-content: space-between;
+    transform: skew(-45deg);
+    margin-left: 20px;
+    padding-right: 40px;
+    padding-left: 10px;
+}
+
+.diagonal-rects {
+    position:relative; z-index: 2;
+    /* position: absolute; */
+    /* top: 0px; */
+    /* border: 2px solid green; */
+    /* height: 100%; */
+    width: 150%;
+    /* margin-top: 80px; */
+    
+    /* display: grid; */
+    /* grid-template-columns: repeat(3, 1fr);  */
+    /* grid-auto-rows: 200px;  */
+    background-color:white;  /* cheap way to cover the row gap on inline-block  */
+    transform-origin: 0 0;  
+    transform: rotate(30deg);
+}
+.diagonal-rects div {    
+    display: inline-block;
+    min-width: 33%;
+    min-height: 200px;
+    max-height: 200px;
+    border: 10px solid white;    
+}
+
+.diagonal-rects div:nth-child(1) {
+    position: relative;
+    overflow:hidden;    
+}
+.diagonal-rects div:nth-child(1)::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -200%;
+    left: -62%;
+    z-index: -1;
+    background: url('../img/hero/lakemcdonald.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(330deg);
+    background-position-y: 50%;
+    background-position-x: 0%;
+  }
+  
+.diagonal-rects div:nth-child(2) {
+    min-width: 25%;
+    position: relative;
+    overflow:hidden;    
+}
+.diagonal-rects div:nth-child(2)::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -200%;
+    left: -62%;
+    z-index: -1;
+    background: url('../img/hero/whitefish.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(330deg);
+    background-position-y: 50%;
+    background-position-x: 0%;
+  }
+
+.diagonal-rects div:nth-child(3) {
+    position: relative;
+    overflow:hidden;    
+}
+.diagonal-rects div:nth-child(3)::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -200%;
+    left: -62%;
+    z-index: -1;
+    background: url('../img/hero/huckleberry-lookout.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: rotate(330deg);
+    background-position-y: 50%;
+    background-position-x: 0%;
+  }
+
+
+.diagonal-rects div:nth-child(4) {
+    min-width: 45%;
+
+    position: relative;
+    overflow:hidden;
+}
+.diagonal-rects div:nth-child(4)::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -200%;
+    left: -52%;
+    z-index: -1;
+    background: url('../img/hero/huckleberry-lookout.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: rotate(330deg);
+    background-position-y: 50%;
+    background-position-x: -35%;
+  }
+
+
+
+.diagonal-rects div:nth-child(5) {
+    min-width: 55%;
+
+    position: relative;
+    overflow:hidden;
+}
+
+.diagonal-rects div:nth-child(5)::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -320%;
+    left: -26%;
+    z-index: -1;
+    background: url('../img/hero/whitefish.jpg');
+    background-repeat: no-repeat;
+    background-size:50%;
+    transform: rotate(330deg);
+    background-position-y: 50%;
+    background-position-x: -35%;
+  }
+
+.diagonal-filler {
+    position: relative;
+    z-index: 1;
+    bottom: 0px;
+    /* left: 0px; */
+    width: 50%;
+    height: 400px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5));
+    /* background-color: red; */
+}
+
+
+
+
+/*  PROJECTS */
+
 section:nth-child(3) {
     background-color: rgb(8, 218, 255);
 }
