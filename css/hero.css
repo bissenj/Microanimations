@@ -25,19 +25,19 @@ section {
 }
 
 section:nth-child(1) {     
-    /* display: block;        */
+    display: block;       
     box-shadow: 0px 4px 6px #444;   
     z-index: 2;
 
     overflow:hidden;
 
-    display: grid;
-    grid-template-columns: 50px 1fr 100px;
+    /* display: grid;
+    grid-template-columns: 50px 1fr 50px;
     grid-template-rows: 100px 1fr 100px;
     grid-template-areas:
         "ul uc ur"
         "cl cc cr"
-        "ll lc lr";
+        "ll lc lr"; */
     
     /* perspective: 8px; */
     /* perspective-origin: 0%;     */
@@ -50,13 +50,13 @@ section .foreground {
     width: 100%;
     height: 100%;
 
-    display: grid;
+    /* display: grid;
     grid-template-columns: 50px 1fr 100px;
     grid-template-rows: 100px 1fr 100px;
     grid-template-areas:
         "ul uc ur"
         "cl cc cr"
-        "ll lc lr";
+        "ll lc lr"; */
 
     /* transform-origin: 0; */
     /* transform: translateZ(3px) scale(0.625); */
@@ -73,15 +73,27 @@ section .background {
     block-size: 100%;
     background: rgba(0, 0, 0, 0.5);
     background: url('../img/hero/huckleberry-lookout.jpg'); 
+    /* background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5)), url('../img/hero/huckleberry-lookout.jpg'); */
     background-size: cover; 
     background-repeat: no-repeat;
 
-    /* transform:scale(1.2); */
+    transform:scale(1.2);
+
     /* background-position: 2px 3px; */
     /* transition: transform .5s;  */ 
     transition: opacity 0.5s;   
     
     /* box-shadow: 0 0 18px 18px #444 inset; */
+}
+section .background::after {
+    content: '';
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 10;
+    background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5));
+    /* background: red; */
+
 }
 
 section .background-0 {
@@ -109,7 +121,7 @@ section .background-2 {
 
 @keyframes animate-opacity {
     0% { opacity: 1; }
-    50% { opacity: 0.1; }
+    50% { opacity: 0.3; }
     100% { opacity: 1; }
 }
 
@@ -183,149 +195,163 @@ section.about {
     padding-left: 10px;
 }
 
+
+/* ----------------------- DIAGONAL IMAGE GRID ------------------------------ */
+
+/* .about { background-color: maroon !important;} */
+
 .diagonal-rects {
-    position:relative; z-index: 2;
-    /* position: absolute; */
-    /* top: 0px; */
-    /* border: 2px solid green; */
-    /* height: 100%; */
-    width: 150%;
-    /* margin-top: 80px; */
+    position:relative; 
+    z-index: 2;
     
-    /* display: grid; */
-    /* grid-template-columns: repeat(3, 1fr);  */
-    /* grid-auto-rows: 200px;  */
+    width: 150%;
+    margin-top: 80px;
+   
     background-color:white;  /* cheap way to cover the row gap on inline-block  */
     transform-origin: 0 0;  
-    transform: rotate(30deg) translate(-40px, -40px);
-}
-.diagonal-rects div {    
-    display: inline-block;
-    min-width: 33%;
-    min-height: 180px;
-    max-height: 180px;
-    border: 10px solid white;    
+    transform: rotate(30deg) translate(-60px, -60px);
 }
 
-.diagonal-rects div:nth-child(1) {
-    position: relative;
-    overflow:hidden;    
+
+div.row1, div.row2 {
+    width: 100%;   
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
-.diagonal-rects div:nth-child(1)::before {
-    content: "";
-    position: absolute;
-    width: 300%;
-    height: 300%;
+
+.row1 div, .row2 div {    
+    position: relative;    
+    overflow:hidden;     
+    min-height: 180px;
+    max-height: 180px;
+    border: 10px solid white;     
+} 
+
+.row1 div {
+    border-top: 20px solid white;     
+}
+.row2 div {
+    min-height: 320px;
+    max-height: 320px;
+
+    border-bottom: 20px solid white;     
+}
+
+div.image1 {    
+    width: calc(100% / 3); 
+    /* overflow: initial; */
+    /* background-color: blue; */
+    z-index: 11;
+}
+
+div.image2 {    
+    width: calc(100% / 3); 
+}
+
+div.image3 {    
+    width: calc(100% / 3); 
+}
+
+div.image4 { 
+    width: calc(100% / 2);     
+}
+div.image5 {     
+    width: calc(100% / 2); 
+}
+
+
+/* div.image1 {    
+    position: absolute; width: 300%; height: 300%; z-index: 10;
     top: -200%;
-    left: -62%;
-    z-index: -1;
-    background: url('../img/hero/lakemcdonald.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
+    left: -62%;    
+    background: url('../img/hero/rotation.png');  background-repeat: no-repeat; background-size: contain;
+    
     transform: rotate(330deg);
     background-position-y: 50%;
     background-position-x: 0%;
-  }
-  
-.diagonal-rects div:nth-child(2) {
-    min-width: 25%;
-    position: relative;
-    overflow:hidden;    
-}
-.diagonal-rects div:nth-child(2)::before {
+  } */
+
+
+/* IMAGE BEFORES */
+div.image1::before {
     content: "";
-    position: absolute;
-    width: 300%;
-    height: 300%;
+    position: absolute; width: 300%; height: 300%; z-index: 1;
+    top: -58%;
+    left: -112%;    
+    background: url('../img/hero/rotation.png');  background-repeat: no-repeat; background-size: cover;
+    
+    /* transform: rotate(330deg); */
+    background-position-y: 50%;
+    background-position-x: 0%;
+  }
+div.image2::before {
+    content: "";
+    position: absolute; width: 300%; height: 300%; z-index: 10;
     top: -200%;
     left: -62%;
-    z-index: -1;
+    
+    background: url('../img/hero/lakemcdonald.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
+  }
+div.image3::before {
+    content: "";
+    position: absolute; width: 300%; height: 300%; z-index: 10;
+    top: -200%;
+    left: -62%;
+    
     background: url('../img/hero/whitefish.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    transform: rotate(330deg);
-    background-position-y: 50%;
-    background-position-x: 0%;
-  }
 
-.diagonal-rects div:nth-child(3) {
-    position: relative;
-    overflow:hidden;    
-}
-.diagonal-rects div:nth-child(3)::before {
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
+  }
+div.image4::before {
     content: "";
-    position: absolute;
-    width: 300%;
-    height: 300%;
-    top: -200%;
-    left: -62%;
-    z-index: -1;
+    position: absolute; width: 300%; height: 300%; z-index: 10;
+    top: -200%; left: -62%;
+    
     background: url('../img/hero/huckleberry-lookout.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    transform: rotate(330deg);
-    background-position-y: 50%;
-    background-position-x: 0%;
+
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
   }
-
-
-.diagonal-rects div:nth-child(4) {
-    min-width: 45%;
-    min-height: 260px;
-
-    position: relative;
-    overflow:hidden;
-}
-.diagonal-rects div:nth-child(4)::before {
+div.image4::before {
     content: "";
-    position: absolute;
-    width: 300%;
-    height: 300%;
-    top: -200%;
-    left: -52%;
-    z-index: -1;
+    position: absolute; width: 300%; height: 300%; z-index: 10;
+    top: -200%; left: -52%;
+    
     background: url('../img/hero/huckleberry-lookout.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    transform: rotate(330deg);
-    background-position-y: 50%;
-    background-position-x: -35%;
+
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: -35%;
   }
-
-
-
-.diagonal-rects div:nth-child(5) {
-    min-width: 55%;
-    min-height: 260px;
-
-    position: relative;
-    overflow:hidden;
-}
-
-.diagonal-rects div:nth-child(5)::before {
+div.image5::before {
     content: "";
-    position: absolute;
-    width: 300%;
-    height: 300%;
-    top: -320%;
-    left: -26%;
-    z-index: -1;
+    position: absolute; width: 300%; height: 300%; z-index: 10;
+    top: -240%; left: -25%;
+    
     background: url('../img/hero/whitefish.jpg');
     background-repeat: no-repeat;
     background-size:50%;
-    transform: rotate(330deg);
-    background-position-y: 50%;
-    background-position-x: -35%;
+
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
   }
 
 .diagonal-filler {
-    position: relative;
+    position: absolute;
     z-index: 1;
     bottom: 0px;
     /* left: 0px; */
-    width: 60%;
-    height: 400px;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5));
+    width: 100%;
+    height: 70vh;
+    background: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5), rgba(148, 148, 148,0.0) 70%);
     /* background-color: red; */
 }
 
@@ -348,43 +374,52 @@ section:nth-child(5) {
 
 /*  */
 
-.logo {
-    /* position: relative; */
-    /* z-index: 10; */
+/* .logo {    
     grid-area: cc;
-    margin: auto;
-    /* border: 1px solid red;     */
+    margin: auto;    
     background: url('../img/hero/logo.png');
     background-size: contain;
     background-repeat: no-repeat;
-
     height: 100%;
     max-height:400px;
     width: 100%;
     max-width: 400px;
-
     filter: drop-shadow(4px 4px 4px #444);
+} */
+
+
+.logo {
+    position: absolute;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;;
 }
 
 .logo img {
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
     height: 100%;
-    max-height:400px;
+    max-height:350px;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
 
     filter: drop-shadow(4px 4px 4px #444);
 }
 
 .nav-menu {
+    /* color: black; */
+    position: relative;
+    z-index: 10;
     grid-area: uc;
     position: relative;
-    justify-self: end;
-    margin-top: 8px;
-    /* position: absolute; */
-    /* top: 10px; */
-    /* right: 80px; */
+    justify-self: end;    
+    position: absolute;
+    top: 0px;
+    right: 0px;
     /* border: 1px solid red; */
 }
 
@@ -398,40 +433,55 @@ section:nth-child(5) {
 
 .nav-menu li { 
     list-style: none;
-    margin: 10px 20px;
-    font-size: 16px;
-    letter-spacing: 2px;
+    margin: 20px 20px;
+    font-size: 20px;
+    letter-spacing: 1px;
 }
 
 .profession {    
-    position: absolute;    
+    position: absolute;
+    z-index: 10;    
     top: 50%;
-    right: -180px;      
+    right: -140px;      
     transform-origin:center;
     transform:rotate(90deg);
 
     text-transform: uppercase;    
-    font-size: 18px;
+    font-size: 14px;
     letter-spacing: 4px;
 }
 
 .text-with-contrast { 
     font-weight: 700;
     text-shadow: -2px -2px 10px #444, 2px 2px 2px #444, 0px 0px 4px #444;
+    text-shadow: 0px 0px 1px #444, 0px 0px 4px #444, 0px 0px 0px #fff;
+    text-shadow: 1px 0px 1px #444, 0px 1px 1px #444;
+    /* text-shadow: 1px 1px 1px #444; */
 }
 
 .nav-carousel { 
     /* grid-area: cl; */
     position: absolute;
+    z-index: 10;
     height: 100%;
     width: 200px;
     transition: background-color 1.5s;
-    /* border: 1px solid red; */
+    /* border: 1px solid red; */        
 }
 .nav-carousel:hover {
     /* background: linear-gradient(rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.7) 80%); */
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
     /* box-shadow: 0 0 4px #444; */
+}
+.nav-carousel li {
+    animation: animate-opacity 9s infinite ease-in-out;
+    /* animation: dashed-border-animation-up 10s infinite linear;       */
+}
+.nav-carousel li:nth-child(2) {
+    animation-delay: 600ms;
+}
+.nav-carousel li:nth-child(3) {
+    animation-delay: 1200ms;
 }
 
 .gradient-line {
@@ -439,9 +489,11 @@ section:nth-child(5) {
     height: 100%;    
     position: absolute;
     top: 0px;
-    left: 100px;      
+    left: 100px; 
+    opacity: 0.5;     
 
     border-left: 1px solid rgba(255, 255, 255, 0.4);
+    animation: animate-opacity 4s infinite ease-in-out;
     /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0) 20%);
     background-position: right;
     background-size: 1px 1px;
@@ -455,7 +507,8 @@ section:nth-child(5) {
     height: 100%;    
     position: absolute;
     top: 0px;
-    left: 160px;       
+    left: 160px;
+    opacity: 0.7;       
     
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0) 20%);
     background-position: right;
@@ -465,7 +518,7 @@ section:nth-child(5) {
     animation: none;
 }
 .gradient-up.animate {
-    animation: dashed-border-animation-up 10s infinite linear;     
+    animation: dashed-border-animation-up 20s infinite linear;     
 }
 
 /* .nav-carousel::before { */
@@ -475,7 +528,8 @@ section:nth-child(5) {
     height: 100%;    
     position: absolute;
     top: 0px;
-    left: 40px;       
+    left: 40px; 
+    opacity: 0.7;      
     
     transform: rotate(180deg);
     background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0) 20%);
@@ -486,7 +540,7 @@ section:nth-child(5) {
     animation: none;
 }
 .gradient-down.animate {
-    animation: dashed-border-animation-down 10s infinite linear;      
+    animation: dashed-border-animation-down 22s infinite linear;      
 }
 
 /* .gradient-border-right {
@@ -497,10 +551,16 @@ section:nth-child(5) {
     background-repeat: repeat-y; 
     animation: dashed-border-animation-up 10s infinite linear;   
 } */
-@keyframes dashed-border-animation-up {    
+@keyframes dashed-border-animation-up {  
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.7;
+    }  
       100% {
         background-position: right 25px;
-        /* opacity: 0.3; */
+        opacity: 0.5;
       }
   }
 
@@ -514,15 +574,15 @@ section:nth-child(5) {
 } */
 @keyframes dashed-border-animation-down {   
     0% {
-        /* opacity: 0.1; */
+        opacity: 0.5;
     }
     50% {
-        /* opacity: 1; */
-    }
+        opacity: 0.7;
+    }  
     100% {
         /* transform: rotate(360deg); */
         background-position: right 25px;
-        /* opacity: 0.1; */
+        opacity: 0.5;
       }
   }
 

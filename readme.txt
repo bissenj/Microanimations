@@ -15,6 +15,13 @@ https://medium.com/@dailyfire/pure-css-parallax-simple-tricks-da102d0ffdb9
 
 
 
+Today:
+1.  Reverse pan on hero image
+2.  Turn off focus animation
+3.  Fix overflow
+
+
+
 Goals:
 
 - 1.  Paralaxx Scrolling Basics
