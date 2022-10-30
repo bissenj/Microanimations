@@ -407,8 +407,39 @@ div.image7::before {
         width: calc(100% / (6/10));     
     }
     div.image5 {     
-        width: calc(100% / (5/10));     
+        width: calc(100% / (6/10));     
     }
+
+    /* SIZE OF ABOUT SECTION */
+    section.about {            
+        height: 105vh;
+    }
+    .diagonal-filler {        
+        height: 50vh;
+    }
+    .slant {
+        width: 85%;
+    }
+    .intro p:nth-child(2) {
+        margin-left: 15%;
+    }
+
+
+    /*  SIZE OF DIAGONAL GRID */
+    .row1 div {
+        min-height: 200px;
+        max-height: 200px;
+    }    
+    .row2 div {
+        min-height: 260px;
+        max-height: 260px;
+    }
+
+    /* ADJUST IMAGE POSITIONS */
+    /* div.image2::before {    
+        top: -230%;
+        left: -45%;
+    } */
 }
 
 
@@ -431,6 +462,12 @@ div.image7::before {
     }
     div.image5 {     
         width: calc(100% / (5/10));     
+    }
+
+    /* ADJUST IMAGE POSITIONS */
+    div.image2::before {    
+        top: -230%;
+        left: -75%;
     }
 }
 
