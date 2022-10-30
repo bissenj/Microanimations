@@ -234,8 +234,8 @@ div.row1, div.row2 {
     border-top: 20px solid white;     
 }
 .row2 div {
-    min-height: 320px;
-    max-height: 320px;
+    min-height: 420px;
+    max-height: 420px;
 
     border-bottom: 20px solid white;     
 }
@@ -259,8 +259,14 @@ div.image4 {
     width: calc(100% / 2);     
 }
 div.image5 {     
-    width: calc(100% / 2); 
-    /* margin-right: 140px; */
+    width: calc(100% / 2);     
+}
+
+div.image6 { 
+    width: calc(100% / 4);     
+}
+div.image7 {     
+    width: calc(100% / 4);     
 }
 
 
@@ -337,7 +343,29 @@ div.image4::before {
 div.image5::before {
     content: "";
     position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -240%; left: -25%;
+    top: -212%; left: -52%;
+    
+    background: url('../img/hero/whitefish.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;    
+
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
+  }
+div.image6::before {
+    content: "";
+    position: absolute; width: 300%; height: 300%; z-index: 10;
+    top: -212%; left: -52%;
+    
+    background: url('../img/hero/huckleberry-lookout.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
+  }
+div.image7::before {
+    content: "";
+    position: absolute; width: 300%; height: 300%; z-index: 10;
+    top: -212%; left: -52%;
     
     background: url('../img/hero/whitefish.jpg');
     background-repeat: no-repeat;
@@ -351,7 +379,7 @@ div.image5::before {
     z-index: 1;
     bottom: 0px;
     /* left: 0px; */
-    width: 150%;
+    width: 200%;
     height: 100vh;
     /* background: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5), rgba(148, 148, 148,0.0) 70%); */
     background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5)); 
