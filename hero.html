@@ -31,8 +31,9 @@
             <div class='gradient-down animate'></div>
 
             <div class='logo'>
-                <img src='/img/hero/logo.png'/>
-                <img src='https://aspenpeakstudios.github.io/Microanimations/Microanimations/img/hero/logo.png'/>
+                <div class='git-page-logo-hack'></div>
+                <!-- <img src='/img/hero/logo.png'/> -->
+                <!-- <img src='https://aspenpeakstudios.github.io/Microanimations/Microanimations/img/hero/logo.png'/> -->
             </div>
 
             <div class='nav-menu'>
@@ -126,12 +127,42 @@
     const el = document.querySelector('.landing'); 
     const backgroundEl = document.querySelector('.background'); 
     const DAMPER = 25;  
+    const MAX_VALUE = 5;
+
+    let startX = -1;
+    let startY = -1;
 
     // Animate the background image and decorative dashed lines
     el.addEventListener('mousemove', (function(e) {        
-        var amountMovedX = (e.pageX * 1 / DAMPER);
+        var amountMovedX = (e.pageX * 1 / DAMPER);  
+        // if (amountMovedX > MAX_VALUE)  amountMovedX = MAX_VALUE ; 
+        // if (amountMovedX < -MAX_VALUE) amountMovedX = -MAX_VALUE ;
+        
         var amountMovedY = (e.pageY * 1 / DAMPER);
-        backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+        // if (amountMovedY > MAX_VALUE)  amountMovedY = MAX_VALUE ; 
+        // if (amountMovedY < -MAX_VALUE) amountMovedY = -MAX_VALUE ;
+        // var amountMovedX = (e.movementX * 1 / DAMPER);
+        // var amountMovedY = (e.movementY * 1 / DAMPER);
+
+        //backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+
+        //console.log("1: ", backgroundEl.style.backgroundPosition);
+        let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
+        if (startX == -1 && startY == -1) {
+            startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
+            startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
+            console.log("Got start positions: ", startX, startY);         
+        }
+        
+                           
+        //let x = parseFloat(currentPosition[0].toString().replace('px', ''));
+        let x = startX + amountMovedX;
+        //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
+        let y = startY + amountMovedY;  
+        
+        console.log(currentPosition, amountMovedX, amountMovedY, x, y);
+        backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
+        
 
         // Update the pseudo selector animation
         let gradientUpEl = document.querySelector('.gradient-up');    

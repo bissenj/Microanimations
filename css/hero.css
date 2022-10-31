@@ -76,7 +76,7 @@ section .background {
     /* background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5)), url('../img/hero/huckleberry-lookout.jpg'); */
     background-size: cover; 
     background-repeat: no-repeat;
-
+    
     transform:scale(1.2);
 
     /* background-position: 2px 3px; */
@@ -227,8 +227,24 @@ div.row1, div.row2 {
     overflow:hidden;     
     min-height: 250px;
     max-height: 250px;
-    border: 10px solid white;         
+    border: 10px solid white;   
+    transition: all 1s;      
 } 
+
+
+/* HOVER STATES */
+.row1 div:hover, .row2 div:hover {     
+    /* transform:scale(1.5) rotate(-30deg) translate(250px, 100px);  
+    max-height: 500px;
+    height: 400px;        */
+    cursor:pointer;
+    z-index:100;
+}
+div.image1:hover:before {        
+    /* transform:rotate(-0deg);   */
+    opacity: 0.5;     
+}
+
 
 .row1 div {
     border-top: 20px solid white;     
@@ -288,11 +304,13 @@ div.image1::before {
     position: absolute; width: 300%; height: 300%; z-index: 1;
     top: -58%;
     left: -112%;    
-    background: url('../img/hero/rotation.png');  background-repeat: no-repeat; background-size: cover;
+    background: url('../img/hero/lakemcdonald.jpg');  background-repeat: no-repeat; background-size: cover;
     
-    /* transform: rotate(330deg); */
+    transform: rotate(-30deg);
     background-position-y: 50%;
     background-position-x: 0%;
+
+    transition: all 1s;      
   }
 div.image2::before {
     content: "";
@@ -435,6 +453,10 @@ div.image7::before {
         max-height: 260px;
     }
 
+    section .background {
+        background-position: -240px 5px;
+    }
+
     /* ADJUST IMAGE POSITIONS */
     /* div.image2::before {    
         top: -230%;
@@ -517,6 +539,21 @@ section:nth-child(5) {
     place-content: center;;
 }
 
+.git-page-logo-hack {
+    position: relative;
+    z-index: 10;
+    width:100%;
+    height: 100%;
+    /* content: ""; */
+    /* position: absolute; width: 300%; height: 300%; z-index: 1; */
+    /* top: -58%; */
+    /* left: -112%;     */
+    background: url('../img/hero/logo.png');  background-repeat: no-repeat; background-size: cover;
+        
+    background-position-y: 50%;
+    background-position-x: 0%;   
+}
+
 .logo img {
     /* display: none; */
     display: block;
@@ -527,6 +564,8 @@ section:nth-child(5) {
 
     filter: drop-shadow(4px 4px 4px #444);
 }
+
+
 
 .nav-menu {
     /* color: black; */
