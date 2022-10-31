@@ -24,11 +24,11 @@ section {
     overflow-x: hidden;
 }
 
-section:nth-child(1) {     
+section:nth-child(1) {  
+    position: relative;   
     display: block;       
     box-shadow: 0px 4px 6px #444;   
     z-index: 2;
-
     overflow:hidden;
 
     /* display: grid;
@@ -151,6 +151,135 @@ section.about {
     /* background-color: red; */
 }
 
+
+
+
+/* MODAL */
+.modal {    
+    /* overflow: hidden; */
+    display:block;
+    position: absolute;
+    top: 100px;
+    left: 10%;    
+    z-index: 100;
+    
+    width: 80%;
+    height: 80%;
+
+    background-color: rgb(223, 223, 223);
+    border: 1px solid black;
+    box-shadow: 0 0 4px #444;
+
+    padding: 40px;
+}
+.modal-image {
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    height: 50%;
+    
+    border: 2px solid black;
+    /* transform: rotate(30deg); */
+    transition: all 1s;
+}
+.slow-transition {     
+    transition: all 1s;
+}
+.revert {
+    background-color: white;
+    transform-origin: 0 0;
+    /* transform: rotate(-30deg); */
+    animation: moveIt 2s ease-in-out;
+    animation-fill-mode: forwards;
+    /* border: 10px solid rgb(64, 64, 64);   */
+    box-shadow: 0 0 4px black;   
+    transition: all 1s;
+}
+div.image1.revert:before {        
+    transform: rotate(-0deg);
+    opacity: 1.0; 
+    background-size: 100%;
+    background-position: 0 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0; 
+    transition: all 3s;    
+}
+div.image1.revert:hover:before {
+    opacity: 1.0; 
+}
+
+@keyframes moveIt {
+    0% {           
+    }
+    25% {
+        transform: rotate(-30deg);
+    }
+    50% {
+        transform: rotate(-30deg) translate(10%, -10%);
+        
+    }
+    75% {
+        border-width: 10px;
+    }
+    100% {
+        transform: rotate(-30deg) translate(10%, -10%);
+        max-height: 500px;
+        width: 50%;
+        height: 500px;
+        box-shadow: 0 0 4px #444;
+        border-width: 10px;        
+    }    
+}
+
+.revert-undo {
+    background-color: white;
+    transform-origin: 0 0;
+    /* transform: rotate(-30deg); */
+    animation: undoIt 1s ease-in-out;
+    animation-fill-mode: forwards;
+    /* border: 10px solid rgb(64, 64, 64);   */
+    box-shadow: 0 0 0px #444;   
+    transition: all 2s;
+}
+div.image1.revert-undo:before {        
+    transform: rotate(-30deg);
+    opacity: 1.0; 
+    background-size: cover;
+    background-position: 0 50%;
+    width: 300%;
+    height: 300%;
+    top: -58%;
+    left: -112%; 
+    transition: all 2s;    
+}
+
+@keyframes undoIt {
+    0% {           
+    }
+    75% {        
+    }
+    50% {
+        transform: rotate(-30deg) translate(10%, -10%);        
+    }
+    25% {
+        border-width: 10px;
+    }
+    0% {
+        transform: rotate(-30deg) translate(10%, -10%);
+        max-height: 500px;
+        width: 50%;
+        height: 500px;
+        box-shadow: 0 0 4px #444;
+        border-width: 10px;        
+    }    
+}
+
+
+
+
+
 .intro {
     display: block;
     letter-spacing: 4px;
@@ -228,7 +357,7 @@ div.row1, div.row2 {
     min-height: 250px;
     max-height: 250px;
     border: 10px solid white;   
-    transition: all 1s;      
+    /* transition: all 1s;       */
 } 
 
 
@@ -310,7 +439,7 @@ div.image1::before {
     background-position-y: 50%;
     background-position-x: 0%;
 
-    transition: all 1s;      
+    /* transition: all 3s;       */
   }
 div.image2::before {
     content: "";
@@ -535,8 +664,11 @@ section:nth-child(5) {
     left: 0px;
     width: 100%;
     height: 100%;
-    display: grid;
-    place-content: center;;
+    /* display: grid; */
+    /* place-content: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .git-page-logo-hack {
@@ -544,6 +676,8 @@ section:nth-child(5) {
     z-index: 10;
     width:100%;
     height: 100%;
+    max-width:350px;
+    max-height: 350px;
     /* content: ""; */
     /* position: absolute; width: 300%; height: 300%; z-index: 1; */
     /* top: -58%; */

@@ -121,6 +121,10 @@
 
 </body>
 
+
+<!-- JAVASCRIPT -->
+<script src="/js/hero.js"></script>
+<!-- <script src="/Microanimations/js/hero.js"></script> -->
 <script>
 
     // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
@@ -151,7 +155,7 @@
         if (startX == -1 && startY == -1) {
             startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
             startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
-            console.log("Got start positions: ", startX, startY);         
+            //console.log("Got start positions: ", startX, startY);         
         }
         
                            
@@ -160,7 +164,7 @@
         //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
         let y = startY + amountMovedY;  
         
-        console.log(currentPosition, amountMovedX, amountMovedY, x, y);
+        //console.log(currentPosition, amountMovedX, amountMovedY, x, y);
         backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
         
 
@@ -192,7 +196,7 @@
     // EFFECT 2:  Image Carousel
     const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
     const carouselEls = document.querySelectorAll('.nav-carousel li');
-    console.log("Carousel Els: ", carouselEls);
+    //console.log("Carousel Els: ", carouselEls);
     carouselEls.forEach((item) => {        
         item.addEventListener('click', () => {
             let index = item.dataset.index;
