@@ -145,7 +145,6 @@ section.about {
 }
 
 
-
 /* MODAL */
 .modal-overlay {
     position: absolute;
@@ -214,7 +213,7 @@ section.about {
 
 .revert {
     background-color: white;
-    transform-origin: 0 0;    
+    /* transform-origin: 0 0;     */
     animation: moveIt 2s ease-in-out;
     animation-fill-mode: forwards;    
     transition: all 1s, outline 0ms;    
@@ -232,8 +231,8 @@ section.about {
     background: rgba(0,0,0,0.5);    
 } */
 .revert:focus {
-    /* outline: none; */
-    outline: 999px solid rgba(0,0,0,0.3);
+    outline: none;
+    /* outline: 999px solid rgba(0,0,0,0.3); */
 }
 
 div.row1 > div.revert:before, div.row2 > div.revert:before {
@@ -248,10 +247,10 @@ div.row1 > div.revert:before, div.row2 > div.revert:before {
     transition: all 2.5s;     
 }
 div.about-image.revert:hover:before {
-    opacity: 1.0; 
+    /* opacity: 1.0;  */
 }
 div.about-image:hover:before {            
-    opacity: 0.5;     
+    /* opacity: 0.5;      */
 }
 
 /* div.image1::after {
@@ -287,7 +286,7 @@ div.about-image:hover:before {
         
     animation: undoIt 1s ease-in-out;
     animation-fill-mode: forwards;
-    outline: 999px solid rgba(0,0,0,0.3);    
+    /* outline: 999px solid rgba(0,0,0,0.3);     */
     transition: all 2s, outline 0ms;    
     /* border-width: 10px !important; */
 }
@@ -379,7 +378,10 @@ div.row1, div.row2 {
 .row1 > div, .row2 > div {    
     position: relative;    
     overflow:hidden;         
-    border: 10px solid white;       
+    border: 10px solid white; 
+    
+    transform-origin: 0 0;
+    background-color: white;    
 } 
 .row1 > div {
     min-height: 250px;
@@ -751,7 +753,7 @@ section:nth-child(5) {
     animation: none;
 }
 .gradient-up.animate {
-    animation: dashed-border-animation-up 20s infinite linear;     
+    /* animation: dashed-border-animation-up 20s infinite linear;      */
 }
 
 /* .nav-carousel::before { */
@@ -773,7 +775,7 @@ section:nth-child(5) {
     animation: none;
 }
 .gradient-down.animate {
-    animation: dashed-border-animation-down 22s infinite linear;      
+    /* animation: dashed-border-animation-down 22s infinite linear;       */
 }
 
 /* .gradient-border-right {
