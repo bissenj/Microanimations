@@ -286,7 +286,7 @@ div.about-image:hover:before {
         
     animation: undoIt 1s ease-in-out;
     animation-fill-mode: forwards;
-    /* outline: 999px solid rgba(0,0,0,0.3);     */
+    outline: 9999px solid rgba(0,0,0,0.3);    
     transition: all 2s, outline 0ms;    
     /* border-width: 10px !important; */
 }
