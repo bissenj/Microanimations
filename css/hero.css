@@ -170,6 +170,10 @@ section.about {
     animation-fill-mode: forwards;
     animation-delay: 2.5s;
 }
+.about-image.revert-undo > .text-overlay {
+    animation: fade-out 2000ms ease-out;
+    animation-fill-mode: forwards;
+}
 .text-overlay .title{ 
     font-size: 1.1em;   
     text-shadow: 1px 1px 1px #444; 
@@ -187,6 +191,15 @@ section.about {
         transform:scale(1);
     }    
 }
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        transform:scale(1);        
+    }
+    100% {
+        opacity: 0;
+    }    
+}
 
 .revert {
     background-color: white;
@@ -198,7 +211,7 @@ section.about {
 .revert:focus {
     outline: none;
 }
-/* div.image1.revert:before {         */
+
 div.row1 > div.revert:before, div.row2 > div.revert:before {
     transform: rotate(-0deg);
     opacity: 1.0; 
@@ -208,11 +221,13 @@ div.row1 > div.revert:before, div.row2 > div.revert:before {
     height: 100%;
     top: 0;
     left: 0; 
-    transition: all 2.5s; 
-    /* transition-delay: 500s;    */
+    transition: all 2.5s;     
 }
 div.about-image.revert:hover:before {
     opacity: 1.0; 
+}
+div.about-image:hover:before {            
+    opacity: 0.5;     
 }
 
 
@@ -236,56 +251,34 @@ div.about-image.revert:hover:before {
 
 .revert-undo {
     background-color: white;
-    transform-origin: 0 0;
-    /* transform: rotate(-30deg); */
+        
     animation: undoIt 1s ease-in-out;
     animation-fill-mode: forwards;
-    /* border: 10px solid rgb(64, 64, 64);   */
-    /* box-shadow: 0 0 0px #444;    */
+    
     transition: all 2s;
 }
+
+
 @keyframes undoIt {
     0% {
         transform: rotate(-30deg);        
     }
+
+    75% {
+        /* opacity: 1; */
+    }
     
     100% {           
-        top: 0px;
-        left: 0px;   /* Set with Javascript */
-        transform: rotate(0deg);   
+        /* top: 0px; */
+        /* left: 0px;   Set with Javascript */
+        transform: rotate(0deg);  
+        /* opacity: 0;  */
         
-        width: 0;    /* Set with Javascript */
-        height: 0;   /* Set with Javascript */
-        opacity: 0;  /* Maybe scrap this */
-    }
-    
-    /* 50% {
-        transform: rotate(-30deg);        
-    }
-    25% {
-        border-width: 10px;
-    }
-    0% {
-        transform: rotate(-30deg);
-        max-height: 500px;
-        width: 50%;
-        height: 500px;
-        /* box-shadow: 0 0 4px #444; */
-        /* border-width: 10px;         */
-    /* }     */ 
+        /* width: 0;    Set with Javascript */
+        /* height: 0;   Set with Javascript */
+        /* opacity: 0;  Maybe scrap this */
+    }      
 }
-/* div.row1 > div.revert-undo:before, div.row2 > div.revert-undo:before { */
-/* div.image1.revert-undo:before {         */
-    /* transform: rotate(-30deg);
-    opacity: 1.0; 
-    background-size: cover;
-    background-position: 0 50%;
-    width: 300%;
-    height: 300%;
-    top: -58%;
-    left: -112%; 
-    transition: all 3s;    
-} */
 
 
 
@@ -342,16 +335,16 @@ div.about-image.revert:hover:before {
     position:relative; 
     z-index: 2;
     
-    width: 150%;
+    width: 150%;                /* This will change via media queries depending on the screen dimensions */
     margin-top: 80px;
    
     background-color:white;  /* cheap way to cover the row gap on inline-block  */
-    transform-origin: 0 0;  
-    /* transform-origin: center; */
+    transform-origin: 0 0;      
     transform: rotate(30deg) translate(-50px, -60px);
 }
 
 
+/* The two image rows */
 div.row1, div.row2 {
     width: 100%;  
     position: relative;
@@ -360,32 +353,15 @@ div.row1, div.row2 {
     justify-content: space-around;
 }
 
-
+/* The elements in the two image rows */
 .row1 > div, .row2 > div {    
     position: relative;    
-    overflow:hidden;     
+    overflow:hidden;         
+    border: 10px solid white;       
+} 
+.row1 > div {
     min-height: 250px;
     max-height: 250px;
-    border: 10px solid white;   
-    /* transition: all 1s;       */
-} 
-
-
-/* HOVER STATES */
-.row1 div:hover, .row2 div:hover {     
-    /* transform:scale(1.5) rotate(-30deg) translate(250px, 100px);  
-    max-height: 500px;
-    height: 400px;        */
-    cursor:pointer;
-    z-index:100;
-}
-div.image1:hover:before {        
-    /* transform:rotate(-0deg);   */
-    opacity: 0.5;     
-}
-
-
-.row1 > div {
     border-top: 20px solid white;     
 }
 .row2 > div {
@@ -394,127 +370,87 @@ div.image1:hover:before {
     border-bottom: 20px solid white;     
 }
 
+/* HOVER STATES */
+.row1 div:hover, .row2 div:hover {         
+    cursor:pointer;
+    z-index:100;
+}
+
+
+/* Customize the size of each image element */
 div.image1 {    
     width: calc(100% / 3);     
     z-index: 11;
 }
-
 div.image2 {    
     width: calc(100% / 3); 
 }
-
 div.image3 {    
     width: calc(100% / 3); 
 }
-
 div.image4 { 
     width: calc(100% / 2);     
 }
 div.image5 {     
     width: calc(100% / 2);     
 }
-
-div.image6 { 
+/* div.image6 { 
     width: calc(100% / 4);     
 }
 div.image7 {     
     width: calc(100% / 4);     
-}
+} */
 
 
-/* IMAGE BEFORES */
-div.image1::before {
+/* ------------------------ IMAGE BEFORES ------------------------------------ */
+
+/* all diagonal image elements */
+div.row1 > div:before, div.row2 > div:before {  
     content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 1;
-    top: -58%;
-    left: -112%;    
-    background: url('../img/hero/lakemcdonald.jpg');  background-repeat: no-repeat; background-size: cover;
+    position: absolute; width: 300%; height: 300%; z-index: 10;    
+    top: -200%; left: -62%;  
     
-    transform: rotate(-30deg);
     background-position-y: 50%;
     background-position-x: 0%;
-
-    /* transition: all 3s;       */
-  }
-div.image2::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -200%;
-    left: -62%;
-    
-    background: url('../img/hero/whitefish.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
-div.image3::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -200%;
-    left: -62%;
-    
-    background: url('../img/hero/whitefish.jpg');
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; 
     background-size: cover;
 
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
-div.image4::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -200%; left: -52%;
-    
-    background: url('../img/hero/huckleberry-lookout.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    transform: rotate(-30deg);
+    transition: all 2.5s;    
+}
 
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
-div.image5::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -212%; left: -52%;
-    
-    background: url('../img/hero/whitefish.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;    
+/* pseudo element to hold the image in the image elements */
+div.image1::before {    
+    top: -58%;
+    left: -112%;        
+    background: url('../img/hero/lakemcdonald.jpg');     
+}
+div.image2::before {        
+    background: url('../img/hero/whitefish.jpg');    
+}
+div.image3::before {    
+    background: url('../img/hero/lakemcdonald.jpg');    
+}
+div.image4::before {    
+    top: -200%; left: -52%;    
+    background: url('../img/hero/huckleberry-lookout.jpg');    
+}
+div.image5::before {    
+    top: -212%; left: -52%;    
+    background: url('../img/hero/whitefish.jpg');    
+}
 
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
-div.image6::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -212%; left: -52%;
-    
-    background: url('../img/hero/huckleberry-lookout.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
-div.image7::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -212%; left: -52%;
-    
-    background: url('../img/hero/whitefish.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;    
-
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
 
 .diagonal-filler {
     position: absolute;
     z-index: 1;
     bottom: 0px;
-    /* left: 0px; */
+    
     width: 200%;
     height: 100vh;
-    /* background: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5), rgba(148, 148, 148,0.0) 70%); */
+    
     background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5)); 
-    /* background-color: red; */
+    
     transform-origin: 0 0;  
     transform: rotate(30deg); 
 }

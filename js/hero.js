@@ -95,6 +95,15 @@ var ImageModal = {
         newElement.style.height = h; //bounding.height;
         newElement.style.top = "0px"; //bounding.y + "px"; //bounding.top;
         newElement.style.left = elementLeft + "px"; //bounding.x + "px"; //bounding.left;   
+
+
+        // Save these off to be restored when element transitions out.
+        const savedElementSettings = {
+            width: w,
+            height: h,
+            top: 0,
+            left: elementLeft
+        };
         
         const textElement = document.createElement('div');
         textElement.classList.add('text-overlay');
@@ -105,7 +114,7 @@ var ImageModal = {
 
         
         newElement.addEventListener("blur", function(event) {
-            ImageModal.loseFocus(event);
+            ImageModal.loseFocus(event, newElement, savedElementSettings);
         });
 
 
@@ -162,15 +171,28 @@ var ImageModal = {
 
         }
     },
-    loseFocus: function(event) {
+    loseFocus: function(event, newElement, savedElementSettings) {
         console.log("Lost Focus!", event.target);
 
         event.target.classList.add('revert-undo');
+        event.target.classList.remove('revert');
+        
 
-        window.setTimeout(() => {
+        newElement.style.width = savedElementSettings.width; 
+        newElement.style.height = savedElementSettings.height;
+        newElement.style.top = savedElementSettings.top + "px";
+        newElement.style.left = savedElementSettings.left + "px";
+        // newElement.style.opacity = 0;
+
+        window.setTimeout(() => {            
+            newElement.style.opacity = 0;
+            console.log("Element Removed.");
+        }, 3000);
+
+        window.setTimeout(() => {            
             event.target.remove();
             console.log("Element Removed.");
-        }, 2000);
+        }, 3000);
     }
 };
 
