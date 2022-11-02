@@ -193,14 +193,13 @@ var ImageModal = {
         // newElement.style.opacity = 0;
 
         window.setTimeout(() => {            
-            newElement.style.opacity = 0;
-            console.log("Element Removed.");
-        }, 3000);
+            newElement.style.opacity = 0;                        
+        }, 2000);
 
         window.setTimeout(() => {            
             event.target.remove();
             console.log("Element Removed.");
-        }, 3000);
+        }, 4000);
     }
 };
 

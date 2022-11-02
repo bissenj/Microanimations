@@ -217,13 +217,26 @@ section.about {
     transform-origin: 0 0;    
     animation: moveIt 2s ease-in-out;
     animation-fill-mode: forwards;    
-    transition: all 1s;  
+    transition: all 1s, outline 0ms;
+
+    /* overflow: unset !important; */
     
-    /* outline: 9999px solid rgba(0,0,0,0.5); */
-    box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+    outline: 999px solid rgba(0,0,0,0.3);
+    /*box-shadow: 0 0 0 999px rgba(0,0,0,0.5); */  /* THIS KILLS THE FRAME RATE */
 }
+/* .revert::after {
+    content: ' ';
+    position: absolute;
+    z-index: 1;
+    top:-500%;
+    left: -500%;
+    width: 1000%;
+    height:1000%;
+    background: rgba(0,0,0,0.5);    
+} */
 .revert:focus {
-    outline: none;
+    /* outline: none; */
+    outline: 999px solid rgba(0,0,0,0.3);
 }
 
 div.row1 > div.revert:before, div.row2 > div.revert:before {
@@ -279,24 +292,28 @@ div.about-image:hover:before {
         
     animation: undoIt 1s ease-in-out;
     animation-fill-mode: forwards;
-    
+    outline: 999px solid rgba(0,0,0,0.3);    
     transition: all 2s;
+    border-width: 10px !important;
 }
 
 
 @keyframes undoIt {
     0% {
-        transform: rotate(-30deg);        
+        transform: rotate(-30deg);    
+        /* outline: 999px solid rgba(0,0,0,0.3);     */
     }
 
     75% {
         /* opacity: 1; */
-    }
+    }    
     
     100% {           
         /* top: 0px; */
         /* left: 0px;   Set with Javascript */
-        transform: rotate(0deg);  
+        transform: rotate(0deg); 
+        
+        /* outline: none; */
         /* opacity: 0;  */
         
         /* width: 0;    Set with Javascript */
