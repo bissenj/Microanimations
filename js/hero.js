@@ -180,13 +180,12 @@ var ImageModal = {
         }
     },
     transitionOut: function(event, newElement, savedElementSettings) {
-        console.log("Lost Focus!", event.target);
-
+        console.log("Transition Out!", event.target);
+        
         // Kick off the transition-out animations
         event.target.classList.add('revert-undo');
         event.target.classList.remove('revert');
-              
-       
+                     
         // Move element back to its original position when cloned.
         window.setTimeout(() => {        
             newElement.style.top = savedElementSettings.top + "px";
@@ -198,7 +197,7 @@ var ImageModal = {
         // Fade out the element and specifically it's outline.
         window.setTimeout(() => {            
             newElement.style.opacity = 0;                        
-        }, 3000);
+        }, 2000);
 
         // Remove the element from the DOM
         window.setTimeout(() => {            
