@@ -198,16 +198,16 @@ section.about {
 .close-button:hover {
     transform: rotate(360deg) scale(1.05);    
     cursor: pointer;
-    border: 2px solid white; 
+    /* border: 2px solid white;  */
     border-radius: 50%;
-    background-color: rgba(255, 255 ,255, 0.3);
+    /* background-color: rgba(255, 255 ,255, 0.3); */
 }
 .close-button:focus {
     transform: rotate(360deg) scale(1.05);    
     cursor: pointer;
-    border: 2px solid white; 
+    /* border: 2px solid white;  */
     border-radius: 50%;
-    background-color: rgba(255, 255 ,255, 0.3);
+    /* background-color: rgba(255, 255 ,255, 0.3); */
     opacity: 0;
 }
 
@@ -521,6 +521,42 @@ div.image5::before {
 }
 
 
+@media only screen and (min-width: 1200px)  {
+    .intro p:nth-child(1) {
+        font-size: 40px;
+    }
+    .intro p:nth-child(2) {
+        font-size: 26px;
+        line-height: 54px;
+    }
+
+    .slant {
+        margin-top: 10px;
+        /* border-radius: 6px; */
+        padding: 20px;   
+        right: -70px; 
+        width: 75%;    
+    }
+    .slant > div > span { font-size: 32px; padding-right: 20px; margin-left: 15px;
+        /* text-shadow: 1px 1px 4px #ccc; */
+     }
+
+    /* SIZE OF ABOUT SECTION */
+    section.about {            
+        height: 200vh;
+    }
+
+    .row1 > div {
+        /* min-height: 260px;         */
+    }
+    .row2 > div {
+        /* min-height: 260px;         */
+    }
+    .diagonal-filler {        
+        height: 80%;
+    }
+}
+
 @media only screen and (max-width: 1180px)  {
     /* Put your CSS here up to 100px width devices (cover all width between 200px to 767px // */
     .diagonal-rects { width: 175%;}
@@ -544,7 +580,7 @@ div.image5::before {
 
     /* SIZE OF ABOUT SECTION */
     section.about {            
-        /* height: 125vh; */
+        height: 125vh;
     }
     .diagonal-filler {        
         height: 80vh;
