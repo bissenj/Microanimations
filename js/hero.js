@@ -30,17 +30,25 @@ var ImageModal = {
         let w = window.getComputedStyle(event.target).getPropertyValue("width");        
         let h = window.getComputedStyle(event.target).getPropertyValue("height");   
         let bounding = event.target.getBoundingClientRect();     
-        console.log("New Element: ", bounding);
+        //console.log("New Element: ", bounding);
 
-        console.log("Position Container: ", event.target.parentNode.parentNode.getBoundingClientRect());
+        //console.log("Position Container: ", event.target.parentNode.parentNode.getBoundingClientRect());
 
         let top = event.target.parentNode.parentNode.getBoundingClientRect().top - bounding.top;
-        console.log("Top Difference: ", top);
+        //console.log("Top Difference: ", top);
 
-        // parent's parent 
-        //const section = event.target.parentNode.parentNode.parentNode;        
+
+        // PARENT
         const parent = event.target.parentNode;     // ie div.row1 or div.row2
-        console.log('Parent Height: ', parent.offsetHeight);
+        //console.log('Parent Height: ', parent.offsetHeight);
+
+        // SECTION - append a transparent overlay
+        // const section = event.target.parentNode.parentNode.parentNode;  
+        // const modal = document.createElement('div');
+        // modal.classList.add('modal-overlay');
+        // section.appendChild(modal);
+        
+        
 
         // CALCULATE LEFT POSITION
         // -----------------------
