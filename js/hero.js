@@ -43,7 +43,7 @@ var ImageModal = {
         //console.log('Parent Height: ', parent.offsetHeight);
 
         // SECTION - append a transparent overlay
-        // const section = event.target.parentNode.parentNode.parentNode;  
+        const section = event.target.parentNode.parentNode.parentNode;  
         // const modal = document.createElement('div');
         // modal.classList.add('modal-overlay');
         // section.appendChild(modal);
@@ -125,12 +125,11 @@ var ImageModal = {
             ImageModal.transitionOut(event, newElement, savedElementSettings);
         });
 
-
         // Add to parent container
         parent.appendChild(newElement);
 
 
-        const debug = false;
+        const debug = true;
         if (!debug) {
             window.setTimeout(() => {
 
