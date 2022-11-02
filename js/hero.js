@@ -129,7 +129,7 @@ var ImageModal = {
         parent.appendChild(newElement);
 
 
-        const debug = true;
+        const debug = false;
         if (!debug) {
             window.setTimeout(() => {
 
@@ -137,41 +137,45 @@ var ImageModal = {
                 //newElement.focus();     
                     //event.preventDefault(); // Stop the scroll?
 
-                newElement.classList.add('revert');   
+                // Kick of the Transition-In animation
+                newElement.classList.add('transition-in');   
+                newElement.style.outline = '9999px solid rgba(0,0,0,0.3)';
+                newElement.style.transform = 'rotate(-30deg)';
+
 
                 window.setTimeout(() => {
-                let screenWidth = window.innerWidth;
-                //let elementWidth = newElement.offsetWidth;
-                let parentWidth = parent.clientWidth;
-                //console.log("parent width: ", parentWidth);
-                //let expectedWidth = screenWidth * 0.5;
-                
+                    let screenWidth = window.innerWidth;
+                    //let elementWidth = newElement.offsetWidth;
+                    let parentWidth = parent.clientWidth;
+                    //console.log("parent width: ", parentWidth);
+                    //let expectedWidth = screenWidth * 0.5;
+                    
 
-                // Because the 'diagonal row' has a width larger than the screen size, we need to 
-                // calculate the screen width version of that and use it instead of a straight width percentage.            
-                // Screen Dimensions for Test:  918 x 1214
-                //
-                const divisor = screenWidth / parentWidth;
-                const newWidth = 80 * divisor;     // 80% * 0.57 = 45.6
-                const newElementWidth = 0.8 * parentWidth * divisor;   // 0.8 * 1607 * 0.57 = 732
-                const newElementHeight = 0.8 * newElementWidth * divisor; // 0.8 is to shrink the size a bit so container isn't taller than image
-                // Left needs to be 127 but it gets computed at 92.  Because translation is happening
-                // at a 30' diagonal, enhance it a bit.
-                const newLeft = (screenWidth - newElementWidth) / 2 * 1.3;
+                    // Because the 'diagonal row' has a width larger than the screen size, we need to 
+                    // calculate the screen width version of that and use it instead of a straight width percentage.            
+                    // Screen Dimensions for Test:  918 x 1214
+                    //
+                    const divisor = screenWidth / parentWidth;
+                    const newWidth = 80 * divisor;     // 80% * 0.57 = 45.6
+                    const newElementWidth = 0.8 * parentWidth * divisor;   // 0.8 * 1607 * 0.57 = 732
+                    const newElementHeight = 0.8 * newElementWidth * divisor; // 0.8 is to shrink the size a bit so container isn't taller than image
+                    // Left needs to be 127 but it gets computed at 92.  Because translation is happening
+                    // at a 30' diagonal, enhance it a bit.
+                    const newLeft = (screenWidth - newElementWidth) / 2 * 1.3;
 
-                // ROW2 Left:  119, needs to be 238
-                            
-                //expectedWidth = screenWidth * (newWidth/100);
+                    // ROW2 Left:  119, needs to be 238
+                                
+                    //expectedWidth = screenWidth * (newWidth/100);
 
-                newElement.style.width = newWidth + '%';            
-                newElement.style.left = newLeft + "px";
-                newElement.style.top = "-" + newTop + "px";            
+                    newElement.style.width = newWidth + '%';            
+                    newElement.style.left = newLeft + "px";
+                    newElement.style.top = "-" + newTop + "px";            
 
-                console.log("Screen Width: ", screenWidth, " newElementWidth: ", newElementWidth);
-                console.log("Divisor: ", divisor, " New Width %: ", newWidth, "Left: ", screenWidth - newElementWidth);
+                    console.log("Screen Width: ", screenWidth, " newElementWidth: ", newElementWidth);
+                    console.log("Divisor: ", divisor, " New Width %: ", newWidth, "Left: ", screenWidth - newElementWidth);
 
-                newElement.style.maxHeight = newElementHeight  + 'px'; //'500px';
-                newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
+                    newElement.style.maxHeight = newElementHeight  + 'px'; //'500px';
+                    newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
 
                 }, 1000);                
             }, 100);
@@ -182,8 +186,8 @@ var ImageModal = {
         console.log("Transition Out!", event.target);
         
         // Kick off the transition-out animations
-        event.target.classList.add('revert-undo');
-        event.target.classList.remove('revert');
+        event.target.classList.add('transition-out');
+        event.target.classList.remove('transition-in');
                      
         // Move element back to its original position when cloned.
         window.setTimeout(() => {        
