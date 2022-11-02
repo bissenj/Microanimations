@@ -122,7 +122,7 @@ var ImageModal = {
 
         
         newElement.addEventListener("blur", function(event) {
-            ImageModal.loseFocus(event, newElement, savedElementSettings);
+            ImageModal.transitionOut(event, newElement, savedElementSettings);
         });
 
 
@@ -179,7 +179,7 @@ var ImageModal = {
 
         }
     },
-    loseFocus: function(event, newElement, savedElementSettings) {
+    transitionOut: function(event, newElement, savedElementSettings) {
         console.log("Lost Focus!", event.target);
 
         // Kick off the transition-out animations
@@ -198,7 +198,7 @@ var ImageModal = {
         // Fade out the element and specifically it's outline.
         window.setTimeout(() => {            
             newElement.style.opacity = 0;                        
-        }, 2000);
+        }, 3000);
 
         // Remove the element from the DOM
         window.setTimeout(() => {            
