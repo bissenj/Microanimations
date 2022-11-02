@@ -139,18 +139,10 @@ section.about {
     width:100%;
     display: block;
     overflow-y: hidden;
-    /* place-content: start; */
-    /* grid-template-rows: 1fr 100px 4fr; */
-
     background-color: white;
     color: black;
-    /* padding: 10%; */
-
     border-bottom: 20px solid white;
-
-    /* background-color: red; */
 }
-
 
 
 
@@ -173,7 +165,7 @@ section.about {
 
     line-height: 40px;
     letter-spacing: 1px;
-    
+    transform: scale(0.98);
     animation: fade-in 1s ease-out;
     animation-fill-mode: forwards;
     animation-delay: 2.5s;
@@ -192,6 +184,7 @@ section.about {
     }
     100% {
         opacity: 1;
+        transform:scale(1);
     }    
 }
 
@@ -200,14 +193,13 @@ section.about {
     transform-origin: 0 0;    
     animation: moveIt 2s ease-in-out;
     animation-fill-mode: forwards;    
-    transition: all 1s;
-    /* width: 100%; */
+    transition: all 1s;    
 }
 .revert:focus {
     outline: none;
 }
 /* div.image1.revert:before {         */
-div.row1 > div.revert:before {
+div.row1 > div.revert:before, div.row2 > div.revert:before {
     transform: rotate(-0deg);
     opacity: 1.0; 
     background-size: 100%;
@@ -216,44 +208,29 @@ div.row1 > div.revert:before {
     height: 100%;
     top: 0;
     left: 0; 
-    transition: all 6s;    
+    transition: all 2.5s; 
+    /* transition-delay: 500s;    */
 }
-div.image1.revert:hover:before {
+div.about-image.revert:hover:before {
     opacity: 1.0; 
 }
+
 
 @keyframes moveIt {
     0% {           
     }
     25% {
         transform: rotate(-30deg);
-    }
-    50% {
-        /* transform: rotate(-30deg) translate(5%, -10%); */
-        transform: rotate(-30deg);
-        
-    }
+    }    
     75% {
+        transform: rotate(-30deg);
         border-width: 10px;
         box-shadow: 0px 0px 0px #444;   
     }
-    100% {
-        /* transform: rotate(-30deg) translate(5%, -10%); */
+    100% {        
         transform: rotate(-30deg);
-       
-        /* max-height: 500px; */
-        /* width: 65%; */
-        /* width: 50%; */
-        /* height:100%; */
-
-        /* height: 500px; */
-
-        /* max-height: unset;
-        width: 62%;
-        height: 80%; */
-
+        border-width: 10px;                
         box-shadow: 1px 1px 4px #444;   
-        border-width: 10px;        
     }    
 }
 
@@ -267,8 +244,39 @@ div.image1.revert:hover:before {
     /* box-shadow: 0 0 0px #444;    */
     transition: all 2s;
 }
-div.image1.revert-undo:before {        
-    transform: rotate(-30deg);
+@keyframes undoIt {
+    0% {
+        transform: rotate(-30deg);        
+    }
+    
+    100% {           
+        top: 0px;
+        left: 0px;   /* Set with Javascript */
+        transform: rotate(0deg);   
+        
+        width: 0;    /* Set with Javascript */
+        height: 0;   /* Set with Javascript */
+        opacity: 0;  /* Maybe scrap this */
+    }
+    
+    /* 50% {
+        transform: rotate(-30deg);        
+    }
+    25% {
+        border-width: 10px;
+    }
+    0% {
+        transform: rotate(-30deg);
+        max-height: 500px;
+        width: 50%;
+        height: 500px;
+        /* box-shadow: 0 0 4px #444; */
+        /* border-width: 10px;         */
+    /* }     */ 
+}
+/* div.row1 > div.revert-undo:before, div.row2 > div.revert-undo:before { */
+/* div.image1.revert-undo:before {         */
+    /* transform: rotate(-30deg);
     opacity: 1.0; 
     background-size: cover;
     background-position: 0 50%;
@@ -276,31 +284,8 @@ div.image1.revert-undo:before {
     height: 300%;
     top: -58%;
     left: -112%; 
-    transition: all 2s;    
-}
-
-@keyframes undoIt {
-    0% {           
-    }
-    75% {        
-    }
-    50% {
-        transform: rotate(-30deg) translate(10%, -10%);        
-    }
-    25% {
-        border-width: 10px;
-    }
-    0% {
-        transform: rotate(-30deg) translate(10%, -10%);
-        max-height: 500px;
-        width: 50%;
-        height: 500px;
-        /* box-shadow: 0 0 4px #444; */
-        border-width: 10px;        
-    }    
-}
-
-
+    transition: all 3s;    
+} */
 
 
 
@@ -362,13 +347,14 @@ div.image1.revert-undo:before {
    
     background-color:white;  /* cheap way to cover the row gap on inline-block  */
     transform-origin: 0 0;  
+    /* transform-origin: center; */
     transform: rotate(30deg) translate(-50px, -60px);
 }
 
 
 div.row1, div.row2 {
-    width: 100%;   
-
+    width: 100%;  
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -405,14 +391,11 @@ div.image1:hover:before {
 .row2 > div {
     min-height: 420px;
     max-height: 420px;
-
     border-bottom: 20px solid white;     
 }
 
 div.image1 {    
-    width: calc(100% / 3); 
-    /* overflow: initial; */
-    /* background-color: blue; */
+    width: calc(100% / 3);     
     z-index: 11;
 }
 
@@ -437,18 +420,6 @@ div.image6 {
 div.image7 {     
     width: calc(100% / 4);     
 }
-
-
-/* div.image1 {    
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -200%;
-    left: -62%;    
-    background: url('../img/hero/rotation.png');  background-repeat: no-repeat; background-size: contain;
-    
-    transform: rotate(330deg);
-    background-position-y: 50%;
-    background-position-x: 0%;
-  } */
 
 
 /* IMAGE BEFORES */
@@ -484,17 +455,6 @@ div.image3::before {
     left: -62%;
     
     background: url('../img/hero/whitefish.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    transform: rotate(-30deg); background-position-y: 50%; background-position-x: 0%;
-  }
-div.image4::before {
-    content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;
-    top: -200%; left: -62%;
-    
-    background: url('../img/hero/huckleberry-lookout.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 

@@ -30,13 +30,20 @@ var ImageModal = {
         let w = window.getComputedStyle(event.target).getPropertyValue("width");        
         let h = window.getComputedStyle(event.target).getPropertyValue("height");   
         let bounding = event.target.getBoundingClientRect();     
-        //console.log("New Element: ", bounding);
+        console.log("New Element: ", bounding);
+
+        console.log("Position Container: ", event.target.parentNode.parentNode.getBoundingClientRect());
+
+        let top = event.target.parentNode.parentNode.getBoundingClientRect().top - bounding.top;
+        console.log("Top Difference: ", top);
 
         // parent's parent 
         //const section = event.target.parentNode.parentNode.parentNode;        
         const parent = event.target.parentNode;     // ie div.row1 or div.row2
+        console.log('Parent Height: ', parent.offsetHeight);
 
-
+        // CALCULATE LEFT POSITION
+        // -----------------------
         // To position the cloned element over it's original, need to add up the sibling elements widths
         // to the left of it:  
         //  ie.  Image1.left = 0.  Image2.left = (Image1.Width), Image3.left = (Image1.width + Image2.width)
@@ -48,19 +55,34 @@ var ImageModal = {
         let cummulativeWidth = 0;
         let index = 0;
         for (const node of parent.children) {
-            console.log("Node: ", node, node.offsetWidth); 
+            //console.log("Node: ", node, node.offsetWidth); 
             
             widthAtPosition.push(cummulativeWidth);
             if (node == event.target) {
-                console.log("Found it.  Done.");
+                //console.log("Found it.  Done.");
                 break;  // If we found our node, we're done.
             }            
             widthAtPosition[index++] = cummulativeWidth; 
             cummulativeWidth += node.offsetWidth;   // Do this now so next loop it will have this elements width.
         }
-        console.log("Index: ", index, "Left: ", widthAtPosition[index], " Cummulative Width: ", cummulativeWidth);
+        //console.log("Index: ", index, "Left: ", widthAtPosition[index], " Cummulative Width: ", cummulativeWidth);
         const elementLeft = widthAtPosition[index];
+
+
+        // CALCULATE RIGHT POSITION
+        // ------------------------
+        // The transformations occurred at 0,0 -> Top 0px, so we need to know which row this element
+        // is on so later when we reposition the element we can adjust it to the correct 'Top' value.
+        // ie.  Row 1 = Top 0px, Row 2 = (Row1.Height)
         
+
+        // HACK FOR NOW
+        let newTop = 0;
+        if (parent.classList.contains('row2')) {   
+            //console.log(event.target.parentNode.parentNode);         
+            newTop = event.target.parentNode.parentNode.children[0].offsetHeight; 
+        }
+        console.log("New Top: ", newTop);
 
 
         // 1.  Clone the element
@@ -87,24 +109,27 @@ var ImageModal = {
         });
 
 
-        // TRY TO PUT IT OUTSIDE OF ITS DIAGONAL CONTAINER
+        // Add to parent container
         parent.appendChild(newElement);
-        //section.appendChild(newElement);
+
 
         const debug = false;
         if (!debug) {
             window.setTimeout(() => {
-                newElement.focus(); 
+
+                // TESTING - PUT THIS BACK!
+                //newElement.focus();     
+                    //event.preventDefault(); // Stop the scroll?
+
                 newElement.classList.add('revert');   
 
                 window.setTimeout(() => {
                 let screenWidth = window.innerWidth;
                 //let elementWidth = newElement.offsetWidth;
                 let parentWidth = parent.clientWidth;
-                console.log("parent width: ", parentWidth);
-                let expectedWidth = screenWidth * 0.5;
+                //console.log("parent width: ", parentWidth);
+                //let expectedWidth = screenWidth * 0.5;
                 
-
 
                 // Because the 'diagonal row' has a width larger than the screen size, we need to 
                 // calculate the screen width version of that and use it instead of a straight width percentage.            
@@ -113,20 +138,24 @@ var ImageModal = {
                 const divisor = screenWidth / parentWidth;
                 const newWidth = 80 * divisor;     // 80% * 0.57 = 45.6
                 const newElementWidth = 0.8 * parentWidth * divisor;   // 0.8 * 1607 * 0.57 = 732
+                const newElementHeight = newElementWidth * divisor;
                 // Left needs to be 127 but it gets computed at 92.  Because translation is happening
                 // at a 30' diagonal, enhance it a bit.
                 const newLeft = (screenWidth - newElementWidth) / 2 * 1.3;
+
+                // ROW2 Left:  119, needs to be 238
                             
-                expectedWidth = screenWidth * (newWidth/100);
+                //expectedWidth = screenWidth * (newWidth/100);
 
                 newElement.style.width = newWidth + '%';            
-                newElement.style.left = newLeft + "px";            
+                newElement.style.left = newLeft + "px";
+                newElement.style.top = "-" + newTop + "px";            
 
                 console.log("Screen Width: ", screenWidth, " newElementWidth: ", newElementWidth);
                 console.log("Divisor: ", divisor, " New Width %: ", newWidth, "Left: ", screenWidth - newElementWidth);
 
                 newElement.style.maxHeight = '500px';
-                newElement.style.height = '100%';
+                newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
 
                 }, 1000);                
             }, 100);
