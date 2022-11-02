@@ -175,7 +175,7 @@ section.about {
 
     line-height: 40px;
     letter-spacing: 1px;
-    transform: scale(0.98);
+    /* transform: scale(0.98); */
     animation: fade-in 1s ease-out;
     animation-fill-mode: forwards;
     animation-delay: 2.5s;

@@ -182,20 +182,25 @@ var ImageModal = {
     loseFocus: function(event, newElement, savedElementSettings) {
         console.log("Lost Focus!", event.target);
 
+        // Kick off the transition-out animations
         event.target.classList.add('revert-undo');
         event.target.classList.remove('revert');
-        
+              
+       
+        // Move element back to its original position when cloned.
+        window.setTimeout(() => {        
+            newElement.style.top = savedElementSettings.top + "px";
+            newElement.style.left = savedElementSettings.left + "px"; 
+            newElement.style.width = savedElementSettings.width; 
+            newElement.style.height = savedElementSettings.height;        
+        }, 500);
 
-        newElement.style.width = savedElementSettings.width; 
-        newElement.style.height = savedElementSettings.height;
-        newElement.style.top = savedElementSettings.top + "px";
-        newElement.style.left = savedElementSettings.left + "px";
-        // newElement.style.opacity = 0;
-
+        // Fade out the element and specifically it's outline.
         window.setTimeout(() => {            
             newElement.style.opacity = 0;                        
         }, 2000);
 
+        // Remove the element from the DOM
         window.setTimeout(() => {            
             event.target.remove();
             console.log("Element Removed.");
