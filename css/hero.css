@@ -217,7 +217,7 @@ section.about {
     animation: moveIt 2s ease-in-out;
     animation-fill-mode: forwards;    
     transition: all 1s, outline 0ms;    
-    outline: 999px solid rgba(0,0,0,0.3);
+    outline: 9999px solid rgba(0,0,0,0.3);
     /*box-shadow: 0 0 0 999px rgba(0,0,0,0.5); */  /* THIS KILLS THE FRAME RATE */
 }
 /* .revert::after {
@@ -231,7 +231,7 @@ section.about {
     background: rgba(0,0,0,0.5);    
 } */
 .revert:focus {
-    outline: none;
+    /* outline: none; */
     /* outline: 999px solid rgba(0,0,0,0.3); */
 }
 
