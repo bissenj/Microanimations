@@ -181,6 +181,36 @@ section.about {
     font-size: 0.75em;
 }
 
+.close-button{ 
+    opacity: 0;   
+    background: none;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 10000;
+    height: 1.8em;
+    width: 1.8em;     
+    border: none;       
+    color: white;
+    padding: 2px;  
+    transition: border 0.5s, color 0.5s, transform 0.5s, opacity 1.5s;  
+}
+.close-button:hover {
+    transform: rotate(360deg) scale(1.05);    
+    cursor: pointer;
+    border: 2px solid white; 
+    border-radius: 50%;
+    background-color: rgba(255, 255 ,255, 0.3);
+}
+.close-button:focus {
+    transform: rotate(360deg) scale(1.05);    
+    cursor: pointer;
+    border: 2px solid white; 
+    border-radius: 50%;
+    background-color: rgba(255, 255 ,255, 0.3);
+    opacity: 0;
+}
+
 @keyframes fade-in {
     0% {
         opacity: 0;
@@ -517,7 +547,7 @@ div.image5::before {
         /* height: 125vh; */
     }
     .diagonal-filler {        
-        height: 50vh;
+        height: 80vh;
     }
     .slant {
         width: 85%;

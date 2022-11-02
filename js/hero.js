@@ -120,10 +120,17 @@ var ImageModal = {
                                 "hiking, biking, paddling or hoping to see the northern lights.<p>";
         newElement.appendChild(textElement);
 
-        
-        newElement.addEventListener("blur", function(event) {
+        // Close Button
+        const closeButton = document.createElement('button');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = 'X';
+        closeButton.addEventListener("click", function(event) {
             ImageModal.transitionOut(event, newElement, savedElementSettings);
         });
+        newElement.appendChild(closeButton);
+        window.setTimeout(() => {
+            closeButton.style.opacity = 1;
+        }, 2000);
 
         // Add to parent container
         parent.appendChild(newElement);
@@ -185,9 +192,12 @@ var ImageModal = {
     transitionOut: function(event, newElement, savedElementSettings) {
         console.log("Transition Out!", event.target);
         
+        // Fade the close button out
+        event.target.style.opacity = 0;
+
         // Kick off the transition-out animations
-        event.target.classList.add('transition-out');
-        event.target.classList.remove('transition-in');
+        newElement.classList.add('transition-out');
+        newElement.classList.remove('transition-in');
                      
         // Move element back to its original position when cloned.
         window.setTimeout(() => {        
@@ -204,7 +214,7 @@ var ImageModal = {
 
         // Remove the element from the DOM
         window.setTimeout(() => {            
-            event.target.remove();
+            newElement.remove();
             console.log("Element Removed.");
         }, 4000);
     }
