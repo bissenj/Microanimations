@@ -217,10 +217,7 @@ section.about {
     transform-origin: 0 0;    
     animation: moveIt 2s ease-in-out;
     animation-fill-mode: forwards;    
-    transition: all 1s, outline 0ms;
-
-    /* overflow: unset !important; */
-    
+    transition: all 1s, outline 0ms;    
     outline: 999px solid rgba(0,0,0,0.3);
     /*box-shadow: 0 0 0 999px rgba(0,0,0,0.5); */  /* THIS KILLS THE FRAME RATE */
 }
@@ -276,13 +273,11 @@ div.about-image:hover:before {
         transform: rotate(-30deg);
     }    
     75% {
-        transform: rotate(-30deg);
-        border-width: 10px;
+        transform: rotate(-30deg);        
         /* box-shadow: 0px 0px 0px #444;    */
     }
     100% {        
-        transform: rotate(-30deg);
-        border-width: 10px;                
+        transform: rotate(-30deg);        
         /* box-shadow: 1px 1px 4px #444;    */
     }    
 }
@@ -293,32 +288,17 @@ div.about-image:hover:before {
     animation: undoIt 1s ease-in-out;
     animation-fill-mode: forwards;
     outline: 999px solid rgba(0,0,0,0.3);    
-    transition: all 2s;
-    border-width: 10px !important;
+    transition: all 2s, outline 0ms;    
+    /* border-width: 10px !important; */
 }
 
 
 @keyframes undoIt {
     0% {
-        transform: rotate(-30deg);    
-        /* outline: 999px solid rgba(0,0,0,0.3);     */
-    }
-
-    75% {
-        /* opacity: 1; */
+        transform: rotate(-30deg);            
     }    
-    
-    100% {           
-        /* top: 0px; */
-        /* left: 0px;   Set with Javascript */
-        transform: rotate(0deg); 
-        
-        /* outline: none; */
-        /* opacity: 0;  */
-        
-        /* width: 0;    Set with Javascript */
-        /* height: 0;   Set with Javascript */
-        /* opacity: 0;  Maybe scrap this */
+    100% {                   
+        transform: rotate(0deg);         
     }      
 }
 
@@ -404,7 +384,7 @@ div.row1, div.row2 {
 .row1 > div {
     min-height: 250px;
     max-height: 250px;
-    border-top: 20px solid white;     
+    /* border-top: 20px solid white;      */
 }
 .row2 > div {
     min-height: 420px;
@@ -521,7 +501,7 @@ div.image5::before {
 
     /* SIZE OF ABOUT SECTION */
     section.about {            
-        height: 105vh;
+        /* height: 125vh; */
     }
     .diagonal-filler {        
         height: 50vh;
