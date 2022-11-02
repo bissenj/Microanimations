@@ -139,8 +139,8 @@ var ImageModal = {
 
                 // Kick of the Transition-In animation
                 newElement.classList.add('transition-in');   
-                newElement.style.outline = '9999px solid rgba(0,0,0,0.3)';
-                newElement.style.transform = 'rotate(-30deg)';
+                //newElement.style.outline = '9999px solid rgba(0,0,0,0.3)';
+                //newElement.style.transform = 'rotate(-30deg)';
 
 
                 window.setTimeout(() => {
@@ -177,7 +177,7 @@ var ImageModal = {
                     newElement.style.maxHeight = newElementHeight  + 'px'; //'500px';
                     newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
 
-                }, 1000);                
+                }, 500);                
             }, 100);
 
         }
