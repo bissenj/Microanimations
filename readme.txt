@@ -16,9 +16,16 @@ https://medium.com/@dailyfire/pure-css-parallax-simple-tricks-da102d0ffdb9
 
 
 Today:
-1.  Reverse pan on hero image
-2.  Turn off focus animation
-3.  Fix overflow
+
+1.  Add click handler for image containers
+2.  Clone element as absolute positioning
+3.  Build transformation and animate.
+4.  Modalize it.
+5.  On exit click or modal lose focus (click off), deconstruct the modal 
+6.  Transform back to start.  
+7.  Delete node.
+8. Test
+
 
 
 

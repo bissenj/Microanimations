@@ -78,14 +78,14 @@
         <div class='diagonal-rects'>
             <!-- Row 1 -->
             <div class='row1'>               
-                <div class='image1'></div> 
-                <div class='image2'></div> 
-                <div class='image3'></div>
+                <div class='about-image image1'></div> 
+                <div class='about-image image2'></div> 
+                <div class='about-image image3'></div>
             </div>       
             <!-- Row 2  -->
             <div class='row2'>
-                <div class='image4'></div>
-                <div class='image5'></div>
+                <div class='about-image image4'></div>
+                <div class='about-image image5'></div>
                 <!-- <div class='image6'></div>
                 <div class='image7'></div> -->
             </div>
@@ -121,12 +121,16 @@
 
 </body>
 
+
+<!-- JAVASCRIPT -->
+<script src="/js/hero.js"></script>
+<script src="/Microanimations/js/hero.js"></script>
 <script>
 
     // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
     const el = document.querySelector('.landing'); 
     const backgroundEl = document.querySelector('.background'); 
-    const DAMPER = 25;  
+    const DAMPER = 90;  
     const MAX_VALUE = 5;
 
     let startX = -1;
@@ -147,12 +151,12 @@
         //backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
 
         //console.log("1: ", backgroundEl.style.backgroundPosition);
-        let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
-        if (startX == -1 && startY == -1) {
-            startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
-            startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
-            console.log("Got start positions: ", startX, startY);         
-        }
+        // let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
+        // if (startX == -1 && startY == -1) {
+        //     startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
+        //     startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
+        //     //console.log("Got start positions: ", startX, startY);         
+        // }
         
                            
         //let x = parseFloat(currentPosition[0].toString().replace('px', ''));
@@ -160,8 +164,10 @@
         //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
         let y = startY + amountMovedY;  
         
-        console.log(currentPosition, amountMovedX, amountMovedY, x, y);
-        backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
+        window.setTimeout(() =>{
+            //console.log(currentPosition, amountMovedX, amountMovedY, x, y);
+            backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
+        }, 0);
         
 
         // Update the pseudo selector animation
@@ -192,7 +198,7 @@
     // EFFECT 2:  Image Carousel
     const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
     const carouselEls = document.querySelectorAll('.nav-carousel li');
-    console.log("Carousel Els: ", carouselEls);
+    //console.log("Carousel Els: ", carouselEls);
     carouselEls.forEach((item) => {        
         item.addEventListener('click', () => {
             let index = item.dataset.index;
