@@ -10,10 +10,12 @@
 
 <body>
 
-    <!-- Hero Image -->
-    <section class='landing'>  
+<main class='wrapper'>
 
-        <div class='background scroll' data-rate='0.4' data-transform='scale(1.2)'></div>
+    <!-- Hero Image -->
+    <section class='landing parallax bg1'>  
+
+        <!-- <div class='background scroll' data-rate='0.4' data-transform='scale(1.2)'></div> -->
 
         <!-- <div class='foreground'> -->
             <div class='gradient-up animate'></div>
@@ -119,6 +121,7 @@
     <!-- Contact -->
     <section>Contact</section>
 
+</main>
 </body>
 
 
@@ -231,30 +234,30 @@
     
     // EFFECT 3:  PARALAXX
 
-    window.addEventListener('scroll', () => {
-        const target = document.querySelectorAll('.scroll');
+    // window.addEventListener('scroll', () => {
+    //     const target = document.querySelectorAll('.scroll');
         
-        // // Save off the initial transform
-        // target.forEach((scrollEl) => {
-        //     const initialTransform = scrollEl.style.transform;
-        //     // Save it into the dataset
-        //     scrollEl.dataset.initialTransform = initialTransform;
-        // });
+    //     // // Save off the initial transform
+    //     // target.forEach((scrollEl) => {
+    //     //     const initialTransform = scrollEl.style.transform;
+    //     //     // Save it into the dataset
+    //     //     scrollEl.dataset.initialTransform = initialTransform;
+    //     // });
 
-        var index = 0; length = target.length;
-        for (0; index < target.length; index++) {
-            let current = target[index];
-            var pos = window.pageYOffset * current.dataset.rate;            
+    //     var index = 0; length = target.length;
+    //     for (0; index < target.length; index++) {
+    //         let current = target[index];
+    //         var pos = window.pageYOffset * current.dataset.rate;            
         
-            //const move = 'scale(1.2) translate3d(0px, '+pos+'px, 0px)';   
-            //const move = 'translate3d(0px, '+pos+'px, 0px)';              
+    //         //const move = 'scale(1.2) translate3d(0px, '+pos+'px, 0px)';   
+    //         //const move = 'translate3d(0px, '+pos+'px, 0px)';              
             
-            //console.log(target.dataset.transform);
-            const initialTransform = (current.dataset.transform != undefined) ? current.dataset.transform + " " : "";
-            const move = initialTransform + 'translate3d(0px, '+pos+'px, 0px)';              
-            current.style.transform = move;             
-        }
-    });
+    //         //console.log(target.dataset.transform);
+    //         const initialTransform = (current.dataset.transform != undefined) ? current.dataset.transform + " " : "";
+    //         const move = initialTransform + 'translate3d(0px, '+pos+'px, 0px)';              
+    //         current.style.transform = move;             
+    //     }
+    // });
 
 
 
