@@ -1,5 +1,5 @@
 
-cd C:\Users\Bash Warrior King\Desktop\2022\Programming\Work Techniques\Parallax (Oct 17-21)
+cd C:\Users\Bash Warrior King\Projects\Microanimations
 
 
 Github Pages
