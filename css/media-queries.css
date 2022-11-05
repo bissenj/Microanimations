@@ -1,0 +1,239 @@
+
+
+/* -------------------------- MEDIA QUERIES -------------------------- */
+
+
+@media only screen and (min-width: 1200px)  {
+    .intro p:nth-child(1) {
+        font-size: 36px;
+    }
+    .intro p:nth-child(2) {
+        font-size: 22px;
+        line-height: 54px;
+        word-spacing: 4px;
+        padding-right: 10px;
+    }
+
+    .slant {
+        margin-top: 10px;
+        /* border-radius: 6px; */
+        padding: 20px;   
+        right: -70px; 
+        width: 75%;    
+    }
+    .slant > div > span { font-size: 28px; padding-right: 20px; margin-left: 15px;
+        /* text-shadow: 1px 1px 4px #ccc; */
+     }
+
+
+    /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
+    @media (orientation: landscape) {        
+        .diagonal-filler {        
+            height: 50%;                        
+        }
+        section.about { 
+            /* height: 130vh; */
+            min-height: 1700px;
+        }
+        .row1 > div {
+            min-height: 200px;
+            max-height: 200px;
+        }
+        .row2 > div {
+            min-height: 280px;
+            max-height: 280px;
+        }
+    }
+
+    @media (orientation: portrait) {
+        .diagonal-filler {        
+            height: 70%;
+        }
+
+        section.about {            
+            height: 110vh;
+        }
+    }       
+}
+
+@media only screen and (max-width: 1180px)  {
+    /* Put your CSS here up to 100px width devices (cover all width between 200px to 767px // */
+    .diagonal-rects { width: 175%;}
+
+    div.image1 { 
+        width: calc(100% / (8/10));     
+    }
+    div.image2 {         
+        width: calc(100% / (6/10));     
+    }
+    div.image3 {  
+        width: calc(100% / (5/10));     
+    }
+
+    div.image4 { 
+        width: calc(100% / (6/10));     
+    }
+    div.image5 {     
+        width: calc(100% / (6/10));     
+    }
+
+    /* SIZE OF ABOUT SECTION */
+    section.about {            
+        height: 125vh;
+    }
+    .diagonal-filler {        
+        height: 80vh;
+    }
+    .slant {
+        width: 85%;
+    }
+    .intro p:nth-child(2) {
+        margin-left: 15%;
+    }
+
+
+    /*  SIZE OF DIAGONAL GRID */
+    .row1 > div {
+        min-height: 200px;
+        max-height: 200px;
+    }    
+    .row2 > div {
+        min-height: 260px;
+        max-height: 260px;
+    }
+
+    /* WHY?  It messes up background 2 */
+    /* section .background {
+        background-position: -240px 5px;
+    } */
+
+    /* ADJUST IMAGE POSITIONS */
+    /* div.image2::before {    
+        top: -230%;
+        left: -45%;
+    } */
+
+    /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
+    @media (orientation: landscape) {        
+        .diagonal-filler {        
+            height: 40%;                        
+        }
+        section.about { 
+            /* height: 120vh; */
+            min-height: 1650px;
+        }
+    }
+
+    @media (orientation: portrait) {
+        .diagonal-filler {        
+            height: 40%;
+        }
+
+        section.about {            
+            height: 90vh;
+            min-height: 1550px;
+        }
+    }   
+}
+
+
+/* ----------------- SMALL SCREENS ---------------- */
+
+@media only screen and (max-width: 768px)  {
+
+/* LANDING PAGE */
+
+    /* TDDO:  Change to hamburger menu */
+    .nav-menu {
+        display:none;
+    }
+
+    .profession {
+        /* position: relative; */
+        width: 100%;
+        top: 10px;
+        right: 0px;
+        text-align: center;
+        transform: none;
+        font-size: 10px;
+    }
+
+    .git-page-logo-hack {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .nav-carousel {    
+        transform: rotate(90deg);
+        height: 50%;
+        width: 100%;
+        top: 53%;    
+    }
+    .nav-carousel li {
+        animation: none;    
+    }
+
+    .gradient-line {
+        display:none;
+        /* left: 32px; */
+    }
+
+    .gradient-down {
+        display:none;
+        /* left: 10px; */
+    }
+
+    .gradient-up {
+        display:none;
+        /* left: 54px; */
+    }
+
+    section .background::after {
+        display: none;
+    }
+
+
+/* ABOUT PAGE */
+
+    /* Put your CSS here for up to 768px width devices (cover all width between 200px to 767px // */
+    .diagonal-rects { width: 200%;}
+
+    div.image1 { 
+        width: calc(100% / (8/10));     
+    }
+    div.image2 {         
+        width: calc(100% / (4/10));     
+    }
+    div.image3 {  
+        display: none;           
+    }
+
+    div.image4 { 
+        width: calc(100% / (5/10));     
+    }
+    div.image5 {     
+        width: calc(100% / (5/10));     
+    }
+
+    /* ADJUST IMAGE POSITIONS */
+    div.image2::before {    
+        top: -230%;
+        left: -75%;
+    }
+
+    .intro p:nth-child(1) {
+        margin-left: 50px;
+    }
+    .intro p:nth-child(2) {
+        text-align: left;
+        margin: 50px;
+    }
+
+    .slant { 
+        display: none;
+    }
+
+    .diagonal-rects { 
+        margin: 0;
+    }
+}
