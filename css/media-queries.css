@@ -4,27 +4,6 @@
 
 
 @media only screen and (min-width: 1200px)  {
-    .intro p:nth-child(1) {
-        font-size: 36px;
-    }
-    .intro p:nth-child(2) {
-        font-size: 22px;
-        line-height: 54px;
-        word-spacing: 4px;
-        padding-right: 10px;
-    }
-
-    .slant {
-        margin-top: 10px;
-        /* border-radius: 6px; */
-        padding: 20px;   
-        right: -70px; 
-        width: 75%;    
-    }
-    .slant > div > span { font-size: 28px; padding-right: 20px; margin-left: 15px;
-        /* text-shadow: 1px 1px 4px #ccc; */
-     }
-
 
     /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
     @media (orientation: landscape) {        
@@ -88,7 +67,7 @@
         width: 85%;
     }
     .intro p:nth-child(2) {
-        margin-left: 15%;
+        /* margin-left: 15%; */
     }
 
 
