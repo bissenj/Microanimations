@@ -146,11 +146,18 @@
         max-height: 200px;
     }
 
-    .nav-carousel {    
-        transform: rotate(90deg);
+    .nav-carousel {
+        display: block;
+        width: 100%;
+    }
+    .nav-carousel ul {  
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;  
+        /* transform: rotate(90deg);
         height: 50%;
         width: 100%;
-        top: 53%;    
+        top: 53%;     */
     }
     .nav-carousel li {
         animation: none;    
@@ -175,10 +182,59 @@
         display: none;
     }
 
+    div.foreground-container {
+        display: grid;
+        grid-template-rows: 40px 1fr 25%; 
+        grid-auto-columns: 1fr;
+        place-content: center;       
+        /* display: flex; */
+        /* flex-direction: column; */
+        /* justify-content: space-between; */
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    div.carousel-navigation-container {
+        position: relative;
+        place-self: top;
+        /* border: 1px solid red; */
+        width: 100%;
+        height: 100%;
+
+        grid-row-start: 3;
+        place-content: center;
+    }
+
+    .nav-carousel ul {
+        padding: 0;
+        /* align-items:flex-start; */
+    }
+
+    div.logo {
+        grid-row-start: 2;
+        position: relative;
+        top: 0;
+        left: 0;
+        /* border: 1px solid red; */
+
+        width: 100%;
+        height: 100%;
+    }
+
+    div.profession {
+        grid-row-start: 1;
+        place-self: center;       
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* border: 1px solid red; */
+        /* min-height: 100px; */
+    }
 
 /* ABOUT PAGE */
-
-    /* Put your CSS here for up to 768px width devices (cover all width between 200px to 767px // */
+    
     .diagonal-rects { width: 200%;}
 
     div.image1 { 
@@ -204,23 +260,28 @@
         left: -75%;
     }
 
-    .intro p:nth-child(1) {
-        margin-left: 50px;
-    }
-    .intro p:nth-child(2) {
-        text-align: left;
-        margin: 50px;
-    }
-
-    .slant { 
-        display: none;
+    .intro { 
+        margin: 15%;
+        letter-spacing: 0px;
+        word-spacing: 3px;
+        line-height: 32px;    
     }
 
     .diagonal-rects { 
-        margin: 0;
+        margin-top: 160px;
     }
 
     div.row1 > div:after, div.row2 > div:after {  
         display: none;
     }
+
+    /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
+    @media (orientation: landscape) {        
+        
+    }
+
+    @media (orientation: portrait) {
+
+    }
+    
 }
