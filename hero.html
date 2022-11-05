@@ -132,13 +132,13 @@
 <script src="/js/hero.js"></script>
 <script src="/Microanimations/js/hero.js"></script>
 <script>
+    const el = document.querySelector('.landing'); 
+    const backgroundEl = document.querySelector('.background'); 
 
     const ALLOW_JAVASCRIPT = false;
     if (ALLOW_JAVASCRIPT) {
 
         // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
-        const el = document.querySelector('.landing'); 
-        const backgroundEl = document.querySelector('.background'); 
         const DAMPER = 90;  
         const MAX_VALUE = 5;
 
