@@ -158,6 +158,10 @@
         font-size: 10px;
     }
 
+    .logo {
+        top: -100px;
+    }
+
     .git-page-logo-hack {
         max-width: 200px;
         max-height: 200px;
@@ -235,5 +239,9 @@
 
     .diagonal-rects { 
         margin: 0;
+    }
+
+    div.row1 > div:after, div.row2 > div:after {  
+        display: none;
     }
 }

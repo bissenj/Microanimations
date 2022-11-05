@@ -133,73 +133,73 @@
 <script src="/Microanimations/js/hero.js"></script>
 <script>
 
-    // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
-    const el = document.querySelector('.landing'); 
-    const backgroundEl = document.querySelector('.background'); 
-    const DAMPER = 90;  
-    const MAX_VALUE = 5;
+    const ALLOW_JAVASCRIPT = false;
+    if (ALLOW_JAVASCRIPT) {
 
-    let startX = -1;
-    let startY = -1;
+        // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
+        const el = document.querySelector('.landing'); 
+        const backgroundEl = document.querySelector('.background'); 
+        const DAMPER = 90;  
+        const MAX_VALUE = 5;
 
-    // Animate the background image and decorative dashed lines
-    el.addEventListener('mousemove', (function(e) {        
-        var amountMovedX = (e.pageX * 1 / DAMPER);  
-        // if (amountMovedX > MAX_VALUE)  amountMovedX = MAX_VALUE ; 
-        // if (amountMovedX < -MAX_VALUE) amountMovedX = -MAX_VALUE ;
-        
-        var amountMovedY = (e.pageY * 1 / DAMPER);
-        // if (amountMovedY > MAX_VALUE)  amountMovedY = MAX_VALUE ; 
-        // if (amountMovedY < -MAX_VALUE) amountMovedY = -MAX_VALUE ;
-        // var amountMovedX = (e.movementX * 1 / DAMPER);
-        // var amountMovedY = (e.movementY * 1 / DAMPER);
+        let startX = -1;
+        let startY = -1;
 
-        //backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+        // Animate the background image and decorative dashed lines
+        el.addEventListener('mousemove', (function(e) {        
+            var amountMovedX = (e.pageX * 1 / DAMPER);  
+            // if (amountMovedX > MAX_VALUE)  amountMovedX = MAX_VALUE ; 
+            // if (amountMovedX < -MAX_VALUE) amountMovedX = -MAX_VALUE ;
+            
+            var amountMovedY = (e.pageY * 1 / DAMPER);
+            // if (amountMovedY > MAX_VALUE)  amountMovedY = MAX_VALUE ; 
+            // if (amountMovedY < -MAX_VALUE) amountMovedY = -MAX_VALUE ;
+            // var amountMovedX = (e.movementX * 1 / DAMPER);
+            // var amountMovedY = (e.movementY * 1 / DAMPER);
 
-        //console.log("1: ", backgroundEl.style.backgroundPosition);
-        // let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
-        // if (startX == -1 && startY == -1) {
-        //     startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
-        //     startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
-        //     //console.log("Got start positions: ", startX, startY);         
-        // }
-        
-                           
-        //let x = parseFloat(currentPosition[0].toString().replace('px', ''));
-        let x = startX + amountMovedX;
-        //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
-        let y = startY + amountMovedY;  
-        
-        window.setTimeout(() =>{
-            //console.log(currentPosition, amountMovedX, amountMovedY, x, y);
+            //backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+
+            //console.log("1: ", backgroundEl.style.backgroundPosition);
+            // let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
+            // if (startX == -1 && startY == -1) {
+            //     startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
+            //     startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
+            //     //console.log("Got start positions: ", startX, startY);         
+            // }
+            
+                            
+            //let x = parseFloat(currentPosition[0].toString().replace('px', ''));
+            let x = startX + amountMovedX;
+            //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
+            let y = startY + amountMovedY;  
+            
             backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
-        }, 0);
-        
 
-        // Update the pseudo selector animation
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
-        
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
-    }));
-    // animate the decorative dashed lines when section has focus
-    // el.addEventListener('mouseover', (function(e) {        
-    //     let gradientUpEl = document.querySelector('.gradient-up');    
-    //     let gradientDownEl = document.querySelector('.gradient-down');
-    //     gradientUpEl.classList.add('animate');
-    //     gradientDownEl.classList.add('animate');
-    // }));
-    // // save resources by stopping animation when section no longer has focus
-    el.addEventListener('mouseleave', (function(e) {        
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientUpEl.classList.remove('animate');
-        gradientDownEl.classList.remove('animate');
-    }));
-    
 
-    
+            // Update the pseudo selector animation
+            let gradientUpEl = document.querySelector('.gradient-up');    
+            gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
+            
+            let gradientDownEl = document.querySelector('.gradient-down');
+            gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
+        }));
+        // animate the decorative dashed lines when section has focus
+        // el.addEventListener('mouseover', (function(e) {        
+        //     let gradientUpEl = document.querySelector('.gradient-up');    
+        //     let gradientDownEl = document.querySelector('.gradient-down');
+        //     gradientUpEl.classList.add('animate');
+        //     gradientDownEl.classList.add('animate');
+        // }));
+        // // save resources by stopping animation when section no longer has focus
+        el.addEventListener('mouseleave', (function(e) {        
+            let gradientUpEl = document.querySelector('.gradient-up');    
+            let gradientDownEl = document.querySelector('.gradient-down');
+            gradientUpEl.classList.remove('animate');
+            gradientDownEl.classList.remove('animate');
+        }));
+
+    }
+        
 
     // EFFECT 2:  Image Carousel
     const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
