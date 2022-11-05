@@ -3,24 +3,24 @@
 /* -------------------------- MEDIA QUERIES -------------------------- */
 
 
-@media only screen and (min-width: 1200px)  {
+@media only screen and (min-width: 1181px)  {
 
     /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
     @media (orientation: landscape) {        
         .diagonal-filler {        
-            height: 50%;                        
+            height: 40%;                        
         }
         section.about { 
             /* height: 130vh; */
-            min-height: 1700px;
+            min-height: 2400px;
         }
         .row1 > div {
-            min-height: 200px;
-            max-height: 200px;
+            /* min-height: 200px;
+            max-height: 200px; */
         }
         .row2 > div {
-            min-height: 280px;
-            max-height: 280px;
+            /* min-height: 280px;
+            max-height: 280px; */
         }
     }
 
@@ -99,7 +99,7 @@
         }
         section.about { 
             /* height: 120vh; */
-            min-height: 1650px;
+            min-height: 2000px;
         }
     }
 
