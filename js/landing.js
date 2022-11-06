@@ -73,6 +73,13 @@ const carouselEls = document.querySelectorAll('.nav-carousel li');
 //console.log("Carousel Els: ", carouselEls);
 carouselEls.forEach((item) => {        
     item.addEventListener('click', () => {
+
+        // Remove prior clicked style.
+        carouselEls.forEach((item) => { 
+            item.classList.remove('clicked');
+        });
+        item.classList.add('clicked');
+
         let index = item.dataset.index;
         console.log("Index: ", index, backgrounds[index], backgroundEl);
         if (index) {      
@@ -100,12 +107,13 @@ carouselEls.forEach((item) => {
 });
 
 
+let scale = 1;
 
 // EFFECT 3:  PARALAXX
 window.addEventListener('scroll', () => {
     const target = document.querySelectorAll('.scroll');
     
-    // // Save off the initial transform
+    // // Save off the initial transform  -> WHY?????
     // target.forEach((scrollEl) => {
     //     const initialTransform = scrollEl.style.transform;
     //     // Save it into the dataset
@@ -115,15 +123,17 @@ window.addEventListener('scroll', () => {
     var index = 0; length = target.length;
     for (0; index < target.length; index++) {
         let current = target[index];
-        var pos = window.pageYOffset * current.dataset.rate;            
-    
-        //const move = 'scale(1.2) translate3d(0px, '+pos+'px, 0px)';   
-        //const move = 'translate3d(0px, '+pos+'px, 0px)';              
+        var pos = window.pageYOffset * current.dataset.rate;       
+
+        // Adjust the scale as screen moves down
+        let scrollPercent =  (window.pageYOffset / target[index].offsetHeight);
+        let scaleAdjust = 0.15 * scrollPercent;         
+        scale = 1.0 + scaleAdjust;
         
-        //console.log(target.dataset.transform);
         const initialTransform = (current.dataset.transform != undefined) ? current.dataset.transform + " " : "";
         const move = initialTransform + 'translate3d(0px, '+pos+'px, 0px)';              
-        current.style.transform = move;             
+        //const move = 'translate3d(0px, '+pos+'px, 0px)';  // Non-Scale adjust method                                           
+        current.style.transform = "scale(" + scale + ") " + move;                     
     }
 });
 
