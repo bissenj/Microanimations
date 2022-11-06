@@ -126,14 +126,15 @@ window.addEventListener('scroll', () => {
         var pos = window.pageYOffset * current.dataset.rate;       
 
         // Adjust the scale as screen moves down
-        let scrollPercent =  (window.pageYOffset / target[index].offsetHeight);
-        let scaleAdjust = 0.15 * scrollPercent;         
-        scale = 1.0 + scaleAdjust;
+        // let scrollPercent =  (window.pageYOffset / target[index].offsetHeight);
+        // let scaleAdjust = 0.15 * scrollPercent;         
+        // scale = 1.0 + scaleAdjust;
         
         const initialTransform = (current.dataset.transform != undefined) ? current.dataset.transform + " " : "";
         const move = initialTransform + 'translate3d(0px, '+pos+'px, 0px)';              
         //const move = 'translate3d(0px, '+pos+'px, 0px)';  // Non-Scale adjust method                                           
-        current.style.transform = "scale(" + scale + ") " + move;                     
+        // current.style.transform = "scale(" + scale + ") " + move;                     
+        current.style.transform = move;
     }
 });
 
