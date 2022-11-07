@@ -1,4 +1,8 @@
 
+/* section:nth-child(1), section:nth-child(2) {
+    display: none;    
+} */
+
 section.projects {    
     /* background: url(../img/projects/collage.png);
     background-size: cover; */
@@ -6,6 +10,18 @@ section.projects {
     display: block;
     background: #ccc;
     background: linear-gradient(#1c69f03d, #1c69f026);
+
+    /* padding-top: 80px; */
+
+
+    
+    /* Animated gradient effect */
+    /* background: linear-gradient(15deg, rgba(238,119,82, 0.7), #e73c7e, rgba(35,166,213, 0.8), #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient-wave 24s ease infinite; */
+
+    /* background:white; */
+    /* background: linear-gradient(#fff 30%, #1c69f026); */
 
     display: flex;
     justify-content: center;
@@ -57,5 +73,19 @@ section.projects .imagery {
     
     width: 100%;
     height: 100%;    
+}
+
+
+@keyframes gradient-wave {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 

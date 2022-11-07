@@ -196,9 +196,11 @@ function debugPrintInformation(arr) {
 
     html +=  "</div>";
 
-    document.getElementById("debug").innerHTML = html;
+    //document.getElementById("debug").innerHTML = html;
 }
 
+
+export {getElementsOnScreen, slideShow_SnapScrollToNewSlide};
 
 // ------------ DEAD CODE TO BE REMOVED AFTER REFACTORING AND TESTING --------------------------------------------
 
