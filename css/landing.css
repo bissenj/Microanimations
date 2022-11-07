@@ -217,7 +217,7 @@
 .nav-carousel li { 
     list-style: none;
     border: 2px solid white;
-    /* opacity: 0.5; */
+    opacity: 0.5;
     /* background: rgba(255,255,255, 0.5); */
     height: 16px;
     width: 16px;
@@ -227,17 +227,17 @@
 
     /* animation: animate-opacity 9s infinite ease-in-out; */
 }
-.nav-carousel li:nth-child(2) {
+/* .nav-carousel li:nth-child(2) {
     animation-delay: 600ms;
 }
 .nav-carousel li:nth-child(3) {
     animation-delay: 1200ms;
-}
+} */
 .nav-carousel li.clicked { 
     background: rgba(255, 255, 255, 0.6);
     border-color: rgb(255, 255, 255) !important;
     animation: 4s pulse-shadow infinite; 
-    /* opacity: 1; */
+    opacity: 1;
 }
 .nav-carousel li.line {
     border-radius: 0;
@@ -269,7 +269,7 @@
 } */
 
 @keyframes pulse-shadow {
-    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);  }
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.9);  }    
     70% { box-shadow: 0 0 0 10px rgba(0,0,0,0); }
     100% { box-shadow: 0 0 0 0 rgba(0,0,0,0); }    
 }
