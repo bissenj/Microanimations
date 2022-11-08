@@ -7,6 +7,10 @@
     --slide-element-border: #fff;
     --event-text-label: #aaa;
 
+    --slider-image-overlay: hsl(202deg 50% 57% / 50%);
+    --slider-gradient-dark: hsl(202deg 50% 57% / 89%);
+    --slider-gradient-light: hsl(202deg 50% 57% / 5%);
+
     --gradient-dark-low:  0, 0, 0, 0.5;
     --gradient-dark-high: 0, 0, 0, 0.35;
     --gradient-dark-half: 0, 0, 0, 0.5;
@@ -55,10 +59,12 @@
 section.work {
     /* height: 100vh;   */
     height: 100%;  
-    /* background: url('../img/timeline/snow_up_bw_white.png');
+    background: linear-gradient(
+        var(--slider-image-overlay),
+        var(--slider-image-overlay)),
+        url('../img/timeline/snow_up_bw_white.png');
     background-size: cover;  
-    background-position: 25%; */
-    /* overflow-y: auto;       */
+    background-position: 25%;     
 }
 
 
@@ -70,10 +76,10 @@ section.work {
     gap: 12px;
     padding: 100px 20px;
     padding-bottom: 40px;
-    /* background-color: rgba(0, 0, 0, 0.5);  */
+    background-color: rgba(0, 0, 0, 0.2); 
     /* background:rgba(217, 217,217, 0.25);        */
 
-    background: linear-gradient(rgba(217, 217,217, 0.25), rgba(217, 217,217, 0.25)), 
+    /* background: linear-gradient(rgba(217, 217,217, 0.25), rgba(217, 217,217, 0.25)),  */
                 linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));    
 }
 .timeline {
@@ -86,7 +92,9 @@ section.work {
 }
 .timeline-header {
     height: 80px;        
-    background-color: var(--slideshow-background);        
+    background-color: var(--slideshow-background); 
+    
+    display:none;
 }
 .timeline-header .heading {
     height: 100%;
@@ -133,7 +141,11 @@ section.work {
     overscroll-behavior-inline: contain;
     /* block-size: 100%; */
     transition: 0.3s ease-in-out;
-    background: linear-gradient(0deg,rgba(var(--gradient-dark-low)) 60%, rgba(var(--gradient-dark-high))); 
+    /* background: linear-gradient(0deg,rgba(var(--gradient-dark-low)) 60%, rgba(var(--gradient-dark-high)));  */
+    background: 
+        linear-gradient(0deg,
+            var(--slider-gradient-dark)) 60%,
+            var(--slider-gradient-light);  
                 
     /* background-color: var(--slideshow-background);     */
     /* padding: 2em;          */    
