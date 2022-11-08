@@ -4,12 +4,22 @@
 const events = [
     {
         yearStart: 1998, 
+        yearEnd:2022, 
+        name: 'Work Experience', 
+        tools: 'Software Development Work Experience', 
+        image: '',
+        summary: '',
+        story: '<p>My introduction to programming started when I was 8 on my brothers TI-99 plunking away at the keyboard learning basic concepts like variables and loops in TI-BASIC.  Years later in high school I took my first official computer programming classes and things started to click. </p><p>  In college I switched majors from engineering to computer science after I realized I enjoy seeing the result of my work at the end of the day, and I wasnt getting that from my engineering classes.  That theme carried into my career starting as an IT generalist and gradually moving towards the front end where I find meaning in organizing and presenting information in a visually pleasing manner. <p>Click around to see where my career has taken me.</p>',
+        story1: '<p><p>' 
+    },
+    {
+        yearStart: 1998, 
         yearEnd:2003, 
         name: 'University of Wisconsin - Platteville', 
-        tools: '.NET, JAVA, Visual Basic', 
+        tools: '.NET, JAVA, Visual Basic, Testing', 
         image: 'uwp.webp',
-        summary: 'Bachelors in Computer Science, Emphasis on Software Engineering.',
-        story: 'I graduated with a degree in Computer Science and a focus on Software Engineering.  I guess I felt the need to prove myself at that age so I took the hardest engineering software, math and science classes I could.  College taught me how to work in groups and that sometimes you need to step up and lead the group in order to get things done.  At one point I also had three W2 jobs and a paying gig job as the drummer in a cover band.  At the time I was uncomfortable with the idea of being in debt out of college.  If I could go back in time and redo the whole experience, I would make myself slow down and relax a bit.  On the upside I came away with my future wife, 8 close friends I still hang out with, several job offers, and learned to snowboard.'
+        summary: 'Bachelors in Computer Science, Emphasis on Software Engineering.  Interned at Avista, Inc.',
+        story: 'I graduated with a degree in Computer Science and a focus on Software Engineering.  I guess I felt the need to prove myself at that age so I took the hardest engineering software, math and science classes I could.  College taught me how to work in groups and that sometimes you need to step up and lead the group in order to get things done.  At one point I also had three W2 jobs and a paying gig job as the drummer in a cover band.  At the time I was uncomfortable with the idea of being in debt out of college.  If I could go back in time and redo the whole experience, I would make myself slow down and relax a bit.  On the upside I came away with my future wife, 8 close friends I still hang out with, several job offers, and learned to snowboard. <p>While in college I interned at Avista, an avaiation software testing and development company. </p>' 
     },
     {
         yearStart: 2000, 

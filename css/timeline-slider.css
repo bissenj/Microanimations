@@ -65,6 +65,9 @@ section.work {
         url('../img/timeline/snow_up_bw_white.png');
     background-size: cover;  
     background-position: 25%;     
+
+    border-bottom: 20px solid white;
+    /* box-shadow: 0 1px 1px #444; */
 }
 
 
@@ -76,11 +79,12 @@ section.work {
     gap: 12px;
     padding: 100px 20px;
     padding-bottom: 40px;
-    background-color: rgba(0, 0, 0, 0.2); 
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: rgba(63,131,183,0.6); 
     /* background:rgba(217, 217,217, 0.25);        */
 
     /* background: linear-gradient(rgba(217, 217,217, 0.25), rgba(217, 217,217, 0.25)),  */
-                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));    
+    /* linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));     */
 }
 .timeline {
     position: relative;
@@ -88,7 +92,7 @@ section.work {
     width: 100%;
     height: 1px;
     background-color: #444; 
-    color: var(--slideshow-foreground);       
+    color: var(--slideshow-foreground);  
 }
 .timeline-header {
     height: 80px;        
@@ -146,6 +150,15 @@ section.work {
         linear-gradient(0deg,
             var(--slider-gradient-dark)) 60%,
             var(--slider-gradient-light);  
+
+    background: 
+        linear-gradient(0deg,
+            rgba(63,131,183,0.6) 60%,
+            rgba(63,131,183,0.6)); 
+            
+    background: linear-gradient(0deg, 
+                    rgb(46 97 135 / 95%) 60%, 
+                        rgb(24 49 69 / 80%));
                 
     /* background-color: var(--slideshow-background);     */
     /* padding: 2em;          */    
@@ -452,7 +465,7 @@ section.work {
 
 /* Globals */     
 .fade-to-back {
-    opacity: 0.3;
+    opacity: 0.7;
     z-index: 1;
     }  
 

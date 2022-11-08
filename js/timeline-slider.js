@@ -102,7 +102,7 @@ var TimelineSlider = {
             const x = e.pageX - TimelineSlider.state.mouseState.parentElement.offsetLeft;    
             const walk = (x - TimelineSlider.state.mouseState.startX) * 1.0; 
 
-            console.log("walk: ", walk);
+            //console.log("walk: ", walk);
             
             const WALK_THRESHOLD = 0;  
             if (Math.abs(walk) > WALK_THRESHOLD)  {
@@ -223,7 +223,7 @@ var TimelineSlider = {
 
             // console.log(index, event, offsetX);
 
-            let html = `<div id='${event.yearStart}Marker' data-year=${event.yearStart} data-index=${index} class='event-marker' style='left:${offsetX}px'>
+            let html = `<div id='${event.yearStart}-${event.yearEnd}Marker' data-year=${event.yearStart} data-index=${index} class='event-marker' style='left:${offsetX}px'>
                             <div class='event-circle'></div>
                             <div class='event-arm'></div>
                             <div class='event-text'>${event.yearStart}</div>
@@ -263,48 +263,80 @@ var TimelineSlider = {
         
                 container.addEventListener('mouseleave', (e) => { if (TimelineSlider.state.mouseState.isDown) TimelineSlider.eventHandlers.handleMouseUp(e);});
                 
-                let html = `
-                                <!-- Event Header -->
-                                <div class='event-header'>                        
-                                    <div>${event.yearStart} - ${event.yearEnd}</div>
-                                    <div>${event.name}</div>                        
-                                </div>
-        
-                                <!-- Event Summary -->
-                                <!-- <div class='event-summary'> -->
-                                    <div class='event-summary'>
-                                    <div class='left'>
-                                        <div class='event-tools'>${event.tools}</div>
-                                        <div>At a glance:</div>
-                                        <div>${event.summary}</div>
-                                    </div>
-                                    <div class='company-image'><img src='img/timeline/${event.image}'/></div>
-                                </div>
-                            `;
-                if (event.story.length > 1000) {            
+                let html = "";
+
+                if (index == 0) {
                     html += `
-                                <!-- Event Body -->
-                                <div class='event-body small'>
-                                    <div>What I accomplished and how I grew:</div>
-                                    ${event.story}
-                                    <div><button class='next'>Next &#5125;</button></div>
-                                    <div><button class='more'>More</button></div>                    
-                                </div>                        
-                            `;
+                        <!-- Event Summary -->                                
+                        <div class='event-summary'>
+                            <div class='event-tools'>${event.tools}</div>
+                        </div>
+                        <!-- Event Header -->
+                        <div class='event-header'>                        
+                            <div>${event.yearStart} - ${event.yearEnd}</div>                            
+                        </div>                        
+                        <!-- Event Body -->
+                        <div class='event-body'>                            
+                            ${event.story}
+                            <div><button class='next'>Next &#5125;</button></div>                            
+                        </div>   
+                        
+                    `;                    
                 }
                 else {
+
                     html += `
-                            <!-- Event Body -->
-                            <div class='event-body'>
-                                <div>What I accomplished and how I grew:</div>
-                                ${event.story}
-                                <div><button class='next'>Next &#5125;</button></div>                            
-                            </div>                        
+                        <!-- Event Header -->
+                        <div class='event-header'>                        
+                            <div>${event.yearStart} - ${event.yearEnd}</div>
+                            <div>${event.name}</div>                        
+                        </div>
+
+                        <!-- Event Summary -->                                
+                            <div class='event-summary'>
+                            <div class='left'>
+                                <div class='event-tools'>${event.tools}</div>
+                                `;
+                    if (event.summary != "") {
+                        html += `<div>At a glance:</div>
+                                    <div>${event.summary}</div>
+                            `;
+                    }
+                    html += `</div>`;
+
+                    if (event.image != "") {
+                        html += `
+                        <div class='company-image'><img src='img/timeline/${event.image}'/></div>
                         `;
+                    }
+                    html += `</div>`;
+                    // <div class='company-image'><img src='img/timeline/${event.image}'/></div>
+                                    
+                                
+                    if (event.story.length > 1000) {            
+                        html += `
+                                    <!-- Event Body -->
+                                    <div class='event-body small'>
+                                        <div>What I accomplished and how I grew:</div>
+                                        ${event.story}
+                                        <div><button class='next'>Next &#5125;</button></div>
+                                        <div><button class='more'>More</button></div>                    
+                                    </div>                        
+                                `;
+                    }
+                    else {
+                        html += `
+                                <!-- Event Body -->
+                                <div class='event-body'>
+                                    <div>What I accomplished and how I grew:</div>
+                                    ${event.story}
+                                    <div><button class='next'>Next &#5125;</button></div>                            
+                                </div>                        
+                            `;
+                    }
                 }
                 container.innerHTML = html;
-                
-        
+                        
                 wrapper.appendChild(container);
                 parentEl.appendChild(wrapper);
         
@@ -334,7 +366,7 @@ var TimelineSlider = {
 
         // Central location for updating the UI Timeline and Slideshow)
         updateSlideShow: function(index) {
-            console.log("updateSlideShow():  ", index);
+            console.log("updateSlideShow() -", "New Index: ", index, "Old Index:", TimelineSlider.state.selectedIndex);
 
             // Ignore if there is already an animation taking place
             if (TimelineSlider.state.mouseState.isAnimating) { console.log("Nope.  Currently animating"); return; }
@@ -343,7 +375,7 @@ var TimelineSlider = {
             if (Number.isInteger(index)) {
                 TimelineSlider.controlFunctions.callback_updateAnimationState(true);        // Let the app know we are animating
 
-                // If we are not changing to a new event, don't update the timeline
+                // Update the Timeline                
                 TimelineSlider.controlFunctions.timeline_SetNewSelectedEvent(index);
                 
                 // find event details container related to the new index.
@@ -385,24 +417,27 @@ var TimelineSlider = {
                 // Determine if any events are in the middle of the selected timeline.
                 // If any are in the middle, fade them into the background.
                 if ((year != event.yearStart) && (year < event.yearStart) && (event.yearStart < yearEnd)) {
-                    let markerEl = document.getElementById(`${event.yearStart}Marker`);            
+                    let markerEl = document.getElementById(`${event.yearStart}-${event.yearEnd}Marker`);            
                     markerEl.classList.add('fade-to-back');            
                 } 
 
                 // Set the selected event
                 if (year == event.yearStart || yearEnd == event.yearStart) {
-                    let markerEl = document.getElementById(`${event.yearStart}Marker`);            
+                    let markerEl = document.getElementById(`${event.yearStart}-${event.yearEnd}Marker`);            
                     markerEl.classList.add('selected');  
                 }        
-
+                
                 // Handle the animation for the selected event on the timeline (ie )
-                TimelineSlider.controlFunctions.updateSelectedEventConnector(event, event.yearStart !== year);        
+                // False means the event is not the current event.  True means the event
+                // is the current event and it's 'selected line' should be visible.
+                let showSelectedLine = (event.yearStart !== year)|| (event.yearEnd !== yearEnd);  //console.log("Event: ", event.yearStart, event.yearEnd, showSelectedLine);                
+                TimelineSlider.controlFunctions.updateSelectedEventConnector(event, showSelectedLine);                        
             });
         },
         // Updates the details slideshow
         updateSelectedEventConnector: function(event, reset = false) {        
-            let container = document.getElementById(`${event.yearStart}Marker`);
-            let el = document.getElementById(`${event.yearStart}Marker`).querySelector('.event-selected');
+            let container = document.getElementById(`${event.yearStart}-${event.yearEnd}Marker`);
+            let el = container.querySelector('.event-selected');
                     
             // FUTURE IMPROVEMENT - don't like how timeline is hardcoded here.
             let widthPerTick = document.querySelector('.timeline').dataset.widthPerTick;
