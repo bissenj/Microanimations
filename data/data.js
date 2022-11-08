@@ -4,12 +4,22 @@
 const events = [
     {
         yearStart: 1998, 
+        yearEnd:2022, 
+        name: 'Work Experience', 
+        tools: 'Software Development Work Experience', 
+        image: '',
+        summary: '',
+        story: '<p>My introduction to programming started when I was 8 on my brothers TI-99 plunking away at the keyboard learning basic concepts like variables and loops in TI-BASIC.  Years later in high school I took my first official computer programming classes and things started to click. </p><p>  In college I switched majors from engineering to computer science after I realized I enjoy seeing the result of my work at the end of the day, and I wasnt getting that from my engineering classes.  That theme carried into my career starting as an IT generalist and gradually moving towards the front end where I find meaning in organizing and presenting information in a visually pleasing manner. <p>Click around to see where my career has taken me.</p>',
+        story1: '<p><p>' 
+    },
+    {
+        yearStart: 1998, 
         yearEnd:2003, 
         name: 'University of Wisconsin - Platteville', 
-        tools: '.NET, JAVA, Visual Basic', 
+        tools: '.NET, JAVA, Visual Basic, Testing', 
         image: 'uwp.webp',
-        summary: 'Bachelors in Computer Science, Emphasis on Software Engineering.',
-        story: 'I graduated with a degree in Computer Science and a focus on Software Engineering.  I guess I felt the need to prove myself at that age so I took the hardest engineering software, math and science classes I could.  College taught me how to work in groups and that sometimes you need to step up and lead the group in order to get things done.  At one point I also had three W2 jobs and a paying gig job as the drummer in a cover band.  At the time I was uncomfortable with the idea of being in debt out of college.  If I could go back in time and redo the whole experience, I would make myself slow down and relax a bit.  On the upside I came away with my future wife, 8 close friends I still hang out with, several job offers, and learned to snowboard.'
+        summary: 'Bachelors in Computer Science, Emphasis on Software Engineering.  Interned at Avista, Inc.',
+        story: 'I graduated with a degree in Computer Science and a focus on Software Engineering.  I guess I felt the need to prove myself at that age so I took the hardest engineering software, math and science classes I could.  College taught me how to work in groups and that sometimes you need to step up and lead the group in order to get things done.  At one point I also had three W2 jobs and a paying gig job as the drummer in a cover band.  At the time I was uncomfortable with the idea of being in debt out of college.  If I could go back in time and redo the whole experience, I would make myself slow down and relax a bit.  On the upside I came away with my future wife, 8 close friends I still hang out with, several job offers, and learned to snowboard. <p>While in college I interned at Avista, an avaiation software testing and development company. </p>' 
     },
     {
         yearStart: 2000, 
@@ -58,3 +68,5 @@ const events = [
         story: "In 2021, we sold our business and our family packed up and moved to Montana.  It was a well planned but not straight forward journey.  On our kids first day of school in Montana, we were living out of our camper in an RV park (memories!).  Our house was delayed, so for a number of months we were renting a small townhome and trying to unpack as few boxes as possible.  Most of our house stuff was sold to cut down on moving expenses since we couldn’t find a moving company who would move us 1600 miles from ‘small town in the middle of nowhere’ to another ‘small town in the middle of nowhere’.  Eventually our house was ready and we moved in fully in early 2022.  <p> This move had been our goal since 2012.  We worked HARD and saved for years and finally achieved our goal.  It has been awesome.  No regrets.<p><p>***</p><p>Many people switch careers at some point in their life, sometimes going as far as heading back to college.  Some people are lucky enough to take a sabbatical or two in their work life.  I chose to use this time to refine and expand my skills by setting aside 20 hours a week to work on the IT knowledge I didn’t have time for when working full time.   For example: </p><ul><li>I spent some time learning native Android programming in Kotlin.  While in my career days I could create a web app that looked and functioned like an App, I felt the browser was too limiting. </li><li>I brushed up on my .Net  as it has changed considerably since college and I wanted to see that evolution and what is possible now.</li><li>I dove deeper into React, experimenting with Next JS and eventually building full stack projects with Remix.  Once I was comfortable where I was at with React, I moved to React Native and have been really happy with the developer experience React and React Native provide.  </li></ul><p>Currently I am open for part time employment.  I’m looking to fill about 1000 hours / year as a part time employee or as a contractor.   If you want to discuss more, please reach out.</p><p>Thanks for reading,</p><p>John</p>"
     }, 
 ]
+
+export default events;

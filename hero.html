@@ -5,37 +5,54 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
   <title>Hero Example</title> 
+  <link rel='stylesheet' href='css/global.css' />
+  <link rel='stylesheet' href='css/portfolio-main.css' />
+  <link rel='stylesheet' href='css/landing.css' />
   <link rel='stylesheet' href='css/hero.css' />
+  <link rel='stylesheet' href='css/projects.css' />
+  <link rel='stylesheet' href='css/timeline-slider.css' />
+  <link rel='stylesheet' href='css/media-queries.css' />
 </head>
 
 <body>
 
+<main>
+
     <!-- Hero Image -->
     <section class='landing'>  
 
+        <!-- Element 1:  Full Page Background -->
         <div class='background scroll' data-rate='0.4' data-transform='scale(1.2)'></div>
 
-        <!-- <div class='foreground'> -->
-            <div class='gradient-up animate'></div>
-                    
-            <div class='gradient-line'></div>
-            <div class='nav-carousel'>            
-                <ul>
-                    <li data-index=0></li>
-                    <li data-index=1></li>
-                    <li data-index=2></li>
-                    <!-- <li></li>
-                    <li></li> -->
-            </div>
+        <div class='foreground-container'>
+            <!-- Element 2:  Carousel Navigation  -->
+            <div class='carousel-navigation-container'>
+                <div class='gradient-up animate'></div>
+                        
+                <!-- <div class='gradient-line'></div> -->
+                <div class='nav-carousel'>            
+                    <ul>
+                        <li class='line'></li>
+                        <li data-index=0></li>
+                        <li class='line'></li>
+                        <li data-index=1 class='clicked'></li>
+                        <li class='line'></li>
+                        <li data-index=2></li>
+                        <li class='line'></li>                        
+                    </ul>
+                </div>
 
             <div class='gradient-down animate'></div>
+            </div>
 
+            <!-- Element 3:  Logo -->
             <div class='logo'>
                 <div class='git-page-logo-hack'></div>
                 <!-- <img src='/img/hero/logo.png'/> -->
                 <!-- <img src='https://aspenpeakstudios.github.io/Microanimations/Microanimations/img/hero/logo.png'/> -->
             </div>
 
+            <!-- Element 4:  Site Navigation -->
             <div class='nav-menu'>
                 <ul>
                     <li>About</li>
@@ -45,10 +62,12 @@
                 <ul>
             </div>
 
+            <!-- Element 5:  Text -->
             <div class='profession'>
                 Full Stack | UI Developer | Designer
             </div>
-        <!-- </div> -->
+
+        </div>
     </section>
 
     <!-- About -->
@@ -110,155 +129,33 @@
         
     </section>
 
-    <!-- Projets -->
-    <section>Projects</section>
-
     <!-- Work -->
-    <section>Work History</section>
+    <section class='work'>        
+        <div id='timeline'></div>
+    </section>
+
+    <!-- Projects -->
+    <section class='projects'>        
+        <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+        <div class='imagery'></div>        
+    </section>
 
     <!-- Contact -->
-    <section>Contact</section>
+    <section class='center'>Contact</section>
 
+</main>
 </body>
 
 
 <!-- JAVASCRIPT -->
+<script src="/js/landing.js"></script>
+<script src="/Microanimations/js/landing.js"></script>
+
 <script src="/js/hero.js"></script>
 <script src="/Microanimations/js/hero.js"></script>
-<script>
 
-    // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
-    const el = document.querySelector('.landing'); 
-    const backgroundEl = document.querySelector('.background'); 
-    const DAMPER = 90;  
-    const MAX_VALUE = 5;
-
-    let startX = -1;
-    let startY = -1;
-
-    // Animate the background image and decorative dashed lines
-    el.addEventListener('mousemove', (function(e) {        
-        var amountMovedX = (e.pageX * 1 / DAMPER);  
-        // if (amountMovedX > MAX_VALUE)  amountMovedX = MAX_VALUE ; 
-        // if (amountMovedX < -MAX_VALUE) amountMovedX = -MAX_VALUE ;
-        
-        var amountMovedY = (e.pageY * 1 / DAMPER);
-        // if (amountMovedY > MAX_VALUE)  amountMovedY = MAX_VALUE ; 
-        // if (amountMovedY < -MAX_VALUE) amountMovedY = -MAX_VALUE ;
-        // var amountMovedX = (e.movementX * 1 / DAMPER);
-        // var amountMovedY = (e.movementY * 1 / DAMPER);
-
-        //backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
-
-        //console.log("1: ", backgroundEl.style.backgroundPosition);
-        // let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
-        // if (startX == -1 && startY == -1) {
-        //     startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
-        //     startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
-        //     //console.log("Got start positions: ", startX, startY);         
-        // }
-        
-                           
-        //let x = parseFloat(currentPosition[0].toString().replace('px', ''));
-        let x = startX + amountMovedX;
-        //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
-        let y = startY + amountMovedY;  
-        
-        window.setTimeout(() =>{
-            //console.log(currentPosition, amountMovedX, amountMovedY, x, y);
-            backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
-        }, 0);
-        
-
-        // Update the pseudo selector animation
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
-        
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
-    }));
-    // animate the decorative dashed lines when section has focus
-    // el.addEventListener('mouseover', (function(e) {        
-    //     let gradientUpEl = document.querySelector('.gradient-up');    
-    //     let gradientDownEl = document.querySelector('.gradient-down');
-    //     gradientUpEl.classList.add('animate');
-    //     gradientDownEl.classList.add('animate');
-    // }));
-    // // save resources by stopping animation when section no longer has focus
-    el.addEventListener('mouseleave', (function(e) {        
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientUpEl.classList.remove('animate');
-        gradientDownEl.classList.remove('animate');
-    }));
-    
-
-    
-
-    // EFFECT 2:  Image Carousel
-    const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
-    const carouselEls = document.querySelectorAll('.nav-carousel li');
-    //console.log("Carousel Els: ", carouselEls);
-    carouselEls.forEach((item) => {        
-        item.addEventListener('click', () => {
-            let index = item.dataset.index;
-            console.log("Index: ", index, backgrounds[index], backgroundEl);
-            if (index) {      
-                backgroundEl.classList.remove('fade-in');
-                backgroundEl.classList.add('fade-out');
-                window.setTimeout(() => {
-                    // remove previous
-                    backgroundEl.classList.remove('background-1');
-                    backgroundEl.classList.remove('background-2');
-                    backgroundEl.classList.remove('background-3');
-
-                    backgroundEl.classList.add(`background-${index}`);
-                    // backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
-                    // backgroundEl.style.backgroundSize = "cover";
-                    // backgroundEl.style.backgroundRepeat = "no-repeat";
-                    // console.log('New background setting: ', backgroundEl.style.background);
-                    backgroundEl.classList.remove('fade-out');
-                    backgroundEl.classList.add('fade-in');
-                }, 600);                                 
-            }
-            else {
-                console.error("No index found on this link");
-            }
-        })
-    });
-
-
-    
-    // EFFECT 3:  PARALAXX
-
-    window.addEventListener('scroll', () => {
-        const target = document.querySelectorAll('.scroll');
-        
-        // // Save off the initial transform
-        // target.forEach((scrollEl) => {
-        //     const initialTransform = scrollEl.style.transform;
-        //     // Save it into the dataset
-        //     scrollEl.dataset.initialTransform = initialTransform;
-        // });
-
-        var index = 0; length = target.length;
-        for (0; index < target.length; index++) {
-            let current = target[index];
-            var pos = window.pageYOffset * current.dataset.rate;            
-        
-            //const move = 'scale(1.2) translate3d(0px, '+pos+'px, 0px)';   
-            //const move = 'translate3d(0px, '+pos+'px, 0px)';              
-            
-            //console.log(target.dataset.transform);
-            const initialTransform = (current.dataset.transform != undefined) ? current.dataset.transform + " " : "";
-            const move = initialTransform + 'translate3d(0px, '+pos+'px, 0px)';              
-            current.style.transform = move;             
-        }
-    });
-
-
-
-</script>
+<script type="module" src="/js/timeline-slider.js"></script>
+<script type="module" src="/Microanimations/js/timeline-slider.js"></script>
 
 
 </html>
