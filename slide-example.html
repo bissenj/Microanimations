@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
+  <title>Generic Slideshow Example</title> 
+  <link rel='stylesheet' href='css/slide-example.css' />
+  <link rel='stylesheet' href='css/hSlider.css' />
+</head>
+
+<body>
+<main>
+
+    <h1>Universal Horizontal Slider Demo</h1>
+    <p>
+        Selected Index: <span class='index'></span>
+    </p>
+    <div id='photoSlider1' class='photoSlider'></div>
+
+    <p>
+        Selected Index: <span class='index2'></span>
+    </p>
+    <div id='photoSlider2' class='photoSlider'></div>
+
+</main>
+</body>
+
+<script src="/js/hSlider.js"></script>
+<script>
+
+    // GLOBAL DATA
+    let selectedIndex = 0;
+    const data = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
+
+    // Custom Render function for the slides
+    function renderSlide(item) {
+        let html = `<div class='slide flex-center' data-id=${item.id} style='background-color:${item.background}'> ${item.text} </div>`;
+        return html;
+    }
+
+    // App loads    
+    let slideContainer1 = document.getElementById('photoSlider1');
+    const slider1 = new horizontalSlider(slideContainer1, data, renderSlide, 100, true, 0);
+
+    let slideContainer2 = document.getElementById('photoSlider2');
+    const slider2 = new horizontalSlider(slideContainer2, data, renderSlide, 50, false, 2);
+
+    // Listen for the slide to change
+    slideContainer1.addEventListener('onslide', (e) => {         
+        selectedIndex = e.detail.index;
+        document.querySelector('.index').textContent += " > " + selectedIndex;
+    })
+
+    // Listen for the slide change to complete
+    slideContainer1.addEventListener('onslidecomplete', (e) => {              
+        selectedIndex = e.detail.index;
+        document.querySelector('.index').textContent = selectedIndex;
+    })
+
+    // ---------------------
+
+    // Listen for the slide to change
+    slideContainer2.addEventListener('onslide', (e) => {         
+        selectedIndex = e.detail.index;
+        document.querySelector('.index2').textContent += " > " + selectedIndex;
+    })
+
+    // Listen for the slide change to complete
+    slideContainer2.addEventListener('onslidecomplete', (e) => {              
+        selectedIndex = e.detail.index;
+        document.querySelector('.index2').textContent = selectedIndex;
+    })
+
+
+    // ---------------------
+
+
+    /*  HANDLE RESIZE  */
+    window.onresize = () => {  
+        console.log("Resize Event Detected");  
+        slider1.handleResize();
+    }
+
+    // On mobile browsers scrolling may trigger a resize event which will mess up our app in some cases.  Store 
+    // the current dimentions so we can resize our app at the appropriate time.
+    // const el = document.querySelector('.timeline-container');
+    // var TIMELINE_WIDTH = el.clientWidth;
+    // var TIMELINE_HEIGHT = el.clientHeight;
+
+    // window.onresize = () => {    
+
+    //     console.log("Resize Event Detected");
+    //     console.log("Timeline Width/Height: ", TIMELINE_WIDTH, TIMELINE_HEIGHT);
+
+    //     const el = document.querySelector('.timeline-container');
+    //     console.log("Current Timeline W/H: ", el.clientWidth, el.clientHeight);
+
+    //     if (TIMELINE_WIDTH != el.clientWidth || TIMELINE_HEIGHT != el.clientHeight) {
+    //         console.log("resize!");
+    //         initTimeline('.timeline', 1995, 2025);    
+
+    //         TIMELINE_WIDTH = el.clientWidth;
+    //         TIMELINE_HEIGHT = el.clientHeight;
+    //     }
+    //     else {
+    //         console.log("resize ignored");
+    //     }    
+    // }
+
+
+</script>
+
+</html>
