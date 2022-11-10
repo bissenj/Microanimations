@@ -26,3 +26,14 @@ main {
     justify-content: space-around;
     align-items: center;
 }
+
+.compound-slider {
+    display: flex;
+    flex-direction: column;    
+    /* border: 1px solid red; */
+    width: 75%;    
+}
+
+.compound-slider div:nth-child(1) {
+    align-self: flex-end;
+}

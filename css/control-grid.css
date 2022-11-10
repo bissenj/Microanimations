@@ -1,0 +1,20 @@
+
+.control-grid {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 25%;
+    margin: 10px 0px;
+}
+
+.control-box {
+    border: 1px solid #444;
+    width: 20px;
+    height: 20px;    
+    cursor: pointer;
+}
+
+.control-box.selected {
+    background: rgba(0,0,0,0.5);
+}

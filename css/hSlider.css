@@ -2,7 +2,7 @@
 
 .photoSlider {
     /* display: flex;     */
-    width: 50%;
+    width: 100%;
     height: 25%;
     min-height: 200px;
 }
@@ -14,7 +14,7 @@
     width: 100%;
     height: 100%;
     background: rgb(69, 178, 194);
-    border: 10px solid white;
+    /* border: 10px solid white; */
     z-index: 1;    
 }
 

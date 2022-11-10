@@ -7,6 +7,7 @@
   <title>Generic Slideshow Example</title> 
   <link rel='stylesheet' href='css/slide-example.css' />
   <link rel='stylesheet' href='css/hSlider.css' />
+  <link rel='stylesheet' href='css/control-grid.css' />
 </head>
 
 <body>
@@ -16,7 +17,10 @@
     <p>
         Selected Index: <span class='index'></span>
     </p>
-    <div id='photoSlider1' class='photoSlider'></div>
+    <div class='compound-slider'>
+        <div id='controlGrid1' class='control-grid'>Control Grid</div>
+        <div id='photoSlider1' class='photoSlider'></div>
+    </div>
 
     <p>
         Selected Index: <span class='index2'></span>
@@ -28,6 +32,9 @@
 
 <script src="/js/hSlider.js"></script>
 <script src="/Microanimations/js/hSlider.js"></script>
+
+<script src="/js/controlGrid.js"></script>
+<script src="/Microanimations/js/controlGrid.js"></script>
 <script>
 
     // GLOBAL DATA
@@ -42,10 +49,10 @@
 
     // App loads    
     let slideContainer1 = document.getElementById('photoSlider1');
-    const slider1 = new horizontalSlider(slideContainer1, data, renderSlide, 100, true, 0);
+    const slider1 = new HorizontalSlider(slideContainer1, data, renderSlide, 100, true, 0);
 
     let slideContainer2 = document.getElementById('photoSlider2');
-    const slider2 = new horizontalSlider(slideContainer2, data, renderSlide, 50, false, 2);
+    const slider2 = new HorizontalSlider(slideContainer2, data, renderSlide, 50, false, 0);
 
     // Listen for the slide to change
     slideContainer1.addEventListener('onslide', (e) => {         
@@ -58,6 +65,19 @@
         selectedIndex = e.detail.index;
         document.querySelector('.index').textContent = selectedIndex;
     })
+
+
+    // CONTROL GRID
+    let controlGridContainer1 = document.getElementById('controlGrid1');
+    const controlGrid1 = new ControlGrid(controlGridContainer1, data.length, selectedIndex);
+
+
+    controlGridContainer1.addEventListener('onindexchange', (e) => {
+        console.log("--------------------------");
+        console.log(e.detail.index);
+        slider1.setSelectedIndex(e.detail.index);
+    })
+    //
 
     // ---------------------
 
@@ -81,33 +101,13 @@
     window.onresize = () => {  
         console.log("Resize Event Detected");  
         slider1.handleResize();
-    }
+    }   
 
-    // On mobile browsers scrolling may trigger a resize event which will mess up our app in some cases.  Store 
-    // the current dimentions so we can resize our app at the appropriate time.
-    // const el = document.querySelector('.timeline-container');
-    // var TIMELINE_WIDTH = el.clientWidth;
-    // var TIMELINE_HEIGHT = el.clientHeight;
 
-    // window.onresize = () => {    
-
-    //     console.log("Resize Event Detected");
-    //     console.log("Timeline Width/Height: ", TIMELINE_WIDTH, TIMELINE_HEIGHT);
-
-    //     const el = document.querySelector('.timeline-container');
-    //     console.log("Current Timeline W/H: ", el.clientWidth, el.clientHeight);
-
-    //     if (TIMELINE_WIDTH != el.clientWidth || TIMELINE_HEIGHT != el.clientHeight) {
-    //         console.log("resize!");
-    //         initTimeline('.timeline', 1995, 2025);    
-
-    //         TIMELINE_WIDTH = el.clientWidth;
-    //         TIMELINE_HEIGHT = el.clientHeight;
-    //     }
-    //     else {
-    //         console.log("resize ignored");
-    //     }    
-    // }
+    // TESTING
+    window.setTimeout(() => {
+        //slider2.setSelectedIndex(1);
+    }, 1000);
 
 
 </script>

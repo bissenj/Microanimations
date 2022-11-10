@@ -35,7 +35,7 @@
 */
 
 
-class horizontalSlider {
+class HorizontalSlider {
   componentEl = undefined;
   data = undefined;
   slideRenderFunction = undefined;
@@ -142,6 +142,21 @@ class horizontalSlider {
   // slide-group:  all the slides laid out horizontally (wider than slide-viewer).
   renderSlides(componentEl, data, renderFunction) {   
     if (componentEl) {
+
+        // Check for TabIndex. Set it if necessary so keyboard events work.        
+        if (componentEl.tabIndex < 0) {
+          componentEl.tabIndex = 0;
+        }
+
+        // Add support for arrow keys to move through slider.
+        componentEl.onkeydown = (e) => {
+          e = e || window.event;
+
+          if (e.keyCode == '37') this.moveSlides(-1);
+          if (e.keyCode == '39') this.moveSlides(1);
+        }               
+        
+
         let html = "";        
 
         html += "<div class='slide-viewer'>";
@@ -243,16 +258,37 @@ class horizontalSlider {
   }
 
   moveSlides(direction, action) {
-    this.slidegroup.classList.add('animating');
 
+    // Bail if we're not actually moving anywhere
+    if (direction == 0) return;
+
+    // Bail if we're hitting a boundary (this only applies to no-wrap sliders)
+    if (!this.allowWrap) {      
+      if ((this.selectedIndex + direction) > this.data.length-1 || 
+          (this.selectedIndex + direction) < 0) {
+        console.log("Hit boundary.  Bailing.");
+        return;
+      }
+    }
+   
+    // Only move if there are no other moves currently taking place
     if (this.allowMove) {
 
-      if (!action) { this.posInitial = this.slidegroup.offsetLeft; }   // What does this do?
+      // Add class with transition styles
+      this.slidegroup.classList.add('animating');
+
+
+      if (!action) {         
+        this.posInitial = this.slidegroup.offsetLeft; 
+        console.log("No action.  Setting posInitial to: ", this.posInitial);
+      }   // What does this do?
 
       // Direction is probably +1 or -1 so adjust the left and index accordingly.
       const move = (this.posInitial) - (direction * this.slideWidth);   
       this.slidegroup.style.left = move + "px";
       this.selectedIndex += direction;
+
+      console.log("New Move: ", move, this.selectedIndex);
 
    
       // Make sure selected index being sent in event is correct.  Gets tricky with
@@ -273,6 +309,7 @@ class horizontalSlider {
           newIndex -= 1;
         }
       }
+      
       
       console.log("Selected Index: ", this.selectedIndex, "New Index: ", newIndex);    
 
@@ -346,6 +383,48 @@ class horizontalSlider {
 
     // Have the current slide trigger the event (so the target of the event is the current slide)
     this.slidegroup.children[index].dispatchEvent(event);
+  }
+
+
+  // -----------------------------------------------------------------
+  // PUBLIC METHODS
+  // -----------------------------------------------------------------
+  getSelectedIndex() {
+    return this.selectedIndex;
+  }
+
+  setSelectedIndex(index) { 
+    console.log("setSelectedIndex:", index);
+    if (this.allowWrap) {
+      index += 1;
+      if (index > this.data.length) { 
+        console.log("resetting index", this.data.length);
+        index = 0;
+      }
+    }    
+
+    let direction = index - this.selectedIndex;      
+    console.log("Index:", index, "direction: ", direction);
+    this.moveSlides(direction);
+    
+    /*
+    // Alternate approach
+    // Only move if there are no other moves currently taking place
+    if (this.allowMove) {
+
+      if (this.allowWrap) {
+        index += 1;
+        if (index >= this.data.length) index = 0;
+      }
+
+      let direction = index - this.selectedIndex;      
+      
+      this.slidegroup.classList.add('animating');
+      this.selectedIndex = index;
+      this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + "px";
+      this.allowMove = false;
+    }
+    */
   }
 }
 
