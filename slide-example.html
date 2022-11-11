@@ -43,7 +43,7 @@
 
     // Custom Render function for the slides
     function renderSlide(item) {
-        let html = `<div class='slide flex-center' data-id=${item.id} style='background-color:${item.background}'> ${item.text} </div>`;
+        let html = `<div class='slide flex-center hide-content' data-id=${item.id} style='background-color:${item.background}'> <span class=''>${item.text}</span> </div>`;
         return html;
     }
 

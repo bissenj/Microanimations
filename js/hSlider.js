@@ -113,6 +113,9 @@ class HorizontalSlider {
     
     // Set the current slide
     this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + "px";
+
+    // Show content on first slide
+    this.slidegroup.children[this.selectedIndex].classList.remove('hide-content');    
         
 
     // Capture the height and width so we can react to resize events
@@ -277,6 +280,9 @@ class HorizontalSlider {
       // Add class with transition styles
       this.slidegroup.classList.add('animating');
 
+      // Hide content as slide moves off screen
+      this.slidegroup.children[this.selectedIndex].classList.add('hide-content');
+
 
       if (!action) {         
         this.posInitial = this.slidegroup.offsetLeft; 
@@ -350,6 +356,9 @@ class HorizontalSlider {
     }
 
     this.allowMove = true;
+
+    // Show content
+    this.slidegroup.children[this.selectedIndex].classList.remove('hide-content');
 
     this.dispatchOnSlideComplete(newIndex);    
   }
