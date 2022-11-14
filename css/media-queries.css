@@ -345,7 +345,10 @@
 
 
     /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
-    @media (orientation: landscape) {        
+    @media (orientation: landscape) {  
+        .diagonal-filler {
+            height: 130vh;
+        }      
     }
 
     @media (orientation: portrait) {
@@ -388,7 +391,7 @@
     /* body { border: 4px solid purple; } */
 
     .diagonal-rects { 
-        width: 225%;
+        width: 245%;
     }
 
     .diagonal-filler {
@@ -405,13 +408,17 @@
 
     @media (orientation: portrait) {
          /* Testing Media Query Selection */
-        /* body { border: 4px solid red; } */
+        body { border: 4px solid red; }
 
         section.about {
             height: 100vh;            
         }
         section.image-collage {
             height: 200vh;
+        }
+
+        .diagonal-filler {
+            height: 130vh;
         }
     }
 }
