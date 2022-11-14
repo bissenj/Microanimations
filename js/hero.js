@@ -1,4 +1,6 @@
 
+import {imageCollage} from '../data/data.js';
+
 // JS structure notes:  https://css-tricks.com/slider-with-sliding-backgrounds/
 
 var ImageModal = {
@@ -25,6 +27,8 @@ var ImageModal = {
      // Functions
      handleClick: function(event) {
         console.log("Click!", event.target);
+        
+        const dataIndex = event.target.dataset.index;
 
         // Get window.computedValues for height, width
         let w = window.getComputedStyle(event.target).getPropertyValue("width");        
@@ -113,9 +117,11 @@ var ImageModal = {
             left: elementLeft
         };
         
+        const caption = imageCollage[dataIndex].caption;
+
         const textElement = document.createElement('div');
-        textElement.classList.add('text-overlay');
-        textElement.innerHTML = "<p class='title'>Paddling across Lake McDonald in Glacier National Park </p>"; // + 
+        textElement.classList.add('text-overlay');                
+        textElement.innerHTML = `<p class='title'>${caption}</p>`; // + 
         //                         "<p class='description'>We usually visit Glacier National Park every week or so for " +
         //                         "hiking, biking, paddling or hoping to see the northern lights.<p>";
         newElement.appendChild(textElement);

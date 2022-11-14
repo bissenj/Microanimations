@@ -11,7 +11,7 @@
   <link rel='stylesheet' href='css/hero.css' />
   <link rel='stylesheet' href='css/projects.css' />
   <link rel='stylesheet' href='css/timeline-slider.css' />
-  <!-- <link rel='stylesheet' href='css/media-queries.css' /> -->
+  <link rel='stylesheet' href='css/media-queries.css' />
 </head>
 
 <body>
@@ -93,20 +93,20 @@
         </div>
     </section>
 
-    <section class='highlights'>
+    <section class='image-collage'>
         <!-- OPTIONAL IDEA -- ONLY SHOW ONE IMAGE -->
 
         <div class='diagonal-rects'>
             <!-- Row 1 -->
             <div class='row1'>               
-                <div class='about-image image1'></div> 
-                <div class='about-image image2'></div> 
-                <div class='about-image image3'></div>
+                <div class='about-image image1' data-index=0></div> 
+                <div class='about-image image2' data-index=1></div> 
+                <div class='about-image image3' data-index=2></div>
             </div>       
             <!-- Row 2  -->
             <div class='row2'>
-                <div class='about-image image4'></div>
-                <div class='about-image image5'></div>
+                <div class='about-image image4' data-index=3></div>
+                <div class='about-image image5' data-index=4></div>
                 <!-- <div class='image6'></div>
                 <div class='image7'></div> -->
             </div>
@@ -150,10 +150,12 @@
 
 
 <!-- JAVASCRIPT -->
+<!-- <script src="/data/data.js"></script> -->
+
 <script src="/js/landing.js"></script>
 <!-- <script src="/Microanimations/js/landing.js"></script> -->
 
-<script src="/js/hero.js"></script>
+<script type="module" src="/js/hero.js"></script>
 <!-- <script src="/Microanimations/js/hero.js"></script> -->
 
 <script type="module" src="/js/timeline-slider.js"></script>

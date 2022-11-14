@@ -1,7 +1,15 @@
 
 
 // Data
-const events = [
+export const imageCollage = [
+    { caption: 'Lake season hiking up Whitefish Mountain to board down.'},
+    { caption: 'Lake Mc Donald, Glacier National Park'},
+    { caption: 'Kayaking on Lake Antoine, Upper Peninsula of Michigan'},
+    { caption: 'Inversion day at Whitefish Mountain Ski Resort.'},
+    { caption: 'Hiking the Great Northern Mountain, Montana.'},
+];
+
+export const events = [
     {
         yearStart: 1998, 
         yearEnd:2022, 
@@ -69,4 +77,4 @@ const events = [
     }, 
 ]
 
-export default events;
+// export events, imageCollage;
