@@ -142,7 +142,7 @@ var ImageModal = {
                         const divisor = screenWidth / parentWidth;
                         const newWidth = 80 * divisor;     // 80% * 0.57 = 45.6
                         const newElementWidth = 0.8 * parentWidth * divisor;   // 0.8 * 1607 * 0.57 = 732
-                        const newElementHeight = 1.2 * (newElementWidth * divisor); // 0.8 is to shrink the size a bit so container isn't taller than image
+                        const newElementHeight = 1.0 * (newElementWidth * divisor); 
                         // Left needs to be 127 but it gets computed at 92.  Because translation is happening
                         // at a 30' diagonal, enhance it a bit.
                         const newLeft = (screenWidth - newElementWidth) / 2 * 1.3;
