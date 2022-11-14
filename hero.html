@@ -15,9 +15,8 @@
 </head>
 
 <body>
-
-<main>
-
+    <!-- <div class='modal'></div> -->
+<main>   
     <!-- Hero Image -->
     <section class='landing'>  
 
@@ -111,6 +110,8 @@
                 <div class='image7'></div> -->
             </div>
 
+            <!-- <div class='modal-overlay'></div> -->
+
             <!-- Diagonal Shadow -->
             <!-- <div class='row3'></div> -->
             <!-- Row 1 -->
@@ -161,5 +162,23 @@
 <script type="module" src="/js/timeline-slider.js"></script>
 <script type="module" src="/Microanimations/js/timeline-slider.js"></script>
 
+<script>
+
+    function showModal(callBack) {
+        console.log('showModal()');
+        const modal = document.querySelector('.modal');
+        modal.classList.add('show', 'visible');
+        modal.addEventListener('click', hideModal);
+    }
+    function hideModal(e) {
+        console.log('hideModal()');
+        e.target.classList.remove('show');
+        e.target.removeEventListener('click', hideModal);
+        setTimeout(() => {
+            e.target.classList.remove('visible');
+        }, 2000);
+    }
+
+</script>
 
 </html>

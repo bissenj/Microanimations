@@ -9,6 +9,7 @@ var ImageModal = {
     el: {
         //imageNode: 'div.image2', //document.querySelector('div.image1'),
         imageNodes: document.querySelectorAll('div.about-image'),
+        animating: false,
     },
 
     // Event Handlers
@@ -27,7 +28,7 @@ var ImageModal = {
      // Functions
      handleClick: function(event) {
         console.log("Click!", event.target);
-        
+                
         const dataIndex = event.target.dataset.index;
 
         // Get window.computedValues for height, width
@@ -38,21 +39,17 @@ var ImageModal = {
 
         //console.log("Position Container: ", event.target.parentNode.parentNode.getBoundingClientRect());
 
+        // GRANDPARENT -> Diagonal Recs Div
         let top = event.target.parentNode.parentNode.getBoundingClientRect().top - bounding.top;
         //console.log("Top Difference: ", top);
 
 
+        //const body = document.querySelector('body');
+
         // PARENT
         const parent = event.target.parentNode;     // ie div.row1 or div.row2
         //console.log('Parent Height: ', parent.offsetHeight);
-
-        // SECTION - append a transparent overlay
-        const section = event.target.parentNode.parentNode.parentNode;  
-        // const modal = document.createElement('div');
-        // modal.classList.add('modal-overlay');
-        // section.appendChild(modal);
-        
-        
+      
 
         // CALCULATE LEFT POSITION
         // -----------------------
@@ -94,7 +91,7 @@ var ImageModal = {
             //console.log(event.target.parentNode.parentNode);         
             newTop = event.target.parentNode.parentNode.children[0].offsetHeight; 
         }
-        console.log("New Top: ", newTop);
+        //console.log("New Top: ", newTop);
 
 
         // 1.  Clone the element
@@ -130,18 +127,21 @@ var ImageModal = {
         const closeButton = document.createElement('button');
         closeButton.classList.add('close-button');
         closeButton.innerHTML = 'X';
-        closeButton.addEventListener("click", function(event) {
-            ImageModal.transitionOut(event, newElement, savedElementSettings);
+        closeButton.addEventListener("click", function(event) {            
+            ImageModal.transitionOut(newElement, savedElementSettings);
         });
         newElement.appendChild(closeButton);
         window.setTimeout(() => {
             closeButton.style.opacity = 1;
         }, 2000);
-
+        
         // Add to parent container
         parent.appendChild(newElement);
+        //newElement.focus();
 
-
+        /// MODALS
+        this.showModals(() => {this.transitionOut(newElement, savedElementSettings)});
+        
         const debug = false;
         if (!debug) {
             window.setTimeout(() => {
@@ -154,7 +154,7 @@ var ImageModal = {
                 newElement.classList.add('transition-in');   
                 //newElement.style.outline = '9999px solid rgba(0,0,0,0.3)';
                 //newElement.style.transform = 'rotate(-30deg)';
-
+                
 
                 window.setTimeout(() => {
                     let screenWidth = window.innerWidth;
@@ -184,8 +184,8 @@ var ImageModal = {
                     newElement.style.left = newLeft + "px";
                     newElement.style.top = "-" + newTop + "px";            
 
-                    console.log("Screen Width: ", screenWidth, " newElementWidth: ", newElementWidth);
-                    console.log("Divisor: ", divisor, " New Width %: ", newWidth, "Left: ", screenWidth - newElementWidth);
+                    //console.log("Screen Width: ", screenWidth, " newElementWidth: ", newElementWidth);
+                    //console.log("Divisor: ", divisor, " New Width %: ", newWidth, "Left: ", screenWidth - newElementWidth);
 
                     newElement.style.maxHeight = newElementHeight  + 'px'; //'500px';
                     newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
@@ -195,35 +195,100 @@ var ImageModal = {
 
         }
     },
-    transitionOut: function(event, newElement, savedElementSettings) {
-        console.log("Transition Out!", event.target);
-        
-        // Fade the close button out
-        event.target.style.opacity = 0;
+    transitionOut: function(newElement, savedElementSettings) {
+        if (!ImageModal.el.animating) {
+            console.log("Transition Out!", event.target);
+                    
+            // Fade the close button out
+            // event.target.style.opacity = 0;
+            newElement.querySelector('.close-button').style.opacity = 0;
 
-        // Kick off the transition-out animations
-        newElement.classList.add('transition-out');
-        newElement.classList.remove('transition-in');
-                     
-        // Move element back to its original position when cloned.
-        window.setTimeout(() => {        
-            newElement.style.top = savedElementSettings.top + "px";
-            newElement.style.left = savedElementSettings.left + "px"; 
-            newElement.style.width = savedElementSettings.width; 
-            newElement.style.height = savedElementSettings.height;        
-        }, 1200);     // This delay gives the rotation animatins time to finish before translating. Makes landing a bit smoother.             
+            // Kick off the transition-out animations
+            newElement.classList.add('transition-out');
+            newElement.classList.remove('transition-in');
+                        
+            // Move element back to its original position when cloned.
+            window.setTimeout(() => {        
+                newElement.style.top = savedElementSettings.top + "px";
+                newElement.style.left = savedElementSettings.left + "px"; 
+                newElement.style.width = savedElementSettings.width; 
+                newElement.style.height = savedElementSettings.height;        
+            }, 1200);     // This delay gives the rotation animatins time to finish before translating. Makes landing a bit smoother.             
 
-        // Fade out the element and specifically it's outline.
-        window.setTimeout(() => {            
-            newElement.style.opacity = 0;                        
-        }, 2500);
+            // Fade out the element and specifically it's outline.
+            window.setTimeout(() => {            
+                newElement.style.opacity = 0;  
+                //overlay.style.opacity = 0; 
+                //overlay.classList.remove('show');
+                this.fadeModals();
+                //this.fadeModals(() => {this.transitionOut(newElement, savedElementSettings)});            
+            }, 2500);
 
-        // Remove the element from the DOM
-        window.setTimeout(() => {            
-            newElement.remove();
-            console.log("Element Removed.");
-        }, 4000);
-    }
+            // Remove the element from the DOM
+            window.setTimeout(() => {            
+                this.hideModals();            
+                newElement.remove();                        
+            }, 4000);
+        }
+        else console.log("Can't transitionOut(), currently animating");      
+    },
+    showModals: (callback) => {  
+        if (!ImageModal.el.animating) {
+            console.log("showModals()");
+
+            ImageModal.el.animating = true;
+
+            const pageModal = document.createElement('div');                
+            pageModal.classList.add('modal');  
+            document.querySelector('body').prepend(pageModal);
+            window.setTimeout(() => {
+                pageModal.classList.add('show', 'on-top');
+            }, 100);  
+            
+            const transformedModal = document.createElement('div');                
+            transformedModal.classList.add('modal-overlay'); 
+            document.querySelector('.diagonal-rects').appendChild(transformedModal);
+            window.setTimeout(() => {
+                transformedModal.classList.add('show', 'on-top');
+            }, 100);  
+
+            // Add close handlers after everything has finished.
+            window.setTimeout(() => {
+                pageModal.addEventListener('click', callback);
+                transformedModal.addEventListener('click', callback);
+                ImageModal.el.animating = false;
+            }, 3000);  
+        }  
+        else console.log("Can't showModals(), currently animating");      
+    },
+    fadeModals: () => {
+        if (!ImageModal.el.animating) {
+            console.log("fadeModals()");
+            
+            const pageModal = document.querySelector('.modal');
+            pageModal.classList.remove('show');        
+                    
+            const transformedModal = document.querySelector('.modal-overlay');
+            transformedModal.classList.remove('show');           
+        }
+        else console.log("Can't fadeModals(), currently animating");      
+    },
+    hideModals: () => { 
+        if (!ImageModal.el.animating) {
+            console.log("hideModals()");
+
+            const pageModal = document.querySelector('.modal');
+            pageModal.remove();
+                //pageModal.classList.remove('show', 'on-top');         
+                    
+            const transformedModal = document.querySelector('.modal-overlay');
+            transformedModal.remove();
+                //transformedModal.classList.remove('show', 'on-top'); 
+                
+            ImageModal.el.animating = false;
+        }
+        else console.log("Can't hideModals(), currently animating");      
+    },    
 };
 
 ImageModal.init();

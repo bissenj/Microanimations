@@ -17,7 +17,7 @@ section.about {
 
 /* HIGHLIGHTS */
 section.image-collage {      
-    position: relative;
+    position: relative;    
     height: 150vh;
     width:100%;
     display: block;
@@ -35,16 +35,25 @@ section.about.foreground-container {
 }
 
 
-/* MODAL */
+/* MODAL FOR TRANSFORMED ELEMENTS SINCE THEY GET THEIR OWN STACKING ORDER */
 .modal-overlay {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 9;
-
-    width: 100%;
+    opacity: 0;
+    display:block;
+    position: fixed;
+    z-index: -1;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);    
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);    
+    transition: opacity 1.5s;
+}
+
+.modal-overlay.show {
+    opacity: 1;    
+}
+.modal-overlay.on-top {
+    z-index: 10;
 }
 
 
@@ -89,7 +98,7 @@ section.about.foreground-container {
     position: absolute;
     top: 4px;
     right: 4px;
-    z-index: 10;
+    z-index: 11;
     height: 1.8em;
     width: 1.8em;     
     border: none;       
@@ -157,7 +166,7 @@ div.row1 > div.transition-in:before, div.row2 > div.transition-in:before {
         
     animation: undoIt 1s ease-in-out;
     animation-fill-mode: forwards;
-    outline: 9999px solid rgba(0,0,0,0.3);    
+    /* outline: 9999px solid rgba(0,0,0,0.3);     */
     /* transition: all 2s, outline 0ms;     */
 
     transition: 
@@ -227,7 +236,7 @@ div.row1 > div.transition-in:before, div.row2 > div.transition-in:before {
 .diagonal-rects {
     position:relative; 
     left: -10px;
-    z-index: 2;
+    z-index: 10;
     
     width: 150%;                /* This will change via media queries depending on the screen dimensions */
     /* margin-top: 200px; */
@@ -279,14 +288,13 @@ div.row1, div.row2 {
 /* HOVER STATES */
 .row1 div:hover, .row2 div:hover {         
     cursor:pointer;
-    z-index:100;
+    z-index:11;
 }
 
 
 /* Customize the size of each image element */
 div.image1 {    
-    width: calc(100% / 4);     
-    z-index: 11;
+    width: calc(100% / 4);         
 }
 div.image2 {    
     width: calc(100% / 3); 
@@ -315,7 +323,7 @@ div.image7 {
     animation: rotate30 0.5s ease-in-out;      
     animation-fill-mode: forwards;       
     
-    outline: 9999px solid rgba(0,0,0,0.3);    
+    /* outline: 9999px solid rgba(0,0,0,0.3);     */
 }
 @keyframes rotate30 {
     0% {   

@@ -27,3 +27,23 @@ section.center {
     display: grid;     
     place-content: center;     
 }
+
+.modal {
+    opacity: 0;
+    display:block;
+    position: fixed;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);    
+    transition: opacity 1.5s;
+}
+.modal.show {
+    display: block;    
+    opacity: 1;    
+}
+.modal.on-top {
+    z-index: 10;
+}

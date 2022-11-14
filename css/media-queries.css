@@ -7,10 +7,10 @@
 @media only screen and (min-width: 1351px)  {
 
     /* Testing Media Query Selection */
-    body {   
+    /* body {   
         border: 4px solid red;   
         border-bottom: 20px solid white;
-    }
+    } */
 
     /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
     @media (orientation: landscape) {        
@@ -50,10 +50,10 @@
 @media only screen and (max-width: 1350px)  {
 
     /* Testing Media Query Selection */
-    body {   
+    /* body {   
         border: 4px solid blue;   
         border-bottom: 20px solid white;
-    }
+    } */
     
     /* Put your CSS here up to 100px width devices (cover all width between 200px to 767px // */
     .diagonal-rects { width: 175%;}
@@ -113,10 +113,10 @@
 /* ----------------- MEDIUM SCREENS ---------------- */
 @media only screen and (max-width: 1050px)  {
     /* Testing Media Query Selection */
-    body {   
+    /* body {   
         border: 4px solid green;   
         border-bottom: 20px solid white;
-    }
+    } */
 
     section.about {
         /* height: 150vh; */
@@ -133,10 +133,10 @@
 @media only screen and (max-width: 768px)  {
 
     /* Testing Media Query Selection */
-    body {   
+    /* body {   
         border: 4px solid yellow;   
         border-bottom: 20px solid white;
-    }
+    } */
 
 /* LANDING PAGE */
 
