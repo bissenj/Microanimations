@@ -8,8 +8,7 @@
 
     /* Testing Media Query Selection */
     /* body {   
-        border: 4px solid red;   
-        border-bottom: 20px solid white;
+        border: 4px solid red;           
     } */
 
     /* PAGE SIZING - LANDSCAPE OR PORTRAIT */     
@@ -51,8 +50,7 @@
 
     /* Testing Media Query Selection */
     /* body {   
-        border: 4px solid blue;   
-        border-bottom: 20px solid white;
+        border: 4px solid blue;           
     } */
     
     /* Put your CSS here up to 100px width devices (cover all width between 200px to 767px // */
@@ -114,8 +112,7 @@
 @media only screen and (max-width: 1050px)  {
     /* Testing Media Query Selection */
     /* body {   
-        border: 4px solid green;   
-        border-bottom: 20px solid white;
+        border: 4px solid green;           
     } */
 
     section.about {
@@ -123,6 +120,44 @@
     }
     section.image-collage {
         /* height: 125vh; */
+    }
+
+    @media (orientation: portrait) {
+        div.image1::before {    
+            top: -86%;
+            left: -54%;
+            background-size: 90% 59%;
+            background-position-y: 16%;
+            background-position-x: 0%;
+        }
+        div.image2::before {            
+            top: -130%;
+            left: -75%;
+            background-size: 85% 100%;
+            background-position-y: 0%;
+            background-position-x: -150%;
+        }
+        div.image3::before {    
+            top: -150%;
+            left: -75%;
+            background-size: 62% 106%;
+            background-position-y: 15%;
+            background-position-x: -16%;
+        }
+        div.image4::before {    
+            top: -150%;
+            left: -75%;
+            background-size: 60% 100%;
+            background-position-y: 0%;
+            background-position-x: 68%;
+        }
+        div.image5::before {    
+            top: -100%;
+            left: -85%;
+            background-size: 90% 85%;
+            background-position-y: 20%;
+            background-position-x: -71%;
+        }
     }
 
 
@@ -133,10 +168,7 @@
 @media only screen and (max-width: 768px)  {
 
     /* Testing Media Query Selection */
-    /* body {   
-        border: 4px solid yellow;   
-        border-bottom: 20px solid white;
-    } */
+    /* body { border: 4px solid yellow; } */
 
 /* LANDING PAGE */
 
@@ -286,7 +318,7 @@
     }
 
     .diagonal-rects { 
-        margin-top: 160px;
+        /* margin-top: 160px; */
     }
 
     div.row1 > div:after, div.row2 > div:after {  
@@ -294,7 +326,7 @@
     }
 
     section.about {
-        height: 50vh;
+        height: 125vh;
     }
 
     div.image1::before {    
@@ -317,12 +349,17 @@
     }
 
     @media (orientation: portrait) {
+
+        section.about {
+            height: 100vh;
+        }
+
         div.image1::before {    
-            top: -86%;
+            top: -118%;
             left: -36%;
-            background-size: 90% 59%;
-            background-position-y: 16%;
-            background-position-x: 0%;
+            background-size: 90% 72%;
+            background-position-y: 24%;
+            background-position-x: -53%;
         }
         div.image4::before {    
             top: -150%;
@@ -338,6 +375,43 @@
             background-position-y: 20%;
             background-position-x: -71%;
         }
+    }    
+}
+
+
+
+/* ----------------- TINY SCREENS ---------------- */
+
+@media only screen and (max-width: 600px)  {
+
+    /* Testing Media Query Selection */
+    /* body { border: 4px solid purple; } */
+
+    .diagonal-rects { 
+        width: 225%;
     }
-    
+
+    .diagonal-filler {
+        height: 100vh;
+    }
+
+    section.about {
+        height: 120vh;            
+    }
+    section.image-collage {
+        height: 225vh;
+        min-height: unset;
+    }
+
+    @media (orientation: portrait) {
+         /* Testing Media Query Selection */
+        /* body { border: 4px solid red; } */
+
+        section.about {
+            height: 100vh;            
+        }
+        section.image-collage {
+            height: 200vh;
+        }
+    }
 }
