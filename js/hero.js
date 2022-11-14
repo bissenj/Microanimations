@@ -177,7 +177,7 @@ var ImageModal = {
 
             /// Option 1:  Reverse the transition in.  
             ///            Somewhat of a simple transition.        
-            /*
+            ///*
             // Move the element back and restore its height and width
             newElement.style.top = savedElementSettings.top + "px";
             newElement.style.left = savedElementSettings.left + "px"; 
@@ -190,12 +190,12 @@ var ImageModal = {
                 newElement.classList.add('transition-out');
                 newElement.classList.remove('transition-in');
             }, 900);     // This delay gives the rotation animations time to finish before translating. Makes landing a bit smoother.             
-            */
+            //*/
 
 
             /// Option 2:   Spin and zoom, then translate
             ///             Rollercoaster effect.
-            // /*
+            /*
             // Kick off the transition-out animations
             newElement.classList.add('transition-out');
             newElement.classList.remove('transition-in');
@@ -208,7 +208,7 @@ var ImageModal = {
                 newElement.style.width = savedElementSettings.width; 
                 newElement.style.height = savedElementSettings.height;   
             }, 900);     // This delay gives the rotation animations time to finish before translating. Makes landing a bit smoother.             
-            // */
+            */
 
 
             // Fade out the element and modals

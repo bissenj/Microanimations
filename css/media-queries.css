@@ -56,7 +56,7 @@
     /* Put your CSS here up to 100px width devices (cover all width between 200px to 767px // */
     .diagonal-rects { width: 175%;}
 
-    div.image1 { 
+    /* div.image1 { 
         width: calc(100% / (8/10));     
     }
     div.image2 {         
@@ -71,7 +71,7 @@
     }
     div.image5 {     
         width: calc(100% / (6/10));     
-    }
+    } */
 
     /* SIZE OF ABOUT SECTION */
     section.about {            
