@@ -151,7 +151,6 @@
 
 
 <!-- JAVASCRIPT -->
-<!-- <script src="/data/data.js"></script> -->
 
 <script src="/js/landing.js"></script>
 <script src="/Microanimations/js/landing.js"></script>
@@ -163,22 +162,7 @@
 <script type="module" src="/Microanimations/js/timeline-slider.js"></script>
 
 <script>
-
-    function showModal(callBack) {
-        console.log('showModal()');
-        const modal = document.querySelector('.modal');
-        modal.classList.add('show', 'visible');
-        modal.addEventListener('click', hideModal);
-    }
-    function hideModal(e) {
-        console.log('hideModal()');
-        e.target.classList.remove('show');
-        e.target.removeEventListener('click', hideModal);
-        setTimeout(() => {
-            e.target.classList.remove('visible');
-        }, 2000);
-    }
-
+    console.log("document is loaded");
 </script>
 
 </html>

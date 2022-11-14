@@ -62,7 +62,7 @@ section.about.foreground-container {
     width: 100%;
     height: 40px;
     top: 0;
-    z-index: 10;
+    z-index: 20;
     border:none;
     color:white;
     opacity: 0;
@@ -98,29 +98,22 @@ section.about.foreground-container {
     position: absolute;
     top: 4px;
     right: 4px;
-    z-index: 11;
-    height: 1.8em;
-    width: 1.8em;     
-    border: none;       
+    z-index: 21;    
+    border: none;      
     color: white;
-    padding: 2px;  
-    transition: border 0.5s, color 0.5s, transform 0.5s, opacity 1.5s;  
+    padding: 12px;  
+    transition: transform 0.5s, opacity 1.5s;  
 }
 .close-button:hover {
     transform: rotate(360deg) scale(1.05);    
-    cursor: pointer;
-    /* border: 2px solid white;  */
-    border-radius: 50%;
-    /* background-color: rgba(255, 255 ,255, 0.3); */
+    cursor: pointer;    
 }
 .close-button:focus {
     transform: rotate(360deg) scale(1.05);    
-    cursor: pointer;
-    /* border: 2px solid white;  */
-    border-radius: 50%;
-    /* background-color: rgba(255, 255 ,255, 0.3); */
-    opacity: 0;
-}
+    cursor: pointer;       
+    outline: none;     
+} 
+
 
 @keyframes fade-in {
     0% {
@@ -158,7 +151,7 @@ div.row1 > div.transition-in:before, div.row2 > div.transition-in:before {
                 width 2.0s,
                 background-position 2.0s,       
                 background-size 2.0s;         
-    /* transition: 2.0s;   */
+    /* transition: 2.0s;   */    
 }
 
 .transition-out {
@@ -287,8 +280,14 @@ div.row1, div.row2 {
 
 /* HOVER STATES */
 .row1 div:hover, .row2 div:hover {         
-    cursor:pointer;
-    z-index:11;
+    /* cursor:pointer; */
+    /* z-index:11; */
+}
+.about-image:hover {
+    cursor: pointer;
+}
+.about-image.transition-in:hover {
+    cursor: default;
 }
 
 
@@ -321,7 +320,8 @@ div.image7 {
 .transition-in {
     border-width: 10px !important;        
     animation: rotate30 0.5s ease-in-out;      
-    animation-fill-mode: forwards;       
+    animation-fill-mode: forwards;  
+    /* cursor:pointer !important;      */
     
     /* outline: 9999px solid rgba(0,0,0,0.3);     */
 }
@@ -347,7 +347,7 @@ div.row1 > div:after, div.row2 > div:after {
     position: absolute;
     top: 40%;
     right: 30px;
-    z-index: 20;
+    z-index: 10;
     color: white;
     stroke: white;
     fill:white;
@@ -366,6 +366,9 @@ div.row1 > div.transition-in:after, div.row2 > div.transition-in:after {
 div.row1 > div.transition-out:after, div.row2 > div.transition-out:after { 
     display:none;
 }
+/* div.row1 > div.transition-in:hover, div.row2 > div.transition-in:hover { 
+    cursor: pointer;
+} */
 
 /* all diagonal image elements */
 div.row1 > div:before, div.row2 > div:before {  
@@ -384,6 +387,8 @@ div.row1 > div:before, div.row2 > div:before {
                 background-position 1.5s,
                 background-size 2.0s;  
     /* transition: 1.5s; */
+    /* transition-delay: 2s;
+    transition-property: background-size; */
 }
 
 /* pseudo element to hold the image in the image elements */
