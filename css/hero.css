@@ -3,7 +3,8 @@
 /* ABOUT */
 section.about {    
     position: relative;
-    height: 100vh;
+    height: 100%;
+    /* min-height: 100vh; */
     width:100%;
     display: block;
     overflow-y: hidden;
@@ -18,7 +19,8 @@ section.about {
 /* HIGHLIGHTS */
 section.image-collage {      
     position: relative;    
-    height: 150vh;
+    height: 100%;
+    /* min-height: 150vh; */
     width:100%;
     display: block;
     overflow-y: hidden;
@@ -27,7 +29,7 @@ section.image-collage {
     border-bottom: 20px solid white;
     /* border: 1px solid red; */
 
-    min-height: 1250px;
+    /* min-height: 1250px; */
 }
 
 section.about.foreground-container {
@@ -293,19 +295,19 @@ div.row1, div.row2 {
 
 /* Customize the size of each image element */
 div.image1 {    
-    width: calc(100% / 4);         
+    width: calc(100% / (8/10));         
 }
 div.image2 {    
-    width: calc(100% / 3); 
+    width: calc(100% / (6/10)); 
 }
 div.image3 {    
-    width: calc(100% / 2); 
+    width: calc(100% / (5/10)); 
 }
 div.image4 { 
-    width: calc(100% / 2);     
+    width: calc(100% / (6/10));     
 }
 div.image5 {     
-    width: calc(100% / 2);     
+    width: calc(100% / (6/10));     
 }
 /* div.image6 { 
     width: calc(100% / 4);     
@@ -466,12 +468,12 @@ div.image5::before {
 
 
 .diagonal-filler {
-    position: absolute;
+    position: relative;
     z-index: 1;
     bottom: 0px;
     
     width: 200%;
-    height: 100vh;
+    height: 60vh;
     
     background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5)); 
     

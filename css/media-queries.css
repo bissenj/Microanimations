@@ -36,11 +36,11 @@
 
     @media (orientation: portrait) {
         .diagonal-filler {        
-            height: 70%;
+            height: 60%;
         }
 
         section.about {            
-            height: 110vh;
+            /* height: 110vh; */
         }
     }       
 }
@@ -78,7 +78,7 @@
         /* height: 90vh; */
     }
     .diagonal-filler {        
-        height: 80vh;
+        height: 60vh;
     }
         
 
@@ -96,14 +96,14 @@
     }
 
     @media (orientation: portrait) {
-        .diagonal-filler {        
+        /* .diagonal-filler {        
             height: 40%;
-        }
+        } */
         section.about {            
-            height: 60vh;            
+            /* height: 60vh;             */
         }
         section.image-collage {
-            height: 100vh;
+            /* height: 100vh; */
         }
     }   
 }
@@ -325,9 +325,9 @@
         display: none;
     }
 
-    section.about {
+    /* section.about {
         height: 125vh;
-    }
+    } */
 
     div.image1::before {    
         top: -100%;
@@ -353,9 +353,9 @@
 
     @media (orientation: portrait) {
 
-        section.about {
+        /* section.about {
             height: 100vh;
-        }
+        } */
 
         div.image1::before {    
             top: -118%;
@@ -391,34 +391,34 @@
     /* body { border: 4px solid purple; } */
 
     .diagonal-rects { 
-        width: 245%;
+        width: 255%;
     }
 
     .diagonal-filler {
-        height: 100vh;
+        height: 40vh;
     }
 
-    section.about {
+    /* section.about {
         height: 120vh;            
-    }
-    section.image-collage {
+    } */
+    /* section.image-collage {
         height: 225vh;
         min-height: unset;
-    }
+    } */
 
     @media (orientation: portrait) {
          /* Testing Media Query Selection */
         /* body { border: 4px solid red; } */
 
-        section.about {
+        /* section.about {
             height: 100vh;            
-        }
+        } */
         section.image-collage {
-            height: 200vh;
+            /* height: 200vh; */
         }
 
-        .diagonal-filler {
+        /* .diagonal-filler {
             height: 130vh;
-        }
+        } */
     }
 }
