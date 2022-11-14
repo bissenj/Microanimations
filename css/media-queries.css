@@ -73,8 +73,8 @@
 
     /*  SIZE OF DIAGONAL GRID */
     .row1 > div {
-        min-height: 200px;
-        max-height: 200px;
+        min-height: 300px;
+        /* max-height: 240px; */
     }    
     .row2 > div {
         min-height: 260px;

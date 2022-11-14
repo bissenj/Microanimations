@@ -3,6 +3,21 @@
 /* ABOUT */
 section.about {    
     position: relative;
+    height: 100vh;
+    width:100%;
+    display: block;
+    overflow-y: hidden;
+    background-color: white;
+    color: black;
+    border-bottom: 20px solid white;
+
+    /* min-height: 1250px; */
+}
+
+
+/* HIGHLIGHTS */
+section.highlights {      
+    position: relative;
     height: 150vh;
     width:100%;
     display: block;
@@ -10,6 +25,7 @@ section.about {
     background-color: white;
     color: black;
     border-bottom: 20px solid white;
+    /* border: 1px solid red; */
 
     min-height: 1250px;
 }
@@ -35,7 +51,7 @@ section.about.foreground-container {
 .text-overlay {    
     position: absolute;
     width: 100%;
-    height: 35%;
+    height: 25%;
     bottom: 0;
     z-index: 10;
     border:none;
@@ -73,7 +89,7 @@ section.about.foreground-container {
     position: absolute;
     top: 4px;
     right: 4px;
-    z-index: 10000;
+    z-index: 10;
     height: 1.8em;
     width: 1.8em;     
     border: none;       
@@ -118,32 +134,23 @@ section.about.foreground-container {
 div.row1 > div.transition-in:before, div.row2 > div.transition-in:before {
     transform: rotate(0deg);
     opacity: 1.0; 
-    background-size: 100%;
+    background-size: 100% 100%;
     background-position: 0 0;
     width: 100%;
     height: 100%;
     top: 0;
-    left: 0;     
-    /* transition: all 2.0s;   */
+    left: 0;             
+    /* will-change: transform, opacity, top, left, width, height, background-position, background-size; */
     transition: opacity 2.0s, 
                 transform 2.0s, 
                 top 2.0s, 
                 left 2.0s, 
                 height 2.0s, 
                 width 2.0s,
-                background-position 2.0s;        
+                background-position 2.0s,       
+                background-size 2.0s;         
+    /* transition: 2.0s;   */
 }
-/* div.about-image:hover {  
-    transition: all 0.5s;      
-} */
-div.about-image:hover:before {            
-    /* opacity: 0.5;      */
-    /* transition: all 0.5s; */
-    /* transform: rotate(-30deg) scale(1); */
-    /* transform: rotate(-30deg);    */
-    /* transform: rotate(-30deg) scale(0.90);    */    
-}
-
 
 .transition-out {
     background-color: white;
@@ -152,8 +159,15 @@ div.about-image:hover:before {
     animation-fill-mode: forwards;
     outline: 9999px solid rgba(0,0,0,0.3);    
     /* transition: all 2s, outline 0ms;     */
-    transition: opacity 1.0s, transform 1.0s ease-in-out, top 1.0s ease-in-out, left 1.0s ease-in-out, height 1s, width 1s;    
-    /* border-width: 10px !important; */
+
+    transition: 
+        opacity 1.0s, 
+        transform 1.0s ease-in-out, 
+        top 1.0s ease-in-out, 
+        left 1.0s ease-in-out, 
+        height 1s, 
+        width 1s;        
+    /* transition: 1s ease-in-out; */
 }
 @keyframes undoIt {
     0% {
@@ -212,10 +226,11 @@ div.about-image:hover:before {
 
 .diagonal-rects {
     position:relative; 
+    left: -10px;
     z-index: 2;
     
     width: 150%;                /* This will change via media queries depending on the screen dimensions */
-    margin-top: 200px;
+    /* margin-top: 200px; */
    
     background-color:white;  /* cheap way to cover the row gap on inline-block  */
     transform-origin: 0 0;          
@@ -240,9 +255,15 @@ div.row1, div.row2 {
     
     transform-origin: 0 0;
     background-color: white; 
-    
-    /* transition: transform 0.5s, top 0.5s, left 0.5s, height 0.5s, width 0.5s;     */
-    transition: opacity 1.0s, transform 1.0s ease-in-out, top 1.0s ease-in-out, left 1.0s ease-in-out, height 1s, width 1s;    
+        
+    transition: 
+        opacity 1.0s, 
+        transform 1.0s ease-in-out, 
+        top 1.0s ease-in-out, 
+        left 1.0s ease-in-out, 
+        height 1s ease-in-out, 
+        width 1s ease-in-out; 
+    /* transition: 1.5s ease-in-out; */
 } 
 .row1 > div {
     min-height: 250px;
@@ -264,14 +285,14 @@ div.row1, div.row2 {
 
 /* Customize the size of each image element */
 div.image1 {    
-    width: calc(100% / 3);     
+    width: calc(100% / 4);     
     z-index: 11;
 }
 div.image2 {    
     width: calc(100% / 3); 
 }
 div.image3 {    
-    width: calc(100% / 3); 
+    width: calc(100% / 2); 
 }
 div.image4 { 
     width: calc(100% / 2);     
@@ -307,10 +328,6 @@ div.image7 {
         transform: rotate(-30deg);                
     }    
 }
-.transition-in:focus {
-    /* outline: none; */
-    /* outline: 999px solid rgba(0,0,0,0.3); */
-}
 
 
 /* ------------------------ IMAGE BEFORES ------------------------------------ */
@@ -322,7 +339,7 @@ div.row1 > div:after, div.row2 > div:after {
     position: absolute;
     top: 40%;
     right: 30px;
-    z-index: 10000;
+    z-index: 20;
     color: white;
     stroke: white;
     fill:white;
@@ -345,45 +362,93 @@ div.row1 > div.transition-out:after, div.row2 > div.transition-out:after {
 /* all diagonal image elements */
 div.row1 > div:before, div.row2 > div:before {  
     content: "";
-    position: absolute; width: 300%; height: 300%; z-index: 10;    
-    top: -200%; left: -62%;  
-    
-    background-position-y: 50%;
-    background-position-x: 0%;
+    position: absolute; 
+    z-index: 10;  
     background-repeat: no-repeat; 
-    background-size: cover;
-
-    /* transform: rotate(-30deg) scale(1.2); */
-    transform: rotate(-30deg);
-    /* transition: all 2.5s;    */
-    transition: opacity 2.5s, 
-                transform 2.5s, 
-                top 2.5s, 
-                left 2.5s, 
-                height 2.5s, 
-                width 2.5s,
-                background-position 2.5s; 
+    transform: rotate(-30deg);   
+    
+    transition: opacity 1.5s, 
+                transform 1.5s, 
+                top 1.5s, 
+                left 1.5s, 
+                height 1.5s, 
+                width 1.5s,
+                background-position 1.5s,
+                background-size 2.0s;  
+    /* transition: 1.5s; */
 }
 
 /* pseudo element to hold the image in the image elements */
-div.image1::before {    
-    top: -58%;
-    left: -112%;        
-    background: url('../img/hero/lakemcdonald.jpg');     
+div.image1::before {         
+    background: url('../img/hero/uphill-ski.jpg');
+
+    width: 300%; 
+    height: 300%;
+
+    top: -90%;
+    left: -75%;  
+
+    background-size: 75% 75%;
+
+    background-position-y: -4%;    
+    background-position-x: 24%;   
 }
 div.image2::before {        
-    background: url('../img/hero/whitefish.jpg');    
+    background: url('../img/hero/lake-mcdonald.jpg');    
+
+    width: 300%;
+    height: 300%;
+
+    top: -150%;
+    left: -75%;  
+    
+    background-size: 85% 100%;
+
+    background-position-y: 0%;    
+    background-position-x: -150%;    
+
 }
 div.image3::before {    
-    background: url('../img/hero/lakemcdonald.jpg');    
+    background: url('../img/hero/kayak-scene-2.webp'); 
+    
+    width: 300%;
+    height: 300%;
+
+    top: -150%;
+    left: -75%;  
+    
+    background-size: 56% 110%;
+
+    background-position-y: 150%;    
+    background-position-x: 0%; 
 }
-div.image4::before {    
-    top: -200%; left: -52%;    
-    background: url('../img/hero/huckleberry-lookout.jpg');    
+div.image4::before {        
+    background: url('../img/hero/whitefish-sm.jpg');  
+
+    width: 300%;
+    height: 300%;
+
+    top: -150%;
+    left: -75%;  
+    
+    background-size: 50% 100%;
+
+    background-position-y: 0%;    
+    background-position-x: 20%;     
 }
-div.image5::before {    
-    top: -212%; left: -52%;    
-    background: url('../img/hero/whitefish.jpg');    
+div.image5::before {        
+    background: url('../img/hero/great-northern.jpg'); 
+   
+    width: 300%;
+    height: 300%;
+
+    top: -150%;
+    left: -75%;  
+    
+    background-size: 85% 100%;
+
+    background-position-y: 0%;    
+    background-position-x: -55%;
 }
 
 
@@ -409,7 +474,7 @@ div.image5::before {
 
 /*  PROJECTS */
 
-section:nth-child(3) {
+/* section.projects {
     background-color: rgb(8, 218, 255);
 }
 section:nth-child(4) {
@@ -418,7 +483,7 @@ section:nth-child(4) {
 section:nth-child(5) {
     background-color: rgb(220, 239, 170);
     height: 50vh;
-}
+} */
 
 
 /*  */

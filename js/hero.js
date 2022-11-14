@@ -115,9 +115,9 @@ var ImageModal = {
         
         const textElement = document.createElement('div');
         textElement.classList.add('text-overlay');
-        textElement.innerHTML = "<p class='title'>Paddling across Lake McDonald in Glacier National Park </p>" + 
-                                "<p class='description'>We usually visit Glacier National Park every week or so for " +
-                                "hiking, biking, paddling or hoping to see the northern lights.<p>";
+        textElement.innerHTML = "<p class='title'>Paddling across Lake McDonald in Glacier National Park </p>"; // + 
+        //                         "<p class='description'>We usually visit Glacier National Park every week or so for " +
+        //                         "hiking, biking, paddling or hoping to see the northern lights.<p>";
         newElement.appendChild(textElement);
 
         // Close Button
@@ -184,7 +184,7 @@ var ImageModal = {
                     newElement.style.maxHeight = newElementHeight  + 'px'; //'500px';
                     newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
 
-                }, 500);                
+                }, 1200);   // This delay gives the rotation animatins time to finish before translating. Makes landing a bit smoother.             
             }, 100);
 
         }
@@ -205,12 +205,12 @@ var ImageModal = {
             newElement.style.left = savedElementSettings.left + "px"; 
             newElement.style.width = savedElementSettings.width; 
             newElement.style.height = savedElementSettings.height;        
-        }, 500);
+        }, 1200);     // This delay gives the rotation animatins time to finish before translating. Makes landing a bit smoother.             
 
         // Fade out the element and specifically it's outline.
         window.setTimeout(() => {            
             newElement.style.opacity = 0;                        
-        }, 2000);
+        }, 2500);
 
         // Remove the element from the DOM
         window.setTimeout(() => {            
