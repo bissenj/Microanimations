@@ -15,7 +15,6 @@
 
 */
 
-
 class ControlGrid {
 
     componentEl = undefined;
@@ -76,7 +75,14 @@ class ControlGrid {
     }
 
     // Public Methods
-    setSelected(index) {
+    setIndex(index) {
+        this.selectedIndex = index;
+
+        const boxes = this.componentEl.querySelectorAll('.control-box');
+        for(let i = 0; i < boxes.length; i++) {
+            if (index == i) { boxes[i].classList.add('selected'); }
+            else { boxes[i].classList.remove('selected'); }
+        }
 
     }
 

@@ -11,7 +11,10 @@
   <link rel='stylesheet' href='css/hero.css' />
   <link rel='stylesheet' href='css/projects.css' />
   <link rel='stylesheet' href='css/timeline-slider.css' />
+  <link rel='stylesheet' href='js/components/basicTimeline/basicTimeline.css' />
+  <link rel='stylesheet' href='css/control-grid.css' />
   <link rel='stylesheet' href='css/media-queries.css' />
+  
 </head>
 
 <body>
@@ -132,6 +135,12 @@
         
     </section>
 
+    <!-- Basic Timeline -->
+    <section>        
+        <div class='basic-timeline'></div>
+        <div class='right-edge p10-20'><div class='control-grid'></div></div>
+    </section>
+
     <!-- Work -->
     <section class='work'>        
         <div id='timeline'></div>
@@ -158,11 +167,48 @@
 <script type="module" src="/js/hero.js"></script>
 <script type="module" src="/Microanimations/js/hero.js"></script>
 
-<script type="module" src="/js/timeline-slider.js"></script>
-<script type="module" src="/Microanimations/js/timeline-slider.js"></script>
+<!-- <script type="module" src="/js/timeline-slider.js"></script> -->
+<!-- <script type="module" src="/Microanimations/js/timeline-slider.js"></script> -->
+
+<script src="/js/controlGrid.js"></script>
+<script src="/Microanimations/js/controlGrid.js"></script>
+
+<script src="/data/events.js"></script>
+<script src="/Microanimations/data/events.js"></script>
+
+<script src="/js/components/basicTimeline/basicTimeline.js"></script>
+<script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script>
+
 
 <script>
     console.log("document is loaded");
+
+    let selectedIndex = 0;
+
+    // Create basic timeline
+    const basicTimelineEl = document.querySelector('.basic-timeline');
+    const basicTimeline1 = new BasicTimeline(basicTimelineEl, events, 3, true);
+
+    // Create control grid    
+    let controlGridContainer1 = document.querySelector('.control-grid');
+    const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex);
+
+    controlGridContainer1.addEventListener('onindexchange', (e) => {
+        //console.log("--------------------------");
+        //console.log(e.detail.index);
+        selectedIndex = e.detail.index;
+        basicTimeline1.setIndex(e.detail.index);
+    })
+
+    basicTimelineEl.addEventListener('onindexchange', (e) => {
+        //console.log("Event Caught: ", e);
+        selectedIndex = e.detail.index;
+        controlGrid1.setIndex(selectedIndex);
+    }); 
+    
+    
+
+
 </script>
 
 </html>
