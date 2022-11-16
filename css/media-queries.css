@@ -53,6 +53,10 @@
         border: 4px solid blue;           
     } */
     
+    section .background {    
+        background-position: 50% 50% !important;
+    }
+    
     /* Put your CSS here up to 100px width devices (cover all width between 200px to 767px // */
     .diagonal-rects { width: 175%;}
 
@@ -114,11 +118,6 @@
     /* body {   
         border: 4px solid green;           
     } */
-
-    
-    section .background {    
-        background-position: 50% 50% !important;
-    }
 
     section.about {
         /* height: 150vh; */
