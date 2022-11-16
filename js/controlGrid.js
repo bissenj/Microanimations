@@ -38,11 +38,15 @@ class ControlGrid {
 
     render(componentEl, quantity, index) {
         if (componentEl) {
+
+            // Just in case aria-role is not set for the component.
+            componentEl.setAttribute("role", "radiogroup");
+
             let html = "";   
            
             let i = 0; 
             for(i = 0; i < quantity; i++) {
-                html += `<div class='control-box' data-index=${i} ></div>`;
+                html += `<div class='control-box' data-index=${i} role="radio"></div>`;
             }    
             componentEl.innerHTML = html;
 

@@ -68,7 +68,7 @@ if (ALLOW_JAVASCRIPT) {
     
 
 // EFFECT 2:  Image Carousel
-const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
+const backgrounds = ['hero-huckleberry-lookout.jpg', 'hero-great-northern.jpg', 'hero-whitefish.jpg', 'hero-lake-mcdonald.jpg', 'hero-mt-aeneas.jpg'];
 const carouselEls = document.querySelectorAll('.nav-carousel li');
 //console.log("Carousel Els: ", carouselEls);
 carouselEls.forEach((item) => {        
@@ -87,14 +87,14 @@ carouselEls.forEach((item) => {
             backgroundEl.classList.add('fade-out');
             window.setTimeout(() => {
                 // remove previous
-                backgroundEl.classList.remove('background-1');
-                backgroundEl.classList.remove('background-2');
-                backgroundEl.classList.remove('background-3');
+                // backgroundEl.classList.remove('background-1');
+                // backgroundEl.classList.remove('background-2');
+                // backgroundEl.classList.remove('background-3');
 
-                backgroundEl.classList.add(`background-${index}`);
-                // backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
-                // backgroundEl.style.backgroundSize = "cover";
-                // backgroundEl.style.backgroundRepeat = "no-repeat";
+                // backgroundEl.classList.add(`background-${index}`);
+                backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
+                backgroundEl.style.backgroundSize = "cover";
+                backgroundEl.style.backgroundRepeat = "no-repeat";
                 // console.log('New background setting: ', backgroundEl.style.background);
                 backgroundEl.classList.remove('fade-out');
                 backgroundEl.classList.add('fade-in');

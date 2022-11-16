@@ -1,4 +1,4 @@
-    
+
   section:nth-child(1) {  
       position: relative;   
       display: block;       
@@ -34,16 +34,16 @@
       inline-size: 100%;
       block-size: 100%;
       background: rgba(0, 0, 0, 0.5);
-      background: url('../img/hero/whitefish.jpg'); 
+      background: url('../img/hero/hero-mt-aeneas.jpg'); 
       /* background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5)), url('../img/hero/huckleberry-lookout.jpg'); */
       background-size: cover; 
       background-repeat: no-repeat;
   
       /* filter: grayscale(100%) brightness(0.9); */
       
-      transform:scale(1.2);
-  
-      /* background-position: 2px 3px; */
+      transform:scale(1.2);  
+      background-position: 0 0;
+
       /* transition: transform .5s;  */ 
       transition: opacity 0.5s;   
       
@@ -61,20 +61,32 @@
   }
   
   section .background-0 {
-      background: url('../img/hero/huckleberry-lookout.jpg');
+      background: url('../img/hero/hero-huckleberry-lookout.jpg');
       background-size: cover;
       background-repeat: no-repeat;
   }
   section .background-1 {
-      background: url('../img/hero/whitefish.jpg');
+      background: url('../img/hero/hero-great-northern.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
   }
   section .background-2 {
-      background: url('../img/hero/lakemcdonald.jpg');
+      background: url('../img/hero/hero-whitefish.jpg');
       background-size: cover;
       background-repeat: no-repeat;
+  }
+  
+  section .background-3 {
+    background: url('../img/hero/hero-lake-mcdonald.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  section .background-4 {
+    background: url('../img/hero/hero-mt-aeneas.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   
   .fade-out {
@@ -199,11 +211,6 @@
     transition: background-color 1.5s;
     /* border: 1px solid red; */        
 }
-.nav-carousel:hover {
-    /* background: linear-gradient(rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0.7) 80%); */
-    /* background-color: rgba(255, 255, 255, 0.3); */
-    /* box-shadow: 0 0 4px #444; */
-}
 
 
 .nav-carousel ul {
@@ -223,9 +230,18 @@
     width: 16px;
     border-radius: 50%;
     box-shadow: 0 0 2px #444;
+
+    cursor: pointer;
     /* filter: blur(5px); */
 
     /* animation: animate-opacity 9s infinite ease-in-out; */
+}
+.nav-carousel li:hover {
+    border-color: var(--color-accent-1);
+    /* border-width: 4px; */
+    box-shadow: 0 0 1px 2px var(--color-accent-1);
+    /* background-color: var(--color-accent-1); */
+    opacity: 1;
 }
 /* .nav-carousel li:nth-child(2) {
     animation-delay: 600ms;

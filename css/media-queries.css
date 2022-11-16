@@ -172,7 +172,11 @@
 
 /* LANDING PAGE */
 
-    /* TDDO:  Change to hamburger menu */
+    section .background {    
+        background-position: 50% 50% !important;
+    }
+
+    /* TODO:  Change to hamburger menu */
     .nav-menu {
         display:none;
     }
@@ -389,6 +393,7 @@
 
     /* Testing Media Query Selection */
     /* body { border: 4px solid purple; } */
+   
 
     .diagonal-rects { 
         width: 255%;

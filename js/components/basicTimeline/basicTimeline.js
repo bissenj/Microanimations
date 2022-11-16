@@ -124,9 +124,9 @@ class BasicTimeline {
 
             <!-- Timeline Component -->
             <div class='timeline-container' tabIndex='0'>
-                <button id="backBtn">  &#5130; </button>
+                <button id="backBtn" role="button">  &#5130; </button>
                 <div class="timeline"></div>
-                <button id="forwardBtn"> &#5125; </button>
+                <button id="forwardBtn" role="button"> &#5125; </button>
             </div>
             `;
 
