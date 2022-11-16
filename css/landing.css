@@ -42,7 +42,7 @@
       /* filter: grayscale(100%) brightness(0.9); */
       
       transform:scale(1.2);  
-      background-position: 0 0;
+      background-position: 50% 50% !important;
 
       /* transition: transform .5s;  */ 
       transition: opacity 0.5s;   
