@@ -160,7 +160,7 @@ class HorizontalSlider {
         }               
         
 
-        let html = "";        
+        let html = "<div class='left-grab-panel'></div><div class='right-grab-panel'></div>";        
 
         html += "<div class='slide-viewer'>";
         html += "<div class='slide-group'>";

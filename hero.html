@@ -252,7 +252,16 @@
         controlGrid1.setIndex(selectedIndex);
         slider1.setIndex(e.detail.index);
     }); 
-      
+
+    
+    /*  HANDLE RESIZE  */
+    window.onresize = () => {  
+        console.log("Resize Event Detected"); 
+         
+        slider1.handleResize();
+        basicTimeline1.handleResize();
+        //controlGrid1.handleResize();
+    }        
 
 
 </script>
