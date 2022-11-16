@@ -92,7 +92,18 @@ carouselEls.forEach((item) => {
                 // backgroundEl.classList.remove('background-3');
 
                 // backgroundEl.classList.add(`background-${index}`);
-                backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
+
+
+                // TODO - FIX THIS!
+                // HACK FOR GITHUB PAGES
+                if (location.protocol !== "https:") {
+                    backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
+                }
+                else {
+                    backgroundEl.style.background = "url('~/../img/hero/" + backgrounds[index] + "')";
+                }
+
+                //backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
                 backgroundEl.style.backgroundSize = "cover";
                 backgroundEl.style.backgroundRepeat = "no-repeat";
                 // console.log('New background setting: ', backgroundEl.style.background);
