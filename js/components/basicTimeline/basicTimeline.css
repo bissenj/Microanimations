@@ -1,43 +1,3 @@
-:root {
-
-    /* Pro Mode */
-    --slideshow-background: #565656; 
-    --slideshow-foreground: white;
-    --timeline-selected-foreground: gold; 
-    --slide-element-border: #fff;
-    --event-text-label: #aaa;
-
-    --slider-image-overlay: hsl(202deg 50% 57% / 50%);
-    --slider-gradient-dark: hsl(202deg 50% 57% / 89%);
-    --slider-gradient-light: hsl(202deg 50% 57% / 5%);
-
-    --gradient-dark-low:  0, 0, 0, 0.5;
-    --gradient-dark-high: 0, 0, 0, 0.35;
-    --gradient-dark-half: 0, 0, 0, 0.5;
-
-
-    /* Dark Mode */
-    /* --slideshow-background: black; 
-    --slideshow-foreground: white;
-    --timeline-selected-foreground: gold; 
-    --slide-element-border: #333;
-    --event-text-label: #ccc;
-
-    --gradient-dark-low:  0, 0, 0, 1;
-    --gradient-dark-high: 0, 0, 0, 0.85;
-    --gradient-dark-half: 0, 0, 0, 0.5; */
-    
-    --year-text: 22px;
-
-    /* Light Mode */
-    /* --slideshow-background: white; 
-    --slideshow-foreground: black;
-    --timeline-selected-foreground: gold; 
-
-    --gradient-dark-low:  255, 255, 255, 1;
-    --gradient-dark-high: 255, 255, 255, 0.85;
-    --gradient-white-half: 255, 255, 255, 0.5; */
-}
 
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap'); */
 
@@ -56,21 +16,6 @@
 } */
 
 
-section.work {
-    /* height: 100vh;   */
-    height: 100%;  
-    background: linear-gradient(
-        var(--slider-image-overlay),
-        var(--slider-image-overlay)),
-        url('../img/timeline/snow_up_bw_white.png');
-    background-size: cover;  
-    background-position: 25%;     
-
-    border-bottom: 20px solid white;
-    /* box-shadow: 0 1px 1px #444; */
-}
-
-
 .timeline-container { 
     display: flex;
     flex-direction: row;
@@ -79,9 +24,9 @@ section.work {
     gap: 12px;
     padding: 100px 20px;
     padding-bottom: 40px;
-    /* background-color: rgba(0, 0, 0, 0.2); */
-    background-color: rgba(63,131,183,0.6); 
-    /* background:rgba(217, 217,217, 0.25);        */
+    
+    /* background-color: rgba(63,131,183,0.6);  */
+    
 
     /* background: linear-gradient(rgba(217, 217,217, 0.25), rgba(217, 217,217, 0.25)),  */
     /* linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));     */
@@ -91,12 +36,12 @@ section.work {
     border-bottom: 1px solid var(--slideshow-foreground);        
     width: 100%;
     height: 1px;
-    background-color: #444; 
+    /* background-color: var(--slideshow-foreground);  */
     color: var(--slideshow-foreground);  
 }
 .timeline-header {
     height: 80px;        
-    background-color: var(--slideshow-background); 
+    /* background-color: var(--slideshow-background);  */
     
     display:none;
 }

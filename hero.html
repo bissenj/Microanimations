@@ -12,7 +12,9 @@
   <link rel='stylesheet' href='css/projects.css' />
   <link rel='stylesheet' href='css/timeline-slider.css' />
   <link rel='stylesheet' href='js/components/basicTimeline/basicTimeline.css' />
+  <link rel='stylesheet' href='js/components/horizontalSlider/horizontalSlider.css' />
   <link rel='stylesheet' href='css/control-grid.css' />
+  <link rel='stylesheet' href='css/contact.css' />
   <link rel='stylesheet' href='css/media-queries.css' />
   
 </head>
@@ -140,14 +142,17 @@
     </section>
 
     <!-- Basic Timeline -->
-    <section>        
+    <!-- <section>        
         <div class='basic-timeline'></div>
+        <div id='workHistorySlider1' class='horizontalSlider'></div>
         <div class='right-edge p10-20'><div class='control-grid'></div></div>
-    </section>
+    </section> -->
 
     <!-- Work -->
     <section class='work'>        
-        <div id='timeline'></div>
+        <div class='basic-timeline bg1'></div>
+        <div id='workHistorySlider1' class='horizontalSlider bg9'></div>
+        <div class='bg10 right-edge p10-20'><div class='control-grid'></div></div>
     </section>
 
     <!-- Projects -->
@@ -157,7 +162,7 @@
     </section>
 
     <!-- Contact -->
-    <section class='center'>Contact</section>
+    <section class='contact center'><h1>Contact</h1></section>
 
 </main>
 </body>
@@ -181,34 +186,73 @@
 <script src="/js/components/basicTimeline/basicTimeline.js"></script>
 <script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script>
 
+<script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
+<script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script>
+
 
 <script>
     console.log("document is loaded");
 
+    // Global data
     let selectedIndex = 0;
+    const slideData = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
+
+    // Custom Render function for the slides
+    function renderSlide(item, index) {
+        // let html = `<div class='slide flex-center hide-content' data-id=${item.id} style='background-color:${item.background}'> <span class=''>${item.text}</span> </div>`;
+        // return html;
+
+        let html = `
+                <div class='slide hide-content' data-id=${index}'> 
+                    <!-- Event Header -->
+                    <div class='event-header'>                        
+                        <div>${item.yearStart} - ${item.yearEnd}</div>
+                        <div>${item.name}</div>                        
+                    </div>
+
+                    <!-- Event Summary -->                                
+                    <div class='event-summary'>
+                        <div class='left'>
+                            <div class='event-tools'>${item.tools}</div>                    
+                            <div>At a glance:</div>
+                            <div>${item.summary}</div>
+                        </div>
+                        <div class='company-image'><img src='img/timeline/${item.image}'/></div>
+                    </div>                    
+                </div>`;                  
+        return html;
+    }
+
+    // App loads    
+    let slideContainer1 = document.getElementById('workHistorySlider1');
+    const slider1 = new HorizontalSlider(slideContainer1, events, renderSlide, 100, false, 0);
 
     // Create basic timeline
     const basicTimelineEl = document.querySelector('.basic-timeline');
-    const basicTimeline1 = new BasicTimeline(basicTimelineEl, events, 3, true);
+    const basicTimeline1 = new BasicTimeline(basicTimelineEl, events, 0, true);
 
     // Create control grid    
     let controlGridContainer1 = document.querySelector('.control-grid');
-    const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex);
+    const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex, 'light round');
 
-    controlGridContainer1.addEventListener('onindexchange', (e) => {
-        //console.log("--------------------------");
-        //console.log(e.detail.index);
+    slideContainer1.addEventListener('onslidecomplete', (e) => {
         selectedIndex = e.detail.index;
         basicTimeline1.setIndex(e.detail.index);
+        controlGrid1.setIndex(selectedIndex);
+    });
+
+    controlGridContainer1.addEventListener('onindexchange', (e) => {        
+        selectedIndex = e.detail.index;
+        basicTimeline1.setIndex(e.detail.index);
+        slider1.setIndex(e.detail.index);
     })
 
-    basicTimelineEl.addEventListener('onindexchange', (e) => {
-        //console.log("Event Caught: ", e);
+    basicTimelineEl.addEventListener('onindexchange', (e) => {        
         selectedIndex = e.detail.index;
         controlGrid1.setIndex(selectedIndex);
+        slider1.setIndex(e.detail.index);
     }); 
-    
-    
+      
 
 
 </script>

@@ -5,11 +5,11 @@
     justify-content: space-between;
     width: 100%;
     max-width: 25%;
-    margin: 10px 0px;
+    margin: 5px 0px;
 }
 
 .control-box {
-    border: 1px solid #444;
+    border: 2px solid #444;
     width: 20px;
     height: 20px;    
     cursor: pointer;
@@ -17,4 +17,16 @@
 
 .control-box.selected {
     background: rgba(0,0,0,0.5);
+}
+
+/* Light Theme */
+.control-box.light {
+    border: 2px solid white;
+}
+.control-box.selected.light {
+    background: rgba(255,255,255, 0.5);
+}
+
+.control-box.round {
+    border-radius: 20px;
 }

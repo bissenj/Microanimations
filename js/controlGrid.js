@@ -17,36 +17,44 @@
 
 class ControlGrid {
 
-    componentEl = undefined;
-    quantity = 0;
-    selectedIndex = 0;
+    componentEl = undefined;    
+    state = {
+        quantity: 0,
+        selectedIndex: 0,
+        theme:'',
+    }
 
-    constructor(componentEl, quantity, selectedIndex) {
+    constructor(componentEl, quantity, selectedIndex, theme = '') {
         this.componentEl = componentEl;
-        this.quantity = quantity;
-        this.selectedIndex = selectedIndex;
+        this.state.quantity = quantity;
+        this.state.selectedIndex = selectedIndex;
+        this.state.theme = theme;
 
         this.init();
 
-        console.log("Control Grid Loaded. Selected Index: ", this.selectedIndex);
+        console.log("Control Grid Loaded. Selected Index: ", this.state.selectedIndex);
     }
 
     // Private Methods
     init() {
-        this.render(this.componentEl, this.quantity, this.selectedIndex);
+        this.render(this.componentEl, this.state.quantity, this.state.selectedIndex);
+
+        // Add event handlers
+        this.addEventHandlers(this.componentEl);
     }
 
     render(componentEl, quantity, index) {
         if (componentEl) {
 
+            //componentEl.tabIndex=0;
             // Just in case aria-role is not set for the component.
-            componentEl.setAttribute("role", "radiogroup");
+            componentEl.setAttribute("role", "radiogroup");            
 
             let html = "";   
            
             let i = 0; 
             for(i = 0; i < quantity; i++) {
-                html += `<div class='control-box' data-index=${i} role="radio"></div>`;
+                html += `<div class='control-box ${this.state.theme}' data-index=${i} role="radio" tabIndex=0></div>`;
             }    
             componentEl.innerHTML = html;
 
@@ -64,18 +72,30 @@ class ControlGrid {
         }  
     }
 
+    // Set the event handlers for this component
+    // Keyboard: left / right updates index    
+    addEventHandlers(componentEl) {                  
+        // Add support for arrow keys to move through list.
+        componentEl.onkeydown = (e) => {
+            console.log('onkeydown');      
+            e = e || window.event;  
+            if (e.keyCode == '37') this.setIndex(this.state.index - 1);
+            if (e.keyCode == '39') this.setIndex(this.state.index + 1);
+        }
+    }
+
     handleClick(e) {
         // Remove old selected index styles
         this.componentEl.querySelector('.selected').classList.remove('selected');
 
         // Set the new selected index
-        this.selectedIndex = parseInt(e.target.dataset.index);
+        this.state.selectedIndex = parseInt(e.target.dataset.index);
 
         // Add new selected index styles        
-        this.componentEl.children[this.selectedIndex].classList.add('selected');
+        this.componentEl.children[this.state.selectedIndex].classList.add('selected');
         
         // Send out an event so other components know the index changed
-        this.dispatchIndexChanged(this.selectedIndex);
+        this.dispatchIndexChanged(this.state.selectedIndex);
     }
 
     // Public Methods

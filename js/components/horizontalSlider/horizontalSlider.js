@@ -164,8 +164,9 @@ class HorizontalSlider {
 
         html += "<div class='slide-viewer'>";
         html += "<div class='slide-group'>";
-        data.forEach((item) => {
-          html += renderFunction(item);        
+        data.map((item, index) => {
+          html += renderFunction(item, index);
+          return html;        
         });
         html += "</div>";
         html += "</div>";
@@ -398,11 +399,11 @@ class HorizontalSlider {
   // -----------------------------------------------------------------
   // PUBLIC METHODS
   // -----------------------------------------------------------------
-  getSelectedIndex() {
+  getIndex() {
     return this.selectedIndex;
   }
 
-  setSelectedIndex(index) { 
+  setIndex(index) { 
     console.log("setSelectedIndex:", index);
     if (this.allowWrap) {
       index += 1;

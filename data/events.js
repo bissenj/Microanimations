@@ -1,17 +1,7 @@
 
 
 // Data
-const events = [
-    {
-        yearStart: 1998, 
-        yearEnd:2022, 
-        name: 'Work Experience', 
-        tools: 'Software Development Work Experience', 
-        image: '',
-        summary: '',
-        story1: '<p>My introduction to programming started when I was 8 on my brothers TI-99 plunking away at the keyboard learning basic concepts like variables and loops in TI-BASIC.  Years later in high school I took my first official computer programming classes and things started to click. </p><p>  In college I switched majors from engineering to computer science after I realized I enjoy seeing the result of my work at the end of the day, and I wasnt getting that from my engineering classes.  That theme carried into my career starting as an IT generalist and gradually moving towards the front end where I find meaning in organizing and presenting information in a visually pleasing manner. <p>Click around to see where my career has taken me.</p>',
-        story: '<p>Application Engineer, Senior Web Developer, Web Developer, Systems Specialist, Testing Intern,Veteran, Business Owner <p>' 
-    },
+const events = [    
     {
         yearStart: 1998, 
         yearEnd:2003, 

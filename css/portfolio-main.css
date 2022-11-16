@@ -15,13 +15,31 @@
 
 section { 
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
+    height: 100%;
     
     color: white;     
     font-size: 3em;  
     
     overflow-x: hidden;    
 }
+
+
+section.work {
+    /* height: 100vh;   */
+    height: 100%;  
+    background: linear-gradient(
+        var(--slider-image-overlay),
+        var(--slider-image-overlay)),
+        url('../img/timeline/snow_up_bw_white.png');
+    background-size: cover;  
+    background-position: 25%;     
+
+    /* background: white; */
+    border-bottom: 20px solid white;    
+}
+
+
 
 section.center {
     display: grid;     
@@ -55,6 +73,7 @@ section.center {
     justify-content: flex-end;
 }
 
+/* PADDING */
 .p10 {
     padding: 10px;
 }
@@ -64,3 +83,12 @@ section.center {
 .p10-20 {
     padding: 10px 20px;
 }
+
+/* BACKGROUND */
+.bg1 { background-color: var(--primary-1); }
+.bg2 { background-color: var(--primary-5); }
+.bg3 { background-color: var(--primary-6); }
+.bg4 { background-color: var(--primary-7); }
+.bg9 { background-color: var(--primary-9); }
+.bg10 {background-color: var(--primary-10);}
+
