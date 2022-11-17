@@ -242,6 +242,19 @@
         }
     }); 
 
+
+    // TEST Projects Button
+    const exploreProjectsButton = document.querySelector('section.projects .text').addEventListener('click', (e) => {
+        console.log("Click");  
+        const projectImage = document.querySelector('section.projects .imagery');
+        if (projectImage.classList.contains('active')) {
+            projectImage.classList.remove('active');
+        }
+        else {        
+            projectImage.classList.add('active');
+        }
+    });
+
     
     /*  HANDLE RESIZE  */
     window.onresize = () => {  

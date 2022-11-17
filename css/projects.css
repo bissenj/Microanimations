@@ -9,7 +9,7 @@ section.projects {
 
     display: block;
     background: #ccc;
-    background: linear-gradient(#1c69f03d, #1c69f026);
+    /* background: linear-gradient(#1c69f03d, #1c69f026); */
 
     /* padding-top: 80px; */
 
@@ -44,6 +44,10 @@ section.projects .text {
     /* transform: skew(15); */
 }
 
+section.projects .text:hover {
+    cursor: pointer;
+}
+
 .chevron-right {
     width: 24px;
     height: 24px;  
@@ -67,14 +71,22 @@ section.projects .text {
 
 
 section.projects .imagery {
-    background: url(../img/projects/collage.png); 
+    background: url(../img/projects/collage.png), linear-gradient(#1c69f03d, #1c69f026); 
     background-repeat: no-repeat;
     background-position: 25%;
     background-size: 100%;
     background-size: cover;        
     
     width: 100%;
-    height: 100%;        
+    height: 100%;    
+    
+    transition: transform 2s, height 2s, width 2s;
+}
+
+section.projects .imagery.active {
+    width: 35%;
+    height: 35%;
+    transform: translateX(-200px);
 }
 
 
