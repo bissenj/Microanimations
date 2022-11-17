@@ -130,7 +130,9 @@ class HorizontalSlider {
     if ((this.componentEl.offsetWidth != this.componentWidth) || (this.componentEl.offsetHeight != this.componentHeight)) { needsToResize = true;}
 
     if (needsToResize) {
-      console.log("Component needs to resize.");
+      console.log("Slideshow needs to resize.");
+      console.log("Old W/H: ", this.componentWidth, this.componentHeight);
+      console.log("New W/H: ", this.componentEl.offsetWidth, this.componentEl.offsetHeight);
       
       // destroy current component
       this.componentEl.innerHTML = "";
@@ -315,13 +317,12 @@ class HorizontalSlider {
           // match the data array.
           newIndex -= 1;
         }
-      }
-      
+      }      
       
       console.log("Selected Index: ", this.selectedIndex, "New Index: ", newIndex);    
-
+      
       this.dispatchOnSlide(newIndex);
-
+      
       this.allowMove = false;
     }
   }
@@ -361,7 +362,9 @@ class HorizontalSlider {
     // Show content
     this.slidegroup.children[this.selectedIndex].classList.remove('hide-content');
 
-    this.dispatchOnSlideComplete(newIndex);    
+
+    // This was a terrible idea.
+    //this.dispatchOnSlideComplete(newIndex);    
   }
 
   
@@ -371,6 +374,7 @@ class HorizontalSlider {
 
   // Triggered when selected index is changed (but before animation starts)
   dispatchOnSlide(index) {
+    //console.log("horizontalSlider -> onSlide: ", index);
     const event = new CustomEvent('onslide', {
       bubbles: true,
       detail: { 
@@ -384,6 +388,8 @@ class HorizontalSlider {
 
   // Triggered when selected index is changed and animation is complete.
   dispatchOnSlideComplete(index) {
+    console.log("horizontalSlider -> onSlideComplete: ", index);
+
     const event = new CustomEvent('onslidecomplete', {
       bubbles: true,
       detail: { 
@@ -404,6 +410,7 @@ class HorizontalSlider {
   }
 
   setIndex(index) { 
+    
     console.log("setSelectedIndex:", index);
     if (this.allowWrap) {
       index += 1;
@@ -415,6 +422,14 @@ class HorizontalSlider {
 
     let direction = index - this.selectedIndex;      
     console.log("Index:", index, "direction: ", direction);
+    
+
+    // Make sure the index actually changed before doing anything.
+    if(index == this.selectedIndex) { 
+      console.log("Bailing - Index did not change");
+      return;
+    }
+
     this.moveSlides(direction);
     
     /*

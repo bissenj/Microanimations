@@ -10,7 +10,7 @@
   <link rel='stylesheet' href='css/landing.css' />
   <link rel='stylesheet' href='css/hero.css' />
   <link rel='stylesheet' href='css/projects.css' />
-  <link rel='stylesheet' href='css/timeline-slider.css' />
+  <link rel='stylesheet' href='css/work-history-slides.css' />
   <link rel='stylesheet' href='js/components/basicTimeline/basicTimeline.css' />
   <link rel='stylesheet' href='js/components/horizontalSlider/horizontalSlider.css' />
   <link rel='stylesheet' href='css/control-grid.css' />
@@ -102,8 +102,6 @@
     </section>
 
     <section class='image-collage'>
-        <!-- OPTIONAL IDEA -- ONLY SHOW ONE IMAGE -->
-
         <div class='diagonal-rects'>
             <!-- Row 1 -->
             <div class='row1'>               
@@ -114,26 +112,8 @@
             <!-- Row 2  -->
             <div class='row2'>
                 <div class='about-image image4' data-index=3></div>
-                <div class='about-image image5' data-index=4></div>
-                <!-- <div class='image6'></div>
-                <div class='image7'></div> -->
-            </div>
-
-            <!-- <div class='modal-overlay'></div> -->
-
-            <!-- Diagonal Shadow -->
-            <!-- <div class='row3'></div> -->
-            <!-- Row 1 -->
-            <!-- <div class='row1' style='width: 100%; background-color: white'>               
-                <div class='image1'><img src='/img/hero/huckleberry-lookout.jpg'/></div> 
-                <div class='image2'><img src='/img/hero/whitefish.jpg'/></div> 
-                <div class='image3'><img src='/img/hero/lakemcdonald.jpg'/></div>
-            </div>        -->
-            <!-- Row 2  -->
-            <!-- <div class='row2' style='width: 100%; background-color: white'>
-                <div class='image4'><img src='/img/hero/huckleberry-lookout.jpg'/></div>
-                <div class='image5'><img src='/img/hero/whitefish.jpg'/></div>
-            </div> -->
+                <div class='about-image image5' data-index=4></div>                
+            </div>           
         </div>
 
         <!-- Decorative Gradient -->
@@ -141,16 +121,9 @@
         
     </section>
 
-    <!-- Basic Timeline -->
-    <!-- <section>        
-        <div class='basic-timeline'></div>
-        <div id='workHistorySlider1' class='horizontalSlider'></div>
-        <div class='right-edge p10-20'><div class='control-grid'></div></div>
-    </section> -->
-
     <!-- Work -->
     <section class='work'>        
-        <div class='basic-timeline bg1'></div>
+        <div class='basic-timeline'></div>
         <div id='workHistorySlider1' class='horizontalSlider bg9'></div>
         <div class='bg10 right-edge p10-20'><div class='control-grid'></div></div>
     </section>
@@ -235,29 +208,38 @@
     let controlGridContainer1 = document.querySelector('.control-grid');
     const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex, 'light round');
 
-    slideContainer1.addEventListener('onslidecomplete', (e) => {
-        selectedIndex = e.detail.index;
-        basicTimeline1.setIndex(e.detail.index);
-        controlGrid1.setIndex(selectedIndex);
+    slideContainer1.addEventListener('onslide', (e) => {
+        //console.log("Caught Event: onSlide", e);      
+        if (e.detail.index != selectedIndex) {
+            selectedIndex = e.detail.index;
+            basicTimeline1.setIndex(e.detail.index);
+            controlGrid1.setIndex(selectedIndex);
+        }
     });
 
     controlGridContainer1.addEventListener('onindexchange', (e) => {        
-        selectedIndex = e.detail.index;
-        basicTimeline1.setIndex(e.detail.index);
-        slider1.setIndex(e.detail.index);
+        //console.log("Caught Event: onindexchange", e);      
+        if (e.detail.index != selectedIndex) {
+            selectedIndex = e.detail.index;
+            basicTimeline1.setIndex(e.detail.index);
+            slider1.setIndex(e.detail.index);
+        }
     })
 
-    basicTimelineEl.addEventListener('onindexchange', (e) => {        
-        selectedIndex = e.detail.index;
-        controlGrid1.setIndex(selectedIndex);
-        slider1.setIndex(e.detail.index);
+    basicTimelineEl.addEventListener('onindexchange', (e) => {  
+        //console.log("Caught Event: onindexchange", e);      
+        if (e.detail.index != selectedIndex) {
+            selectedIndex = e.detail.index;
+            controlGrid1.setIndex(selectedIndex);
+            slider1.setIndex(e.detail.index);
+        }
     }); 
 
     
     /*  HANDLE RESIZE  */
     window.onresize = () => {  
         console.log("Resize Event Detected"); 
-         
+
         slider1.handleResize();
         basicTimeline1.handleResize();
         //controlGrid1.handleResize();

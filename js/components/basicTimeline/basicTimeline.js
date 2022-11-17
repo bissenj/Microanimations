@@ -82,10 +82,13 @@ class BasicTimeline {
         if ((this.componentEl.offsetWidth != this.componentWidth) || (this.componentEl.offsetHeight != this.componentHeight)) { needsToResize = true;}
 
         if (needsToResize) {
-            console.log("Timeline Component needs to resize.");
-            
+            console.log("Timeline needs to resize.");
+            console.log("Old W/H: ", this.componentWidth, this.componentHeight);
+            console.log("New W/H: ", this.componentEl.offsetWidth, this.componentEl.offsetHeight);
+
+
             // destroy current component
-            //this.componentEl.innerHTML = "";
+            this.componentEl.innerHTML = "";
 
             // rebuild current component
             this.init();
@@ -322,6 +325,7 @@ class BasicTimeline {
 
     // Triggered when selected index is changed (but before animation starts)
     dispatchOnIndexChange(index) {
+        //console.log("Basic Timeline -> onIndexChange: ", index);
         const event = new CustomEvent('onindexchange', {
         bubbles: true,
         detail: { 

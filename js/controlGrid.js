@@ -100,6 +100,8 @@ class ControlGrid {
 
     // Public Methods
     setIndex(index) {
+        console.log("Control Grid - setIndex: ", index);
+
         this.selectedIndex = index;
 
         const boxes = this.componentEl.querySelectorAll('.control-box');
@@ -117,6 +119,7 @@ class ControlGrid {
 
     // Triggered when selected index is changed
     dispatchIndexChanged(index) {
+        //console.log("Control Grid -> onIndexChange: ", index);
         const event = new CustomEvent('onindexchange', {
             bubbles: true,
             detail: { 

@@ -15,7 +15,7 @@ var ImageModal = {
     // Event Handlers
     init: function() {
         //console.log(document.querySelector('div.image1'));
-        console.log(this.el.imageNodes);
+        //console.log(this.el.imageNodes);
 
         // click handlers
         ImageModal.el.imageNodes.forEach((node) => {

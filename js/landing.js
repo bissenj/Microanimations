@@ -81,7 +81,7 @@ carouselEls.forEach((item) => {
         item.classList.add('clicked');
 
         let index = item.dataset.index;
-        console.log("Index: ", index, backgrounds[index], backgroundEl);
+        //console.log("Index: ", index, backgrounds[index], backgroundEl);
         if (index) {      
             backgroundEl.classList.remove('fade-in');
             backgroundEl.classList.add('fade-out');
