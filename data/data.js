@@ -4,9 +4,9 @@
 export const imageCollage = [
     { caption: 'Lake season hiking up Whitefish Mountain to board down.'},
     { caption: 'Lake Mc Donald, Glacier National Park'},
-    { caption: 'Kayaking on Lake Antoine, Upper Peninsula of Michigan'},
+    { caption: 'Cloudpeak Wilderness, Wyoming'},
     { caption: 'Inversion day at Whitefish Mountain Ski Resort.'},
-    { caption: 'Hiking the Great Northern Mountain, Montana.'},
+    { caption: 'Great Northern Mountain, Montana.'},
 ];
 
 export const events = [

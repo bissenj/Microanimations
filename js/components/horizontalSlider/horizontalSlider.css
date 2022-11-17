@@ -71,7 +71,12 @@
 
     /* margin: 10px 100px; */
     margin: 5% 10%;
-    /* padding: 40px; */
+
+    /* Experimentation */
+    margin: 2% 10% 6% 10%;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #444;
 }
 
 

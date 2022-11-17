@@ -31,7 +31,8 @@ section.work {
     background: linear-gradient(
         var(--slider-image-overlay),
         var(--slider-image-overlay)),
-        url('../img/timeline/snow_up_bw_white.png');
+        url('../img/hero/kayak-scene.webp');
+        /* url('../img/timeline/snow_up_bw_white.png'); */
     background-size: cover;  
     background-position: 25%;     
 

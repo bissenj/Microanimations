@@ -154,7 +154,21 @@ var ImageModal = {
                         newElement.style.top = "-" + newTop + "px";            
 
                         newElement.style.maxHeight = newElementHeight  + 'px'; //'500px';
-                        newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';
+                        newElement.style.height = newElementHeight + 'px';// '400px'; //'100%';                        
+
+                        // window.setTimeout(() => {
+
+                        //     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        //     window.scrollTo({
+                        //         top: scrollTop - newElementHeight,                                
+                        //         behaviour: 'smooth'
+                        //         }
+                        //     );
+
+                        //     // Breaks when element is horizontally off screen
+                        //     //const options = {behavior: "smooth", block: "end" }
+                        //     //newElement.scrollIntoView(options);
+                        // }, 500);
 
                     }, 1200);   // This delay gives the rotation animatins time to finish before translating. Makes landing a bit smoother.             
                 }, 100);

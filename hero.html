@@ -85,8 +85,7 @@
     <section class='about'>   
         <!-- TEXT -->
         <div class='intro'>     
-            <p>Hi, I'm John</p>
-            
+            <p>Hi, I'm John</p>            
             <p>
                 For over two decades I have used my software development and design skills to help companies reach their goals.
                 I take work seriously and make sure projects succeed. 
@@ -94,8 +93,9 @@
                 I can be led.
                 I like to mentor but am humble enough to recognize everyone can teach me something.  
                 Mountains and Code is a combination of some of my professional work and some of my outside interests.  
-                Thanks for being here and I hope you enjoy it.
+                Thanks for being here.  
             </p>
+            <p>Lets have some fun.</p>
         </div>
         
         <!-- Divider -->
@@ -127,7 +127,7 @@
     <!-- Work -->
     <section class='work'>        
         <div class='basic-timeline'></div>
-        <div id='workHistorySlider1' class='horizontalSlider bg9'></div>
+        <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
         <div class='bg10 right-edge p10-20'><div class='control-grid'></div></div>
     </section>
 
@@ -183,7 +183,7 @@
         // return html;
 
         let html = `
-                <div class='slide hide-content' data-id=${index}'> 
+                <div class='slide hide-content bg9' data-id=${index}'> 
                     <!-- Event Header -->
                     <div class='event-header'>                        
                         <div>${item.yearStart} - ${item.yearEnd}</div>
