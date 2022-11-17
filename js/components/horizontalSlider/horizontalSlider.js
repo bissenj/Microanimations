@@ -140,6 +140,9 @@ class HorizontalSlider {
       // rebuild current component
       this.init();
     }
+    else {
+      console.log("Slideshow - did not need to resize.");
+  }
   }
 
   // Creates the necessary DOM elements for the slider:

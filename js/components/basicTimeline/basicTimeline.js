@@ -79,7 +79,7 @@ class BasicTimeline {
     handleResize() {
         let needsToResize = false;
 
-        if ((this.componentEl.offsetWidth != this.componentWidth) || (this.componentEl.offsetHeight != this.componentHeight)) { needsToResize = true;}
+        if ((this.componentEl.offsetWidth != this.state.componentWidth) || (this.componentEl.offsetHeight != this.state.componentHeight)) { needsToResize = true;}
 
         if (needsToResize) {
             console.log("Timeline needs to resize.");
@@ -92,6 +92,9 @@ class BasicTimeline {
 
             // rebuild current component
             this.init();
+        }
+        else {
+            console.log("Timeline - did not need to resize.");
         }
     }
 

@@ -29,6 +29,9 @@
         <div class='background scroll' data-rate='0.4' data-transform='scale(1.2)'></div>
 
         <div class='foreground-container'>
+            <!-- Version number for debugging -->
+            <div class='version-number ts1'>Version Number</div>
+
             <!-- Element 2:  Carousel Navigation  -->
             <div class='carousel-navigation-container'>
                 <div class='gradient-up animate'></div>
@@ -165,6 +168,10 @@
 
 <script>
     console.log("document is loaded");
+
+    // Update version number
+    const VERSION_NUMBER = "[11/16/2022-001]";
+    document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
     // Global data
     let selectedIndex = 0;
