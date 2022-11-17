@@ -83,7 +83,7 @@ class BasicTimeline {
 
         if (needsToResize) {
             console.log("Timeline needs to resize.");
-            console.log("Old W/H: ", this.componentWidth, this.componentHeight);
+            console.log("Old W/H: ", this.state.componentWidth, this.state.componentHeight);
             console.log("New W/H: ", this.componentEl.offsetWidth, this.componentEl.offsetHeight);
 
 

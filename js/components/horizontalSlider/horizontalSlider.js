@@ -119,8 +119,8 @@ class HorizontalSlider {
         
 
     // Capture the height and width so we can react to resize events
-    this.componentWidth = this.viewport.offsetWidth
-    this.componentHeight = this.viewport.offsetHeight;
+    this.componentWidth = this.componentEl.offsetWidth
+    this.componentHeight = this.componentEl.offsetHeight;
   }
 
   // If the components size changes the slide withs will be incorrect.  Recalculate the widths.
