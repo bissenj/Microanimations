@@ -95,3 +95,13 @@ section.center {
 
 /* TEST-SHADOW */
 .ts1 { text-shadow: 0 0 1px #444; }
+
+
+/* FLEX */
+
+.flex-row-apart {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}

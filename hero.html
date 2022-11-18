@@ -128,7 +128,12 @@
     <section class='work'>        
         <div class='basic-timeline'></div>
         <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
-        <div class='bg10 right-edge p10-20'><div class='control-grid'></div></div>
+        <div class='bg10 flex-row-apart'>
+            <div>
+                <button class='timeline-shutdown'>Deconstruct</button>
+            </div>
+            <div class='right-edge p10-20'><div class='control-grid'></div></div>
+        </div>
     </section>
 
     <!-- Projects -->
@@ -298,6 +303,13 @@
             projectImage.classList.add('active');
             projectList.classList.add('hidden');
         }
+    });
+
+    document.querySelector('.timeline-shutdown').addEventListener('click', (e) => {
+        console.log("destroy");
+        slider1.destroy();
+        controlGrid1.destroy();
+        basicTimeline1.destroy();
     });
 
     

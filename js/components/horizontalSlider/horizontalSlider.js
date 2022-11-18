@@ -370,6 +370,11 @@ class HorizontalSlider {
     //this.dispatchOnSlideComplete(newIndex);    
   }
 
+
+  destroy() {
+    this.componentEl.style.opacity = 0;    
+  }
+
   
   // -----------------------------------------------------------------
   // CUSTOM EVENTS
@@ -404,7 +409,7 @@ class HorizontalSlider {
     this.slidegroup.children[index].dispatchEvent(event);
   }
 
-
+  
   // -----------------------------------------------------------------
   // PUBLIC METHODS
   // -----------------------------------------------------------------

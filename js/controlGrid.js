@@ -98,6 +98,10 @@ class ControlGrid {
         this.dispatchIndexChanged(this.state.selectedIndex);
     }
 
+    destroy() {
+        this.componentEl.style.opacity = 0;    
+    }
+
     // Public Methods
     setIndex(index) {
         console.log("Control Grid - setIndex: ", index);

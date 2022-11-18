@@ -276,7 +276,7 @@ class BasicTimeline {
 
         this.componentEl.classList.add('faded');
     }
-    async #deconstructTimeline(componentEl) {
+    async deconstructTimeline(componentEl) {
         const timeline = componentEl.querySelector('.timeline');
         //if (timeline) {
             // Get all the elements into an array.

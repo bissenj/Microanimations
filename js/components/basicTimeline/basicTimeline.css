@@ -212,12 +212,12 @@
 }
 
 .deconstruct {
-    transition: transform 2s, opacity 2s;    
-    transform: translateY(240px);
+    transition: transform 3s, opacity 3s;    
+    transform: translateY(300px);
     opacity: 0;
 }
 .faded { 
-    transition: opacity 0.5s;
+    transition: opacity 1.5s;
     transition-delay: 250ms;
     opacity: 0;
 }
