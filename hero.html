@@ -132,13 +132,54 @@
     </section>
 
     <!-- Projects -->
-    <section class='projects'>        
-        <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
-        <div class='imagery'></div>        
+    <section class='projects'> 
+        <div class='projects-collage active'>
+            <div class='explore'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+        </div>
+
+        <div class='section-heading'> 
+            Project Case Studies      
+        </div>
+        
+        <!-- <div class='imagery'></div>      -->
+
+        <div class='projects-container'>            
+            <div class='projects-list hidden'>
+                <ul>
+                    <li class='project-item-container'>
+                        <div class='number'>01</div>
+                        <div class='divider'></div>
+                        <div class='project'>
+                            <span class='title'>Nightlight</span>
+                            <div class='summary'>A solution for the question: "So where are you guys?"  I built a GPS mapping and tracking platform with React and React Native so our families could stay up to date on our extended travels.  It was a lot of fun.</div>
+                        </div>                        
+                    </li>
+                    <li class='project-item-container'>
+                        <div class='number'>02</div>
+                        <div class='divider'></div>
+                        <div class='project'>
+                            <span class='title'>Field Time Entry</span>
+                            <div class='summary'>Building on the edge of our seats.  This was a three person project to replace an outdated and heavily integrated time keeping system for our company.  It turned out to be wildly successful.</div>
+                        </div>                        
+                    </li>
+                    <li class='project-item-container'>
+                        <div class='number'>03</div>
+                        <div class='divider'></div>
+                        <div class='project'>
+                            <span class='title'>Niagara Animal Hospital</span>
+                            <div class='summary'>Our business needed a website and I knew a guy (hint: me).</div>
+                        </div>                        
+                    </li>
+                </ul>
+            </div>
+        </div>   
     </section>
 
     <!-- Contact -->
-    <section class='contact center'><h1>Contact</h1></section>
+    <section class='contact center'>
+        <h1>Contact</h1>
+        <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+    </section>
 
 </main>
 </body>
@@ -170,7 +211,7 @@
     console.log("document is loaded");
 
     // Update version number
-    const VERSION_NUMBER = "[11/16/2022-001]";
+    const VERSION_NUMBER = "[11/17/2022-001]";
     document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
     // Global data
@@ -244,14 +285,18 @@
 
 
     // TEST Projects Button
-    const exploreProjectsButton = document.querySelector('section.projects .text').addEventListener('click', (e) => {
+    const exploreProjectsButton = document.querySelector('.projects-collage').addEventListener('click', (e) => {
         console.log("Click");  
-        const projectImage = document.querySelector('section.projects .imagery');
+        const projectImage = document.querySelector('.projects-collage');
+        const projectList = document.querySelector('.projects-list');
         if (projectImage.classList.contains('active')) {
             projectImage.classList.remove('active');
+
+            projectList.classList.remove('hidden');
         }
         else {        
             projectImage.classList.add('active');
+            projectList.classList.add('hidden');
         }
     });
 
