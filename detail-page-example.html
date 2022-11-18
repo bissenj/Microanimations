@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
+  <title>Page Template</title> 
+  <link rel='stylesheet' href='css/global.css' />  
+  <link rel='stylesheet' href='css/portfolio-main.css' />  
+  <link rel='stylesheet' href='js/components/pageSegments/pageSegments.css' />  
+  <link rel='stylesheet' href='css/media-queries.css' />
+</head>
+
+<body>
+<main>
+
+<section class='detail-page'></section>
+
+</main>
+</body>
+
+<script src="js/components/pageSegments/pageSegments.js"></script>
+<script src="/Microanimations/js/components/pageSegments/pageSegments.js"></script> 
+
+<script>
+    console.log("page loaded");
+    const data = [
+        {
+            type: 0,
+            classes: 'p40', 
+            image1: 'image1', 
+            text1: 'Field Time Entry'
+        },
+        {
+            type: 1,
+            classes: 'p-top-40', 
+            text1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            type: 2,
+            image1: 'image1', 
+            image2: 'image1', 
+            image3: 'image1'
+        },
+        {
+            type: 1,
+            text1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+            type: 3, 
+            image1: 'image1'
+        },
+        {
+            type: 4,
+            text1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            text2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        },
+        {
+            type: 0,
+            image1: 'image1', 
+            text1: 'Footer'
+        },
+
+    ];
+
+    const page = document.querySelector('.detail-page');
+    page.classList.add('loading-start');    
+    document.querySelector('main').classList.add('loading');
+
+    data.map((item) => {
+        page.append(renderFactory(item));
+    });
+
+    setTimeout(() => {
+        document.querySelector('main').classList.remove('loading');
+        page.classList.add('loading-finished');
+        page.classList.remove('loading-start');
+    }, 1000);
+
+</script>
+
+</html>
+
+
+<!-- DEAD CODE -->
+
+
+   <!-- Full width Image with Text Overlay -->
+    <!-- <div class='segment p40'>
+        <div class='image-full-width grid-center'>
+            <h1 class='text-overlay'>Field Time Entry<h1/>
+        </div>
+    </div> -->
+
+    <!-- Centered Text Block -->
+    <!-- <div class='segment p80 p-top-0'>
+        <div class='text-block-half grid-center'>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>            
+        </div>
+    </div> -->
+
+    <!-- 2-1 Image collage -->
+    <!-- <div class='segment'>
+        <div class='image-collage-2-1'>
+            <div class='one'></div>
+            <div class='two'></div>
+            <div class='three'></div>
+        </div>
+    </div> -->
+
+    <!-- 2-1 Image collage -->
+    <!-- <div class='segment'>
+        <div class='image-grid-2-1'>
+            <div class='grid-left'>            
+                <div class='one'>One</div>
+                <div class='two'>Two</div>
+            </div>            
+            <div class='three'>Three</div>            
+        </div>
+    </div> -->
+
+     <!-- Centered Text Block -->
+     <!-- <div class='segment p80'>
+        <div class='text-block-half grid-center'>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>            
+        </div>
+    </div> -->
+       
+    <!-- Full Width Image -->
+    <!-- <div class='segment'>
+        <div class='image-full-width grid-center'>          
+        </div>
+    </div> -->
+
+     <!-- 2 text columns -->
+     <!-- <div class='segment p80'>
+        <div class='text-block-2'>
+            <div class='text-block-half grid-center'>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>            
+            </div>
+            <div class='text-block-half grid-center'>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>            
+            </div>
+        </div>        
+    </div> -->
