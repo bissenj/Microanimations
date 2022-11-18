@@ -155,7 +155,10 @@ section.projects .imagery.active {
 
     width: 100%;
     height: 100%;
-    clip-path: inset(28% 52% 20% 10%);
+
+    -webkit-clip-path: inset(28% 52% 20% 10%);
+    clip-path: inset(28% 52% 20% 10%);    
+
     background-size: 80%;
     transition: clip-path 1s, background-size 1s;
 
@@ -184,9 +187,12 @@ section.projects .imagery.active {
     height: 100%;
     top: 0;
     left: 0;
+    
+    background-size: 100%;     
 
-    background-size: 100%;        
+    -webkit-clip-path: inset(0% 0% 0% 0%);
     clip-path: inset(0% 0% 0% 0%);
+    
     
     /* transition: clip-path 2s; */
     /* transform: translateX(0px);     */
