@@ -1,4 +1,6 @@
 
+const IMAGE_PATH = './img/projects';
+
 
 function renderFactory(data) {
     // console.log('RenderFactory(): ', data);
@@ -22,6 +24,9 @@ function renderFactory(data) {
         case 4: 
             result = renderTextBlockTwoColumn(data);
             break;
+        case 5: 
+            result = renderTextBlocksWithHeading(data);
+            break;
         default:
             console.log("renderFactory: unidentified index -> ", index);
             result = renderOops();
@@ -42,32 +47,80 @@ function renderOops() {
 
 
 function renderFullWidthImage(data) {
-    const image1 = data.image1;
-    const optionalClasses = data.classes || '';
+    const image1 = data.image1 ?? '';    
+    const optionalClasses = data.classes ?? '';
+
+    // Logic
+
+    let imageContainer = '';
+    if (image1 != '') {
+        imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
+    }
+
+    console.log("imageContainer: ", imageContainer);
+
+    // let style = `background: url(${IMAGE_PATH}/${image1}); background-size: cover;`;
+    // let html = `
+    //     <!-- Full Width Image -->
+    //     <div class='segment ${optionalClasses}' style='${style}'>
+    //         <div class='image-background-full-width'></div>
+    //     </div>
+    // `;    
 
     let html = `
-        <!-- Full Width Image -->
+        <!-- Full width Image -->
         <div class='segment  ${optionalClasses}'>
-            <div class='image-full-width grid-center'>          
+            <div class='image-full-width grid-center'>
+                ${imageContainer}                                    
             </div>
         </div>
-    `;    
+    `;
     return createNode(html);
 }
 
 function renderFullWidthImageWithTextOverlay(data) {
-    const image1 = data.image1;
+    const image1 = data.image1 ?? '';
     const text1 = data.text1;
-    const optionalClasses = data.classes || '';
+    const text2 = data.text2 ?? '';
+    const optionalClasses = data.classes ?? '';
+
+    // Logic
+    let imageContainer = '';
+    if (image1 != '') {
+        imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
+    }
+
+    let text2Container = '';
+    if (text2 != '') {
+        text2Container = `<div class='top-right'>${text2}</div>`;
+    }
+
+    console.log("imageContainer: ", imageContainer);
     
+    // let html = `
+    //     <!-- Full width Image with Text Overlay -->
+    //     <div class='segment ${optionalClasses}'>
+    //         <div class='image-full-width grid-center'>
+    //             <h1 class='text-overlay'>${text1}<h1/>
+    //         </div>
+    //     </div>
+    // `;
+
     let html = `
         <!-- Full width Image with Text Overlay -->
         <div class='segment ${optionalClasses}'>
             <div class='image-full-width grid-center'>
-                <h1 class='text-overlay'>${text1}<h1/>
+                ${imageContainer}                        
+                <div class='text-container grid-center'>
+                    <h1 class='text-overlay bottom-right'>${text1}</h1>               
+                </div>
+                ${text2Container}
             </div>
         </div>
     `;
+
+
+
     return createNode(html);
 }
 
@@ -123,6 +176,45 @@ function renderTextBlockTwoColumn(data) {
                 <p>${text2}</p>            
                 </div>
             </div>        
+        </div>
+    `;
+    return createNode(html);
+}
+
+function renderTextBlocksWithHeading(data) {
+    const heading = data.heading || '';
+
+    const text1 = data.text1;
+    const optionalClasses = data.classes || '';
+
+    let headingHtml = '';
+    if (heading != '') {
+        headingHtml = `<h4>${heading}</h4>`;
+    }
+
+    let paragraphHtml = '';
+    data.text.map((item) => {
+        let classes = item.classes ?? '';        
+
+        paragraphHtml += `<p class='${classes}'>${item.text}</p>`;
+
+        let imageContainer = '';
+        let image = item.image ?? '';
+        if (image != '') {
+            imageContainer = `<img src='${IMAGE_PATH}/${image}'></img>`;                        
+        }
+        
+        paragraphHtml += imageContainer;
+
+    });
+
+    let html = `
+        <!-- Centered Text Block -->
+        <div class='segment p80 ${optionalClasses}'>
+            <div class='text-block-half grid-center'>
+                ${headingHtml}
+                ${paragraphHtml}
+            </div>
         </div>
     `;
     return createNode(html);
