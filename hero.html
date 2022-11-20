@@ -19,7 +19,7 @@
   
 </head>
 
-<body>
+<body class='fade-out'>
     <!-- <div class='modal'></div> -->
 <main>   
     <!-- Hero Image -->
@@ -82,7 +82,7 @@
     </section>
 
     <!-- About -->
-    <section class='about'>   
+    <section id='about' class='about'>           
         <!-- TEXT -->
         <div class='intro'>     
             <p>Hi, I'm John</p>            
@@ -125,7 +125,7 @@
     </section>
 
     <!-- Work -->
-    <section class='work'>        
+    <section id='work' class='work'>         
         <div class='basic-timeline'></div>
         <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
         <div class='bg10 flex-row-apart'>
@@ -137,7 +137,7 @@
     </section>
 
     <!-- Projects -->
-    <section class='projects'> 
+    <section id='projects' class='projects'> 
         <div class='projects-collage active'>
             <div class='explore'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
         </div>
@@ -150,16 +150,16 @@
 
         <div class='projects-container'>            
             <div class='projects-list hidden'>
-                <ul>
-                    <li class='project-item-container'>
+                <ul>                    
+                    <li class='project-item-container' data-index=0 onclick='handleProjectsClick(0)'}>                        
                         <div class='number'>01</div>
                         <div class='divider'></div>
                         <div class='project'>
                             <span class='title'>Nightlight</span>
                             <div class='summary'>A solution for the question: "So where are you guys?"  I built a GPS mapping and tracking platform with React and React Native so our families could stay up to date on our extended travels.  It was a lot of fun.</div>
-                        </div>                        
-                    </li>
-                    <li class='project-item-container'>
+                        </div>                                                
+                    </li>                    
+                    <li class='project-item-container' data-index=1>
                         <div class='number'>02</div>
                         <div class='divider'></div>
                         <div class='project'>
@@ -167,7 +167,7 @@
                             <div class='summary'>Building on the edge of our seats.  This was a three person project to replace an outdated and heavily integrated time keeping system for our company.  It turned out to be wildly successful.</div>
                         </div>                        
                     </li>
-                    <li class='project-item-container'>
+                    <li class='project-item-container' data-index=2>
                         <div class='number'>03</div>
                         <div class='divider'></div>
                         <div class='project'>
@@ -191,37 +191,53 @@
 
 
 <script src="/js/landing.js"></script>
-<!-- <script src="/Microanimations/js/landing.js"></script> -->
+<script src="/Microanimations/js/landing.js"></script>
 
 <script type="module" src="/js/hero.js"></script>
-<!-- <script type="module" src="/Microanimations/js/hero.js"></script> -->
-
-<!-- <script type="module" src="/js/timeline-slider.js"></script> -->
-<!-- <script type="module" src="/Microanimations/js/timeline-slider.js"></script> -->
+<script type="module" src="/Microanimations/js/hero.js"></script>
 
 <script src="/js/controlGrid.js"></script>
-<!-- <script src="/Microanimations/js/controlGrid.js"></script> -->
+<script src="/Microanimations/js/controlGrid.js"></script>
 
 <script src="/data/events.js"></script>
-<!-- <script src="/Microanimations/data/events.js"></script> -->
+<script src="/Microanimations/data/events.js"></script>
 
 <script src="/js/components/basicTimeline/basicTimeline.js"></script>
-<!-- <script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script> -->
+<script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script>
 
 <script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
-<!-- <script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script> -->
+<script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script>
 
 
 <script>
     console.log("document is loaded");
 
+    // Kinda hacky but works for now.
+    setTimeout(() => {
+        document.querySelector('body').classList.remove('fade-out');
+    }, 1000);
+
     // Update version number
-    const VERSION_NUMBER = "[11/17/2022-001]";
+    const VERSION_NUMBER = "[11/20/2022-005]";
     document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
     // Global data
     let selectedIndex = 0;
     const slideData = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
+
+    function handleProjectsClick(index) {
+        console.log("handle projects click", index);
+
+        // Fade out screen
+        document.querySelector('body').classList.add('fade-out');
+
+        // update window location
+        setTimeout(() =>{ 
+            window.location = '/detail-page-example.html';
+        },750);
+
+    }
+
 
     // Custom Render function for the slides
     function renderSlide(item, index) {

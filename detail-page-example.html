@@ -15,6 +15,10 @@
 <main>
 
 <section class='detail-page'>
+
+    <!-- Link to Home -->
+    <div class='home-link' title='home' onclick='handleHomeClick()'></div>
+
     <!-- Full width Image with Text Overlay -->
     <!-- <div class='segment p40'>
         <div class='image-full-width grid-center'>
@@ -177,6 +181,19 @@
         //document.querySelector('.slide-left').classList.add('visible');
         //document.querySelector('.slide-right').classList.add('visible');
     }, 100);
+
+    function handleHomeClick() {
+        console.log("handle home click");
+
+        // Fade out screen
+        document.querySelector('body').classList.add('fade-out');
+
+        // update window location
+        setTimeout(() =>{ 
+            window.location = '/hero.html#projects';
+        },750);
+
+    }
 
 
     // ---------------------------------------------------------

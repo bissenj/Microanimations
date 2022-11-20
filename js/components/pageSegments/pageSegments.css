@@ -248,14 +248,14 @@ p.fs16 { font-size: 1.6em;}
 main {
     min-height: 100vh;
 }
-main::before {
-    content: "loading...";           
+/* main::before {
+    content: "";           
     position: absolute;
     z-index: 1;  
     top: 50%;  
     left: calc(50% - 30px);    
     color: rgb(230, 230, 230);    
-}
+} */
 
 .loading-finished {
     opacity: 1;
@@ -291,6 +291,24 @@ main::before {
 .scroll-target.visible {
     opacity: 1;
 }
+
+
+.home-link {
+    position: fixed;
+    z-index:200;
+    top: 10px;
+    left: 10px;
+    height: 24px;
+    width: 24px;
+    background: url('/img/compass.svg');
+    transition: transform 1s ease-out;
+}
+.home-link:hover {
+    transition: transform 0.5s;
+    transform: rotate(720deg) scale(1.2);
+    cursor: pointer;
+}
+
 
 
 
