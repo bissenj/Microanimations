@@ -83,7 +83,7 @@ function renderFullWidthImage(data) {
 
 function renderFullWidthImageWithTextOverlay(data) {
     const image1 = data.image1 ?? '';
-    const text1 = data.text1;
+    const text1 = data.text1 ?? '';
     const text2 = data.text2 ?? '';
     const optionalClasses = data.classes ?? '';
 
@@ -91,6 +91,13 @@ function renderFullWidthImageWithTextOverlay(data) {
     let imageContainer = '';
     if (image1 != '') {
         imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
+    }
+
+    let text1Container = '';
+    if (text1 != '') {
+        text1Container = `<div class='text-container grid-center'>
+            <h1 class='text-overlay bottom-right slide-right'>${text1}</h1>               
+        </div>`;
     }
 
     let text2Container = '';
@@ -114,9 +121,7 @@ function renderFullWidthImageWithTextOverlay(data) {
         <div class='segment ${optionalClasses}'>
             <div class='image-full-width grid-center'>
                 ${imageContainer}                        
-                <div class='text-container grid-center'>
-                    <h1 class='text-overlay bottom-right slide-right'>${text1}</h1>               
-                </div>
+                ${text1Container}
                 ${text2Container}
             </div>
         </div>
