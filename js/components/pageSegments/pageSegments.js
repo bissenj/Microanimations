@@ -27,6 +27,9 @@ function renderFactory(data) {
         case 5: 
             result = renderTextBlocksWithHeading(data);
             break;
+        case 6: 
+            result = renderMixedBlock(data);
+            break;
         default:
             console.log("renderFactory: unidentified index -> ", index);
             result = renderOops();
@@ -69,7 +72,7 @@ function renderFullWidthImage(data) {
 
     let html = `
         <!-- Full width Image -->
-        <div class='segment  ${optionalClasses}'>
+        <div class='segment scroll-target  ${optionalClasses}'>
             <div class='image-full-width grid-center'>
                 ${imageContainer}                                    
             </div>
@@ -92,7 +95,7 @@ function renderFullWidthImageWithTextOverlay(data) {
 
     let text2Container = '';
     if (text2 != '') {
-        text2Container = `<div class='top-right'>${text2}</div>`;
+        text2Container = `<div class='top-right slide-left'>${text2}</div>`;
     }
 
     console.log("imageContainer: ", imageContainer);
@@ -112,7 +115,7 @@ function renderFullWidthImageWithTextOverlay(data) {
             <div class='image-full-width grid-center'>
                 ${imageContainer}                        
                 <div class='text-container grid-center'>
-                    <h1 class='text-overlay bottom-right'>${text1}</h1>               
+                    <h1 class='text-overlay bottom-right slide-right'>${text1}</h1>               
                 </div>
                 ${text2Container}
             </div>
@@ -214,6 +217,51 @@ function renderTextBlocksWithHeading(data) {
             <div class='text-block-half grid-center'>
                 ${headingHtml}
                 ${paragraphHtml}
+            </div>
+        </div>
+    `;
+    return createNode(html);
+}
+
+
+function renderMixedBlock(data) {    
+    const optionalClasses = data.classes || '';
+
+    const heading = data.heading || '';    
+    let headingHtml = '';
+    if (heading != '') {
+        headingHtml = `<h4>${heading}</h4>`;
+    }
+    
+
+    let elementsHtml = '';
+    data.content.map((item) => {        
+        let classes = item.classes ?? '';        
+        
+        // Mixed block content needs to go in their own div
+        elementsHtml += `<div class=${classes}>`;
+        
+        // Add a paragraph
+        let text = item.text ?? '';  
+        console.log("Text: ", text);      
+        if (text != '') {        
+            elementsHtml += `<p>${text}</p>`;
+        }
+
+        // Add an image        
+        let image = item.image ?? '';
+        if (image != '') {
+            elementsHtml += `<img src='${IMAGE_PATH}/${image}'></img>`;                        
+        }        
+        elementsHtml += `</div>`;
+    });
+
+    let html = `
+        <!-- Centered Text Block -->
+        <div class='segment p80 ${optionalClasses}'>
+            <div class='image-full-width grid-center'> 
+                ${headingHtml}               
+                ${elementsHtml}
             </div>
         </div>
     `;

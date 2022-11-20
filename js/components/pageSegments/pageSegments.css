@@ -22,7 +22,7 @@
 
 .image-full-width {
     position: relative;
-    background: black;
+    /* background: white; */
     /* background: rgba(0,0,0,0.5); */
     width: 100%;
     min-height: 400px;    
@@ -31,8 +31,9 @@
     /* width: 100%;
     display: block; */
     object-fit: cover;
-    width:inherit; 
-    height:inherit;
+    width:100%; 
+    height:100%;
+    margin: 0 auto;
     
 }
 /* .image-background-full-width {   
@@ -191,7 +192,7 @@
 
 .bottom-right {
     position: absolute;
-    bottom: 10%;    
+    bottom: 20%;    
     width: 100%;   
     padding: 20px; 
     
@@ -229,6 +230,16 @@ p.fs16 { font-size: 1.6em;}
     margin: 0 auto;
 }
 
+.w85 {
+    width: 85%;
+    margin: 0 auto;    
+}
+
+.bg0 {
+    background-color: black;
+}
+
+
 .loading-start {
     opacity: 0;    
 }
@@ -251,6 +262,34 @@ main::before {
 }
 
 
+/* ANIMATIONS & INTERSECTION OBSERVER */
+.slide-left {
+    transition: transform 2s, opacity 2s;
+    transform: translateX(-60px);
+    opacity: 0;
+}
+.slide-left.visible {
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.slide-right {
+    transition: transform 2s, opacity 2s;
+    transform: translateX(60px);
+    opacity: 0;
+}
+.slide-right.visible {
+    transform: translateX(0px);
+    opacity: 1;
+}
+
+.scroll-target {
+    transition: opacity 2s;
+    opacity: 0;
+}
+.scroll-target.visible {
+    opacity: 1;
+}
 
 
 
