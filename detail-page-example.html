@@ -190,14 +190,14 @@
 
         // TODO - FIX THIS!
         // HACK FOR GITHUB PAGES
-        let location = '';
+        let destination = '';
         if (location.protocol == "https:") {
-            location = '/Microanimations'
+            destination = '/Microanimations'
         }       
 
         // update window location
         setTimeout(() =>{ 
-            window.location = `${location}/hero.html#projects`;
+            window.location = `${destination}/hero.html#projects`;
         },750);
     }
 

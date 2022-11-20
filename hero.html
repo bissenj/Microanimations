@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
+  <link rel="icon" href="/mountain.ico" type="image/bmp">
   <title>Hero Example</title> 
   <link rel='stylesheet' href='css/global.css' />
   <link rel='stylesheet' href='css/portfolio-main.css' />
@@ -218,7 +219,7 @@
     }, 1000);
 
     // Update version number
-    const VERSION_NUMBER = "[11/20/2022-005]";
+    const VERSION_NUMBER = "[11/20/2022-007]";
     document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
     // Global data
@@ -233,14 +234,15 @@
 
         // TODO - FIX THIS!
         // HACK FOR GITHUB PAGES
-        let location = '';
+        let destination = '';
         if (location.protocol == "https:") {
-            location = '/Microanimations'
+            destination = '/Microanimations'
         }       
 
         // update window location
         setTimeout(() =>{ 
-            window.location = `${location}/detail-page-example.html`;
+            //console.log("Window Location: ", `${location}/detail-page-example.html`);
+            window.location = `${destination}/detail-page-example.html`;
         },750);
 
     }
