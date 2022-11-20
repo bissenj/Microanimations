@@ -140,7 +140,7 @@ section.projects .imagery.active {
 }
 
 .projects-collage {
-    background: url(../img/projects/collage.png), linear-gradient(#1c69f03d, #1c69f026), linear-gradient(#ffffff, #ffffff); 
+    background: url(../img/projects/collage.webp), linear-gradient(#1c69f03d, #1c69f026), linear-gradient(#ffffff, #ffffff); 
     /* background: rgba(0,0,0,0.5); */
     background-repeat: no-repeat;
     background-position: -90%;
@@ -161,6 +161,8 @@ section.projects .imagery.active {
 
     background-size: 80%;
     transition: clip-path 1s, background-size 1s;
+
+    cursor: pointer;
 
     /* width: 30%; */
     /* height: 50%;   */

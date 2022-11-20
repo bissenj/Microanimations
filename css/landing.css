@@ -6,7 +6,11 @@
     box-shadow: 0px 4px 6px #444;   
     z-index: 2;
     overflow:hidden;    
+
+    /* This is pretty sweet -> https://codepen.io/dev_loop/pen/jOborLv */
+    cursor: url('../img/compass.svg'), pointer;     
   }
+
   
   section .foreground {    
       position: relative;
@@ -25,30 +29,23 @@
       /* transform: translateZ(3px) scale(0.625); */
   }
   
-  section .background {    
-      position: absolute;
-      /* transform: translateZ(0px); */
-      /* z-index: -10; */
-      /* perspective: 20px; */
-      /* transform: translateZ(-1px) scale(1.5); */
+  section .background {       
+      position: absolute;      
   
       inline-size: 100%;
       block-size: 100%;
       background: rgba(0, 0, 0, 0.5);
-      background: url('../img/hero/hero-mt-aeneas.jpg'); 
-      /* background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5)), url('../img/hero/huckleberry-lookout.jpg'); */
+      background: url('../img/hero/hero-whitefish.jpg'); 
+      
       background-size: cover; 
       background-repeat: no-repeat;
   
-      /* filter: grayscale(100%) brightness(0.9); */
-      
-      transform:scale(1.2);  
-      background-position: 50% 50% !important;
-
-      /* transition: transform .5s;  */ 
+      /* These need to match the javascript starting values */
+      transform:scale(1.05);  
+      background-position: 50% 50%;
+            
       transition: opacity 0.5s;   
-      
-      /* box-shadow: 0 0 18px 18px #444 inset; */
+      /* animation: animate-background 8s infinite; */
   }
   section .background::after {
       content: '';
@@ -56,9 +53,16 @@
       width: 100%;
       position: absolute;
       z-index: 10;
-      background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5));
-      /* background: red; */
-  
+      background: linear-gradient(to right, rgba(0,0,0, 0) 65%, rgba(0,0,0, 0.5));       
+  }
+
+  @keyframes animate-background {
+    0% { background-position: 50% 50%; }
+    20% { background-position: 51% calc(50% - 2px)}
+    40% { background-position: 51% calc(50% + 3px)}
+    60% { background-position: 50% calc(50% + 2px)}
+    80% { background-position: 51% calc(50% - 1px)}
+    100% { background-position: 50% 50%; }
   }
   
   section .background-0 {
