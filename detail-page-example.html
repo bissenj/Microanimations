@@ -188,11 +188,17 @@
         // Fade out screen
         document.querySelector('body').classList.add('fade-out');
 
+        // TODO - FIX THIS!
+        // HACK FOR GITHUB PAGES
+        let location = '';
+        if (location.protocol == "https:") {
+            location = '/Microanimations'
+        }       
+
         // update window location
         setTimeout(() =>{ 
-            window.location = '/hero.html#projects';
+            window.location = `${location}/hero.html#projects`;
         },750);
-
     }
 
 
