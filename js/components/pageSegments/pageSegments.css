@@ -159,41 +159,48 @@
 
 /* Image Sequence */
 .fade-in-sequence { 
-    background-color: beige;
-    padding: 10%;
+    background-color: white;
+    padding: 4%;
     transition: background-color 2s;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-between; */
 }
 .fade-in-sequence.active {
     background-color: black;
 }
 
+/* FADE IN SEQUENCE */
 div.image img { height: 100%; width: 100%; display: block;}
 .primary {
     position: relative;      
-    z-index: 2;
-    top: 35%;
-    left: calc(50% - 225px/2);
-    top: calc(50% - 300px/2);
-    width: 225px;      
-    /* height: 300px;             */
-    transition: background-color 1s;
+    z-index: 2;    
+    width: 24%;     
+    /* min-width: 225px;      */
+    /* left: calc(50% - 225px/2);       */
+    left: calc(50% - 24%/2);      
   }
 .secondary {      
     position: absolute;      
-    z-index: 1;
-    top: calc(50% - 400px/2);
-    left: calc(20% - 200px/2);
-    width: 200px;
-    /* height: 300px; */    
+    z-index: 1;    
+    width: 19%;   
+    /* width: 200px;    */
+    /* min-width: 200px; */
+    left: calc(16% - 10%/2);
+    /* left: calc(20% - 200px/2); */
     transition: left 2s, opacity 2s;    
   }
 .tertiary {      
     position: absolute;      
-    z-index: 1;
-    top: calc(50% - 400px/2);
-    left: calc(80% - 200px/2);
-    width: 200px;
-    /* height: 300px; */    
+    z-index: 1;    
+    /* left: calc(80% - 200px/2); */
+    /* width: 200px; */
+    width: 19%;      
+    /* min-width: 200px; */
+    left: calc(74% - 10%/2);    
+    
     transition: left 2s, opacity 2s;    
   }
 
@@ -368,8 +375,37 @@ main {
     }  
     .detail-page { font-size: 18px; }
     p.fs16 { font-size: 1.1em;}  
+
+
+    .primary {
+        position: relative;      
+        z-index: 2;            
+        width: 225px;        
+        left: calc(50% - 225px/2);              
+      }
+    .secondary {      
+        position: absolute;      
+        z-index: 1;            
+        width: 200px;           
+        left: calc(20% - 200px/2);
+        transition: left 2s, opacity 2s;    
+      }
+    .tertiary {      
+        position: absolute;      
+        z-index: 1;    
+        left: calc(80% - 200px/2);
+        width: 200px;                
+        transition: left 2s, opacity 2s;    
+      }
+
+
     
 }
+
+
+
+
+
 
 
 

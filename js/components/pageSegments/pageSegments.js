@@ -63,7 +63,7 @@ function renderFullWidthImage(data) {
         imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
     }
 
-    console.log("imageContainer: ", imageContainer);
+    //console.log("imageContainer: ", imageContainer);
 
     // let style = `background: url(${IMAGE_PATH}/${image1}); background-size: cover;`;
     // let html = `
@@ -108,7 +108,7 @@ function renderFullWidthImageWithTextOverlay(data) {
         text2Container = `<div class='top-right slide-left'>${text2}</div>`;
     }
 
-    console.log("imageContainer: ", imageContainer);
+    //console.log("imageContainer: ", imageContainer);
     
     // let html = `
     //     <!-- Full width Image with Text Overlay -->
@@ -251,7 +251,7 @@ function renderMixedBlock(data) {
         
         // Add a paragraph
         let text = item.text ?? '';  
-        console.log("Text: ", text);      
+        //console.log("Text: ", text);      
         if (text != '') {        
             elementsHtml += `<p>${text}</p>`;
         }

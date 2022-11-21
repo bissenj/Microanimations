@@ -231,37 +231,67 @@
     }
 
 
-    // ---------------------------------------------------------
-    // Intersection Observer
-    // ---------------------------------------------------------
+    setTimeout(() => {
+        startObservers();        
+    }, 1000);
 
-    // get all the elements we need to watch
-    const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right, .fade-in-sequence');
-    if (targets.length > 0) {
-        console.log("Targets: ", targets);
-        // what to do with entries that are on screen
-        function handleIntersection(entries) {
-            entries.map((entry) => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('fade-in-sequence')) {
+
+    function startObservers() {
+        // ---------------------------------------------------------
+        // Intersection Observer 1 
+        // ---------------------------------------------------------
+
+        // get all the elements we need to watch
+        const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
+        if (targets.length > 0) {
+            console.log("Targets: ", targets);
+            // what to do with entries that are on screen
+            function handleIntersection(entries) {
+                entries.map((entry) => {
+                    if (entry.isIntersecting) {                    
+                        console.log("On Screen: ", entry);
+                        entry.target.classList.add('visible');                    
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }
+            // fire up the observer
+            const observer = new IntersectionObserver(handleIntersection);
+            targets.forEach((el) => {
+                observer.observe(el);
+            })
+        }
+
+        // ---------------------------------------------------------
+        // Intersection Observer 2 
+        // ---------------------------------------------------------
+
+        // get all the elements we need to watch
+        const animationTargets = document.querySelectorAll('.fade-in-sequence');
+        if (animationTargets.length > 0) {
+            //console.log("Targets: ", animationTargets);
+            // what to do with entries that are on screen
+            function triggerAnimations(entries) {
+                entries.map((entry) => {
+                    if (entry.isIntersecting) {                    
                         entry.target.classList.add('active');
                         entry.target.querySelector('.secondary').classList.remove('waiting');
                         entry.target.querySelector('.tertiary').classList.remove('waiting');
+                        animationObserver.unobserve(entry.target);
                     }
-                    else {
-                        console.log("On Screen: ", entry);
-                        entry.target.classList.add('visible');                    
-                    }
-                    observer.unobserve(entry.target);
-                }
-            });
+                });
+            }
+            // fire up the observer
+            const animationObserver = new IntersectionObserver(triggerAnimations, { 
+                rootMargin: '0%', threshold: 0.85 });
+
+            animationTargets.forEach((el) => {
+                animationObserver.observe(el);
+            })
         }
-        // fire up the observer
-        const observer = new IntersectionObserver(handleIntersection);
-        targets.forEach((el) => {
-            observer.observe(el);
-        })
     }
+
 
 </script>
 
