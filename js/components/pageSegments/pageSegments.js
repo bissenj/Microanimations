@@ -30,6 +30,9 @@ function renderFactory(data) {
         case 6: 
             result = renderMixedBlock(data);
             break;
+        case 7: 
+            result = renderAnimatedImageReveal(data);
+            break;
         default:
             console.log("renderFactory: unidentified index -> ", index);
             result = renderOops();
@@ -270,5 +273,33 @@ function renderMixedBlock(data) {
             </div>
         </div>
     `;
+    return createNode(html);
+}
+
+
+function renderAnimatedImageReveal(data) {
+    const optionalClasses = data.classes || '';
+
+    // Loop
+    let elementsHtml = '';
+    data.content.map((item) => {        
+        let classes = item.classes ?? '';        
+        
+        // Add an image        
+        let image = item.image ?? '';
+        if (image != '') {
+            elementsHtml += `<div class='${classes}'><img src='${IMAGE_PATH}/${image}'></img></div>`;                        
+        }        
+        
+    });
+
+    // Finish up
+    let html = `
+        <!-- Three Images with Animation Sequence -->
+        <div class='segment ${optionalClasses}'>
+            ${elementsHtml}
+        </div>
+    `;
+
     return createNode(html);
 }

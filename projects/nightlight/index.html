@@ -105,17 +105,39 @@
             text1: 'The App needed to be lightweight, simple, and fast.  I already have a number of GPS apps for hiking and hunting but they run a bit slow on our mid-level devices.  I just need a screen with a map and some user markers. My kids always want to know our elevation, so overlay that on the map as well.'
         },  
         {
-            type: 6, 
-            classes: 'bg0',
-            // heading: 'This is new section',
+            type: 7, 
+            classes: 'fade-in-sequence',            
             content: [
                 {
-                    classes: '',
-                    text: '',
-                    image: 'nightlight/devices.webp',
-                }
+                    classes: 'image primary',                    
+                    image: 'nightlight/phone-1.png',
+                },
+                {
+                    classes: 'image secondary waiting',                    
+                    image: 'nightlight/phone-2.png',
+                },
+                {
+                    classes: 'image tertiary waiting',                    
+                    image: 'nightlight/phone-3.png',
+                },
             ],            
         }, 
+        // {
+        //     type: 1,
+        //     text1: 'The App needed to be lightweight, simple, and fast.  I already have a number of GPS apps for hiking and hunting but they run a bit slow on our mid-level devices.  I just need a screen with a map and some user markers. My kids always want to know our elevation, so overlay that on the map as well.'
+        // },  
+        // {
+        //     type: 6, 
+        //     classes: 'bg0',
+        //     // heading: 'This is new section',
+        //     content: [
+        //         {
+        //             classes: '',
+        //             text: '',
+        //             image: 'nightlight/devices.webp',
+        //         }
+        //     ],            
+        // }, 
         // {
         //     type: 3, 
         //     classes: 'w85',
@@ -214,15 +236,22 @@
     // ---------------------------------------------------------
 
     // get all the elements we need to watch
-    const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
+    const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right, .fade-in-sequence');
     if (targets.length > 0) {
         console.log("Targets: ", targets);
         // what to do with entries that are on screen
         function handleIntersection(entries) {
             entries.map((entry) => {
                 if (entry.isIntersecting) {
-                    console.log("On Screen: ", entry);
-                    entry.target.classList.add('visible');
+                    if (entry.target.classList.contains('fade-in-sequence')) {
+                        entry.target.classList.add('active');
+                        entry.target.querySelector('.secondary').classList.remove('waiting');
+                        entry.target.querySelector('.tertiary').classList.remove('waiting');
+                    }
+                    else {
+                        console.log("On Screen: ", entry);
+                        entry.target.classList.add('visible');                    
+                    }
                     observer.unobserve(entry.target);
                 }
             });
