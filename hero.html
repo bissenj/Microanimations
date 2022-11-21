@@ -67,10 +67,10 @@
             <!-- Element 4:  Site Navigation -->
             <div class='nav-menu'>
                 <ul>
-                    <li>About</li>
-                    <li>Projects</li>
-                    <li>Work</li>
-                    <li>Contact</li>
+                    <li><a href='#about'>About</a></li>
+                    <li><a href='#projects'>Projects</a></li>
+                    <li><a href='#work'>Work</a></li>
+                    <li><a href='#contact'>Contact</a></li>
                 <ul>
             </div>
 
@@ -182,7 +182,7 @@
     </section>
 
     <!-- Contact -->
-    <section class='contact center'>
+    <section id='contact' class='contact center'>
         <h1>Contact</h1>
         <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
     </section>
@@ -242,7 +242,7 @@
         // update window location
         setTimeout(() =>{ 
             //console.log("Window Location: ", `${location}/detail-page-example.html`);
-            window.location = `${destination}/detail-page-example.html`;
+            window.location = `${destination}/projects/nightlight/`;
         },750);
 
     }
@@ -338,6 +338,25 @@
     });
 
     
+    const links = document.querySelectorAll('.nav-menu ul li a').forEach((el) =>{
+        el.addEventListener('click', handleMenuClick);
+    });
+    
+    // Testing menu clicks
+    function handleMenuClick(e) {
+        console.log('handleMenuClick: ', e);
+        e.preventDefault();
+        const s = e.target.href;
+        const id = s.substring(s.indexOf('#'));
+        console.log('Href: ', s, id);
+
+        const target = document.querySelector(id);
+        target.scrollIntoView({behavior: "smooth"});
+
+        return false;
+    }
+
+    
     /*  HANDLE RESIZE  */
     window.onresize = () => {  
         console.log("Resize Event Detected"); 
@@ -345,7 +364,8 @@
         slider1.handleResize();
         basicTimeline1.handleResize();
         //controlGrid1.handleResize();
-    }        
+    }      
+
 
 
 </script>

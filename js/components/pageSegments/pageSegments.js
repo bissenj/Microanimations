@@ -1,5 +1,5 @@
 
-const IMAGE_PATH = './img/projects';
+const IMAGE_PATH = '~/../../../img/projects';
 
 
 function renderFactory(data) {

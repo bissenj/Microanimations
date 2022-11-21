@@ -184,6 +184,10 @@
     margin: 20px 20px;
     font-size: 20px;
     letter-spacing: 1px;
+    cursor: pointer;
+}
+.nav-menu li:hover { 
+    color: gold;
 }
 
 .profession {    
