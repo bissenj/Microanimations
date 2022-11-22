@@ -10,6 +10,7 @@
     - slides [dom elements]: array of html contents of slides
     - threshold [int]:  how many pixels of movement before advancing to next slide.
     - startingSlide [int]:  which slide to start on
+    - click callback:  transition to another page when slide is clicked
 
 
   PUBLIC METHODS:
@@ -39,6 +40,7 @@ class HorizontalSlider {
   componentEl = undefined;
   data = undefined;
   slideRenderFunction = undefined;
+  slideCreateEventHandlers = undefined;
   selectedIndex = 0;
   posInitial = 0;
   posFinal = 0;
@@ -55,12 +57,13 @@ class HorizontalSlider {
   componentWidth = 0;   // for detecting resize events
   componentHeight = 0;  // for detecting resize events
 
-  constructor(componentEl, data, renderFunction, threshold = 100, wrap = false, index = 0) {
+  constructor(componentEl, data, renderFunction, threshold = 100, wrap = false, index = 0, createClickHandlers) {
     
     // Store parameters
     this.componentEl = componentEl;
     this.data = data;
-    this.slideRenderFunction = renderFunction;    
+    this.slideRenderFunction = renderFunction;  
+    this.slideCreateEventHandlers = createClickHandlers; 
     this.threshold = threshold;
     this.allowWrap = wrap;
     this.selectedIndex = index;
@@ -75,6 +78,9 @@ class HorizontalSlider {
     // Create all the slides
     this.renderSlides(this.componentEl, this.data, this.slideRenderFunction);   
     
+    // Event handlers for the slides
+    this.slideCreateEventHandlers();
+
     // Event Handlers
     this.viewport = this.componentEl.querySelector('.slide-viewer');        
 
@@ -86,6 +92,7 @@ class HorizontalSlider {
 
     // - Animation
     this.viewport.ontransitionend = (e) => this.transitionEnd(e);
+
 
 
     // This is what gets moved across the viewport.

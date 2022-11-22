@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
+  <title>Career Summary in 6 questions - MJE</title> 
+  <link rel='stylesheet' href='~/../../../css/global.css' />  
+  <link rel='stylesheet' href='~/../../../css/portfolio-main.css' />  
+  <link rel='stylesheet' href='~/../../../js/components/pageSegments/pageSegments.css' />  
+  <link rel='stylesheet' href='~/../../../css/media-queries.css' />
+
+  <style>
+    .work-page { 
+        overflow-x: unset;        
+        display: grid;
+        grid-template-rows: 2em 140px 1fr;
+    }
+    .work-page .header {        
+        /* border: 1px solid red;         */
+    }
+    .work-page .header-content {
+        position: fixed;
+        z-index: 100;
+        width: 100%;
+        height: 2em;
+        background-color: rgba(0,0,0,0.3);
+
+    }
+    .work-page .header-content h6 {
+        text-align: center;
+        line-height: 2em; /* why is this taller than the parent? */
+        font-size: 0.9em;
+    }
+    .work-page .company-profile {
+        border: 1px solid red;
+    }
+    .work-page .content {
+        display: grid;
+        grid-template-columns: 12em 1fr;
+        /* align-items: start; */
+        align-self: start;
+    }
+    .side-bar {   
+        /* position: relative;      */
+        /* border: 1px solid purple; */
+        color: black;
+        font-size: 0.8em;
+        margin: 10px;
+        padding: 20px;
+        /* height: 100%; */
+    }   
+    .side-bar ul {
+        /* position: sticky;
+        top: 100px; */
+        /* border: 1px solid purple; */
+    }
+    .side-bar li {
+        position: relative;
+        list-style: none;
+        margin: 40px 0px;
+        text-align: center;        
+    }    
+    .side-bar li:hover {
+        background-color: yellow;
+    }
+    .side-bar li.active {
+        /* background-color: red; */
+    }
+    .side-bar li.active:before {
+        content: '';
+        position: absolute;
+        left: 48%;
+        width: 100%;
+        bottom: 0px;        
+        height: 1.2em;
+        transform: skew(-12deg) translate(-50%);
+        background: rgba(238,111,87,0.5);
+        z-index: -1;
+    }
+
+    .sticky { 
+        position: sticky;
+        top: 100px;
+        align-self: start;
+    }
+
+    .question {
+        position: relative;
+        font-size: 1.5em;
+        padding-bottom: 0.3em;
+        margin-bottom: 1em;
+        /* text-decoration: underline wavy black; */
+
+    }  
+    .question:before {
+        content: '';
+        position: absolute;
+        left: 48%;
+        width: 100%;
+        bottom: 8px;        
+        height: 14px;
+        transform: skew(-12deg) translate(-50%);
+        background: rgba(238,111,87,0.5);
+        z-index: -1;
+    }
+
+    a.anchor {
+        display: block;
+        position: relative;
+        top: -3.5em;
+        visibility: hidden;
+    }
+    
+  </style>
+
+</head>
+
+<body>
+<main>
+
+<!-- Link to Home -->    
+<div class='home-link' title='home' onclick='handleHomeClick()'></div>
+
+<section class='work-page'>
+    <div class='header'>
+        <div class='header-content'><h6>Career History in six questions or less</h6></div>
+    </div> 
+    <div class='company-profile'></div>
+    <div class='content'>    
+        <div class='side-bar sticky'></div>
+        <div class='detail-page'></div>
+    </div>
+    
+    <!-- Need a blank state element or image -->
+    
+</section>
+
+</main>
+</body>
+
+
+<script src="/js/routing.js"></script>
+<script src="/Microanimations/js/routing.js"></script> 
+
+<script src="~/../../../js/components/pageSegments/pageSegments.js"></script>
+<script src="/Microanimations/js/components/pageSegments/pageSegments.js"></script> 
+
+<script>
+    console.log("fire up the javascript");
+    resetBody();
+
+
+
+    // Update the URL
+    //history.pushState({}, "", "../projects/nightlight");
+    //var hash = window.location.hash.substr(1);
+    //console.log("Hash: ", hash);
+
+    const career = [
+        {
+            company: 'M. J. Electric',
+            yearStart: 2018,
+            yearEnd: 2021,
+            title: 'Senior Web Developer',
+            image: '',
+        }
+    ]
+
+    const data = [         
+        {
+            type: 20,
+            summary: 'Working at MJE',
+            question: 'Tell me about working at M.J. Electric (MJE).',
+            answer: [
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+                {
+                    image: 'career/mje-1.jpg',
+                    classes: 'wd50'
+                },
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+            ]
+        },
+        {
+            type: 20,
+            summary: 'So...multiple jobs?',
+            question: 'If you owned a business, why did you go out and get a full time job?',
+            answer: [
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+                {
+                    image: 'career/mje-1.jpg',
+                    classes: 'wd50'
+                },
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+            ]
+        },
+        {
+            type: 20,
+            summary: 'You in small teams',
+            question: 'How do you work on a small team?',
+            answer: [
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+                {
+                    image: 'career/mje-1.jpg',
+                    classes: 'wd50'
+                },
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+            ]
+        },
+        {
+            type: 20,
+            summary: 'Though process',
+            question: 'What is your approach to building software?',
+            answer: [
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+                {
+                    image: 'career/mje-1.jpg',
+                    classes: 'wd50'
+                },
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+            ]
+        },
+        {
+            type: 20,
+            summary: 'Accomplishments',
+            question: 'What contributions are you most proud of at MJE?',
+            answer: [
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+                {
+                    image: 'career/mje-1.jpg',
+                    classes: 'wd50'
+                },
+                {
+                    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    classes: ''
+                },
+            ]
+        },
+                        
+    ];
+
+    const page = document.querySelector('.detail-page');
+    data.map((item, index) => {
+        page.append(renderFactory(item, index));
+    });
+
+    const sideMenu = document.querySelector('.side-bar');
+    if (sideMenu) {
+        sideMenu.append(renderQuickLinks(sideMenu, data));
+    }
+
+    
+    function handleHomeClick() {
+        navigateToPage('nightlight', 'hero.html#work');        
+    }
+
+
+    setTimeout(() => {
+        startObservers();        
+    }, 1000);
+
+    function startObservers() {
+        // ---------------------------------------------------------
+        // Intersection Observer 1 
+        // ---------------------------------------------------------
+
+        // get all the elements we need to watch
+        const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
+        if (targets.length > 0) {
+            console.log("Targets: ", targets);
+            // what to do with entries that are on screen
+            function handleIntersection(entries) {
+                entries.map((entry) => {
+                    if (entry.isIntersecting) {                    
+                        console.log("On Screen: ", entry);
+                        entry.target.classList.add('visible');                    
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }
+            // fire up the observer
+            const observer = new IntersectionObserver(handleIntersection);
+            targets.forEach((el) => {
+                observer.observe(el);
+            })
+        }
+
+        // ---------------------------------------------------------
+        // Intersection Observer 2 
+        // ---------------------------------------------------------
+
+        // get all the elements we need to watch
+        const questions = document.querySelectorAll('.question');
+        if (questions.length > 0) {
+            
+            // what to do with entries that are on screen
+            function setActiveQuestion(entries) {
+                entries.map((entry) => {
+                    if (entry.isIntersecting) {                                            
+                        //entry.target.classList.add('active'); 
+                        const index = entry.target.dataset.index;
+                        const menuItems = document.querySelectorAll('.side-bar li');
+                        menuItems[index].classList.add('active');                                               
+                    }
+                    else {
+                        const index = entry.target.dataset.index;
+                        const menuItems = document.querySelectorAll('.side-bar li');
+                        menuItems[index].classList.remove('active');                                               
+                    }
+                });
+            }
+            // fire up the observer
+            const questionObserver = new IntersectionObserver(setActiveQuestion, { 
+                rootMargin: '0px 0px -40% 0px', threshold: 0.0});
+
+                questions.forEach((el) => {
+                    questionObserver.observe(el);
+            })
+        }
+    }
+
+
+</script>
+
+</html>
+
+
+<!-- DEAD CODE -->
+
+
+   <!-- Full width Image with Text Overlay -->
+    <!-- <div class='segment p40'>
+        <div class='image-full-width grid-center'>
+            <h1 class='text-overlay'>Field Time Entry<h1/>
+        </div>
+    </div> -->
+
+    <!-- Centered Text Block -->
+    <!-- <div class='segment p80 p-top-0'>
+        <div class='text-block-half grid-center'>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>            
+        </div>
+    </div> -->
+
+    <!-- 2-1 Image collage -->
+    <!-- <div class='segment'>
+        <div class='image-collage-2-1'>
+            <div class='one'></div>
+            <div class='two'></div>
+            <div class='three'></div>
+        </div>
+    </div> -->
+
+    <!-- 2-1 Image collage -->
+    <!-- <div class='segment'>
+        <div class='image-grid-2-1'>
+            <div class='grid-left'>            
+                <div class='one'>One</div>
+                <div class='two'>Two</div>
+            </div>            
+            <div class='three'>Three</div>            
+        </div>
+    </div> -->
+
+     <!-- Centered Text Block -->
+     <!-- <div class='segment p80'>
+        <div class='text-block-half grid-center'>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>            
+        </div>
+    </div> -->
+       
+    <!-- Full Width Image -->
+    <!-- <div class='segment'>
+        <div class='image-full-width grid-center'>          
+        </div>
+    </div> -->
+
+     <!-- 2 text columns -->
+     <!-- <div class='segment p80'>
+        <div class='text-block-2'>
+            <div class='text-block-half grid-center'>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>            
+            </div>
+            <div class='text-block-half grid-center'>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>            
+            </div>
+        </div>        
+    </div> -->

@@ -2,13 +2,13 @@
 const IMAGE_PATH = '~/../../../img/projects';
 
 
-function renderFactory(data) {
+function renderFactory(data, index = 0) {
     // console.log('RenderFactory(): ', data);
 
-    const index = data.type;
+    const type = data.type;
     let result = '';
 
-    switch(index) {
+    switch(type) {
         case 0: 
             result = renderFullWidthImageWithTextOverlay(data);
             break;
@@ -33,8 +33,11 @@ function renderFactory(data) {
         case 7: 
             result = renderAnimatedImageReveal(data);
             break;
+        case 20:
+            result = renderQuestionAnswer(data, index);
+            break;
         default:
-            console.log("renderFactory: unidentified index -> ", index);
+            console.log("renderFactory: unidentified type -> ", index);
             result = renderOops();
     }
     return result;
@@ -68,6 +71,24 @@ function createImage(data) {
     return html;
 }
 
+function createText(data) {  
+    //console.log('createImage: ', data);  
+    let classes = data.class ?? '';
+    let text = data.text ?? '';
+
+    let html = '';
+    
+    if (text !== '') {            
+
+        let classesHtml = '';
+        if (classes != '') {
+            classesHtml = ` class='${classes}'`;
+        }        
+        html += `<p ${classesHtml}>${text}</p>`;            
+    }     
+    return html;
+}
+
 function renderOops() {
     return createNode('<div class="grid-center" style="color:red; padding:20px; border: 1px solid red;margin:20px;">oops</div>');
 }
@@ -83,7 +104,7 @@ function renderFullWidthImage(data) {
     let html = `
         <!-- Full width Image -->
         <div class='segment scroll-target  ${optionalClasses}'>
-            <div class='image-full-width grid-center'>
+            <div class='image-full-width'>
                 ${imageContainer}                                    
             </div>
         </div>
@@ -307,5 +328,51 @@ function renderAnimatedImageReveal(data) {
         </div>
     `;
 
+    return createNode(html);
+}
+
+
+// ---------------------------------
+//              CAREER
+// ---------------------------------
+
+// CAREER Short Links
+function renderQuickLinks(el, data) {
+    console.log('data: ', data);
+    let html = `<nav><ul>`;
+    data.map((item, index) => {
+        html += `<li><a href='#question${index}'>${item.summary}</a></li>`;
+    });
+    html += '</ul></nav>';
+    return createNode(html);
+}
+
+
+
+function renderQuestionAnswer(data, index) {
+    const question = data.question ?? '';    
+    const optionalClasses = data.classes ?? '';
+
+    let questionHtml = '';
+    if (question != '') {
+        questionHtml = `<a class='anchor' id='question${index}'></a><h5 class='question' data-index=${index}>${question}</h5>`;
+    }
+
+    let paragraphHtml = '';
+    data.answer.map((item) => {
+        let classes = item.classes ?? '';         
+        //paragraphHtml += `<p class='${classes}'>${item.text}</p>`;
+        paragraphHtml += createText({text: item.text, class: item.class});
+    });
+
+    let html = `
+        <!-- Question and Answer Block -->
+        <div class='segment p40 ${optionalClasses}'>
+            <div class='text-block-half'>
+                ${questionHtml}
+                ${paragraphHtml}
+            </div>
+        </div>
+    `;
     return createNode(html);
 }

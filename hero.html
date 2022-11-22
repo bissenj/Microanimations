@@ -196,25 +196,25 @@
 
 
 <script src="/js/routing.js"></script>
-<!-- <script src="/Microanimations/js/routing.js"></script> -->
+<script src="/Microanimations/js/routing.js"></script>
 
 <script src="/js/landing.js"></script>
-<!-- <script src="/Microanimations/js/landing.js"></script> -->
+<script src="/Microanimations/js/landing.js"></script>
 
 <script type="module" src="/js/hero.js"></script>
-<!-- <script type="module" src="/Microanimations/js/hero.js"></script> -->
+<script type="module" src="/Microanimations/js/hero.js"></script>
 
 <script src="/js/controlGrid.js"></script>
-<!-- <script src="/Microanimations/js/controlGrid.js"></script> -->
+<script src="/Microanimations/js/controlGrid.js"></script>
 
 <script src="/data/events.js"></script>
-<!-- <script src="/Microanimations/data/events.js"></script> -->
+<script src="/Microanimations/data/events.js"></script>
 
 <script src="/js/components/basicTimeline/basicTimeline.js"></script>
-<!-- <script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script> -->
+<script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script>
 
 <script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
-<!-- <script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script> -->
+<script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script>
 
 
 <script>
@@ -222,7 +222,7 @@
     resetBody();      
 
     // Update version number
-    const VERSION_NUMBER = "[0100-11/22/2022]";
+    const VERSION_NUMBER = "[0101-11/22/2022]";
     document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
 
@@ -235,6 +235,11 @@
         navigateToPage('home', 'projects/nightlight');
     }
 
+    function handleCareerClick(index) {
+        // console.log("handle projects click", index);
+        navigateToPage('home', 'career/mje');
+    }
+
 
     // Custom Render function for the slides
     function renderSlide(item, index) {
@@ -242,7 +247,7 @@
         // return html;
 
         let html = `
-                <div class='slide hide-content bg9' data-id=${index}'> 
+                <div class='slide hide-content bg9' data-id=${index}' onclick='()=>{console.log("click")}' > 
                     <!-- Event Header -->
                     <div class='event-header'>                        
                         <div>${item.yearStart} - ${item.yearEnd}</div>
@@ -257,9 +262,18 @@
                             <div>${item.summary}</div>
                         </div>
                         <div class='company-image'><img src='img/timeline/${item.image}'/></div>
-                    </div>                    
+                    </div>         
+                    <div class='career-more-button' aria-role='button'>more</div>           
                 </div>`;                  
         return html;
+    }
+    function generateSlideEventHandlers() {
+        const slides = document.querySelectorAll('.career-more-button');
+        slides.forEach((el) => {
+            el.addEventListener('click', () => {
+                navigateToPage('home', 'career/mje');
+             })
+        });
     }
 
 
@@ -283,12 +297,12 @@
         }
     });
 
-    document.querySelector('.timeline-shutdown').addEventListener('click', (e) => {
-        console.log("destroy");
-        slider1.destroy();
-        controlGrid1.destroy();
-        basicTimeline1.destroy();
-    });
+    // document.querySelector('.timeline-shutdown').addEventListener('click', (e) => {
+    //     console.log("destroy");
+    //     slider1.destroy();
+    //     controlGrid1.destroy();
+    //     basicTimeline1.destroy();
+    // });
 
     
     const links = document.querySelectorAll('.nav-menu ul li a').forEach((el) =>{
@@ -329,7 +343,7 @@
 
             // App loads    
             let slideContainer1 = document.getElementById('workHistorySlider1');
-            const slider1 = new HorizontalSlider(slideContainer1, events, renderSlide, 100, false, 0);
+            const slider1 = new HorizontalSlider(slideContainer1, events, renderSlide, 100, false, 0, generateSlideEventHandlers);
 
             // Create basic timeline
             const basicTimelineEl = document.querySelector('.basic-timeline');
