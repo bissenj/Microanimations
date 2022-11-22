@@ -207,6 +207,16 @@
         page.classList.add('loading-finished');
         page.classList.remove('loading-start');
 
+        //console.log("Got Here");
+            // // DEBUGGING    
+            // const images = document.querySelectorAll('img').forEach((el) => {
+            //     //console.log('image found: ', el);
+            //     el.onload = function() {
+            //         console.log('Image Loaded: ');
+            //     }
+            // });
+            // console.log("Images : ", images);
+
         //document.querySelector('.slide-left').classList.add('visible');
         //document.querySelector('.slide-right').classList.add('visible');
     }, 100);
@@ -234,7 +244,6 @@
     setTimeout(() => {
         startObservers();        
     }, 1000);
-
 
     function startObservers() {
         // ---------------------------------------------------------

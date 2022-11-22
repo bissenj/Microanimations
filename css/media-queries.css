@@ -126,6 +126,32 @@
         /* height: 125vh; */
     }
 
+
+    .projects-collage {
+        position: relative;        
+        min-height: 200px;
+    }
+    .projects-collage .explore { display: none; }
+    .projects-container {
+        display: block;       
+    }
+    .projects-list { padding: 0;  margin: 20px; }
+    .projects-list.hidden { opacity: 1;}
+    .projects-list.hidden .project-item-container {
+        opacity: 1;
+        transform: none;
+        /* margin-left:20px; */
+    }
+    .projects .section-heading {
+        text-align: left;
+        color: unset;
+        margin-top: 0px;
+        padding: 20px;
+        font-size: 22px;
+    }
+
+
+
     @media (orientation: portrait) {
         div.image1::before {    
             top: -86%;

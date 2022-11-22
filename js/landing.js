@@ -28,6 +28,12 @@ if (ALLOW_JAVASCRIPT) {
             let y = amountMovedY;                      
             backgroundEl.style.backgroundPosition = `calc(50% - ${x}px) calc(50% - ${y}px)`;
 
+            // Rotate the logo
+            const logo = document.querySelector('.logo');
+            if (logo) {                
+                logo.style.transform = `rotate(${amountMovedX}deg)`;
+            }
+
             // Update the pseudo selector animation
             let gradientUpEl = document.querySelector('.gradient-up');    
             gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
