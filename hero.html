@@ -105,6 +105,10 @@
         </div> -->
     </section>
 
+
+    <!-- TODO:  Should be its own component for delayed rendering, and
+                its a good canditate for being dynamic anyway
+     -->
     <section class='image-collage'>
         <div class='diagonal-rects'>
             <!-- Row 1 -->
@@ -130,9 +134,9 @@
         <div class='basic-timeline'></div>
         <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
         <div class='bg10 flex-row-apart'>
-            <div>
+            <!-- <div>
                 <button class='timeline-shutdown'>Deconstruct</button>
-            </div>
+            </div> -->
             <div class='right-edge p10-20'><div class='control-grid'></div></div>
         </div>
     </section>
@@ -191,60 +195,44 @@
 </body>
 
 
+<script src="/js/routing.js"></script>
+<!-- <script src="/Microanimations/js/routing.js"></script> -->
+
 <script src="/js/landing.js"></script>
-<script src="/Microanimations/js/landing.js"></script>
+<!-- <script src="/Microanimations/js/landing.js"></script> -->
 
 <script type="module" src="/js/hero.js"></script>
-<script type="module" src="/Microanimations/js/hero.js"></script>
+<!-- <script type="module" src="/Microanimations/js/hero.js"></script> -->
 
 <script src="/js/controlGrid.js"></script>
-<script src="/Microanimations/js/controlGrid.js"></script>
+<!-- <script src="/Microanimations/js/controlGrid.js"></script> -->
 
 <script src="/data/events.js"></script>
-<script src="/Microanimations/data/events.js"></script>
+<!-- <script src="/Microanimations/data/events.js"></script> -->
 
 <script src="/js/components/basicTimeline/basicTimeline.js"></script>
-<script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script>
+<!-- <script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script> -->
 
 <script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
-<script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script>
+<!-- <script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script> -->
 
 
 <script>
     console.log("document is loaded");
-
-    // Kinda hacky but works for now.
-    setTimeout(() => {
-        document.querySelector('body').classList.remove('fade-out');
-    }, 1000);
+    resetBody();      
 
     // Update version number
-    const VERSION_NUMBER = "[11/20/2022-007]";
+    const VERSION_NUMBER = "[0100-11/22/2022]";
     document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
-    // Global data
+
+    // TODO:  Move this to its own component    
     let selectedIndex = 0;
-    const slideData = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
+    //const slideData = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
 
     function handleProjectsClick(index) {
-        console.log("handle projects click", index);
-
-        // Fade out screen
-        document.querySelector('body').classList.add('fade-out');
-
-        // TODO - FIX THIS!
-        // HACK FOR GITHUB PAGES
-        let destination = '';
-        if (location.protocol == "https:") {
-            destination = '/Microanimations'
-        }       
-
-        // update window location
-        setTimeout(() =>{ 
-            //console.log("Window Location: ", `${location}/detail-page-example.html`);
-            window.location = `${destination}/projects/nightlight/`;
-        },750);
-
+        // console.log("handle projects click", index);
+        navigateToPage('home', 'projects/nightlight');
     }
 
 
@@ -274,45 +262,10 @@
         return html;
     }
 
-    // App loads    
-    let slideContainer1 = document.getElementById('workHistorySlider1');
-    const slider1 = new HorizontalSlider(slideContainer1, events, renderSlide, 100, false, 0);
 
-    // Create basic timeline
-    const basicTimelineEl = document.querySelector('.basic-timeline');
-    const basicTimeline1 = new BasicTimeline(basicTimelineEl, events, 0, true);
-
-    // Create control grid    
-    let controlGridContainer1 = document.querySelector('.control-grid');
-    const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex, 'light round');
-
-    slideContainer1.addEventListener('onslide', (e) => {
-        //console.log("Caught Event: onSlide", e);      
-        if (e.detail.index != selectedIndex) {
-            selectedIndex = e.detail.index;
-            basicTimeline1.setIndex(e.detail.index);
-            controlGrid1.setIndex(selectedIndex);
-        }
-    });
-
-    controlGridContainer1.addEventListener('onindexchange', (e) => {        
-        //console.log("Caught Event: onindexchange", e);      
-        if (e.detail.index != selectedIndex) {
-            selectedIndex = e.detail.index;
-            basicTimeline1.setIndex(e.detail.index);
-            slider1.setIndex(e.detail.index);
-        }
-    })
-
-    basicTimelineEl.addEventListener('onindexchange', (e) => {  
-        //console.log("Caught Event: onindexchange", e);      
-        if (e.detail.index != selectedIndex) {
-            selectedIndex = e.detail.index;
-            controlGrid1.setIndex(selectedIndex);
-            slider1.setIndex(e.detail.index);
-        }
-    }); 
-
+    // DELAYED JAVASCRIPT COMPONENTS
+    delayedComponentLoad(2000);
+    
 
     // TEST Projects Button
     const exploreProjectsButton = document.querySelector('.projects-collage').addEventListener('click', (e) => {
@@ -340,8 +293,9 @@
     
     const links = document.querySelectorAll('.nav-menu ul li a').forEach((el) =>{
         el.addEventListener('click', handleMenuClick);
-    });
-    
+    });    
+
+    // TODO move this to Routing component
     // Testing menu clicks
     function handleMenuClick(e) {
         console.log('handleMenuClick: ', e);
@@ -362,10 +316,61 @@
         console.log("Resize Event Detected"); 
 
         slider1.handleResize();
-        basicTimeline1.handleResize();
-        //controlGrid1.handleResize();
-    }      
+        basicTimeline1.handleResize();        
+    }     
 
+
+    
+    function delayedComponentLoad(delay) {
+        setTimeout(() => {
+
+            console.log("Loading JS components");
+            console.time('components');
+
+            // App loads    
+            let slideContainer1 = document.getElementById('workHistorySlider1');
+            const slider1 = new HorizontalSlider(slideContainer1, events, renderSlide, 100, false, 0);
+
+            // Create basic timeline
+            const basicTimelineEl = document.querySelector('.basic-timeline');
+            const basicTimeline1 = new BasicTimeline(basicTimelineEl, events, 0, true);
+
+            // Create control grid    
+            let controlGridContainer1 = document.querySelector('.control-grid');
+            const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex, 'light round');
+
+            slideContainer1.addEventListener('onslide', (e) => {
+                //console.log("Caught Event: onSlide", e);      
+                if (e.detail.index != selectedIndex) {
+                    selectedIndex = e.detail.index;
+                    basicTimeline1.setIndex(e.detail.index);
+                    controlGrid1.setIndex(selectedIndex);
+                }
+            });
+
+            controlGridContainer1.addEventListener('onindexchange', (e) => {        
+                //console.log("Caught Event: onindexchange", e);      
+                if (e.detail.index != selectedIndex) {
+                    selectedIndex = e.detail.index;
+                    basicTimeline1.setIndex(e.detail.index);
+                    slider1.setIndex(e.detail.index);
+                }
+            })
+
+            basicTimelineEl.addEventListener('onindexchange', (e) => {  
+                //console.log("Caught Event: onindexchange", e);      
+                if (e.detail.index != selectedIndex) {
+                    selectedIndex = e.detail.index;
+                    controlGrid1.setIndex(selectedIndex);
+                    slider1.setIndex(e.detail.index);
+                }
+            }); 
+                        
+            console.log("Finished loading JS components");
+            console.timeEnd('components');
+
+        }, delay);
+    }
 
 
 </script>

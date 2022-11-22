@@ -47,6 +47,27 @@ function createNode(html) {
     return node;
 }
 
+function createImage(data) {  
+    //console.log('createImage: ', data);  
+    let classes = data.class ?? '';
+    let image = data.image ?? '';
+
+    let html = '';
+    
+    if (image !== '') {    
+        //console.log('image: ', image);
+
+        let classesHtml = '';
+        if (classes != '') {
+            classesHtml = ` class='${classes}'`;
+        }        
+        html += `<div ${classesHtml}><img src='${IMAGE_PATH}/${image}'></img></div>`;    
+        // html += `<img src='${IMAGE_PATH}/${image}'></img>`;    
+    }
+     
+    return html;
+}
+
 function renderOops() {
     return createNode('<div class="grid-center" style="color:red; padding:20px; border: 1px solid red;margin:20px;">oops</div>');
 }
@@ -57,21 +78,7 @@ function renderFullWidthImage(data) {
     const optionalClasses = data.classes ?? '';
 
     // Logic
-
-    let imageContainer = '';
-    if (image1 != '') {
-        imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
-    }
-
-    //console.log("imageContainer: ", imageContainer);
-
-    // let style = `background: url(${IMAGE_PATH}/${image1}); background-size: cover;`;
-    // let html = `
-    //     <!-- Full Width Image -->
-    //     <div class='segment ${optionalClasses}' style='${style}'>
-    //         <div class='image-background-full-width'></div>
-    //     </div>
-    // `;    
+    let imageContainer = createImage({image: image1, class: optionalClasses});
 
     let html = `
         <!-- Full width Image -->
@@ -95,6 +102,7 @@ function renderFullWidthImageWithTextOverlay(data) {
     if (image1 != '') {
         imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
     }
+    //let imageContainer = createImage({image: image1});
 
     let text1Container = '';
     if (text1 != '') {
@@ -129,8 +137,6 @@ function renderFullWidthImageWithTextOverlay(data) {
             </div>
         </div>
     `;
-
-
 
     return createNode(html);
 }
@@ -205,17 +211,17 @@ function renderTextBlocksWithHeading(data) {
 
     let paragraphHtml = '';
     data.text.map((item) => {
-        let classes = item.classes ?? '';        
-
+        let classes = item.classes ?? ''; 
         paragraphHtml += `<p class='${classes}'>${item.text}</p>`;
 
-        let imageContainer = '';
-        let image = item.image ?? '';
-        if (image != '') {
-            imageContainer = `<img src='${IMAGE_PATH}/${image}'></img>`;                        
-        }
+        //let imageContainer = createImage({image: item.image});
+        // let image = item.image ?? '';
+        // if (image != '') {
+        //     //imageContainer = `<img src='${IMAGE_PATH}/${image}'></img>`;                        
+        //     imageContainer = createImage({image});
+        // }
         
-        paragraphHtml += imageContainer;
+        //paragraphHtml += imageContainer;
 
     });
 

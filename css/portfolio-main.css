@@ -15,11 +15,24 @@ a {
 body {
     font-size: 22px; 
     font-family: 'Roboto Condensed', sans-serif;
-    transition: opacity 0.5s;
+    transition: opacity 0.4s;
 }
 
 body.fade-out {        
     opacity: 0;
+}
+
+/* Page fade in effect on load */
+main {
+    min-height: 100vh;
+    animation: fade-in 0.5s ease-in-out;
+    animation-fill-mode: forwards;
+    transition: opacity 0.4s;
+}
+@keyframes fade-in {
+    0% { opacity: 0; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 

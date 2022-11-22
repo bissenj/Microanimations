@@ -33,16 +33,19 @@
 </main>
 </body>
 
+<script src="/js/routing.js"></script>
+
 <script src="~/../../../js/components/pageSegments/pageSegments.js"></script>
 <!-- <script src="/Microanimations/js/components/pageSegments/pageSegments.js"></script>  -->
 
 <script>
-    console.log("page loaded");
+    console.log("fire up the javascript");
+    resetBody();
 
     // Update the URL
     //history.pushState({}, "", "../projects/nightlight");
-    var hash = window.location.hash.substr(1);
-    console.log("Hash: ", hash);
+    //var hash = window.location.hash.substr(1);
+    //console.log("Hash: ", hash);
 
 
     const data = [
@@ -97,7 +100,7 @@
         },
         {
             type: 3, 
-            classes: 'w50',
+            classes: 'w85',
             image1: 'nightlight/adventuremap-login.jpg'
         },
         {
@@ -195,17 +198,17 @@
     ];
 
     const page = document.querySelector('.detail-page');
-    page.classList.add('loading-start');    
-    document.querySelector('main').classList.add('loading');
+    //page.classList.add('loading-start');    
+    //document.querySelector('main').classList.add('loading');
 
     data.map((item) => {
         page.append(renderFactory(item));
     });
 
     setTimeout(() => {
-        document.querySelector('main').classList.remove('loading');
-        page.classList.add('loading-finished');
-        page.classList.remove('loading-start');
+        //document.querySelector('main').classList.remove('loading');
+        //page.classList.add('loading-finished');
+        //page.classList.remove('loading-start');
 
         //console.log("Got Here");
             // // DEBUGGING    
@@ -224,20 +227,22 @@
     function handleHomeClick() {
         console.log("handle home click");
 
-        // Fade out screen
-        document.querySelector('body').classList.add('fade-out');
+        navigateToPage('nightlight', 'hero.html#projects');
 
-        // TODO - FIX THIS!
-        // HACK FOR GITHUB PAGES
-        let destination = '';
-        if (location.protocol == "https:") {
-            destination = '/Microanimations'
-        }       
+        // // Fade out screen
+        // document.querySelector('body').classList.add('fade-out');
 
-        // update window location
-        setTimeout(() =>{ 
-            window.location = `${destination}/hero.html#projects`;
-        },750);
+        // // TODO - FIX THIS!
+        // // HACK FOR GITHUB PAGES
+        // let destination = '';
+        // if (location.protocol == "https:") {
+        //     destination = '/Microanimations'
+        // }       
+
+        // // update window location
+        // setTimeout(() =>{ 
+        //     window.location = `${destination}/hero.html#projects`;
+        // },750);
     }
 
 
