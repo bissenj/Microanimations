@@ -247,7 +247,7 @@ var ImageModal = {
 
             const pageModal = document.createElement('div');                
             pageModal.classList.add('modal');  
-            document.querySelector('body').prepend(pageModal);
+            document.querySelector('main').prepend(pageModal);
             window.setTimeout(() => {
                 pageModal.classList.add('show', 'on-top');
             }, 100);  

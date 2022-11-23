@@ -14,10 +14,27 @@ Paralaxx:
 https://medium.com/@dailyfire/pure-css-parallax-simple-tricks-da102d0ffdb9
 
 
+// --------------------------------------------------------------
 
+STACKING ORDER
 
-
-
+[body]                                    0
+    |
+  [main]                                  2
+      |
+    [modal]                               100
+      |
+    [section *]                           4      
+      |
+    [section imagecollage]                110
+          |
+        [image modal]                     120
+          |
+        [modal-overlay]                   115
+      |  
+    [section projects]
+        |   
+      [projects-collage]                  10
 
 
 

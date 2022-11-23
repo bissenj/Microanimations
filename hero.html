@@ -325,16 +325,6 @@
     }
 
     
-    /*  HANDLE RESIZE  */
-    window.onresize = () => {  
-        console.log("Resize Event Detected"); 
-
-        slider1.handleResize();
-        basicTimeline1.handleResize();        
-    }     
-
-
-    
     function delayedComponentLoad(delay) {
         setTimeout(() => {
 
@@ -379,6 +369,14 @@
                     slider1.setIndex(e.detail.index);
                 }
             }); 
+
+            /*  HANDLE RESIZE  */
+            window.onresize = () => {  
+                console.log("Resize Event Detected"); 
+
+                slider1.handleResize();
+                basicTimeline1.handleResize();        
+            }     
                         
             console.log("Finished loading JS components");
             console.timeEnd('components');
