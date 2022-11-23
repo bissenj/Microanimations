@@ -57,7 +57,10 @@ section.work {
         url('../img/hero/kayak-scene.webp');
         /* url('../img/timeline/snow_up_bw_white.png'); */
     background-size: cover;  
-    background-position: 25%;     
+    background-position: 25%;  
+    
+    opacity: 0;
+    transition: opacity 2s;
 
     /* background: white; */
     /* border-bottom: 20px solid white;     */

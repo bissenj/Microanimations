@@ -29,7 +29,7 @@
         <!-- Element 1:  Full Page Background -->
         <div class='background scroll' data-rate='0.5' data-transform='scale(1.05)'></div>
 
-        <div class='foreground-container'>
+        <div class='foreground'>
             <!-- Version number for debugging -->
             <div class='version-number ts1'>Version Number</div>
 
@@ -189,6 +189,8 @@
     <section id='contact' class='contact center'>
         <h1>Contact</h1>
         <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+        <div class='text'>About this site <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+        <div class='text'>Outtakes <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
     </section>
 
 </main>
@@ -326,6 +328,11 @@
 
     
     function delayedComponentLoad(delay) {
+
+        // HACK - have each component fade themselves in.
+        let workContainer = document.querySelector('.work');
+        workContainer.style.opacity = 0;    
+
         setTimeout(() => {
 
             console.log("Loading JS components");
@@ -333,7 +340,10 @@
 
             // App loads    
             let slideContainer1 = document.getElementById('workHistorySlider1');
+            //slideContainer1.style.opacity = 0;    
+            
             const slider1 = new HorizontalSlider(slideContainer1, events, renderSlide, 100, false, 0, generateSlideEventHandlers);
+            setTimeout(()=>{workContainer.style.opacity = 1;}, 2000);
 
             // Create basic timeline
             const basicTimelineEl = document.querySelector('.basic-timeline');
