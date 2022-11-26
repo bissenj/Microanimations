@@ -16,11 +16,12 @@
         background-color: skyblue;        
         background: linear-gradient(rgba(33,124,176,.9),
                                     rgb(0 93 131 / 90%)), 
-                                    url(../../img/timeline/mje2.jpg) no-repeat;        
+                                    url(../../img/timeline/nwm.jpg) no-repeat;        
         background-size: 100%;
         background-position: 25%;
     }
   </style>
+
 </head>
 
 <body>
@@ -61,116 +62,83 @@
     console.log("fire up the javascript");
     resetBody();
 
-
-    // Update the URL
-    //history.pushState({}, "", "../projects/nightlight");
-    //var hash = window.location.hash.substr(1);
-    //console.log("Hash: ", hash);
-
     const career = [
         {
-            company: 'M. J. Electric',
-            yearStart: 2018,
-            yearEnd: 2021,
-            title: 'Senior Web Developer',
-            image: '',
+            company: 'Northwestern Mutual',
+            yearStart: 2004,
+            yearEnd: 2014,
+            title: 'Application Engineer',
+            image: 'nwm.jpg',
         }
     ]
 
     const data = [         
         {
             type: 20,
-            summary: 'Working at MJE',
-            question: 'Tell me about working at M.J. Electric (MJE).',
+            summary: 'Working at NWM',
+            question: 'Tell me about working at Northwestern Mutual (NWM).',
             answer: [
                 {
-                    text: 'M. J. Electric is a large national electrical contractor headquartered in Iron Mountain MI.  They have a small IT department who builds a ton of custom in-house highly integrated software and I think thats one of their secrets to success.',
+                    text: 'Northwestern Mutual is a large fortune 500 company in the financial services industry.  NWM has a huge IT department, around 2000 employees and contractors while I worked there.  Being such a large team, responsibilities were very siloed and if you needed a solution for something (monitoring, automated testing, infrastructure) there was usually a team in place for that. ',
                     classes: ''
                 }, 
                 {
-                    text: 'I worked on the Web Development team developing in-house apps in Asp.Net and Javascript.  When I was hired, the team was skilled at working with data, but was missing someone with UI/UX experience and that quickly became my niche.',
+                    text: 'This was my first -real job- out of college and it was an impressive environment.  During my 10 years with Northwestern Mutual I worked on several IT teams and gained a lot of soft skills and  business knowledge I would use later on.',
                     classes: ''
                 },                                
             ]
         },
         {
             type: 20,
-            summary: 'So...multiple jobs?',
-            question: 'If you owned a business at the time, why did you go out and get a full time job?',
+            summary: 'Types of Roles',
+            question: 'What were some of your roles?',
             answer: [
                 {
-                    text: 'Yeah so taking a step back for a moment.  I worked for MJE full time while we also owned our small business.  It resulted in me working some crazy hours between the two companies, but it was something I felt I needed to do at the time.',
+                    text: 'My last role was the Application Engineer of the Electronic Files team.  My team handled the software from the time a client started filling out paperwork to the time a policy was issued.  It was a huge system spanning multiple technologies…Mainframe, C#, Java, Message Queues.  I was responsible for knowing how everything fit together and working with other Application Engineers on the team to keep it going and to continually upgrade and evolve it.  Day to day I did a mix of planning, testing, coordinating, and coding.',
                     classes: ''
                 }, 
                 {
-                    text: 'When my wife and I decided to buy a business outside of my field, the thought was that at some point I would return to my career.  After a several years of learning how to run the business, fixing all the things that were broken, and finally delegating tasks like OSHA and social media I was ready to step away during the day.  I really lucked out in that MJE was in town and hiring.  It was a great workplace and my boss liked and trusted me enough that in the rare occasions when I needed to run out to deal with something at the business, I could leave. ',
+                    text: 'I also worked as an application developer on a Java application used to manage all the assets created by the company’s Graphic Arts department.  That was my first experience developing based off of a prototype and working with a dedicated front end developer, a role that I didnt know existed but recognized as something I wanted to do.  It was also a good experience to be surrounded with the company’s internal and external marketing and I ended using that knowledge later on when we owned a business.',
                     classes: ''
-                },                
-                {
-                    text: 'People say that to grow you need to step outside of your comfort zone.  Owning a business was definitely outside of my comfort zone at times.  For that reason, it was a breath of fresh air to go back to work in a job I am trained to do, am good at and enjoy, and at a company where somebody else was going to fix the plumbing when it leaked.',
-                    classes: ''
-                },
+                },                                
             ]
         },
         {
             type: 20,
-            summary: 'You in small teams',
-            question: 'How do you work on a small team?',
+            summary: 'Types of Projects',
+            question: 'What types of projects were you involved with?',
             answer: [
                 {
-                    text: 'Small teams are great.  I have had my most enjoyable and successful project experiences working in small teams of 3-4 individuals.  On a small team you have a chance to connect with one another on a personal level and have the right amount of autonomy to get things done efficiently.',
+                    text: 'I worked on a number of projects ranging in size from solo projects taking a few months to multi-year efforts with huge teams and budgets.  A lot of our changes were legal in nature since each state has their own set of laws for dealing with insurance and financial data.  Keeping track of all the state laws generally meant each system has a complicated rule-based subsystem that needs to be kept up to date as laws change and insync with the other application’s rule systems.',
                     classes: ''
                 },   
                 {
-                    text: 'There were a few times when I had the opportunity to help team members outside of the web dev team.  For example I was able to write up a quick C# program to move some images and update database records for a co-worker who was otherwise going to spend the rest of the day laboring on a monotonous task.  When a roll-out had issues and the help desk folks were going to spend their evening making calls to resolve issues, myself and a few others volunteered to jump on the phones to help them out. ',
+                    text: 'Besides development and support I was at times responsible for training users, generating documentation and handling application rollouts.  In IT there is so much required for us to know so early on I started creating how-to guides for developers making changes to specific systems, and user guides so users didn’t have to call me anytime they had a question.',
                     classes: ''
-                }, 
-                {
-                    text: 'Overall I think of team as including anyone who shares a common goal and nothing builds up a team faster than stepping up and helping each other out.',
-                    classes: ''
-                },                          
+                },                                          
             ]
         },
         {
             type: 20,
-            summary: 'Building Software',
-            question: 'What is your approach to building software?',
+            summary: 'Not just coding and testing',
+            question: 'Besides coding and testing what else did you gain experience with?',
             answer: [
                 {
-                    text: 'I think one of the most important aspects of building a software product is to put yourself in the shoes of the user.  What are they trying to accomplish?  What tasks are tedious or take up the most time (usually they will tell you that right away).  Is there are better way to do this?  Once you understand as much as you can about their workflow and goals, then go back to thinking like a software developer and think about what solutions are available to solve their pain points.',
+                    text: 'Towards the end of my time at NWM, system availability and uptime grew in priority.  Many of us were formally trained in root cause analysis.  Rather than point blame as to why a system had issues we worked to understand all of the multiple causes which led to a system incident and how to prevent them in the future.  I think this approach led to bringing our huge team closer and improved our system reliability.',
                     classes: ''
-                },               
-                {
-                    text: 'Manual testing is a great way to prevent user frustrations before the users have a chance to even use the software.  When I’m testing I think about what I like and don’t like about the product.  Is it too slow?  Is it confusing?  Early on there are usually lots of errors encountered and this is a great time to build out how errors in production will work.  How should a user get notified?  What happens when an error occurs…when does the user get notified?  Can they proceed and come back to fix it later?  Basically during testing I’m walking through the product and paying attention to what feels right, and what feels clunky and needs re-working.  Generally I think, am I building the quality of software I would want to use?',
-                    classes: ''
-                },
-                {
-                    text: 'On the front-end I think its especially important to think like a user.  Part of the fun in building software is creatively blending the IT domain with the business domain.  For example, in a previous project mentioned on this site, Field Time Entry, the requirements were to create a timesheet, in the IT world this is basically a table with some numeric values to add up.  Not too different from an excel spreadsheet.  For the user however, this was entering Project Management data, and Payroll data for the current and previous week.  Generally this needed to be accomplished by a specific deadline, and there were a myriad of other taks that needed to be accomplished at the same time.  The users were on a jobsite with life threatening hazards (extreme voltage,   heavy equipment, lots of people to supervise) so the software needed to be as easy as possible to understanding and navigate.  By thinking like a user, rather than copy the prior version of the software which only showed users a single day view,  I created a home screen for the product which showed the prior and current weeks and clearly laid out what hours were entered and submitted for each day of the week, and what work was left to be done.  This was something helpful the users did not have visibility to before and overall it led to the product being well recieved.  Hopefully it even improved the quality of the users work since they did not have to wrestle with their timekeeping software, as much.',
-                    classes: ''
-                },   
+                },                               
             ]
         },
         {
             type: 20,
-            summary: 'Accomplishments',
-            question: 'What contributions are you most proud of at MJE?',
+            summary: 'Craziest Outage',
+            question: 'What was the craziest thing that happened while you worked there?',
             answer: [
                 {
-                    text: 'By joining the company the lasting impacts I left were a consistent design template for all web apps, and a logging and error handling framework.',
+                    text: 'Speaking of system reliability.  The wildest outage I remember was when someone tripped over an extension cord in the datacenter and took out a rack of servers.  Most of the company was down for the rest of the day.  On the upside, at least it was a straight forward set of causes rather than one of the mysterious outages where no one is sure where to start looking.',
                     classes: ''
                 },                
-                {
-                    text: 'The design template for web apps was something I created and evolved over the course of my 3 years.  When I started there was no uniform application structure or styling.  Each web app had a different style and level of polish and some were confusing to use.  There was also a lack of branding on the apps.  Creating a standard design template for our web apps not only improved the look the apps but also allowed us to add in features like a consistent help messages (who do i call and what is the number?), a version history and release notes screen (these are the new features and bug fixes that you asked for), and internal branding (like an employee uniform, but on software).',
-                    classes: ''
-                },
-                {
-                    text: 'The logging and error handling framework was something I envisioned and persuaded our team to build.  Waiting for users to call in tickets to the help desk and then responding reactively is not an ideal approach to software quality or our relationship with our users.  It’s unlikely that all software bugs would get reported, and usually our business users could be spending their time better than calling in issues with our software.  Idealy we as software developers and supporters should know when our users are having issues with our software and a logging and error handling framework helps with that.  It also was beneficial during the development phase of projects to quickly point out and track down bugs while the software was being written.',
-                    classes: ''
-                },
-                {
-                    text: 'Had I not joined the company these things would not have been created and adopted.',
-                    classes: ''
-                },
+                
             ]
         },
                         
