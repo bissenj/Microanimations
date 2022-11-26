@@ -238,8 +238,9 @@
     }
 
     function handleCareerClick(index) {
-        // console.log("handle projects click", index);
-        navigateToPage('home', 'career/mje');
+        console.log("handle career click", index);
+        const url = events[index].link;
+        navigateToPage('home', `career/${url}`);
     }
 
 
@@ -265,15 +266,18 @@
                         </div>
                         <div class='company-image'><img src='img/timeline/${item.image}'/></div>
                     </div>         
-                    <div class='career-more-button' aria-role='button'>more</div>           
+                    <div class='career-more-button' data-index=${index} aria-role='button'>more</div>           
                 </div>`;                  
         return html;
     }
     function generateSlideEventHandlers() {
         const slides = document.querySelectorAll('.career-more-button');
         slides.forEach((el) => {
-            el.addEventListener('click', () => {
-                navigateToPage('home', 'career/mje');
+            el.addEventListener('click', (e) => {
+                //navigateToPage('home', 'career/mje');
+                const index = e.target.dataset.index;
+                console.log("e: ", e, "index: ", index);
+                handleCareerClick(index);
              })
         });
     }
