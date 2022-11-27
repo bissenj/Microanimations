@@ -79,7 +79,9 @@ class HorizontalSlider {
     this.renderSlides(this.componentEl, this.data, this.slideRenderFunction);   
     
     // Event handlers for the slides
-    this.slideCreateEventHandlers();
+    if (this.slideCreateEventHandlers) {
+      this.slideCreateEventHandlers();
+    }
 
     // Event Handlers
     this.viewport = this.componentEl.querySelector('.slide-viewer');        
@@ -97,8 +99,13 @@ class HorizontalSlider {
 
     // This is what gets moved across the viewport.
     this.slidegroup = this.componentEl.querySelector('.slide-group');   
-    this.slideWidth = this.slidegroup.offsetWidth;
+    this.slideWidth = this.slidegroup.offsetWidth;  // only true if slide is 100% of viewport
+
+    //this.slideWidth = this.slidegroup.offsetWidth / 2;  // NEED to modify this to slides visible.
+
     this.totalWidth = this.slidegroup.offsetWidth * (this.data.length-1);  
+
+    console.log('Total Width: ', this.totalWidth, 'Slide Width: ', this.slideWidth);
 
     if (this.allowWrap) {
       let slides = this.slidegroup.children;
@@ -119,6 +126,7 @@ class HorizontalSlider {
 
     
     // Set the current slide
+    //this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + (this.slideWidth / 2) + "px";
     this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + "px";
 
     // Show content on first slide

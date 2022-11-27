@@ -6,8 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
   <title>Generic Slideshow Example</title> 
   <link rel='stylesheet' href='css/slide-example.css' />
-  <link rel='stylesheet' href='css/hSlider.css' />
+  <link rel='stylesheet' href='js/components/horizontalSlider/horizontalSlider.css' />  
   <link rel='stylesheet' href='css/control-grid.css' />
+
+  <style>
+    .slide-group {
+        grid-auto-columns: 50%;
+    }
+    .slide-viewer {
+        border: 1px solid black;
+    }
+
+    .slide {
+        inline-size: 80%;
+        block-size: 80%;
+    }
+  </style>
 </head>
 
 <body>
@@ -30,11 +44,11 @@
 </main>
 </body>
 
-<script src="/js/hSlider.js"></script>
-<script src="/Microanimations/js/hSlider.js"></script>
+<script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
+<!-- <script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script> -->
 
 <script src="/js/controlGrid.js"></script>
-<script src="/Microanimations/js/controlGrid.js"></script>
+<!-- <script src="/Microanimations/js/controlGrid.js"></script> -->
 <script>
 
     // GLOBAL DATA
@@ -75,7 +89,7 @@
     controlGridContainer1.addEventListener('onindexchange', (e) => {
         console.log("--------------------------");
         console.log(e.detail.index);
-        slider1.setSelectedIndex(e.detail.index);
+        slider1.setIndex(e.detail.index);
     })
     //
 
