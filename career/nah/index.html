@@ -38,11 +38,12 @@
                 <span>Northwestern Mutual</span><span>Application Engineer</span><span>2004-2014</span></div>
             </div>
     </div> 
-    <div class='company-profile'>Career History in Six Questions Or Less</div>
+    <div class='company-profile'>Career History in Five Questions Or Less</div>
     <div class='content'>    
         <div class='side-bar sticky'></div>
         <div class='detail-page'></div>
     </div>
+    <div class='footer'></div>
     
     <!-- Need a blank state element or image -->
     
@@ -70,13 +71,20 @@
             title: 'Business Owner',
             image: 'nah.jpg',
         }
-    ]
+    ];
+
+    const navigation = {
+        previous: 'Northwestern Mutual',
+        previousLink: 'nwm',
+        next: 'MJ Electric',
+        nextLink: 'mje'
+    }
 
     const data = [         
         {
             type: 20,
             summary: 'Big Transition',
-            question: 'You went from IT employee to business owner, how did that happen?',
+            question: 'You went from corporate employee to business owner, how did that happen?',
             answer: [
                 {
                     text: 'After 10 years of working at Northwestern Mutual I was ready for new challenges.  My wife is a veterinarian and had always planned on owning her own animal hospital so we decided the time was right and we bought an Animal Hospital near the Upper Peninsula of Michigan.',
@@ -135,17 +143,13 @@
         },  
         {
             type: 20,
-            summary: '',
-            question: '',
+            summary: 'New Perspective',
+            question: 'How has your appreciation for being an employee changed?',
             answer: [
                 {
-                    text: '',
+                    text: 'There’s a lot more that happens behind the scenes of a business to keep it running than most people realize.  After being a business owner I appreciate as an employee I can go into work and focus on the things I am good at and enjoy.  I also have an understanding of how to be the type of employee I valued as a business owner.',
                     classes: ''
-                },   
-                {
-                    text: '',
-                    classes: ''
-                },                                               
+                },                                                               
             ]
         },  
                         
@@ -163,6 +167,9 @@
 
     const header = document.querySelector('.header-content .stats');
     header.innerHTML = renderHeader(career[0]);
+
+    const footer = document.querySelector('.work-page .footer');
+    footer.innerHTML = renderFooter(navigation);
     
     function renderHeader(career) {
         let html = '<span></span>';
@@ -172,6 +179,16 @@
         return html;
     };
 
+    function renderFooter(navigation) {
+        let html = ``;
+        html += `<div class='previous' onclick=handleNavClick('${navigation.previousLink}')>${navigation.previous}</div>`;
+        html += `<div class='next'>${navigation.next}</div>`;        
+        return html;
+    }
+
+    function handleNavClick(link) {
+        navigateToPage('nah', `career/${link}`);  
+    }
     
     function handleHomeClick() {
         navigateToPage('nightlight', 'hero.html#work');        
@@ -214,7 +231,7 @@
         // ---------------------------------------------------------
 
         // get all the elements we need to watch
-        const questions = document.querySelectorAll('.question');
+        const questions = document.querySelectorAll('.text-block-half');
         if (questions.length > 0) {
             
             // what to do with entries that are on screen
@@ -235,7 +252,7 @@
             }
             // fire up the observer
             const questionObserver = new IntersectionObserver(setActiveQuestion, { 
-                rootMargin: '0px 0px -40% 0px', threshold: 0.0});
+                rootMargin: '0px 0px -30% 0px', threshold: 0.5});
 
                 questions.forEach((el) => {
                     questionObserver.observe(el);

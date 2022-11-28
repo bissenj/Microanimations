@@ -97,9 +97,10 @@ function renderOops() {
 function renderFullWidthImage(data) {
     const image1 = data.image1 ?? '';    
     const optionalClasses = data.classes ?? '';
+    const imageClasses = data.imageClasses ?? '';
 
     // Logic
-    let imageContainer = createImage({image: image1, class: optionalClasses});
+    let imageContainer = createImage({image: image1, class: imageClasses});
 
     let html = `
         <!-- Full width Image -->
@@ -222,7 +223,7 @@ function renderTextBlockTwoColumn(data) {
 function renderTextBlocksWithHeading(data) {
     const heading = data.heading || '';
 
-    const text1 = data.text1;
+    //const text1 = data.text1;
     const optionalClasses = data.classes || '';
 
     let headingHtml = '';
@@ -233,7 +234,15 @@ function renderTextBlocksWithHeading(data) {
     let paragraphHtml = '';
     data.text.map((item) => {
         let classes = item.classes ?? ''; 
-        paragraphHtml += `<p class='${classes}'>${item.text}</p>`;
+
+        if (item.text) {
+            paragraphHtml += `<p class='${classes}'>${item.text}</p>`;
+        }
+
+        // Need to get grid out of place-content center before using this.
+        // if (item.image) {
+        //     paragraphHtml += createImage({image: item.image, class: classes});
+        // }
 
         //let imageContainer = createImage({image: item.image});
         // let image = item.image ?? '';
@@ -368,7 +377,7 @@ function renderQuestionAnswer(data, index) {
     let html = `
         <!-- Question and Answer Block -->
         <div class='segment p40 ${optionalClasses}'>
-            <div class='text-block-half'>
+            <div class='text-block-half' data-index=${index}>
                 ${questionHtml}
                 ${paragraphHtml}
             </div>

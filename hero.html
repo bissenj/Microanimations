@@ -164,7 +164,7 @@
                             <div class='summary'>A solution for the question: "So where are you guys?"  I built a GPS mapping and tracking platform with React and React Native so our families could stay up to date on our extended travels.  It was a lot of fun.</div>
                         </div>                                                
                     </li>                    
-                    <li class='project-item-container' data-index=1>
+                    <li class='project-item-container' data-index=1 onclick='handleProjectsClick(1)'>
                         <div class='number'>02</div>
                         <div class='divider'></div>
                         <div class='project'>
@@ -186,11 +186,23 @@
     </section>
 
     <!-- Contact -->
-    <section id='contact' class='contact center'>
-        <h1>Contact</h1>
-        <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
-        <div class='text'>About this site <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
-        <div class='text'>Outtakes <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+    <section id='contact' class='contact' >
+        <div style='display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 10px; width:100%; padding:80px; '>
+            <div style='position: relative;'>
+                <div style='font-size: 2.5em; text-transform: uppercase;'>Mountains</div>
+                <div style='font-size: 2em; position: absolute; top: 51px; left: 0px;'>and </div>
+                <div style='font-size: 3.5em; text-transform: uppercase; position: absolute; top: 44px;  left: 72px; letter-spacing: 10px;'>Code</div>            
+            </div>        
+            <div style='align-self:center; justify-self: center;'>
+                <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+                <div class='text'>About this site <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+                <div class='text'>Outtakes <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
+            </div>
+            <div style='align-self:center; justify-self: center;'>
+                If you would like to talk about projects, employment, or hiking in the mountains, send me an <b><a href='mailto:mountainsandcode@gmail.com'>email</a></b>.
+            </div>
+        </div>
+        
     </section>
 
 </main>
@@ -234,7 +246,19 @@
 
     function handleProjectsClick(index) {
         // console.log("handle projects click", index);
-        navigateToPage('home', 'projects/nightlight');
+        switch(index) {
+            case 0: 
+                navigateToPage('home', 'projects/nightlight')
+                break;
+            case 1: 
+                navigateToPage('home', 'projects/fte')
+                break;
+            case 2: 
+                navigateToPage('home', 'projects/nah')
+                break;
+            default:
+                console.log("No Project Found");
+        }
     }
 
     function handleCareerClick(index) {

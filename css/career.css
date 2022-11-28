@@ -10,7 +10,28 @@
 .work-page { 
     overflow-x: unset;        
     display: grid;
-    grid-template-rows: 2em 300px 1fr;
+    grid-template-rows: 2em 300px 1fr 100px;
+}
+
+.work-page .footer {
+    color: black;        
+    /* border: 1px solid red;       */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;   
+    background-color: var(--header-background);       
+}
+
+.work-page .footer > div {
+    margin: 20px;
+    /* border: 1px solid red; */
+    padding: 5px 20px;
+    min-width: 200px;
+    background-color: var(--gold-text);
+    text-align: center;
+    /* color: white; */
+    cursor: pointer;
 }
 
 .work-page .header {        
@@ -129,7 +150,7 @@
     border: 1px solid #444;
     box-shadow: 2px 4px 4px #444;
     box-shadow: var(--question-box-shadow);
-    max-width: 40em;
+    max-width: 36em;
 }
 
 .question {
@@ -154,7 +175,7 @@
 
 .detail-page .segment p {
     font-size: 20px;
-    padding: 0px 12px;
+    /* padding: 0px 12px; */
 }
 
 a.anchor {

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
-  <title>Project Case Study - Nightlight</title> 
+  <title>Project Case Study - Field Time Entry</title> 
   <link rel='stylesheet' href='~/../../../css/global.css' />  
   <link rel='stylesheet' href='~/../../../css/portfolio-main.css' />  
   <link rel='stylesheet' href='~/../../../js/components/pageSegments/pageSegments.css' />  
@@ -53,40 +53,57 @@
         {
             type: 0,
             classes: 'box-shadow-2', 
-            image1: 'nightlight/beartooths.jpg', 
-            text1: 'Sharing our experiences',
-            text2: 'React, React Native, Remix, Postgres'
+            image1: 'fte/mje-jobsite.jpg', 
+            text1: 'An upgrade project with a legacy',
+            text2: 'Asp.net, JQuery, Kendo UI'
         }, 
         {
             type: 5,            
             text: [
                 {
-                    text: 'Our family likes to get out in nature and explore.',
+                    text: 'Getting everyone paid on time in a large company on a weekly basis is an undertaking.',
                     classes: 'fs16',
                 },            
-                {text: 'For years we have been sharing our adventures with extended family through photos and video as a way to bring our loved ones along on the adventures when they otherwise can’t be with us. '},            
+                {
+                    text: 'Especially if the company has thousands of employees.  MJ Electric (MJE) is a large electrical contractor with projects and crews spread out all across the country, in urban and remote areas.  The timekeeping system in place when I started was a Microsoft Access frontend with a SQL server backend and had been used for years.  It served both as the method to log time for payroll, but also as the entry point to charge hours to projects so MJE could manage projects and bill effectively. '
+                },   
+                {
+                    text: 'About a year after I started at the company it became a company goal to find a replacement time keeping system. '
+                }, 
+                {
+                    text: 'A committee was formed to evaluate several commercial products while our IT director threw our hat into the mix and said we could build a better product for less.  In the end, we built our product and it was chosen by company leadership over the commercial products being vetted.'
+                }, 
+                {
+                    text: 'Our team consisted of three developers.  Myself, my co-worker, and a contract developer who worked part time at night.  We were definitely racing deadlines to reach our goal. '
+                },    
             ]            
         },               
         {
             type: 3, 
-            image1: 'nightlight/huckleberry.jpg'
+            image1: 'fte/mje-transmission-lines.jpg'
         },  
         {
             type: 5,
-            heading: 'Motivation',
+            heading: 'Planning for Good Decisions',
             text: [
-                {text: 'My parents live 1500 miles away.  They have no idea where many of our photos are taking place and being almost 80, even if they were here, they aren’t going to tag along with us as we posthole through the snow to reach the top of a mountain, snag a few epic pics, eat a PB&J, and then head back down. '},
                 {
-                    text: 'My kids are getting older and are starting to spread their wings.  Sometimes I just want to know roughly where they are and then I don’t have to wonder.  Heck, sometimes I just want my family to know where I am.  If I flip my kayak offshore fishing in November, at least they know where to start looking.',
-                    // image: 'nightlight/kayak.jpg'
+                    text: 'Because we were essentially competing against existing products and we had nothing to start with, we made the call to use an existing UI library.  It added to the initial learning curve but the reusable nature of the library helped save time overall.'
                 },
-                {text: 'For years I have been searching for a mobile project that I would actually want to use.  I’ve worked on a few entry level projects in Xamarin and Android Studio but nothing really stuck.'},
-                {text: 'Until now.'},
+                {
+                    text: 'While conducting user interviews I found that each division in the company had slightly different use cases for time keeping.  For example, some groups charged time for their employees (labor hours) and their equipment.  Other groups didn’t use equipment.  Some groups had to charge an equal number of equipment hours based on their labor hours, but only on certain pieces of equipment.',                    
+                },
+                {
+                    text: 'Over the years, new features had been patched into the legacy system to accommodate these differences but predictably, changing one feature helped one group but negatively impacted other groups.'
+                },
+                {
+                    text: 'Our system re-write was an opportunity to patch up these holes and our goal was to build a more future proof system than the one we were replacing.'
+                },
             ]            
         },   
         {
             type: 3, 
-            image1: 'nightlight/craterlake-wizard-island1.webp'
+            classes: 'w85',
+            image1: 'fte/mje-planning.jpg'
         }, 
         // {
         //     type: 3, 
@@ -94,103 +111,91 @@
         // }, 
         {
             type: 5,
-            heading: 'Design Considerations',
+            heading: 'Problem Solving',
             text: [
-                {text: 'To capture the feeling of exploration I needed a breathtaking photograph to represent the app.  I chose sheer mountains with a thick layer of clouds about halfway up.  I wish I could claim credit for the photograph.  My wife is planning a trip to the Tour Du Monc Blanc in the near future so maybe I’ll get a chance to find its equal.'},            
+                {
+                    text: 'To solve the challenge of everyone using the system in a different way we used a combination of approaches.'
+                },            
+                {
+                    text: 'The UI library we chose had a datagrid with a powerful drag and drop grouping feature.  This allowed our users to create the view they needed as opposed to us building new screens for every use case.  Need to see all the hours for one person?  Group by Employee.  Need to see all the hours charged to each project?  Group by Project, etc.  It worked great and was well received.'
+                },            
+                {
+                    text: 'We also built in a User Settings module to help customize each divisions workflow.  For users that did not log hours for equipment, they could go into settings and uncheck the Show Equipment option.  For Project Contracts that had a custom Per Diem calculation, go into settings and change the Per Diem dropdown, etc.  This gave us room to make future changes for individual divisions without affecting other division’s workflows. '                },                                       
             ]            
         },
         {
             type: 3, 
-            classes: 'w85',
-            image1: 'nightlight/adventuremap-login.jpg'
+            classes: 'p80 bg0',
+            image1: 'fte/fte-timesheet.png', 
+            imageClasses: 'b1'           
         },
         {
-            type: 1,
-            text1: 'The App needed to be lightweight, simple, and fast.  I already have a number of GPS apps for hiking and hunting but they run a bit slow on our mid-level devices.  I just need a screen with a map and some user markers. My kids always want to know our elevation, so overlay that on the map as well.'
-        },  
-        {
-            type: 7, 
-            classes: 'fade-in-sequence',            
-            content: [
-                {
-                    classes: 'image primary',                    
-                    image: 'nightlight/phone-1.png',
-                },
-                {
-                    classes: 'image secondary waiting',                    
-                    image: 'nightlight/phone-2.png',
-                },
-                {
-                    classes: 'image tertiary waiting',                    
-                    image: 'nightlight/phone-3.png',
-                },
-            ],            
-        }, 
-        // {
-        //     type: 1,
-        //     text1: 'The App needed to be lightweight, simple, and fast.  I already have a number of GPS apps for hiking and hunting but they run a bit slow on our mid-level devices.  I just need a screen with a map and some user markers. My kids always want to know our elevation, so overlay that on the map as well.'
-        // },  
-        // {
-        //     type: 6, 
-        //     classes: 'bg0',
-        //     // heading: 'This is new section',
-        //     content: [
-        //         {
-        //             classes: '',
-        //             text: '',
-        //             image: 'nightlight/devices.webp',
-        //         }
-        //     ],            
-        // }, 
-        // {
-        //     type: 3, 
-        //     classes: 'w85',
-        //     image1: 'nightlight/devices.png'
-        // },   
-        {
             type: 5,
-            heading: 'Architecture',
+            heading: 'My Contributions',
             text: [
-                {text: 'For this project I needed a native app installed on our phones which connects to a cloudbased backend API with a postgres database.  Lately I’ve been using Remix.run for React projects.  It makes a great backend for the API and also provides a web front end for our extended family who want to see a map without having to install the native app.  Rather than use an existing authentication service I created my own for the App and Web Frontend using JWT tokens as a refresher in how basic authentication works.  The map data comes from Google Maps and Mapbox.'},            
+                {
+                    text: 'During the project I wore a lot of hats.  Full Stack Developer.  Tester.  Coordinator for our night developer.  Rollout Coordinator.  Presenter.  User Trainer.  However my unique contributions to the project were the UI/UX specialist.  I conducted interviews with stakeholders to learn how they used the legacy system and what changes would benefit them.'
+                },            
+                {
+                    text: 'Based on those interviews and my relationships with the users, I was able to adjust the direction of our new product.  As an example, I envisioned and built a home screen and review screen for the app.  These didn’t exist in the legacy system but I felt after putting myself in the shoes of our users that these screens would help their workflow, and would set our product apart from the legacy system and commercial systems.'
+                },            
+                {
+                    text: 'The home screen shows a summary of the hours for the current and previous week for each construction crew and provides a simple way to know what time has been submitted and what has yet to be entered.  It was a mind shift for long time users of the legacy system but once they got it, it was well received.'
+                },                                                   
             ]            
+        },    
+        {
+            type: 3, 
+            classes: 'p80 bg0 b1',
+            image1: 'fte/fte-home.png',  
+            imageClasses: 'b1'                     
         },
         {
-            type: 0,            
-            image1: 'nightlight/badlands.webp',             
-            text2: 'Annual pilgramage back from the Midwest'
-        },        
+            type: 5,            
+            text: [               
+                {
+                    text: 'The review screen provides a way to see all the data that was entered for a timecard, but in a different context which would hopefully allow users to catch mistakes before submitting the timecard.  Just like an online shopping experience.   When time is submitted incorrectly it becomes costly as a Project Manager or Payroll will reject the timecard and the time submitter will have to stop what they are doing, fix the issues and submit the timecard again.'
+                },                                                       
+            ]            
+        },   
         {
-            type: 5,
-            heading: 'Challenges I expected',
-            text: [
-                {text: 'One of the goals of this project was to learn.  I expect that on every project worth undertaking and particularly in the field of software development.  There was a lot of learning on this project.  The biggest unknown for me was I had never used React Native before.  I was happy to find it  complimented React and Web programming nicely and I couldn’t be happier with the mobile app development experience React Native provided.'},            
+            type: 3, 
+            classes: 'p80 bg0 b1',
+            image1: 'fte/fte-review.png',
+            imageClasses: 'b1'           
+        },
+        {
+            type: 5,            
+            text: [                                    
+                {
+                    text: 'I had also been working on a design template to standardize our Web Apps.  During this project I was able to nail the details on the look and feel and it became our standard going forward. '
+                },                                   
             ]            
         }, 
         {
             type: 5,
-            heading: 'Challenges I didnt expect',
             classes: 'p-top-0',
+            heading: 'Business Knowledge',
             text: [
-                {text: 'I love maps.  To me they represent opportunity for exploration, hold unknown potential, and are a recipe for excitement.  All of that, wrapped up in a two-dimensional usually well graphically-designed and glossy sheet of paper covering my kitchen table.  They are kind of like wrapped Christmas presents under the tree waiting to be opened.  I figured mapping would be the easy part of this project, and that’s where I went off course.'},            
-                {text: 'I guess I assumed the project would follow this process:  Create an app.  Slap a map on a screen.  Poll for location data.  Store waypoints in database.  Display waypoints on the map.  Deploy to prod and Done.  The big question I didn’t anticipate is when and how often do you poll for location data?  My user base lives in the same house as me which is great for testing, but bad when your users want to know why their phone batteries are dead in the morning.  There’s definitely a balance and compromises to be made with making location data practical.'},            
-                {text: 'On the upside, this was the first software project in my career which caused me to go outside for testing.  Go for a hike (update every 100 yards).  Pick up kids from school (update every 1 mile).   Drive across the country (update every 5 miles).'},            
+                {
+                    text: 'In the beginning of the project I knew nothing about how the process for timekeeping in the Field worked.  (I was an Office employee, we charged time differently).  By the end of the project I was the expert and was giving presentations to the company explaining how the new system worked, and planning re-writes for the two downstream legacy systems. '
+                },                                                                  
             ]            
         },
         {
-            type: 3, 
-            image1: 'nightlight/chairlift4.webp'
-        }, 
-        {
             type: 5,
-            heading: 'Wrapping Up',
+            classes: 'p-top-0',
+            heading: 'Wildly Successful?',
             text: [
-                {text: 'Nightlight has been a fun project so far.  I learned a ton and built a useable system.  Because it’s relatively small it loads faster than our commercial mapping apps.  If we want a quick map or want to know our elevation in the mountains, we flip open Nightlight.  Also extended family appreciates being able track our progress on long summer trips to see where all the family pictures are taking place. '},            
+                {
+                    text: 'We successfully delivered a great product that was well received by users and company executives.  A lot of the things our dev team discussed and built during this project became the standard for our web team going forward:  The Design Template, A new SSO Solution (Azure AD), A standardized version numbering scheme and release cycle, our custom logging and error handling framework, and a new UI framework (Kendo UI).  After FIeld Time Entry we went on to upgrade the two remaining legacy payroll applications and (most) stakeholders were excited about being upgraded and the chance to improve their workflows. '
+                },                                                                  
             ]            
-        }, 
+        },
         {
-            type: 0,            
-            image1: 'nightlight/oregon-fishing.webp',             
-            text2: 'Summer 2022'
+            type: 3,            
+            image1: 'fte/mje-hq.jpg',             
+            // text2: 'Summer 2022'
         }, 
         // {
         //     type: 3, 
