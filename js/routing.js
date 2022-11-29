@@ -36,5 +36,6 @@ function navigateToPage(source, dest) {
 
 // This needs to be on every page.
 function resetBody() {
+    console.log("Reset Body");
     document.querySelector('body').classList.remove('fade-out');
 }
