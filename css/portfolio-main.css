@@ -19,7 +19,14 @@ body {
 }
 
 body.fade-out {        
-    opacity: 0;
+    /* opacity: 0; */
+    animation: fade-out-delay 4s ease-in-out;
+}
+
+@keyframes fade-out-delay {
+    0% { opacity: 1; }
+    5% { opacity: 0; }
+    100% { opacity: 0; }    
 }
 
 /* Page fade in effect on load */
