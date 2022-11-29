@@ -10,23 +10,28 @@
   <link rel='stylesheet' href='~/../../../js/components/pageSegments/pageSegments.css' />  
   <link rel='stylesheet' href='~/../../../css/media-queries.css' />
   <style>
-    .color-spans > span:nth-of-type(1) {
+    .color-spans > span {
+        transition: background-color 0.5s, color 0.5s;
+    }
+    .color-spans.active > span:nth-of-type(1) {
         padding: 0px 5px;
         background-color: orange;
         color: black;
-        font-size: 1.2em;
+        font-size: 1.2em;        
     }
-    .color-spans > span:nth-of-type(2) {
+    .color-spans.active > span:nth-of-type(2) {
         padding: 0 5px;
         background-color: rgb(3, 147, 166);
         color: black;
         font-size: 1.3em;
+        transition-delay: 250ms;
     }
-    .color-spans > span:nth-of-type(3) {
+    .color-spans.active > span:nth-of-type(3) {
         padding: 0 5px;
         background-color: firebrick;
         color: white;
         font-size: 1.1em;
+        transition-delay: 500ms;
     }
   </style>
 </head>
@@ -174,7 +179,7 @@
         // },
         {
             type: 5,  
-            classes: 'p-top-0',          
+            classes: 'p-top-0 no-color',          
             text: [                          
                 {
                     text: 'When we moved from the city to the remote area where the business was located, we brought along some high tech equipment that no other clinics in the area had.  Things like a surgical laser which could deliver a higher quality surgical experience than traditional scalpels.  If you had to have surgery would you want less pain, bleeding, and risk of infection?  Me too.  My wife was adamant about the types of surgery she would do and how it was going to be done.  We used our website to communicate our equipment and process.  This helped the public perception of our business go from out-of-date to modern and caring.'
@@ -191,8 +196,8 @@
         {
             type: 11,  
             classes: 'p80 bg0 c1',             
-            text: 'Our website was the main marketing platform we leveraged to turn our reputation around by <span> highlighting our strengths</span>, <span> showing the extent that we cared about our patients</span>, <span>and showing off our progress visually transforming the building </span>. ',            
-            textClasses: 'p-right-20 color-spans',
+            text: 'Our website was the main marketing platform we leveraged to turn our reputation around by <span> highlighting our strengths</span>, <span> showing the extent that we cared about our patients</span>, <span class="active">and showing off our progress visually transforming the building </span>. ',            
+            textClasses: 'p-right-20 color-spans slide-left',
             image: 'nah/nah-website.png',
             imageClasses: 'b1'
         }, 
@@ -200,16 +205,19 @@
         {
             type: 5,
             heading: 'End of an adventure',
-            classes: '',
+            classes: 'scroll-target no-color',
             text: [
                 {
                     text: 'Looking back it was a lot of work but we were probably the right people for the job of building up the business. '
                 }, 
                 {
-                    text: 'My wife is a superstar.  Extremely put together, great with people, and calm in tough situations.  For my part, learning how to run the business and improve our image was exciting.  Having a history of working in highly professional environments gave me a road map to follow.   We worked hard. '
+                    text: 'My wife is a superstar.  Extremely put together, great with people, and calm in tough situations.  For my part, learning how to run the business and improve our image was exciting.  Having a history of working in highly professional environments gave me a road map to follow.'
                 }, 
                 {
-                    text: 'Overtime those people who had left came back and brought friends.  Eventually we had more work than one Veterinarian could keep up with and we were fortunate to sell the business to a pair of Veterinarians ready for their own adventures.'
+                    text: 'We worked hard. '
+                },
+                {
+                    text: 'Over time those people who had left came back and brought friends.  Eventually we had more work than one Veterinarian could keep up with and we were fortunate to sell the business to a pair of Veterinarians ready for their own adventures.'
                 }, 
             ]            
         },     
@@ -238,45 +246,11 @@
     data.map((item) => {
         page.append(renderFactory(item));
     });
-
-    setTimeout(() => {
-        //document.querySelector('main').classList.remove('loading');
-        //page.classList.add('loading-finished');
-        //page.classList.remove('loading-start');
-
-        //console.log("Got Here");
-            // // DEBUGGING    
-            // const images = document.querySelectorAll('img').forEach((el) => {
-            //     //console.log('image found: ', el);
-            //     el.onload = function() {
-            //         console.log('Image Loaded: ');
-            //     }
-            // });
-            // console.log("Images : ", images);
-
-        //document.querySelector('.slide-left').classList.add('visible');
-        //document.querySelector('.slide-right').classList.add('visible');
-    }, 100);
+   
 
     function handleHomeClick() {
         console.log("handle home click");
-
-        navigateToPage('nightlight', 'hero.html#projects');
-
-        // // Fade out screen
-        // document.querySelector('body').classList.add('fade-out');
-
-        // // TODO - FIX THIS!
-        // // HACK FOR GITHUB PAGES
-        // let destination = '';
-        // if (location.protocol == "https:") {
-        //     destination = '/Microanimations'
-        // }       
-
-        // // update window location
-        // setTimeout(() =>{ 
-        //     window.location = `${destination}/hero.html#projects`;
-        // },750);
+        navigateToPage('nightlight', 'hero.html#projects');       
     }
 
 
@@ -316,23 +290,28 @@
         // ---------------------------------------------------------
 
         // get all the elements we need to watch
-        const animationTargets = document.querySelectorAll('.fade-in-sequence');
+        const animationTargets = document.querySelectorAll('.no-color');
         if (animationTargets.length > 0) {
-            //console.log("Targets: ", animationTargets);
+            console.log("Targets: ", animationTargets);
             // what to do with entries that are on screen
             function triggerAnimations(entries) {
+                console.log("Got Here");
                 entries.map((entry) => {
                     if (entry.isIntersecting) {                    
-                        entry.target.classList.add('active');
-                        entry.target.querySelector('.secondary').classList.remove('waiting');
-                        entry.target.querySelector('.tertiary').classList.remove('waiting');
-                        animationObserver.unobserve(entry.target);
+                        document.querySelector('.color-spans').classList.remove('active');
+                        // entry.target.classList.add('active');
+                        // entry.target.querySelector('.secondary').classList.remove('waiting');
+                        // entry.target.querySelector('.tertiary').classList.remove('waiting');
+                        // animationObserver.unobserve(entry.target);
+                    }
+                    else {
+                        document.querySelector('.color-spans').classList.add('active');
                     }
                 });
             }
             // fire up the observer
             const animationObserver = new IntersectionObserver(triggerAnimations, { 
-                rootMargin: '0%', threshold: 0.85 });
+                rootMargin: '0%', threshold: 0.5 });
 
             animationTargets.forEach((el) => {
                 animationObserver.observe(el);

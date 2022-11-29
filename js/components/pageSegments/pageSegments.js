@@ -61,12 +61,8 @@ function createImage(data) {
     let html = '';
     
     if (image !== '') {    
-        //console.log('image: ', image);
+        let classesHtml = ` class='${classes} scroll-target'`;       
 
-        let classesHtml = '';
-        if (classes != '') {
-            classesHtml = ` class='${classes}'`;
-        }        
         html += `<div ${classesHtml}><img src='${IMAGE_PATH}/${image}'></img></div>`;    
         // html += `<img src='${IMAGE_PATH}/${image}'></img>`;    
     }
@@ -107,7 +103,7 @@ function renderFullWidthImage(data) {
 
     let html = `
         <!-- Full width Image -->
-        <div class='segment scroll-target  ${optionalClasses}'>
+        <div class='segment ${optionalClasses}'>
             <div class='image-full-width'>
                 ${imageContainer}                                    
             </div>
@@ -125,7 +121,7 @@ function renderFullWidthImageWithTextOverlay(data) {
     // Logic
     let imageContainer = '';
     if (image1 != '') {
-        imageContainer = `<img src='${IMAGE_PATH}/${image1}'></img>`;                        
+        imageContainer = `<img class='scroll-target' src='${IMAGE_PATH}/${image1}'></img>`;                        
     }
     //let imageContainer = createImage({image: image1});
 
