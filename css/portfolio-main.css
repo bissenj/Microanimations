@@ -18,7 +18,7 @@ body {
     transition: opacity 0.4s;
 }
 
-body.fade-out {        
+body.fade {        
     /* opacity: 0; */
     animation: fade-out-delay 4s ease-in-out;
 }

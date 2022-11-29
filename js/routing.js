@@ -19,7 +19,7 @@ function navigateToPage(source, dest) {
     console.log('navigateToPage(): ', source, dest);
 
     // Fade out screen
-    document.querySelector('body').classList.add('fade-out');
+    document.querySelector('body').classList.add('fade');
     
     // HACK FOR GITHUB PAGES
     // Fix the URL when deployed on GitHubPages by adding in the repo name.
@@ -37,5 +37,5 @@ function navigateToPage(source, dest) {
 // This needs to be on every page.
 function resetBody() {
     console.log("Reset Body");
-    document.querySelector('body').classList.remove('fade-out');
+    document.querySelector('body').classList.remove('fade');
 }
