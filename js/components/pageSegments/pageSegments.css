@@ -45,6 +45,7 @@ main {
     background-color: white;
     color: black;    
     font-size: 22px;
+    overflow-x: unset;
 }
 
 .segment {
@@ -212,6 +213,7 @@ div.image img { height: 100%; width: 100%; display: block;}
 .box-shadow-1 { box-shadow: 0 0 4px #444; }
 .box-shadow-2 { box-shadow: 0px 4px 6px #444; }
 .b1 { border: 1px solid #444; }
+.b2 { border: 2px solid #dadada; }
 .v100 { min-height: 100vh; }
 .fixed-image {
     position: fixed;
@@ -219,7 +221,7 @@ div.image img { height: 100%; width: 100%; display: block;}
 }
 .top-right {
     position: absolute;
-    top: 10;    
+    top: 0px;    
     width: 100%;
     text-align: right;
     padding: 15px;
@@ -254,21 +256,54 @@ p.fs16 { font-size: 1.6em; max-width: 20em;}
 .p-top-0 { padding-top: 0px; }
 .p-top-40 { padding-top: 40px; }
 .p-bottom-0 { padding-bottom: 0px; }
+.p-bottom-20 { padding-bottom: 20px; }
+.p-left-100 { padding-left: 100px; }
+.p-right-20 { padding-right: 20px; }
+.p-right-100 { padding-right: 100px; }
 .w50 {
     width: 50%;
+    margin: 0 auto;
+}
+.w55 {
+    width: 55%;
     margin: 0 auto;
 }
 .w85 {
     width: 85%;
     margin: 0 auto;    
 }
-.bg0 {
-    background-color: black;
+.m0 { margin: unset; }
+.m1 { margin: 0 50%; }
+.bg0 { background-color: black; }
+.bg1 { background-color: #ffae00;}
+.c1 {
+    color: white;
+}
+
+.constrain-width {
+    overflow-x:hidden;
+}
+
+.q1 {
+    color: #978e74;
+    text-transform: uppercase;
 }
 
 .picture-box-1 {
     border: 1px solid #000000;
     box-shadow: 0 0 4px #444;
+}
+
+.sticky-container {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    position: relative;
+}
+
+.sticky { 
+    position: sticky;
+    top: 100px;
+    align-self: start;
 }
 
 

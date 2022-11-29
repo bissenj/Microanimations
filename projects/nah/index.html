@@ -4,11 +4,31 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
-  <title>Project Case Study - Field Time Entry</title> 
+  <title>Project Case Study - NAH Website</title> 
   <link rel='stylesheet' href='~/../../../css/global.css' />  
   <link rel='stylesheet' href='~/../../../css/portfolio-main.css' />  
   <link rel='stylesheet' href='~/../../../js/components/pageSegments/pageSegments.css' />  
   <link rel='stylesheet' href='~/../../../css/media-queries.css' />
+  <style>
+    .color-spans > span:nth-of-type(1) {
+        padding: 0px 5px;
+        background-color: orange;
+        color: black;
+        font-size: 1.2em;
+    }
+    .color-spans > span:nth-of-type(2) {
+        padding: 0 5px;
+        background-color: rgb(3, 147, 166);
+        color: black;
+        font-size: 1.3em;
+    }
+    .color-spans > span:nth-of-type(3) {
+        padding: 0 5px;
+        background-color: firebrick;
+        color: white;
+        font-size: 1.1em;
+    }
+  </style>
 </head>
 
 <body>
@@ -53,148 +73,156 @@
         {
             type: 0,
             classes: 'box-shadow-2 constrain-width', 
-            image1: 'fte/mje-jobsite.jpg', 
-            text1: 'An upgrade project with a legacy',
-            text2: 'Asp.net, JQuery, Kendo UI'
+            image1: 'nah/cool-cat.jpg', 
+            text1: 'Working with purpose',
+            text2: 'HTML, CSS, JS'
         }, 
         {
             type: 5,            
             text: [
                 {
-                    text: 'Getting everyone paid on time in a large company on a weekly basis is an undertaking.',
+                    text: 'My wife and I bought a business in 2013.',
                     classes: 'fs16',
                 },            
                 {
-                    text: 'Especially if the company has thousands of employees.  MJ Electric (MJE) is a large electrical contractor with projects and crews spread out all across the country, in urban and remote areas.  The timekeeping system in place when I started was a Microsoft Access frontend with a SQL server backend and had been used for years.  It served both as the method to log time for payroll, but also as the entry point to charge hours to projects so MJE could manage projects and bill effectively. '
+                    text: 'It was an exciting time.  We were on a new adventure building our dreams.  However as new comers in town it was a common occurrence to meet people and have conversations go like this: '
+                },  
+                {
+                    text: '"Oh you’re the folks who bought the Animal Hospital?  I used to go there until…"',
+                    classes: 'p40 bg0 c1'
                 },   
                 {
-                    text: 'About a year after I started at the company it became a company goal to find a replacement time keeping system. '
-                }, 
-                {
-                    text: 'A committee was formed to evaluate several commercial products while our IT director threw our hat into the mix and said we could build a better product for less.  In the end, we built our product and it was chosen by company leadership over the commercial products being vetted.'
-                }, 
-                {
-                    text: 'Our team consisted of three developers.  Myself, my co-worker, and a contract developer who worked part time at night.  We were definitely racing deadlines to reach our goal. '
-                },    
+                    text: 'We had a lot of work ahead of us.  The building was showing its age, what little equipment was there was ancient, and there was the reputation to turn around.  This was around the time the show ‘Fixer Upper’ first aired and that’s exactly what we did to the business. '
+                },                  
             ]            
         },               
-        {
-            type: 3, 
-            image1: 'fte/mje-transmission-lines.jpg'
-        },  
+        // {
+        //     type: 3, 
+        //     image1: 'fte/mje-transmission-lines.jpg'
+        // },  
         {
             type: 5,
-            heading: 'Planning for Good Decisions',
+            heading: 'When overwhelmed, focus on what you CAN do',
+            classes: 'p-top-0',
             text: [
                 {
-                    text: 'Because we were essentially competing against existing products and we had nothing to start with, we made the call to use an existing UI library.  It added to the initial learning curve but the reusable nature of the library helped save time overall.'
-                },
-                {
-                    text: 'While conducting user interviews I found that each division in the company had slightly different use cases for time keeping.  For example, some groups charged time for their employees (labor hours) and their equipment.  Other groups didn’t use equipment.  Some groups had to charge an equal number of equipment hours based on their labor hours, but only on certain pieces of equipment.',                    
-                },
-                {
-                    text: 'Over the years, new features had been patched into the legacy system to accommodate these differences but predictably, changing one feature helped one group but negatively impacted other groups.'
-                },
-                {
-                    text: 'Our system re-write was an opportunity to patch up these holes and our goal was to build a more future proof system than the one we were replacing.'
-                },
+                    text: 'One aspect of improving our image and capturing people’s attention was we needed a strong online presence.  This was in my wheel house and provided something comfortable to focus on when everything else in the business was out of my comfort zone.  Responsive design had become the standard in recent years so I knew that’s where I had to start.  My whole corporate career was building websites for a single form factor:  Windows desktops running IE 6.  So I studied up on how I could make a website run on a variety of devices and got to work.'
+                },                               
             ]            
-        },   
-        {
-            type: 3, 
-            classes: 'w85',
-            image1: 'fte/mje-planning.jpg'
-        }, 
+        },          
+        // {
+        //     type: 3, 
+        //     classes: 'w85',
+        //     image1: 'fte/mje-planning.jpg'
+        // }, 
         // {
         //     type: 3, 
         //     image1: 'nightlight/craterlake-fine-dining.jpg'
         // }, 
         {
             type: 5,
-            heading: 'Problem Solving',
+            classes: 'bg0 c1',
+            heading: 'Staying Authentic',
             text: [
                 {
-                    text: 'To solve the challenge of everyone using the system in a different way we used a combination of approaches.'
-                },            
-                {
-                    text: 'The UI library we chose had a datagrid with a powerful drag and drop grouping feature.  This allowed our users to create the view they needed as opposed to us building new screens for every use case.  Need to see all the hours for one person?  Group by Employee.  Need to see all the hours charged to each project?  Group by Project, etc.  It worked great and was well received.'
-                },            
-                {
-                    text: 'We also built in a User Settings module to help customize each divisions workflow.  For users that did not log hours for equipment, they could go into settings and uncheck the Show Equipment option.  For Project Contracts that had a custom Per Diem calculation, go into settings and change the Per Diem dropdown, etc.  This gave us room to make future changes for individual divisions without affecting other division’s workflows. '                },                                       
+                    text: 'I was pretty serious about being authentic in our marketing.  This was our family business and to maintain authenticity I was against using stock photography.  To come up with content, I tapped into our collection of family pictures and took some photos at the animal hospital.'
+                }, 
             ]            
+        },        
+        {
+            type: 3, 
+            classes: 'bg0 p-top-0 p-left-100',
+            image1: 'nah/aspen.jpg', 
+            imageClasses: 'w55 m0'            
         },
         {
             type: 3, 
-            classes: 'p80 bg0',
-            image1: 'fte/fte-timesheet.png', 
-            imageClasses: 'b1'           
+            classes: 'bg0 p-top-40 p-right-100',
+            image1: 'nah/quality-care.jpg', 
+            imageClasses: 'w50 m1'            
         },
         {
             type: 5,
-            heading: 'My Contributions',
+            classes: 'bg0 c1',            
             text: [
                 {
-                    text: 'During the project I wore a lot of hats.  Full Stack Developer.  Tester.  Coordinator for our night developer.  Rollout Coordinator.  Presenter.  User Trainer.  However my unique contributions to the project were the UI/UX specialist.  I conducted interviews with stakeholders to learn how they used the legacy system and what changes would benefit them.'
-                },            
-                {
-                    text: 'Based on those interviews and my relationships with the users, I was able to adjust the direction of our new product.  As an example, I envisioned and built a home screen and review screen for the app.  These didn’t exist in the legacy system but I felt after putting myself in the shoes of our users that these screens would help their workflow, and would set our product apart from the legacy system and commercial systems.'
-                },            
-                {
-                    text: 'The home screen shows a summary of the hours for the current and previous week for each construction crew and provides a simple way to know what time has been submitted and what has yet to be entered.  It was a mind shift for long time users of the legacy system but once they got it, it was well received.'
-                },                                                   
+                    text: 'After a number of years I backed off and used stock photography where it made sense.'
+                }, 
             ]            
-        },    
+        },          
         {
-            type: 3, 
-            classes: 'p80 bg0 b1',
-            image1: 'fte/fte-home.png',  
-            imageClasses: 'b1'                     
-        },
-        {
-            type: 5,            
-            text: [               
+            type: 5,
+            heading: 'Changing perceptions',
+            classes: 'p-bottom-20',
+            text: [
                 {
-                    text: 'The review screen provides a way to see all the data that was entered for a timecard, but in a different context which would hopefully allow users to catch mistakes before submitting the timecard.  Just like an online shopping experience.   When time is submitted incorrectly it becomes costly as a Project Manager or Payroll will reject the timecard and the time submitter will have to stop what they are doing, fix the issues and submit the timecard again.'
-                },                                                       
+                    text: 'I think there are two ways of running a business.  You can run a business primarily to make money (put money first) or you can run a business to follow your purpose (put service and quality first).  We chose the latter and success followed.',
+                    classes: 'q1',
+                },            
+                // {
+                //     text: 'Our website was the main marketing platform we leveraged to turn our reputation around by  highlighting our strengths, showing the extent that we cared about our patients, and showing off our progress visually transforming the building. '
+                // },                                                                            
             ]            
         },   
+
+       
+        // {
+        //     type: 3, 
+        //     classes: 'bg0 p40',
+        //     image1: 'nah/nah-website.png', 
+        //     imageClasses: 'w50'            
+        // },
         {
-            type: 3, 
-            classes: 'p80 bg0 b1',
-            image1: 'fte/fte-review.png',
-            imageClasses: 'b1'           
-        },
-        {
-            type: 5,            
-            text: [                                    
+            type: 5,  
+            classes: 'p-top-0',          
+            text: [                          
                 {
-                    text: 'I had also been working on a design template to standardize our Web Apps.  During this project I was able to nail the details on the look and feel and it became our standard going forward. '
-                },                                   
+                    text: 'When we moved from the city to the remote area where the business was located, we brought along some high tech equipment that no other clinics in the area had.  Things like a surgical laser which could deliver a higher quality surgical experience than traditional scalpels.  If you had to have surgery would you want less pain, bleeding, and risk of infection?  Me too.  My wife was adamant about the types of surgery she would do and how it was going to be done.  We used our website to communicate our equipment and process.  This helped the public perception of our business go from out-of-date to modern and caring.'
+                },    
+                {
+                    text: 'Social media posts don’t stay current for long so on our website I added a topic section to highlight things we wanted our audience to be aware of for longer durations.   At times it was facebook articles, community events, or images showing the care we provided to patients.'
+                },            
+                {
+                    text: 'I also coded an instagram photo wall which was used to show behind the scenes aspects of the hospital, from patients dressed up for Halloween, to patients coming in on their birthday, to staff snuggling with patients.  They say a picture is worth a thousand words.  I can tell you for fact that a cute picture is worth at least a 100 likes.'
+                },                                                 
             ]            
+        },    
+
+        {
+            type: 11,  
+            classes: 'p80 bg0 c1',             
+            text: 'Our website was the main marketing platform we leveraged to turn our reputation around by <span> highlighting our strengths</span>, <span> showing the extent that we cared about our patients</span>, <span>and showing off our progress visually transforming the building </span>. ',            
+            textClasses: 'p-right-20 color-spans',
+            image: 'nah/nah-website.png',
+            imageClasses: 'b1'
         }, 
+
         {
             type: 5,
-            classes: 'p-top-0',
-            heading: 'Business Knowledge',
+            heading: 'End of an adventure',
+            classes: '',
             text: [
                 {
-                    text: 'In the beginning of the project I knew nothing about how the process for timekeeping in the Field worked.  (I was an Office employee, we charged time differently).  By the end of the project I was the expert and was giving presentations to the company explaining how the new system worked, and planning re-writes for the two downstream legacy systems. '
-                },                                                                  
-            ]            
-        },
-        {
-            type: 5,
-            classes: 'p-top-0',
-            heading: 'Wildly Successful?',
-            text: [
+                    text: 'Looking back it was a lot of work but we were probably the right people for the job of building up the business. '
+                }, 
                 {
-                    text: 'We successfully delivered a great product that was well received by users and company executives.  A lot of the things our dev team discussed and built during this project became the standard for our web team going forward:  The Design Template, A new SSO Solution (Azure AD), A standardized version numbering scheme and release cycle, our custom logging and error handling framework, and a new UI framework (Kendo UI).  After FIeld Time Entry we went on to upgrade the two remaining legacy payroll applications and (most) stakeholders were excited about being upgraded and the chance to improve their workflows. '
-                },                                                                  
+                    text: 'My wife is a superstar.  Extremely put together, great with people, and calm in tough situations.  For my part, learning how to run the business and improve our image was exciting.  Having a history of working in highly professional environments gave me a road map to follow.   We worked hard. '
+                }, 
+                {
+                    text: 'Overtime those people who had left came back and brought friends.  Eventually we had more work than one Veterinarian could keep up with and we were fortunate to sell the business to a pair of Veterinarians ready for their own adventures.'
+                }, 
             ]            
-        },
+        },     
+        // {
+        //     type: 3, 
+        //     classes: 'p80 bg0 b1',
+        //     image1: 'fte/fte-home.png',  
+        //     imageClasses: 'b1'                     
+        // },
         {
             type: 3,            
-            image1: 'fte/mje-hq.jpg',             
+            classes: 'w50 p-top-0',
+            image1: 'nah/kitten.jpg',                 
             // text2: 'Summer 2022'
         }, 
         // {

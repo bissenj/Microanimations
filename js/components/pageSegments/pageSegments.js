@@ -33,6 +33,9 @@ function renderFactory(data, index = 0) {
         case 7: 
             result = renderAnimatedImageReveal(data);
             break;
+        case 11: 
+            result = renderStickySection(data);
+            break;
         case 20:
             result = renderQuestionAnswer(data, index);
             break;
@@ -152,7 +155,7 @@ function renderFullWidthImageWithTextOverlay(data) {
     let html = `
         <!-- Full width Image with Text Overlay -->
         <div class='segment ${optionalClasses}'>
-            <div class='image-full-width grid-center'>
+            <div class='image-full-width'>
                 ${imageContainer}                        
                 ${text1Container}
                 ${text2Container}
@@ -340,6 +343,26 @@ function renderAnimatedImageReveal(data) {
     return createNode(html);
 }
 
+// ---------------------------------
+//              PROJECTS
+// ---------------------------------
+
+// Sticky text with long image
+function renderStickySection(data) {
+    let classes = data.classes ?? '';
+    let text = data.text ?? '';
+    let textClasses = data.textClasses ?? '';
+
+    let image = data.image ?? '';
+    let imageClasses = data.imageClasses ?? '';
+    let imageContainer = createImage({image: image, class: imageClasses});
+
+    let html = `<div class='sticky-container ${classes}'>`;
+    html += `<div class='sticky ${textClasses}'>${text}</div>`;
+    html += `<div class='image-full-width'>${imageContainer}</div>`;
+    html += `</div>`;
+    return createNode(html);
+}
 
 // ---------------------------------
 //              CAREER
