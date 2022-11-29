@@ -190,22 +190,24 @@
     }, 100);
 
     function handleHomeClick() {
-        console.log("handle home click");
+        // console.log("handle home click");
 
-        // Fade out screen
-        document.querySelector('body').classList.add('fade-out');
+        // // Fade out screen
+        // document.querySelector('body').classList.add('fade-out');
 
-        // TODO - FIX THIS!
-        // HACK FOR GITHUB PAGES
-        let destination = '';
-        if (location.protocol == "https:") {
-            destination = '/Microanimations'
-        }       
+        // // TODO - FIX THIS!
+        // // HACK FOR GITHUB PAGES
+        // let destination = '';
+        // if (location.protocol == "https:") {
+        //     destination = '/Microanimations'
+        // }       
 
-        // update window location
-        setTimeout(() =>{ 
-            window.location = `${destination}/hero.html#projects`;
-        },750);
+        // // update window location
+        // setTimeout(() =>{ 
+        //     window.location = `${destination}/hero.html#projects`;
+        // },750);
+
+        navigateToPage('nightlight', 'hero.html#projects');   
     }
 
 
