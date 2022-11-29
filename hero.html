@@ -232,6 +232,14 @@
 
 
 <script>
+    // Check for back button
+    if(performance.navigation.type == 2){
+        console.log("Back button detected");
+        //location.reload(true);
+        resetBody();      
+    }
+
+
     console.log("document is loaded");
     resetBody();      
 
