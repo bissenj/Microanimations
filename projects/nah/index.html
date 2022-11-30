@@ -40,13 +40,23 @@
     z-index: 100;
     width: 100%;
     height: 2em;    
-    /* background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));     */
-    background-color: rgba(0,0,0,0.0);
-    transition: background-color 1s;
+    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));    
+    /* background-color: rgba(0,0,0,0.0); */
+    /* transition: background-color 1s; */
+    transition: opacity 0.5s, background-color 0.5s;
 }
-.header-content.active {
-    background-color: rgba(0,0,0,0.5);
+.header-content.active {    
+    /* background-color: rgba(0,0,0,0.5); */    
+    /* background-color: rgba(255,255,255,0.5); */
+    background: unset;
+    background-color: rgba(255,255,255,0.5);     
+    opacity: 0;
 }
+.header-content:hover {   
+    background-color: rgba(255,255,255,0.5);     
+    opacity: 1;
+}
+
 .header-content .stats {
     display: flex; 
     flex-direction: row;
@@ -62,6 +72,12 @@
     text-transform: uppercase;
     font-size: 0.8em;
     letter-spacing: 4px;
+    transition: color 1s;      
+}
+
+.header-content.active .stats{
+    color: black;
+    transition-delay: 0.5s; 
 }
 
   </style>
@@ -72,10 +88,10 @@
 
 <section class='detail-page'>
 
-    <!-- Link to Home -->
-    <div class='home-link' title='home' onclick='handleHomeClick()'></div>
+    <!-- Link to Home -->    
     <div class='header'>
-        <div class='header-content'>
+        <div class='home-link' title='home' onclick='handleHomeClick()'></div>
+        <div class='header-content'>            
             <div class='stats slide-left'>           
         </div>
     </div> 
@@ -237,7 +253,7 @@
             text: 'Our website was the main marketing platform we leveraged to turn our reputation around by <span> highlighting our strengths</span>, <span> showing the extent that we cared about our patients</span>, <span class="active">and showing off our progress visually transforming the building </span>. ',            
             textClasses: 'p-right-20 color-spans slide-left',
             image: 'nah/nah-website.png',
-            imageClasses: 'b1'
+            // imageClasses: 'b0'
         }, 
 
         {
