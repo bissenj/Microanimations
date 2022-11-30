@@ -7,7 +7,7 @@
 
 
 #contact {
-    background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('/img/hero/jewel_basin.webp') no-repeat;
+    background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('../img/hero/jewel_basin.webp') no-repeat;
     background-size: cover;      
 }
 .contact-content {
