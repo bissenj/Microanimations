@@ -36,7 +36,7 @@
       inline-size: 100%;
       block-size: 100%;
       background: rgba(0, 0, 0, 0.5);
-      background: url('../img/hero/hero-whitefish.jpg'); 
+      background: url('../img/hero/hero-whitefish.webp'); 
       
       background-size: cover; 
       background-repeat: no-repeat;
@@ -67,30 +67,30 @@
   }
   
   section .background-0 {
-      background: url('../img/hero/hero-huckleberry-lookout.jpg');
+      background: url('../img/hero/hero-huckleberry-lookout.webp');
       background-size: cover;
       background-repeat: no-repeat;
   }
   section .background-1 {
-      background: url('../img/hero/hero-great-northern.jpg');
+      background: url('../img/hero/hero-great-northern.webp');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
   }
   section .background-2 {
-      background: url('../img/hero/hero-whitefish.jpg');
+      background: url('../img/hero/hero-whitefish.webp');
       background-size: cover;
       background-repeat: no-repeat;
   }
   
   section .background-3 {
-    background: url('../img/hero/hero-lake-mcdonald.jpg');
+    background: url('../img/hero/hero-lake-mcdonald.webp');
     background-size: cover;
     background-repeat: no-repeat;
   }
 
   section .background-4 {
-    background: url('../img/hero/hero-mt-aeneas.jpg');
+    background: url('../img/hero/hero-mt-aeneas.webp');
     background-size: cover;
     background-repeat: no-repeat;
   }

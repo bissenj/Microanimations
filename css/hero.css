@@ -397,7 +397,7 @@ div.row1 > div:before, div.row2 > div:before {
 
 /* pseudo element to hold the image in the image elements */
 div.image1::before {         
-    background: url('../img/hero/uphill-ski.jpg');
+    background: url('../img/hero/uphill-ski.webp');
 
     width: 300%; 
     height: 300%;
@@ -411,7 +411,7 @@ div.image1::before {
     background-position-x: 24%;   
 }
 div.image2::before {        
-    background: url('../img/hero/lake-mcdonald.jpg');    
+    background: url('../img/hero/lake-mcdonald.webp');    
 
     width: 300%;
     height: 300%;
@@ -426,7 +426,7 @@ div.image2::before {
 
 }
 div.image3::before {    
-    background: url('../img/hero/bighorns-2.jpg'); 
+    background: url('../img/hero/bighorns-2.webp'); 
     
     width: 300%;
     height: 300%;
@@ -443,7 +443,7 @@ div.image3::before {
     background-position-x: 0%; 
 }
 div.image4::before {        
-    background: url('../img/hero/whitefish-sm.jpg');  
+    background: url('../img/hero/whitefish-sm.webp');  
 
     width: 300%;
     height: 300%;
@@ -457,7 +457,7 @@ div.image4::before {
     background-position-x: 20%;     
 }
 div.image5::before {        
-    background: url('../img/hero/great-northern.jpg'); 
+    background: url('../img/hero/great-northern.webp'); 
    
     width: 300%;
     height: 300%;

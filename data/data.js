@@ -2,7 +2,7 @@
 
 // Data
 export const imageCollage = [
-    { caption: 'Lake season hiking up Whitefish Mountain to board down.'},
+    { caption: 'Late season hiking up Whitefish Mountain to board down.'},
     { caption: 'Lake Mc Donald, Glacier National Park'},
     { caption: 'Cloudpeak Wilderness, Wyoming'},
     { caption: 'Inversion day at Whitefish Mountain Ski Resort.'},
