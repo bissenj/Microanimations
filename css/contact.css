@@ -1,5 +1,6 @@
 
 section.contact {
-    background-color: orange;
-    height: 50vh;
+    background-color: black;
+    background: linear-gradient(30deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5));
+    height: 75vh;
 }

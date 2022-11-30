@@ -129,20 +129,35 @@
         
     </section>
 
-    <!-- Work -->
-    <section id='work' class='work'>         
-        <div class='basic-timeline'></div>
-        <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
-        <div class='bg10 flex-row-apart'>
-            <!-- <div>
-                <button class='timeline-shutdown'>Deconstruct</button>
-            </div> -->
-            <div class='right-edge p10-20'><div class='control-grid'></div></div>
-        </div>
-    </section>
+    <style>
+        .thought-process { 
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.99), rgba(255,255,255,0.99)), url('/img/projects/nightlight/oregon-fishing.webp');                        
+            background: white;
+            /* filter: saturate(0%); */
+            /* filter:grayscale(100%); */
+            display: grid; 
+            place-content: center;
 
-    <!-- Projects -->
-    <section id='projects' class='projects'> 
+            padding: 15%;
+            color: black;            
+            font-size: 1.2em;
+            text-align: center;
+        }
+        .decor-line { width: 80%; height: 10px; background-color: orange; margin: 20px auto;}
+    </style>
+
+    <!-- I believe -->
+    <section class='thought-process'>
+        <div class='decor-line'></div>
+        <div>
+            I believe you should build a product you would actually want to use.
+        </div>
+        <div class='decor-line'></div>
+    </section>
+    
+      <!-- Projects -->
+      <section id='projects' class='projects'> 
         <div class='projects-collage active'>
             <div class='explore'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
         </div>
@@ -184,6 +199,20 @@
             </div>
         </div>   
     </section>
+
+    
+    <!-- Work -->
+    <section id='work' class='work'>         
+        <div class='basic-timeline'></div>
+        <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
+        <div class='bg10 flex-row-apart'>
+            <!-- <div>
+                <button class='timeline-shutdown'>Deconstruct</button>
+            </div> -->
+            <div class='right-edge p10-20'><div class='control-grid'></div></div>
+        </div>
+    </section>
+    
 
     <!-- Contact -->
     <section id='contact' class='contact' >
