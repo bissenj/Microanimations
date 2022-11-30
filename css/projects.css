@@ -9,7 +9,7 @@ section.projects {
 
     display: block;
     background: white;
-    background: #d8d8d8;
+    /* background: #d8d8d8; */
     color: black;
     /* background: linear-gradient(#1c69f03d, #1c69f026); */
 
@@ -132,10 +132,10 @@ section.projects .imagery.active {
     padding-right: 5%;
     margin-top: 60px;
     
-    text-align: right;
-    font-size: 52px; 
+    text-align: center;
+    font-size: 36px; 
     /* color: rgb(242, 242, 242); */
-    color: white;
+    /* color: white; */
     text-transform: uppercase;
     /* text-shadow: 1px 2px 3px #eee, 0 0 0 #000, 1px 2px 3px #eee; */
 }

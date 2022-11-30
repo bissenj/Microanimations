@@ -71,7 +71,7 @@ class HorizontalSlider {
     // Initialize
     this.init();
  
-    console.log("Horizontal Slider Loaded. Selected Index: ", this.selectedIndex);
+    //console.log("Horizontal Slider Loaded. Selected Index: ", this.selectedIndex);
   }  
 
   init() {
@@ -105,7 +105,7 @@ class HorizontalSlider {
 
     this.totalWidth = this.slidegroup.offsetWidth * (this.data.length-1);  
 
-    console.log('Total Width: ', this.totalWidth, 'Slide Width: ', this.slideWidth);
+    //console.log('Total Width: ', this.totalWidth, 'Slide Width: ', this.slideWidth);
 
     if (this.allowWrap) {
       let slides = this.slidegroup.children;
@@ -145,9 +145,9 @@ class HorizontalSlider {
     if ((this.componentEl.offsetWidth != this.componentWidth) || (this.componentEl.offsetHeight != this.componentHeight)) { needsToResize = true;}
 
     if (needsToResize) {
-      console.log("Slideshow needs to resize.");
-      console.log("Old W/H: ", this.componentWidth, this.componentHeight);
-      console.log("New W/H: ", this.componentEl.offsetWidth, this.componentEl.offsetHeight);
+      //console.log("Slideshow needs to resize.");
+      //console.log("Old W/H: ", this.componentWidth, this.componentHeight);
+      //console.log("New W/H: ", this.componentEl.offsetWidth, this.componentEl.offsetHeight);
       
       // destroy current component
       this.componentEl.innerHTML = "";
@@ -156,7 +156,7 @@ class HorizontalSlider {
       this.init();
     }
     else {
-      console.log("Slideshow - did not need to resize.");
+      //console.log("Slideshow - did not need to resize.");
   }
   }
 
@@ -290,7 +290,7 @@ class HorizontalSlider {
     if (!this.allowWrap) {      
       if ((this.selectedIndex + direction) > this.data.length-1 || 
           (this.selectedIndex + direction) < 0) {
-        console.log("Hit boundary.  Bailing.");
+        //console.log("Hit boundary.  Bailing.");
         return;
       }
     }
@@ -307,7 +307,7 @@ class HorizontalSlider {
 
       if (!action) {         
         this.posInitial = this.slidegroup.offsetLeft; 
-        console.log("No action.  Setting posInitial to: ", this.posInitial);
+        //console.log("No action.  Setting posInitial to: ", this.posInitial);
       }   // What does this do?
 
       // Direction is probably +1 or -1 so adjust the left and index accordingly.
@@ -315,7 +315,7 @@ class HorizontalSlider {
       this.slidegroup.style.left = move + "px";
       this.selectedIndex += direction;
 
-      console.log("New Move: ", move, this.selectedIndex);
+      //console.log("New Move: ", move, this.selectedIndex);
 
    
       // Make sure selected index being sent in event is correct.  Gets tricky with
@@ -337,7 +337,7 @@ class HorizontalSlider {
         }
       }      
       
-      console.log("Selected Index: ", this.selectedIndex, "New Index: ", newIndex);    
+      //console.log("Selected Index: ", this.selectedIndex, "New Index: ", newIndex);    
       
       this.dispatchOnSlide(newIndex);
       
@@ -434,7 +434,7 @@ class HorizontalSlider {
 
   setIndex(index) { 
     
-    console.log("setSelectedIndex:", index);
+    //console.log("setSelectedIndex:", index);
     if (this.allowWrap) {
       index += 1;
       if (index > this.data.length) { 
@@ -444,12 +444,12 @@ class HorizontalSlider {
     }    
 
     let direction = index - this.selectedIndex;      
-    console.log("Index:", index, "direction: ", direction);
+    //console.log("Index:", index, "direction: ", direction);
     
 
     // Make sure the index actually changed before doing anything.
     if(index == this.selectedIndex) { 
-      console.log("Bailing - Index did not change");
+      //console.log("Bailing - Index did not change");
       return;
     }
 

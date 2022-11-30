@@ -96,6 +96,8 @@ main {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 1.4em;
+    max-width: 25em;
+
 }
 .segment h4, .segment p {
     margin-bottom: 30px;

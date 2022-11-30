@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter&display=swap');
 
 * {
     -moz-box-sizing: border-box;
@@ -14,7 +16,8 @@ a {
 
 body {
     font-size: 22px; 
-    font-family: 'Roboto Condensed', sans-serif;
+    /* font-family: 'Roboto Condensed', sans-serif; */
+    font-family: 'Inter', sans-serif;
     transition: opacity 0.4s;
 }
 

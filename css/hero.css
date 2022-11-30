@@ -102,15 +102,16 @@ section.about.foreground-container {
     z-index: 21;    
     border: none;      
     color: white;
-    padding: 12px;  
+    padding: 12px; 
+    transform: rotate(0deg) scale(1.5); 
     transition: transform 0.5s, opacity 1.5s;  
 }
 .close-button:hover {
-    transform: rotate(360deg) scale(1.05);    
+    transform: rotate(360deg) scale(1.55);    
     cursor: pointer;    
 }
 .close-button:focus {
-    transform: rotate(360deg) scale(1.05);    
+    transform: rotate(360deg) scale(1.55);    
     cursor: pointer;       
     outline: none;     
 } 

@@ -110,6 +110,9 @@
 </main>
 </body>
 
+<script src="/js/intersectionObserver.js"></script>
+<!-- <script src="/Microanimations/js/intersectionObserver.js"></script> -->
+
 <script src="/js/routing.js"></script>
 <script src="/Microanimations/js/routing.js"></script> 
 
@@ -334,89 +337,114 @@
         // ---------------------------------------------------------
 
         // get all the elements we need to watch
-        const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
-        if (targets.length > 0) {
-            console.log("Targets: ", targets);
-            // what to do with entries that are on screen
-            function handleIntersection(entries) {
-                entries.map((entry) => {
-                    if (entry.isIntersecting) {                    
-                        console.log("On Screen: ", entry);
-                        entry.target.classList.add('visible');                    
+        // const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
+        // if (targets.length > 0) {
+        //     console.log("Targets: ", targets);
+        //     // what to do with entries that are on screen
+        //     function handleIntersection(entries) {
+        //         entries.map((entry) => {
+        //             if (entry.isIntersecting) {                    
+        //                 console.log("On Screen: ", entry);
+        //                 entry.target.classList.add('visible');                    
                         
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }
-            // fire up the observer
-            const observer = new IntersectionObserver(handleIntersection);
-            targets.forEach((el) => {
-                observer.observe(el);
-            })
-        }
+        //                 observer.unobserve(entry.target);
+        //             }
+        //         });
+        //     }
+        //     // fire up the observer
+        //     const observer = new IntersectionObserver(handleIntersection);
+        //     targets.forEach((el) => {
+        //         observer.observe(el);
+        //     })
+        // }
+
+        // Intersection Observer for color text
+        addObserver({
+            selectors: '.scroll-target, .slide-left, .slide-right',
+            fireOnce: true,             
+            whenIntersecting: (entry) => { entry.target.classList.add('visible'); },
+        });
 
         // ---------------------------------------------------------
         // Intersection Observer 2 
         // ---------------------------------------------------------
 
         // get all the elements we need to watch
-        const animationTargets = document.querySelectorAll('.no-color');
-        if (animationTargets.length > 0) {
-            console.log("Targets: ", animationTargets);
-            // what to do with entries that are on screen
-            function triggerAnimations(entries) {
-                console.log("Got Here");
-                entries.map((entry) => {
-                    if (entry.isIntersecting) {                    
-                        document.querySelector('.color-spans').classList.remove('active');
-                        // entry.target.classList.add('active');
-                        // entry.target.querySelector('.secondary').classList.remove('waiting');
-                        // entry.target.querySelector('.tertiary').classList.remove('waiting');
-                        // animationObserver.unobserve(entry.target);
-                    }
-                    else {
-                        document.querySelector('.color-spans').classList.add('active');
-                    }
-                });
-            }
-            // fire up the observer
-            const animationObserver = new IntersectionObserver(triggerAnimations, { 
-                rootMargin: '0%', threshold: 0.5 });
+        // const animationTargets = document.querySelectorAll('.no-color');
+        // if (animationTargets.length > 0) {
+        //     console.log("Targets: ", animationTargets);
+        //     // what to do with entries that are on screen
+        //     function triggerAnimations(entries) {
+        //         console.log("Got Here");
+        //         entries.map((entry) => {
+        //             if (entry.isIntersecting) {                    
+        //                 document.querySelector('.color-spans').classList.remove('active');
+        //                 // entry.target.classList.add('active');
+        //                 // entry.target.querySelector('.secondary').classList.remove('waiting');
+        //                 // entry.target.querySelector('.tertiary').classList.remove('waiting');
+        //                 // animationObserver.unobserve(entry.target);
+        //             }
+        //             else {
+        //                 document.querySelector('.color-spans').classList.add('active');
+        //             }
+        //         });
+        //     }
+        //     // fire up the observer
+        //     const animationObserver = new IntersectionObserver(triggerAnimations, { 
+        //         rootMargin: '0%', threshold: 0.5 });
 
-            animationTargets.forEach((el) => {
-                animationObserver.observe(el);
-            })
-        }
+        //     animationTargets.forEach((el) => {
+        //         animationObserver.observe(el);
+        //     })
+        // }
+
+        // Intersection Observer to trigger the color text by long image
+        addObserver({
+            selectors: '.no-color',             
+            whenIntersecting: (entry) => { document.querySelector('.color-spans').classList.remove('active'); },
+            whenNotIntersecting: (entry) => { document.querySelector('.color-spans').classList.add('active'); },
+            rootMargin: '0%',
+            threshold: 0.5
+        });
 
 
         // ---------------------------------------------------------
         // Intersection Observer 3 
         // ---------------------------------------------------------
         // get all the elements we need to watch
-        const header = document.querySelectorAll('.header-image');
-        if (header.length > 0) {
-            console.log("Targets: ", header);
-            // what to do with entries that are on screen
-            function triggerHeader(entries) {
-                console.log("Got Here");
-                entries.map((entry) => {
-                    if (entry.isIntersecting) {                    
-                        document.querySelector('.header-content').classList.remove('active');                        
-                    }
-                    else {
-                        document.querySelector('.header-content').classList.add('active');                        
-                    }
-                });
-            }
-            // fire up the observer
-            const headerObserver = new IntersectionObserver(triggerHeader, { 
-                rootMargin: '0%', threshold: 0.0 });
+        // const header = document.querySelectorAll('.header-image');
+        // if (header.length > 0) {
+        //     console.log("Targets: ", header);
+        //     // what to do with entries that are on screen
+        //     function triggerHeader(entries) {
+        //         console.log("Got Here");
+        //         entries.map((entry) => {
+        //             if (entry.isIntersecting) {                    
+        //                 document.querySelector('.header-content').classList.remove('active');                        
+        //             }
+        //             else {
+        //                 document.querySelector('.header-content').classList.add('active');                        
+        //             }
+        //         });
+        //     }
+        //     // fire up the observer
+        //     const headerObserver = new IntersectionObserver(triggerHeader, { 
+        //         rootMargin: '0%', threshold: 0.0 });
 
-                header.forEach((el) => {
-                    headerObserver.observe(el);
-            })
-        }
+        //         header.forEach((el) => {
+        //             headerObserver.observe(el);
+        //     })
+        // }
         
+        // Intersection Observer for header bar
+        addObserver({
+            selectors: '.header-image',             
+            whenIntersecting: (entry) => { document.querySelector('.header-content').classList.remove('active');  },
+            whenNotIntersecting: (entry) => { document.querySelector('.header-content').classList.add('active'); },
+            rootMargin: '0%',
+            threshold: 0.0
+        });
+
 
     } // End of StartObservers()
 

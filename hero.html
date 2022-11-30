@@ -129,7 +129,7 @@
         
     </section>
 
-    <style>
+    <!-- <style>
         .thought-process { 
             height: 100vh;
             background: linear-gradient(rgba(255,255,255,0.99), rgba(255,255,255,0.99)), url('/img/projects/nightlight/oregon-fishing.webp');                        
@@ -147,14 +147,14 @@
         .decor-line { width: 80%; height: 10px; background-color: orange; margin: 20px auto;}
     </style>
 
-    <!-- I believe -->
+    
     <section class='thought-process'>
         <div class='decor-line'></div>
         <div>
             I believe you should build a product you would actually want to use.
         </div>
         <div class='decor-line'></div>
-    </section>
+    </section> -->
     
       <!-- Projects -->
       <section id='projects' class='projects'> 
@@ -163,7 +163,7 @@
         </div>
 
         <div class='section-heading'> 
-            Project Case Studies      
+            Project Stories      
         </div>
         
         <!-- <div class='imagery'></div>      -->
@@ -213,51 +213,95 @@
         </div>
     </section>
     
+    <style>
+        #contact {
+            background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('/img/hero/jewel_basin.webp') no-repeat;
+            background-size: cover;      
+        }
+        .contact-content {
+            position: relative;
+            display: grid;
+            place-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20%; 
+        }
+        .contact-content h1 {
+            /* font-family: 'Dela Gothic One', cursive; */
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.8em;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+        .contact-content p {            
+            line-height: 1.6em;
+            margin-bottom: 20px;
+            /* letter-spacing: 1px; */
+        }
+        .contact-links {
+            display: flex;
+
+        }
+        .contact-links > div {
+            height: 48px;
+            width: 48px;
+            border: 2px solid white;
+            margin-right: 20px;
+            margin-top: 20px;   
+            display: grid; place-content: center;         
+        }
+        .contact-links > div img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>    
 
     <!-- Contact -->
     <section id='contact' class='contact' >
-        <div style='display:grid; grid-template-columns: 1fr 1fr 1fr; grid-gap: 10px; width:100%; padding:80px; '>
-            <div style='position: relative;'>
-                <div style='font-size: 2.5em; text-transform: uppercase;'>Mountains</div>
-                <div style='font-size: 2em; position: absolute; top: 51px; left: 0px;'>and </div>
-                <div style='font-size: 3.5em; text-transform: uppercase; position: absolute; top: 44px;  left: 72px; letter-spacing: 10px;'>Code</div>            
-            </div>        
-            <div style='align-self:center; justify-self: center;'>
-                <div class='text'>Explore Projects <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
-                <div class='text'>About this site <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
-                <div class='text'>Outtakes <img class='chevron-right' src='img/chevron-right.svg'/></span></div>
-            </div>
-            <div style='align-self:center; justify-self: center;'>
-                If you would like to talk about projects, employment, or hiking in the mountains, send me an <b><a href='mailto:mountainsandcode@gmail.com'>email</a></b>.
+        <!-- Contents -->
+        <div class='contact-content'>
+            <!-- Heading -->
+            <h1>I'm looking for a homebase</h1>
+            <!-- Paragraph -->
+            <p>A group of like minded individuals dedicated to creating great work on interesting projects.  If you have looked at my work and think I would be a good fit on your team, please send me an email and lets talk. </p>
+            <!-- Links -->
+            <div class='contact-links'>
+                <div><img src='/img/mail.svg'/></div>
+                <div><img src='/img/info.svg'/></div>
             </div>
         </div>
+    
         
     </section>
 
 </main>
 </body>
 
+<script src="/js/intersectionObserver.js"></script>
+<!-- <script src="/Microanimations/js/intersectionObserver.js"></script> -->
 
 <script src="/js/routing.js"></script>
-<script src="/Microanimations/js/routing.js"></script>
+<!-- <script src="/Microanimations/js/routing.js"></script> -->
 
 <script src="/js/landing.js"></script>
-<script src="/Microanimations/js/landing.js"></script>
+<!-- <script src="/Microanimations/js/landing.js"></script> -->
 
 <script type="module" src="/js/hero.js"></script>
-<script type="module" src="/Microanimations/js/hero.js"></script>
+<!-- <script type="module" src="/Microanimations/js/hero.js"></script> -->
 
 <script src="/js/controlGrid.js"></script>
-<script src="/Microanimations/js/controlGrid.js"></script>
+<!-- <script src="/Microanimations/js/controlGrid.js"></script> -->
 
 <script src="/data/events.js"></script>
-<script src="/Microanimations/data/events.js"></script>
+<!-- <script src="/Microanimations/data/events.js"></script> -->
 
 <script src="/js/components/basicTimeline/basicTimeline.js"></script>
-<script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script>
+<!-- <script src="/Microanimations/js/components/basicTimeline/basicTimeline.js"></script> -->
 
 <script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
-<script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script>
+<!-- <script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script> -->
 
 
 <script>
@@ -273,7 +317,7 @@
     resetBody();      
 
     // Update version number
-    const VERSION_NUMBER = "[0115-11/29/2022]";
+    const VERSION_NUMBER = "[0116-11/30/2022]";
     document.querySelector('.version-number').innerHTML = VERSION_NUMBER;
 
 
@@ -349,7 +393,9 @@
     
 
     // TEST Projects Button
-    const exploreProjectsButton = document.querySelector('.projects-collage').addEventListener('click', (e) => {
+    //const exploreProjectsButton = document.querySelector('.projects-collage').addEventListener('click', handleExploreProjects);
+
+    function handleExploreProjects() {
         console.log("Click");  
         const projectImage = document.querySelector('.projects-collage');
         const projectList = document.querySelector('.projects-list');
@@ -362,7 +408,7 @@
             projectImage.classList.add('active');
             projectList.classList.add('hidden');
         }
-    });
+    };
 
     // document.querySelector('.timeline-shutdown').addEventListener('click', (e) => {
     //     console.log("destroy");
@@ -458,6 +504,15 @@
 
         }, delay);
     }
+
+
+    // Intersection Observer for projects seciton    
+    addObserver({
+        selectors: '.projects-collage', 
+        fireOnce: true,
+        whenIntersecting: (entry) => {console.log("is intersecting"); handleExploreProjects(); },
+        // whenNotIntersecting: (entry) => {console.log("is not intersecting"); handleExploreProjects(); }
+    });
 
 
 </script>
