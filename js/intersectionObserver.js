@@ -24,6 +24,9 @@ function addObserver(data) {
         //console.log("Targets: ", targets);
         // what to do with entries that are on screen
         function handleIntersection(entries) {
+
+            console.log('threshold: ', threshold);
+
             entries.map((entry) => {
                 if (entry.isIntersecting) {                    
                     console.log("On Screen: ", entry);

@@ -34,51 +34,46 @@
         transition-delay: 500ms;
     }
 
+    .header-content {
+        position: fixed;
+        z-index: 100;
+        width: 100%;
+        height: 2em;    
+        background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));        
+        transition: opacity 0.5s, background-color 0.5s;
+    }
+    .header-content.active {        
+        background: unset;
+        background-color: rgba(255,255,255,0.5);     
+        opacity: 0;
+    }
+    .header-content:hover {   
+        background-color: rgba(255,255,255,0.5);     
+        opacity: 1;
+    }
 
-.header-content {
-    position: fixed;
-    z-index: 100;
-    width: 100%;
-    height: 2em;    
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.0));    
-    /* background-color: rgba(0,0,0,0.0); */
-    /* transition: background-color 1s; */
-    transition: opacity 0.5s, background-color 0.5s;
-}
-.header-content.active {    
-    /* background-color: rgba(0,0,0,0.5); */    
-    /* background-color: rgba(255,255,255,0.5); */
-    background: unset;
-    background-color: rgba(255,255,255,0.5);     
-    opacity: 0;
-}
-.header-content:hover {   
-    background-color: rgba(255,255,255,0.5);     
-    opacity: 1;
-}
+    .header-content .stats {
+        display: flex; 
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+        height:100%;
+        
+        padding-left: 3em;
+        padding-right:1em;
+        
+        color: white;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 4px;
+        transition: color 1s;      
+    }
 
-.header-content .stats {
-    display: flex; 
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    
-    height:100%;
-    
-    padding-left: 3em;
-    padding-right:1em;
-    
-    color: white;
-    text-transform: uppercase;
-    font-size: 0.8em;
-    letter-spacing: 4px;
-    transition: color 1s;      
-}
-
-.header-content.active .stats{
-    color: black;
-    transition-delay: 0.5s; 
-}
+    .header-content.active .stats{
+        color: black;
+        transition-delay: 0.5s; 
+    }
 
   </style>
 </head>
@@ -95,16 +90,7 @@
             <div class='stats slide-left'>           
         </div>
     </div> 
-
-    <!-- Full width Image with Text Overlay -->
-    <!-- <div class='segment p40'>
-        <div class='image-full-width grid-center'>
-            <img src='./img/hero/hero-whitefish.jpg'></img>                        
-            <div class='text-container grid-center'>
-                <h1 class='text-overlay'>Image Overlay</h1>               
-            </div>
-        </div>
-    </div> -->
+   
 </section>
 
 </main>
@@ -122,11 +108,6 @@
 <script>
     console.log("fire up the javascript");
     resetBody();
-
-    // Update the URL
-    //history.pushState({}, "", "../projects/nightlight");
-    //var hash = window.location.hash.substr(1);
-    //console.log("Hash: ", hash);
 
 
     const data = [
@@ -147,40 +128,30 @@
                     classes: 'fs16',
                 },            
                 {
-                    text: 'It was an exciting time.  We were on a new adventure building our dreams.  However as new comers in town it was a common occurrence to meet people and have conversations go like this: '
+                    text: 'It was an exciting time.  We were on a new adventure building our dreams.  However as newcomers in town it was a common occurrence to meet people and have conversations go like this: '
                 },  
                 {
                     text: '"Oh you’re the folks who bought the Animal Hospital?  I used to go there until…"',
-                    classes: 'p40 bg0 c1'
+                    classes: 'p40 bg2 c1 box-shadow-2'
                 },   
                 {
-                    text: 'We had a lot of work ahead of us.  The building was showing its age, what little equipment was there was ancient, and there was the reputation to turn around.  This was around the time the show ‘Fixer Upper’ first aired and that’s exactly what we did to the business. '
+                    text: 'That became an awkward pattern. '
+                },  
+                {
+                    text: 'We knew we had a lot of work ahead of us.  The building was showing its age, what little equipment was there was ancient, and there was the reputation to turn around.  This was around the time the show ‘Fixer Upper’ first aired and that’s exactly what we did to the business. '
                 },                  
             ]            
-        },               
-        // {
-        //     type: 3, 
-        //     image1: 'fte/mje-transmission-lines.jpg'
-        // },  
+        },                       
         {
             type: 5,
-            heading: 'When overwhelmed, focus on what you CAN do',
+            heading: 'When overwhelmed, focus on what you <u>CAN</u> do',
             classes: 'p-top-0',
             text: [
                 {
                     text: 'One aspect of improving our image and capturing people’s attention was we needed a strong online presence.  This was in my wheel house and provided something comfortable to focus on when everything else in the business was out of my comfort zone.  Responsive design had become the standard in recent years so I knew that’s where I had to start.  My whole corporate career was building websites for a single form factor:  Windows desktops running IE 6.  So I studied up on how I could make a website run on a variety of devices and got to work.'
                 },                               
             ]            
-        },          
-        // {
-        //     type: 3, 
-        //     classes: 'w85',
-        //     image1: 'fte/mje-planning.jpg'
-        // }, 
-        // {
-        //     type: 3, 
-        //     image1: 'nightlight/craterlake-fine-dining.jpg'
-        // }, 
+        },                 
         {
             type: 5,
             classes: 'bg0 c1',
@@ -190,7 +161,7 @@
                     text: 'I was pretty serious about being authentic in our marketing.  This was our family business and to maintain authenticity I was against using stock photography.  To come up with content, I tapped into our collection of family pictures and took some photos at the animal hospital.'
                 }, 
             ]            
-        },        
+        },              
         {
             type: 3, 
             classes: 'bg0 p-top-0 p-left-100',
@@ -220,20 +191,9 @@
                 {
                     text: 'I think there are two ways of running a business.  You can run a business primarily to make money (put money first) or you can run a business to follow your purpose (put service and quality first).  We chose the latter and success followed.',
                     classes: 'q1',
-                },            
-                // {
-                //     text: 'Our website was the main marketing platform we leveraged to turn our reputation around by  highlighting our strengths, showing the extent that we cared about our patients, and showing off our progress visually transforming the building. '
-                // },                                                                            
+                },                                                                                                      
             ]            
-        },   
-
-       
-        // {
-        //     type: 3, 
-        //     classes: 'bg0 p40',
-        //     image1: 'nah/nah-website.png', 
-        //     imageClasses: 'w50'            
-        // },
+        },  
         {
             type: 5,  
             classes: 'p-top-0 no-color',          
@@ -255,8 +215,7 @@
             classes: 'p80 bg0 c1',             
             text: 'Our website was the main marketing platform we leveraged to turn our reputation around by <span> highlighting our strengths</span>, <span> showing the extent that we cared about our patients</span>, <span class="active">and showing off our progress visually transforming the building </span>. ',            
             textClasses: 'p-right-20 color-spans slide-left',
-            image: 'nah/nah-website.png',
-            // imageClasses: 'b0'
+            image: 'nah/nah-website.png',            
         }, 
 
         {
@@ -277,28 +236,16 @@
                     text: 'Over time those people who had left came back and brought friends.  Eventually we had more work than one Veterinarian could keep up with and we were fortunate to sell the business to a pair of Veterinarians ready for their own adventures.'
                 }, 
             ]            
-        },     
-        // {
-        //     type: 3, 
-        //     classes: 'p80 bg0 b1',
-        //     image1: 'fte/fte-home.png',  
-        //     imageClasses: 'b1'                     
-        // },
+        },             
         {
             type: 3,            
             classes: 'w50 p-top-0',
-            image1: 'nah/kitten.jpg',                 
-            // text2: 'Summer 2022'
-        }, 
-        // {
-        //     type: 3, 
-        //     image1: 'nightlight/oregon-fishing.webp'
-        // }, 
+            image1: 'nah/kitten.jpg',                             
+        },         
     ];
 
     const page = document.querySelector('.detail-page');
-    //page.classList.add('loading-start');    
-    //document.querySelector('main').classList.add('loading');
+    
 
     data.map((item) => {
         page.append(renderFactory(item));
@@ -309,6 +256,7 @@
     const header = document.querySelector('.header-content .stats');
     header.innerHTML = renderHeader(project);
     
+
     function renderHeader(project) {
         let html = '';                
         html += `<span>${project.name}</span>`;
@@ -319,10 +267,7 @@
     };
 
 
-   
-
-    function handleHomeClick() {
-        console.log("handle home click");
+    function handleHomeClick() {        
         navigateToPage('nightlight', 'hero.html#projects');       
     }
 
@@ -331,72 +276,15 @@
         startObservers();        
     }, 1000);
 
+
     function startObservers() {
-        // ---------------------------------------------------------
-        // Intersection Observer 1 
-        // ---------------------------------------------------------
-
-        // get all the elements we need to watch
-        // const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
-        // if (targets.length > 0) {
-        //     console.log("Targets: ", targets);
-        //     // what to do with entries that are on screen
-        //     function handleIntersection(entries) {
-        //         entries.map((entry) => {
-        //             if (entry.isIntersecting) {                    
-        //                 console.log("On Screen: ", entry);
-        //                 entry.target.classList.add('visible');                    
-                        
-        //                 observer.unobserve(entry.target);
-        //             }
-        //         });
-        //     }
-        //     // fire up the observer
-        //     const observer = new IntersectionObserver(handleIntersection);
-        //     targets.forEach((el) => {
-        //         observer.observe(el);
-        //     })
-        // }
-
-        // Intersection Observer for color text
+        
+        // Intersection Observer for slide-ins
         addObserver({
             selectors: '.scroll-target, .slide-left, .slide-right',
             fireOnce: true,             
             whenIntersecting: (entry) => { entry.target.classList.add('visible'); },
         });
-
-        // ---------------------------------------------------------
-        // Intersection Observer 2 
-        // ---------------------------------------------------------
-
-        // get all the elements we need to watch
-        // const animationTargets = document.querySelectorAll('.no-color');
-        // if (animationTargets.length > 0) {
-        //     console.log("Targets: ", animationTargets);
-        //     // what to do with entries that are on screen
-        //     function triggerAnimations(entries) {
-        //         console.log("Got Here");
-        //         entries.map((entry) => {
-        //             if (entry.isIntersecting) {                    
-        //                 document.querySelector('.color-spans').classList.remove('active');
-        //                 // entry.target.classList.add('active');
-        //                 // entry.target.querySelector('.secondary').classList.remove('waiting');
-        //                 // entry.target.querySelector('.tertiary').classList.remove('waiting');
-        //                 // animationObserver.unobserve(entry.target);
-        //             }
-        //             else {
-        //                 document.querySelector('.color-spans').classList.add('active');
-        //             }
-        //         });
-        //     }
-        //     // fire up the observer
-        //     const animationObserver = new IntersectionObserver(triggerAnimations, { 
-        //         rootMargin: '0%', threshold: 0.5 });
-
-        //     animationTargets.forEach((el) => {
-        //         animationObserver.observe(el);
-        //     })
-        // }
 
         // Intersection Observer to trigger the color text by long image
         addObserver({
@@ -406,36 +294,7 @@
             rootMargin: '0%',
             threshold: 0.5
         });
-
-
-        // ---------------------------------------------------------
-        // Intersection Observer 3 
-        // ---------------------------------------------------------
-        // get all the elements we need to watch
-        // const header = document.querySelectorAll('.header-image');
-        // if (header.length > 0) {
-        //     console.log("Targets: ", header);
-        //     // what to do with entries that are on screen
-        //     function triggerHeader(entries) {
-        //         console.log("Got Here");
-        //         entries.map((entry) => {
-        //             if (entry.isIntersecting) {                    
-        //                 document.querySelector('.header-content').classList.remove('active');                        
-        //             }
-        //             else {
-        //                 document.querySelector('.header-content').classList.add('active');                        
-        //             }
-        //         });
-        //     }
-        //     // fire up the observer
-        //     const headerObserver = new IntersectionObserver(triggerHeader, { 
-        //         rootMargin: '0%', threshold: 0.0 });
-
-        //         header.forEach((el) => {
-        //             headerObserver.observe(el);
-        //     })
-        // }
-        
+            
         // Intersection Observer for header bar
         addObserver({
             selectors: '.header-image',             
@@ -445,7 +304,6 @@
             threshold: 0.0
         });
 
-
     } // End of StartObservers()
 
 
@@ -453,73 +311,3 @@
 
 </html>
 
-
-<!-- DEAD CODE -->
-
-
-   <!-- Full width Image with Text Overlay -->
-    <!-- <div class='segment p40'>
-        <div class='image-full-width grid-center'>
-            <h1 class='text-overlay'>Field Time Entry<h1/>
-        </div>
-    </div> -->
-
-    <!-- Centered Text Block -->
-    <!-- <div class='segment p80 p-top-0'>
-        <div class='text-block-half grid-center'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>            
-        </div>
-    </div> -->
-
-    <!-- 2-1 Image collage -->
-    <!-- <div class='segment'>
-        <div class='image-collage-2-1'>
-            <div class='one'></div>
-            <div class='two'></div>
-            <div class='three'></div>
-        </div>
-    </div> -->
-
-    <!-- 2-1 Image collage -->
-    <!-- <div class='segment'>
-        <div class='image-grid-2-1'>
-            <div class='grid-left'>            
-                <div class='one'>One</div>
-                <div class='two'>Two</div>
-            </div>            
-            <div class='three'>Three</div>            
-        </div>
-    </div> -->
-
-     <!-- Centered Text Block -->
-     <!-- <div class='segment p80'>
-        <div class='text-block-half grid-center'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>            
-        </div>
-    </div> -->
-       
-    <!-- Full Width Image -->
-    <!-- <div class='segment'>
-        <div class='image-full-width grid-center'>          
-        </div>
-    </div> -->
-
-     <!-- 2 text columns -->
-     <!-- <div class='segment p80'>
-        <div class='text-block-2'>
-            <div class='text-block-half grid-center'>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>            
-            </div>
-            <div class='text-block-half grid-center'>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>            
-            </div>
-        </div>        
-    </div> -->

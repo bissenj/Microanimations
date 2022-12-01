@@ -15,23 +15,15 @@
 <main>
 
 <section class='detail-page'>
-
     <!-- Link to Home -->
-    <div class='home-link' title='home' onclick='handleHomeClick()'></div>
-
-    <!-- Full width Image with Text Overlay -->
-    <!-- <div class='segment p40'>
-        <div class='image-full-width grid-center'>
-            <img src='./img/hero/hero-whitefish.jpg'></img>                        
-            <div class='text-container grid-center'>
-                <h1 class='text-overlay'>Image Overlay</h1>               
-            </div>
-        </div>
-    </div> -->
+    <div class='home-link' title='home' onclick='handleHomeClick()'></div>    
 </section>
 
 </main>
 </body>
+
+<script src="/js/intersectionObserver.js"></script>
+<script src="/Microanimations/js/intersectionObserver.js"></script>
 
 <script src="/js/routing.js"></script>
 <script src="/Microanimations/js/routing.js"></script> 
@@ -42,12 +34,7 @@
 <script>
     console.log("fire up the javascript");
     resetBody();
-
-    // Update the URL
-    //history.pushState({}, "", "../projects/nightlight");
-    //var hash = window.location.hash.substr(1);
-    //console.log("Hash: ", hash);
-
+    
 
     const data = [
         {
@@ -81,7 +68,7 @@
                     // image: 'nightlight/kayak.jpg'
                 },
                 {text: 'For years I have been searching for a mobile project that I would actually want to use.  I’ve worked on a few entry level projects in Xamarin and Android Studio but nothing really stuck.'},
-                {text: 'Until now.'},
+                {text: 'Until recently.'},
             ]            
         },   
         {
@@ -198,187 +185,47 @@
         // }, 
     ];
 
+
     const page = document.querySelector('.detail-page');
-    //page.classList.add('loading-start');    
-    //document.querySelector('main').classList.add('loading');
+    
 
     data.map((item) => {
         page.append(renderFactory(item));
     });
 
-    setTimeout(() => {
-        //document.querySelector('main').classList.remove('loading');
-        //page.classList.add('loading-finished');
-        //page.classList.remove('loading-start');
 
-        //console.log("Got Here");
-            // // DEBUGGING    
-            // const images = document.querySelectorAll('img').forEach((el) => {
-            //     //console.log('image found: ', el);
-            //     el.onload = function() {
-            //         console.log('Image Loaded: ');
-            //     }
-            // });
-            // console.log("Images : ", images);
-
-        //document.querySelector('.slide-left').classList.add('visible');
-        //document.querySelector('.slide-right').classList.add('visible');
-    }, 100);
-
-    function handleHomeClick() {
-        console.log("handle home click");
-
-        navigateToPage('nightlight', 'hero.html#projects');
-
-        // // Fade out screen
-        // document.querySelector('body').classList.add('fade-out');
-
-        // // TODO - FIX THIS!
-        // // HACK FOR GITHUB PAGES
-        // let destination = '';
-        // if (location.protocol == "https:") {
-        //     destination = '/Microanimations'
-        // }       
-
-        // // update window location
-        // setTimeout(() =>{ 
-        //     window.location = `${destination}/hero.html#projects`;
-        // },750);
+    function handleHomeClick() { 
+        navigateToPage('nightlight', 'hero.html#projects');        
     }
 
 
+    // Slight delay on starting observers
     setTimeout(() => {
         startObservers();        
     }, 1000);
 
-    function startObservers() {
-        // ---------------------------------------------------------
-        // Intersection Observer 1 
-        // ---------------------------------------------------------
 
-        // get all the elements we need to watch
-        const targets = document.querySelectorAll('.scroll-target, .slide-left, .slide-right');
-        if (targets.length > 0) {
-            console.log("Targets: ", targets);
-            // what to do with entries that are on screen
-            function handleIntersection(entries) {
-                entries.map((entry) => {
-                    if (entry.isIntersecting) {                    
-                        console.log("On Screen: ", entry);
-                        entry.target.classList.add('visible');                    
-                        
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }
-            // fire up the observer
-            const observer = new IntersectionObserver(handleIntersection);
-            targets.forEach((el) => {
-                observer.observe(el);
-            })
-        }
-
-        // ---------------------------------------------------------
-        // Intersection Observer 2 
-        // ---------------------------------------------------------
-
-        // get all the elements we need to watch
-        const animationTargets = document.querySelectorAll('.fade-in-sequence');
-        if (animationTargets.length > 0) {
-            //console.log("Targets: ", animationTargets);
-            // what to do with entries that are on screen
-            function triggerAnimations(entries) {
-                entries.map((entry) => {
-                    if (entry.isIntersecting) {                    
-                        entry.target.classList.add('active');
-                        entry.target.querySelector('.secondary').classList.remove('waiting');
-                        entry.target.querySelector('.tertiary').classList.remove('waiting');
-                        animationObserver.unobserve(entry.target);
-                    }
-                });
-            }
-            // fire up the observer
-            const animationObserver = new IntersectionObserver(triggerAnimations, { 
-                rootMargin: '0%', threshold: 0.85 });
-
-            animationTargets.forEach((el) => {
-                animationObserver.observe(el);
-            })
-        }
+    function startObservers() {        
+        // Intersection Observer for slide ins
+        addObserver({
+            selectors: '.scroll-target, .slide-left, .slide-right',
+            fireOnce: true,             
+            whenIntersecting: (entry) => { entry.target.classList.add('visible'); },
+        });
+        
+        // Intersection Observer for 3 phone fade in sequence
+        addObserver({
+            selectors: '.fade-in-sequence',
+            fireOnce: true,             
+            whenIntersecting: (entry) => { 
+                entry.target.classList.add('active');
+                entry.target.querySelector('.secondary').classList.remove('waiting');
+                entry.target.querySelector('.tertiary').classList.remove('waiting');                
+             },
+             threshold: 0.5
+        });
     }
-
 
 </script>
 
 </html>
-
-
-<!-- DEAD CODE -->
-
-
-   <!-- Full width Image with Text Overlay -->
-    <!-- <div class='segment p40'>
-        <div class='image-full-width grid-center'>
-            <h1 class='text-overlay'>Field Time Entry<h1/>
-        </div>
-    </div> -->
-
-    <!-- Centered Text Block -->
-    <!-- <div class='segment p80 p-top-0'>
-        <div class='text-block-half grid-center'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>            
-        </div>
-    </div> -->
-
-    <!-- 2-1 Image collage -->
-    <!-- <div class='segment'>
-        <div class='image-collage-2-1'>
-            <div class='one'></div>
-            <div class='two'></div>
-            <div class='three'></div>
-        </div>
-    </div> -->
-
-    <!-- 2-1 Image collage -->
-    <!-- <div class='segment'>
-        <div class='image-grid-2-1'>
-            <div class='grid-left'>            
-                <div class='one'>One</div>
-                <div class='two'>Two</div>
-            </div>            
-            <div class='three'>Three</div>            
-        </div>
-    </div> -->
-
-     <!-- Centered Text Block -->
-     <!-- <div class='segment p80'>
-        <div class='text-block-half grid-center'>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>            
-        </div>
-    </div> -->
-       
-    <!-- Full Width Image -->
-    <!-- <div class='segment'>
-        <div class='image-full-width grid-center'>          
-        </div>
-    </div> -->
-
-     <!-- 2 text columns -->
-     <!-- <div class='segment p80'>
-        <div class='text-block-2'>
-            <div class='text-block-half grid-center'>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>            
-            </div>
-            <div class='text-block-half grid-center'>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>            
-            </div>
-        </div>        
-    </div> -->

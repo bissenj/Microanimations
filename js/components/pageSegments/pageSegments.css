@@ -279,6 +279,9 @@ p.fs16 { font-size: 1.6em; max-width: 20em;}
 .m1 { margin: 0 50%; }
 .bg0 { background-color: black; }
 .bg1 { background-color: #ffae00;}
+.bg2 { background: linear-gradient(119deg, #b5b0b0, #b5b0b0b3);
+    border-radius: 10px;
+    background-color: #bdbdbd; }
 .c1 {
     color: white;
 }

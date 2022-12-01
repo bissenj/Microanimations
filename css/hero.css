@@ -273,8 +273,8 @@ div.row1, div.row2 {
     /* transition: 1.5s ease-in-out; */
 } 
 .row1 > div {
-    min-height: 250px;
-    max-height: 250px;
+    min-height: 340px;
+    max-height: 340px;
     /* border-top: 20px solid white;      */
 }
 .row2 > div {
