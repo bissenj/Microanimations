@@ -481,7 +481,8 @@ div.image5::before {
     width: 200%;
     height: 80vh;
     
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5)); 
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0), rgba(148, 148, 148,0.5));
+    background: linear-gradient(rgba(228, 228, 228, 0.90), rgba(228, 228, 228, 0.99)), url(../img/projects/topo-map1.jpg);
     
     transform-origin: 0 0;  
     transform: rotate(30deg); 

@@ -19,7 +19,7 @@
     --gradient-white-half: 255, 255, 255, 0.5; */
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap'); */
 
 
 * {
@@ -96,7 +96,8 @@ section.timeline-component {
     background: none;
     color: var(--slideshow-foreground);
     font-size: 2.2em; 
-    margin-bottoM: 3px;   
+    margin-bottoM: 3px;  
+    
 }
 
 #forwardBtn:hover, #backBtn:hover {

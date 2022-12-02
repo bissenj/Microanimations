@@ -1,6 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Inter&display=swap'); */
 
 * {
     -moz-box-sizing: border-box;
@@ -57,8 +57,19 @@ section {
     overflow-x: hidden;    
 }
 
-
+main {
+    background-color: #e2e2e2;
+}
 section.work {
+
+    background: linear-gradient(rgba(228, 228, 228, 0.95), rgba(228, 228, 228, 0.90)), url(../img/projects/topo-map1.jpg);
+    /* background-size: cover; */
+
+    opacity: 0;
+}
+
+section.work .slideshow-container {
+
     /* height: 100vh;   */
     height: 100%;  
     background: linear-gradient(
@@ -68,12 +79,19 @@ section.work {
         /* url('../img/timeline/snow_up_bw_white.png'); */
     background-size: cover;  
     background-position: 25%;  
-    
-    opacity: 0;
+        
     transition: opacity 2s;
 
     /* background: white; */
     /* border-bottom: 20px solid white;     */
+
+    width: 80%;    
+    margin: 80px auto;
+    /* margin-bottom: 80px; */
+    /* padding-top: 80px; */
+
+    box-shadow: 0 0 4px #444;
+    box-shadow: 0 0 28px #999, 1px 2px 3px #444;
 }
 
 

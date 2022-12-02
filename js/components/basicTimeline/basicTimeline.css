@@ -62,6 +62,8 @@
     font-size: 28px;
     margin-bottom: 3px;   
     /* display: none; */
+
+    visibility: hidden;
 }
 
 #forwardBtn:hover, #backBtn:hover {

@@ -4,8 +4,8 @@
 } */
 
 section.projects {    
-    /* background: url(../img/projects/collage.png);
-    background-size: cover; */
+    /* background: linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), url(../img/projects/topo-map1.jpg); */
+    /* background-size: cover; */
 
     display: block;
     background: white;
@@ -122,7 +122,7 @@ section.projects .imagery.active {
     margin-bottom: 60px;
 
     justify-content: center;
-    align-items: center;
+    align-items: center;   
 }
 
 .projects .section-heading {
