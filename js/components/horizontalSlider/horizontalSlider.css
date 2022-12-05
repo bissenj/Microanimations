@@ -41,13 +41,9 @@
     position: relative; 
     top: 0;
     left: 0;
-    height: 100%;
-    /* width: 100%; */
-    /* width: 10000px; */  
-    /* overflow-x: scroll; */
+    height: 100%;    
     
-    display: grid;
-    /* gap: 40px; */
+    display: grid;    
     grid-auto-flow: column;
     grid-auto-columns: 100%;
 }
@@ -56,24 +52,21 @@
     transition: left 0.2s ease-out;
   }
 
-.slide {
-    /* border: 1px solid red;    */
-    /* background-color: rgba(255,255,255,0.1); */
+.slide {   
     cursor: pointer;
     
     transition: all 1s;
     position: relative;
 
     inline-size: 80%;
-    block-size: 90%;    
-    /* touch-action: none; */
+    block-size: 90%;        
     touch-action: pan-y;
 
     /* margin: 10px 100px; */
-    margin: 5% 10%;
+    /* margin: 5% 10%; */
 
     /* Experimentation */
-    margin: 2% 10% 6% 10%;
+    /* margin: 2% 10% 6% 10%; */
     padding: 40px;
     border-radius: 5px;
     box-shadow: 0 0 6px #444;

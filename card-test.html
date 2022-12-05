@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Card Test</title> 
+  <link rel='stylesheet' href='css/global.css' />    
+  <link rel='stylesheet' href='css/media-queries.css' />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  
+
+  <style>
+
+  * {
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;    
+  }
+
+
+    body { font-family: 'Inter'; }
+
+    main { padding: 100px 0px;}
+
+    .center { 
+      display: grid; 
+      place-content: center; }
+
+    .slider { 
+      position: relative;
+      background-color: #ddd;
+      width: 100%;
+      height: 100%;
+      /* min-height: 80vh; */
+      padding: 60px;
+
+      /* border: 1px solid black; */
+    }
+
+    .card {      
+      position: relative;
+      width: 60%;
+      /* height: 80%; */
+      height: 100%;
+      max-height: 60vh; 
+      /* min-height: 50vh; */
+
+      margin: 40px auto;      
+      border-radius: 15px;
+
+      overflow: hidden;
+
+      /* border: 1px solid red; */
+      box-shadow: 0 5px 15px #777, 0px 4px 6px #444;
+    }
+
+    .image-container { 
+      position: relative;
+      height: 45%;
+    }
+
+    .hero-image {
+      z-index: 5;
+      height: 100%;
+      background: url('~/../img/collage/nwm-background.jpg');
+      background-size: cover;
+      background-position: 50%;
+    }
+    .avatar-image {
+      position: absolute;
+      bottom: -40px;
+      right: 20px;
+      z-index: 10;
+      border-radius: 50%;
+      background: url('~/../img/collage/nwm-brand.jpg');
+      background-size: cover;
+      
+      width: 100px;
+      height: 100px;
+      border: 6px solid white;
+    }
+
+    .hero-image-container {
+      position: relative;
+      height: 100%;
+      width: 100%;      
+      /* overflow: hidden; */
+
+    }
+    .avatar-image-container {
+      position: absolute;
+      bottom: -40px;
+      right: 20px;
+      z-index: 10;
+      border-radius: 50%;      
+            
+      width: 100px;
+      height: 100px;
+      border: 6px solid white;
+
+      overflow: hidden;
+    }
+    .location-image-container {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      border-radius: 50%;      
+            
+      width: 18px;
+      height: 23px;      
+
+      overflow: hidden;
+    }
+    .hero-image-container img, .avatar-image-container img, .location-image-container img { 
+      display: block;
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .details {
+      position: relative;
+      height: 55%;
+      background-color: white;
+      padding: 20px;
+      padding-top: 10px;
+      /* margin-top: -20px; */
+
+      color: #62727B;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .details .header {
+      color: #FFB800;      
+    }
+
+    .details .body {
+      color: #6C636F; 
+      padding-bottom: 20px;
+      /* flex-grow: 2;       */
+    }
+
+    .details .footer {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .details .footer span:nth-of-type(1) {      
+      font-size: 1.4em;
+    }
+    .details .footer span:nth-of-type(2) {
+      position: absolute;
+      top: 4px;
+      font-size: 0.8em;
+    }
+    .details .footer .job-title {
+      line-height: 1.4em;
+      font-size: 1.2em;      
+    }
+    
+  </style>
+
+</head>
+
+<body>
+<main  class='center'>
+
+  <section class='slider center'>
+
+    <!-- NWM 1 -->
+    <!-- <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image'></div>
+        <div class='avatar-image'></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>Northwestern Mutual</h1></div>
+        <div class='body'><p> Fortune 500 company based out of Milwaukee, Wisconsin.  My first career job out of college and an amazing opportunity to work in a huge, very mature, organization. </p></div>
+        <div class='footer'>
+          <div class='years'><span>2004</span><span>- 2014</span></div>
+          <div class='job-title'>Application Engineeer</div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- <br> -->
+
+    <!-- NWM -->
+    <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image-container'><img src='~/../img/collage/nwm-background.jpg' alt='Picture of Milwaukee Art Museum'/></div>
+        <div class='avatar-image-container'><img src='~/../img/collage/nwm-brand.jpg' alt='Picture of Northwestern Mutual Building'/></div>
+        <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>Northwestern Mutual</h1></div>
+        <div class='body'><p> Fortune 500 company based out of Milwaukee, Wisconsin.  My first career job out of college and an amazing opportunity to work in a huge, very mature, organization. </p></div>
+        <div class='footer'>
+          <div class='years'><span>2004</span><span>-2014</span></div>
+          <div class='job-title'>Application Engineeer</div>
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- ANG -->
+    <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image-container'><img src='~/../img/collage/ang-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='avatar-image-container'><img src='~/../img/collage/ang-brand.jpg' alt='Picture of F-16 flying'/></div>
+        <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>Wisconsin Air National Guard</h1></div>
+        <div class='body'><p> Halfway through college I joined the Wisconsin Air National Guard and worked as a computer technician.  Looking back this was one of the best decisions I made for my future. </p></div>
+        <div class='footer'>
+          <div class='years'><span>2000</span><span>-2006</span></div>
+          <div class='job-title'>Staff Sergeant</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MJE -->
+    <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image-container'><img src='~/../img/collage/mje-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='avatar-image-container'><img src='~/../img/collage/mje-brand.jpg' alt='Picture of F-16 flying'/></div>
+        <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>M.J. Electric</h1></div>
+        <div class='body'><p> Large electrical contracting company headquartered in the Upper Peninsula of Michigan with a small but accomplished IT department.  I put the polish on the Web Applications and added  organization to our web team. </p></div>
+        <div class='footer'>
+          <div class='years'><span>2018</span><span> -2021</span></div>
+          <div class='job-title'>Senior Web Developer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAH -->
+    <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image-container'><img src='~/../img/collage/nah-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='avatar-image-container'><img src='~/../img/collage/nah-brand.jpg' alt='Picture of F-16 flying'/></div>
+        <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>Niagara Animal Hospital</h1></div>
+        <div class='body'><p> We bought an animal hospital near the Upper Peninsula of Michigan and turned it from a business that was slowly dying, to a thriving and growing business, which we eventually sold.  I handled marketing, IT, and other behind the scenes aspects of the business. </p></div>
+        <div class='footer'>
+          <div class='years'><span>2013</span><span> -2021</span></div>
+          <div class='job-title'>Business Owner</div>
+        </div>
+      </div>
+    </div>
+
+     <!-- UWP -->
+     <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image-container'><img src='~/../img/collage/uwp-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='avatar-image-container'><img src='~/../img/collage/uwp-brand.webp' alt='Picture of F-16 flying'/></div>
+        <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>UW Platteville</h1></div>
+        <div class='body'><p> I graduated with a degree in Computer Science and focus on Software Engineering. During college I interned at Avista, which was a local software testing and development company.  On weekends I had a paying gig as drummer in a local cover band. </p></div>
+        <div class='footer'>
+          <div class='years'><span>1998</span><span>-2003</span></div>
+          <div class='job-title'></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+</body>
+
+<!-- <script src="/js/hSlider.js"></script>
+<script src="/Microanimations/js/hSlider.js"></script> -->
+
+<script>
+</script>
+
+</html>

@@ -50,16 +50,17 @@ class ControlGrid {
             // Just in case aria-role is not set for the component.
             componentEl.setAttribute("role", "radiogroup");            
 
-            let html = "";   
+            let html = "<span>01</span>";   
            
             let i = 0; 
             for(i = 0; i < quantity; i++) {
                 html += `<div class='control-box ${this.state.theme}' data-index=${i} role="radio" tabIndex=0></div>`;
-            }    
+            }  
+            html += `<span>0${i}</span>`;   
             componentEl.innerHTML = html;
 
             // Set selected index styles
-            componentEl.children[index].classList.add('selected');
+            componentEl.children[index+1].classList.add('selected');
 
             // Set event handlers
             const boxes = componentEl.querySelectorAll('.control-box');
@@ -92,7 +93,7 @@ class ControlGrid {
         this.state.selectedIndex = parseInt(e.target.dataset.index);
 
         // Add new selected index styles        
-        this.componentEl.children[this.state.selectedIndex].classList.add('selected');
+        this.componentEl.children[this.state.selectedIndex+1].classList.add('selected');
         
         // Send out an event so other components know the index changed
         this.dispatchIndexChanged(this.state.selectedIndex);

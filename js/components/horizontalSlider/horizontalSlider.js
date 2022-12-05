@@ -99,16 +99,18 @@ class HorizontalSlider {
 
     // This is what gets moved across the viewport.
     this.slidegroup = this.componentEl.querySelector('.slide-group');   
+    //  let slide = this.componentEl.querySelector('.slide');   
     this.slideWidth = this.slidegroup.offsetWidth;  // only true if slide is 100% of viewport
+    // console.log("Slide Width: ", this.slideWidth, slide.clientWidth, slide);
 
-    //this.slideWidth = this.slidegroup.offsetWidth / 2;  // NEED to modify this to slides visible.
+    // this.slideWidth = this.slidegroup.offsetWidth / 2;  // NEED to modify this to slides visible.
 
     this.totalWidth = this.slidegroup.offsetWidth * (this.data.length-1);  
 
     //console.log('Total Width: ', this.totalWidth, 'Slide Width: ', this.slideWidth);
-
+    
     if (this.allowWrap) {
-      let slides = this.slidegroup.children;
+      let slides = this.slidegroup.children;      
       let cloneFirstSlide = slides[0].cloneNode(true);
       let cloneLastSlide = slides[slides.length-1].cloneNode(true);
 
@@ -124,10 +126,18 @@ class HorizontalSlider {
       if (this.selectedIndex > slides.length-2) this.selectedIndex = slides.length -2;
     }
 
+    let slides = this.slidegroup.children;      
+    let numSlides = slides.length;
+    let slidePercent = 100 / numSlides;
+    console.log("slidePercent: ", slidePercent);
+
     
     // Set the current slide
     //this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + (this.slideWidth / 2) + "px";
-    this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + "px";
+    
+    // this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + "px";
+    // this.slidegroup.style.left = -(this.selectedIndex * (100/numSlides)) + "%";
+    this.slidegroup.style.left = "-25%";
 
     // Show content on first slide
     this.slidegroup.children[this.selectedIndex].classList.remove('hide-content');    

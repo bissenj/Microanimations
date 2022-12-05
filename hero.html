@@ -203,6 +203,19 @@
     
     <!-- Work -->
     <section id='work' class='work'>
+        <div class='section-heading' style='width: 100%;
+        /* padding: 60px; */
+        /* padding-bottom: 0px; */
+        padding-right: 5%;
+        margin-top: 60px;
+        text-align: center;
+        font-size: 36px;
+        /* color: rgb(242, 242, 242); */
+        /* color: white; */
+        text-transform: uppercase;
+        /* text-shadow: 1px 2px 3px #eee, 0 0 0 #000, 1px 2px 3px #eee;'> 
+            Career Notes     
+        </div>
         <div class='slideshow-container'>         
             <div class='basic-timeline'></div>
             <div id='workHistorySlider1' class='horizontalSlider -bg9'></div>
@@ -350,7 +363,7 @@
     
 
     // TEST Projects Button
-    //const exploreProjectsButton = document.querySelector('.projects-collage').addEventListener('click', handleExploreProjects);
+    const exploreProjectsButton = document.querySelector('.projects-collage').addEventListener('click', handleExploreProjects);
 
     function handleExploreProjects() {
         console.log("Click");  
@@ -419,7 +432,7 @@
 
             // Create control grid    
             let controlGridContainer1 = document.querySelector('.control-grid');
-            const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex, 'light round');
+            const controlGrid1 = new ControlGrid(controlGridContainer1, events.length, selectedIndex, 'line');
 
             slideContainer1.addEventListener('onslide', (e) => {
                 //console.log("Caught Event: onSlide", e);      
@@ -468,6 +481,7 @@
         selectors: '.projects-collage', 
         fireOnce: true,
         whenIntersecting: (entry) => {console.log("is intersecting"); handleExploreProjects(); },
+        threshold: 1.0
         // whenNotIntersecting: (entry) => {console.log("is not intersecting"); handleExploreProjects(); }
     });
 
