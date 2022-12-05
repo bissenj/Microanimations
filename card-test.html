@@ -26,7 +26,7 @@
 
     body { font-family: 'Inter'; }
 
-    main { padding: 100px 0px;}
+    main { padding: 100px 0px; font-size: 18px;}
 
     .center { 
       display: grid; 
@@ -45,10 +45,10 @@
 
     .card {      
       position: relative;
-      width: 60%;
+      width: 58%;
       /* height: 80%; */
       height: 100%;
-      max-height: 60vh; 
+      max-height: 80vh; 
       /* min-height: 50vh; */
 
       margin: 40px auto;      
@@ -63,48 +63,59 @@
     .image-container { 
       position: relative;
       height: 45%;
+      transition: height 1s;
     }
-
-    .hero-image {
-      z-index: 5;
+    
+    .image-container:hover { 
       height: 100%;
-      background: url('~/../img/collage/nwm-background.jpg');
-      background-size: cover;
-      background-position: 50%;
     }
-    .avatar-image {
-      position: absolute;
-      bottom: -40px;
-      right: 20px;
-      z-index: 10;
-      border-radius: 50%;
-      background: url('~/../img/collage/nwm-brand.jpg');
-      background-size: cover;
-      
-      width: 100px;
-      height: 100px;
-      border: 6px solid white;
+    .image-container:hover .avatar-image-container {
+      opacity: 0;
+    }
+    .image-container:hover .hero-text-container {
+      opacity: 1;
+    }
+    .image-container:hover .location-image-container {
+      transform: scale(1.5);
     }
 
+    .hero-text-container {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 1.6em;
+      color: white;
+      opacity: 0;
+      transition: opacity 1s;
+    }
+    .hero-text-container a { 
+      text-shadow: 1px 1px 3px #555;
+      text-decoration: none;
+      color: unset;
+    }
+    .hero-text-container a:hover { 
+      text-decoration: underline;
+      color: unset;
+    }
     .hero-image-container {
       position: relative;
       height: 100%;
       width: 100%;      
-      /* overflow: hidden; */
-
     }
     .avatar-image-container {
       position: absolute;
-      bottom: -40px;
+      bottom: -50px;
       right: 20px;
       z-index: 10;
       border-radius: 50%;      
             
-      width: 100px;
-      height: 100px;
-      border: 6px solid white;
-
+      width: 120px;
+      height: 120px;
+      border: 7px solid white;
       overflow: hidden;
+
+      transition: opacity 1.0s;
+      transition-delay: 0.5s;
     }
     .location-image-container {
       position: absolute;
@@ -115,6 +126,8 @@
             
       width: 18px;
       height: 23px;      
+
+      transition: transform 0.5s;
 
       overflow: hidden;
     }
@@ -129,10 +142,9 @@
     .details {
       position: relative;
       height: 55%;
-      background-color: white;
+      background-color: white;      
       padding: 20px;
-      padding-top: 10px;
-      /* margin-top: -20px; */
+      padding-top: 10px;     
 
       color: #62727B;
 
@@ -142,13 +154,46 @@
     }
 
     .details .header {
-      color: #FFB800;      
+      color: #ff9700;   
+      text-transform: uppercase;
+      /* background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.0)); */
+
     }
 
     .details .body {
       color: #6C636F; 
-      padding-bottom: 20px;
-      /* flex-grow: 2;       */
+      padding-bottom: 20px;      
+    }
+
+    .details .body p {
+      line-height: 1.6em;  
+      letter-spacing: 1px;    
+    }
+
+    .details .body p::first-letter {
+      font-size:1.2em;
+      font-size: 2rem;
+      line-height: 2vw;
+      color: #dddddd;
+      /* font-weight:bold; */
+    }
+
+    /* .details .body p:first-of-type::first-letter {
+      color: #dddddd;
+      float:  left;
+      font-size: 2rem;
+      line-height: 2vw;
+      padding-right: 1px;
+    } */
+
+    .details .body p a {
+      color: #6C636F;       
+      text-decoration: none;      
+    }
+
+    .details .body p a:hover {
+      color: #2e4a5a;;      
+      font-weight: 700;      
     }
 
     .details .footer {
@@ -163,11 +208,31 @@
     .details .footer span:nth-of-type(2) {
       position: absolute;
       top: 4px;
-      font-size: 0.8em;
+      font-size: 0.9em;
+      padding-left: 5px;
     }
     .details .footer .job-title {
       line-height: 1.4em;
       font-size: 1.2em;      
+    }
+
+    .details .more {
+      display:none;
+      width: 100%;
+      /* background-color: rgb(239, 239, 239); */
+      /* width: 60px; */
+      /* border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px; */
+      border-radius: 8px;
+      
+      /* border: 1px solid gray;       */
+      margin-bottom: 14px;
+      text-align: center;
+
+    }
+    .details .more a {
+      text-decoration: none;
+      color: gray;      
     }
     
   </style>
@@ -199,14 +264,17 @@
 
     <!-- NWM -->
     <div class='card'>
-      <div class='image-container'>
-        <div class='hero-image-container'><img src='~/../img/collage/nwm-background.jpg' alt='Picture of Milwaukee Art Museum'/></div>
+      <div class='image-container'>        
+        <div class='hero-image-container'>
+          <img src='~/../img/collage/nwm-background.jpg' alt='Picture of Milwaukee Art Museum'/>
+          <div class='hero-text-container'><a href='https://mam.org/visit/' target='new'>Milwaukee Art Museum<a/></div>
+        </div>
         <div class='avatar-image-container'><img src='~/../img/collage/nwm-brand.jpg' alt='Picture of Northwestern Mutual Building'/></div>
         <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
       </div>
       <div class='details'>
-        <div class='header'><h1>Northwestern Mutual</h1></div>
-        <div class='body'><p> Fortune 500 company based out of Milwaukee, Wisconsin.  My first career job out of college and an amazing opportunity to work in a huge, very mature, organization. </p></div>
+        <div class='header'><h1>Northwestern Mutual</h1></div>        
+        <div class='body'><p><a href='career/nwm'>Fortune 500 company based out of Milwaukee, Wisconsin.  My first career job out of college and an amazing opportunity to work in a huge, very mature, organization. (more) </a></p></div>        
         <div class='footer'>
           <div class='years'><span>2004</span><span>-2014</span></div>
           <div class='job-title'>Application Engineeer</div>
@@ -218,13 +286,16 @@
     <!-- ANG -->
     <div class='card'>
       <div class='image-container'>
-        <div class='hero-image-container'><img src='~/../img/collage/ang-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='hero-image-container'>
+          <img src='~/../img/collage/ang-background.jpg' alt='Picture of guys next to float plane'/>
+          <div class='hero-text-container'><a href='https://paddling.com/learn/woodland-caribou-provincial-park' target='new'>Woodland Caribou Provincial Park<a/></div>
+        </div>
         <div class='avatar-image-container'><img src='~/../img/collage/ang-brand.jpg' alt='Picture of F-16 flying'/></div>
         <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
       </div>
       <div class='details'>
         <div class='header'><h1>Wisconsin Air National Guard</h1></div>
-        <div class='body'><p> Halfway through college I joined the Wisconsin Air National Guard and worked as a computer technician.  Looking back this was one of the best decisions I made for my future. </p></div>
+        <div class='body'><p>Halfway through college I joined the Wisconsin Air National Guard and worked as a computer technician.  Looking back this was one of the best decisions I made for my future. </p></div>
         <div class='footer'>
           <div class='years'><span>2000</span><span>-2006</span></div>
           <div class='job-title'>Staff Sergeant</div>
@@ -233,9 +304,13 @@
     </div>
 
     <!-- MJE -->
+    
     <div class='card'>
       <div class='image-container'>
-        <div class='hero-image-container'><img src='~/../img/collage/mje-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='hero-image-container'>
+          <img src='~/../img/collage/mje-background.jpg' alt='Picture of guys next to float plane'/>
+          <div class='hero-text-container'><a href='https://www.flyfisherman.com/editorial/saving-wisconsins-menominee-river/458972' target='new'>Menominee River<a/></div>
+        </div>
         <div class='avatar-image-container'><img src='~/../img/collage/mje-brand.jpg' alt='Picture of F-16 flying'/></div>
         <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
       </div>
@@ -250,15 +325,19 @@
     </div>
 
     <!-- NAH -->
+    
     <div class='card'>
       <div class='image-container'>
-        <div class='hero-image-container'><img src='~/../img/collage/nah-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='hero-image-container'>
+          <img src='~/../img/collage/nah-background.jpg' alt='Picture of guys next to float plane'/>
+          <div class='hero-text-container'><a href='https://www.pinemountainresort.com/ski/mountain-info/ski-jumps' target='new'>Pine Mountain Ski Hill<a/></div>
+        </div>
         <div class='avatar-image-container'><img src='~/../img/collage/nah-brand.jpg' alt='Picture of F-16 flying'/></div>
         <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
       </div>
       <div class='details'>
         <div class='header'><h1>Niagara Animal Hospital</h1></div>
-        <div class='body'><p> We bought an animal hospital near the Upper Peninsula of Michigan and turned it from a business that was slowly dying, to a thriving and growing business, which we eventually sold.  I handled marketing, IT, and other behind the scenes aspects of the business. </p></div>
+        <div class='body'><p> We bought an animal hospital near the Upper Peninsula of Michigan that was slowly dying and turned it into a thriving and growing business, which we eventually sold.  I handled marketing, IT, and other behind the scenes aspects of the business. </p></div>
         <div class='footer'>
           <div class='years'><span>2013</span><span> -2021</span></div>
           <div class='job-title'>Business Owner</div>
@@ -266,19 +345,42 @@
       </div>
     </div>
 
-     <!-- UWP -->
+     <!-- UWP -->     
      <div class='card'>
       <div class='image-container'>
-        <div class='hero-image-container'><img src='~/../img/collage/uwp-background.jpg' alt='Picture of guys next to float plane'/></div>
+        <div class='hero-image-container'>
+          <img src='~/../img/collage/uwp-background.jpg' alt='Picture of guys next to float plane'/>
+          <div class='hero-text-container'><a href='https://www.northernontario.travel/paddling/quetico-canoe-routes' target='new'>Quetico Provincial Park<a/></div>
+        </div>
         <div class='avatar-image-container'><img src='~/../img/collage/uwp-brand.webp' alt='Picture of F-16 flying'/></div>
         <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
       </div>
       <div class='details'>
-        <div class='header'><h1>UW Platteville</h1></div>
-        <div class='body'><p> I graduated with a degree in Computer Science and focus on Software Engineering. During college I interned at Avista, which was a local software testing and development company.  On weekends I had a paying gig as drummer in a local cover band. </p></div>
+        <div class='header'><h1>UW-Platteville</h1></div>
+        <div class='body'><p>Graduated with a degree in Computer Science and focus on Software Engineering. During college I interned at Avista, a local aviation software testing and development company.  On weekends I had a paying gig as drummer in a local cover band. </p></div>
         <div class='footer'>
           <div class='years'><span>1998</span><span>-2003</span></div>
-          <div class='job-title'></div>
+          <div class='job-title'>Software Testing Intern</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Self -->    
+    <div class='card'>
+      <div class='image-container'>
+        <div class='hero-image-container'>
+          <img src='~/../img/collage/self-background.jpg' alt='Picture of guys next to float plane'/>
+          <div class='hero-text-container'><a href='https://peakvisor.com/adm/montana.html' target='new'>Montana<a/></div>
+        </div>
+        <div class='avatar-image-container'><img src='~/../img/collage/self-brand.jpg' alt='Picture of F-16 flying'/></div>
+        <div class='location-image-container'><img src='~/../img/collage/location.png' alt='Location Icon'/></div>
+      </div>
+      <div class='details'>
+        <div class='header'><h1>Mountains and Code</h1></div>
+        <div class='body'><p> After selling our business we took some time off to travel out west and visit national parks.  Then we left the Midwest and achieved our long term goal of moving to Montana.  During this time I did web work for a few small organizations and spent time focusing on improving my design and tech skills. </p></div>        
+        <div class='footer'>
+          <div class='years'><span>2021</span><span>-2023</span></div>
+          <div class='job-title'>Full Stack Developer</div>
         </div>
       </div>
     </div>
