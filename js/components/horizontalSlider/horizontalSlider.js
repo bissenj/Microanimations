@@ -49,8 +49,11 @@ class HorizontalSlider {
   offsetLeft = 0;
   viewport = undefined;
   slidegroup = undefined;
+  slidePadding = 0;
   slideWidth = 0;
   totalWidth = 0;
+  maxLeft = 0;
+  minLeft = 0;
   threshold = 100;
   allowMove = true;
   allowWrap = false;
@@ -96,16 +99,21 @@ class HorizontalSlider {
     this.viewport.ontransitionend = (e) => this.transitionEnd(e);
 
 
-
+    const slide_width_offset = 0.5;
+    
     // This is what gets moved across the viewport.
     this.slidegroup = this.componentEl.querySelector('.slide-group');   
     //  let slide = this.componentEl.querySelector('.slide');   
-    this.slideWidth = this.slidegroup.offsetWidth;  // only true if slide is 100% of viewport
+    this.slideWidth = this.slidegroup.offsetWidth * slide_width_offset;  // only true if slide is 100% of viewport
+    this.slidePadding = this.slidegroup.offsetWidth * (1 - slide_width_offset)/2;
     // console.log("Slide Width: ", this.slideWidth, slide.clientWidth, slide);
 
     // this.slideWidth = this.slidegroup.offsetWidth / 2;  // NEED to modify this to slides visible.
+    
+    //this.totalWidth = this.slideWidth * (this.data.length-1) - this.slidePadding;  
 
-    this.totalWidth = this.slidegroup.offsetWidth * (this.data.length-1);  
+    this.maxLeft = this.slideWidth * (this.data.length-1) - this.slidePadding;  
+    this.minLeft = this.slidePadding;
 
     //console.log('Total Width: ', this.totalWidth, 'Slide Width: ', this.slideWidth);
     
@@ -126,18 +134,22 @@ class HorizontalSlider {
       if (this.selectedIndex > slides.length-2) this.selectedIndex = slides.length -2;
     }
 
-    let slides = this.slidegroup.children;      
-    let numSlides = slides.length;
-    let slidePercent = 100 / numSlides;
-    console.log("slidePercent: ", slidePercent);
-
+    // let slides = this.slidegroup.children;      
+    // let numSlides = slides.length;
+    // let slidePercent = 100 / numSlides;
+    // console.log("slidePercent: ", slidePercent);
     
     // Set the current slide
-    //this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + (this.slideWidth / 2) + "px";
+    // this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + (this.slideWidth / 2) + "px";
     
-    // this.slidegroup.style.left = -(this.selectedIndex * this.slideWidth) + "px";
-    // this.slidegroup.style.left = -(this.selectedIndex * (100/numSlides)) + "%";
-    this.slidegroup.style.left = "-25%";
+    this.slidegroup.style.left = -(this.selectedIndex * (this.slideWidth)) - this.slidePadding + "px";
+    // this.slidegroup.style.left = -(this.selectedIndex * (100/numSlides)) + "%";    
+    // this.slidegroup.style.left = `${test.slide_boundary_offset}%`;  //"10%";
+
+    //this.slidegroup.style.left = `calculateSlidePosition(this.selectedIndex)%`;  //"10%";
+
+    console.log(this.slideWidth, this.slidePadding);
+    
 
     // Show content on first slide
     this.slidegroup.children[this.selectedIndex].classList.remove('hide-content');    
@@ -148,6 +160,7 @@ class HorizontalSlider {
     this.componentHeight = this.componentEl.offsetHeight;
   }
 
+  
   // If the components size changes the slide withs will be incorrect.  Recalculate the widths.
   handleResize() {
     let needsToResize = false;
@@ -283,8 +296,8 @@ class HorizontalSlider {
 
     // Boundary checking (if no wrap option is selected)
     if (!this.allowWrap) {      
-      if (move > 0) { move = 0; }   // Stop at left Edge
-      if (move < -this.totalWidth) { move = -this.totalWidth; }   // Stop at Right Edge
+      if (move > this.minLeft) { move = this.minLeft; }   // Stop at left Edge
+      if (move < -this.maxLeft) { move = -this.maxLeft; }   // Stop at Right Edge
     }
 
     // Move the slides
