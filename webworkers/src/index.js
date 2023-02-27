@@ -42,7 +42,12 @@ btn.addEventListener("click", (e) => {
     errPar.textContent = "Please enter a number greater than 2";
     return;
   }
+  if (num > 50) {
+    errPar.textContent = "Choose a smaller number or this will take forever.";
+    return;
+  }
 
+  // Create a new row for the current operation
   const newRow = createRow();
 
   // Fire up a web worker
@@ -52,11 +57,12 @@ btn.addEventListener("click", (e) => {
   worker.onmessage = (e) => {
     console.log('Got Message from Worker: ', e);
 
+    // Update message - just display the new message
     if (e.data.type == 'update') {
         const { message } = e.data;
         newRow.innerHTML = `<p>${message}</p>`;
     }
-    else {
+    else {  // We're done - Clean up the web worker
         const { time, fibNum } = e.data;
         updateRow(newRow, num, fibNum, time);
         worker.terminate();
