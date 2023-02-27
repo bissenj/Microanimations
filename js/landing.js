@@ -4,71 +4,57 @@ const backgroundEl = document.querySelector('.background');
 const ALLOW_JAVASCRIPT = true;
 if (ALLOW_JAVASCRIPT) {
 
-    // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
-    const DAMPER = 90;  
-    const MAX_VALUE = 5;
+    // Get window width
+    const screenWidth = window.innerWidth;
+    console.log("Screen Width: ", screenWidth);
 
-    let startX = -1;
-    let startY = -1;
+    // Enable javascript effects only if window is wider than tablet breakpoint in CSS
+    if (screenWidth > 767) {
 
-    // Animate the background image and decorative dashed lines
-    el.addEventListener('mousemove', (function(e) {        
-        var amountMovedX = (e.pageX * 1 / DAMPER);  
-        // if (amountMovedX > MAX_VALUE)  amountMovedX = MAX_VALUE ; 
-        // if (amountMovedX < -MAX_VALUE) amountMovedX = -MAX_VALUE ;
+        // EFFECT 1:  FUNKY BACKGROUND MOVE EFFECT
+        const DAMPER = 150;  
         
-        var amountMovedY = (e.pageY * 1 / DAMPER);
-        // if (amountMovedY > MAX_VALUE)  amountMovedY = MAX_VALUE ; 
-        // if (amountMovedY < -MAX_VALUE) amountMovedY = -MAX_VALUE ;
-        // var amountMovedX = (e.movementX * 1 / DAMPER);
-        // var amountMovedY = (e.movementY * 1 / DAMPER);
+        let startX = -1;
+        let startY = -1;
 
-        //backgroundEl.style.backgroundPosition =  amountMovedX + 'px ' + amountMovedY + 'px';
+        // Animate the background image and decorative dashed lines
+        el.addEventListener('mousemove', (function(e) {        
+            var amountMovedX = (e.pageX * 1 / DAMPER);  
+            var amountMovedY = (e.pageY * 1 / DAMPER);
+            
+            // Adjust the background position of the image.  This needs to match the 
+            // default positions in CSS (50% 50%) or it will jump initially.
+            let x = amountMovedX;        
+            let y = amountMovedY;                      
+            backgroundEl.style.backgroundPosition = `calc(50% - ${x}px) calc(50% - ${y}px)`;
 
-        //console.log("1: ", backgroundEl.style.backgroundPosition);
-        // let currentPosition = window.getComputedStyle(backgroundEl).getPropertyValue("background-position").split(' ');        
-        // if (startX == -1 && startY == -1) {
-        //     startX = parseFloat(currentPosition[0].toString().replace('px', ''));    
-        //     startY = parseFloat(currentPosition[1].toString().replace('px', ''));   
-        //     //console.log("Got start positions: ", startX, startY);         
-        // }
+            // Rotate the logo
+            const logo = document.querySelector('.logo');
+            if (logo) {                
+                logo.style.transform = `rotate(${amountMovedX}deg)`;
+            }
+
+            // Update the pseudo selector animation
+            let gradientUpEl = document.querySelector('.gradient-up');    
+            gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
+            
+            let gradientDownEl = document.querySelector('.gradient-down');
+            gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
+        }));    
         
-                        
-        //let x = parseFloat(currentPosition[0].toString().replace('px', ''));
-        let x = startX + amountMovedX;
-        //let y = parseFloat(currentPosition[1].toString().replace('px', ''));
-        let y = startY + amountMovedY;  
-        
-        backgroundEl.style.backgroundPosition =  x + 'px ' + y + 'px';
-
-
-        // Update the pseudo selector animation
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        gradientUpEl.style.backgroundPosition = 'right ' + amountMovedX * 75 + 'px';
-        
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientDownEl.style.backgroundPosition = 'right ' + amountMovedY * 75 + 'px';
-    }));
-    // animate the decorative dashed lines when section has focus
-    // el.addEventListener('mouseover', (function(e) {        
-    //     let gradientUpEl = document.querySelector('.gradient-up');    
-    //     let gradientDownEl = document.querySelector('.gradient-down');
-    //     gradientUpEl.classList.add('animate');
-    //     gradientDownEl.classList.add('animate');
-    // }));
-    // // save resources by stopping animation when section no longer has focus
-    el.addEventListener('mouseleave', (function(e) {        
-        let gradientUpEl = document.querySelector('.gradient-up');    
-        let gradientDownEl = document.querySelector('.gradient-down');
-        gradientUpEl.classList.remove('animate');
-        gradientDownEl.classList.remove('animate');
-    }));
-
+        // save resources by stopping animation when section no longer has focus
+        // el.addEventListener('mouseleave', (function(e) {        
+        //     let gradientUpEl = document.querySelector('.gradient-up');    
+        //     let gradientDownEl = document.querySelector('.gradient-down');
+        //     gradientUpEl.classList.remove('animate');
+        //     gradientDownEl.classList.remove('animate');
+        // }));
+    }
 }
     
 
 // EFFECT 2:  Image Carousel
-const backgrounds = ['huckleberry-lookout.jpg', 'whitefish.jpg', 'lakemcdonald.jpg'];
+const backgrounds = ['hero-huckleberry-lookout.webp', 'hero-great-northern.webp', 'hero-whitefish.webp', 'hero-lake-mcdonald.webp', 'hero-mt-aeneas.webp'];
 const carouselEls = document.querySelectorAll('.nav-carousel li');
 //console.log("Carousel Els: ", carouselEls);
 carouselEls.forEach((item) => {        
@@ -80,22 +66,24 @@ carouselEls.forEach((item) => {
         });
         item.classList.add('clicked');
 
-        let index = item.dataset.index;
-        console.log("Index: ", index, backgrounds[index], backgroundEl);
+        let index = item.dataset.index;        
         if (index) {      
             backgroundEl.classList.remove('fade-in');
             backgroundEl.classList.add('fade-out');
             window.setTimeout(() => {
-                // remove previous
-                backgroundEl.classList.remove('background-1');
-                backgroundEl.classList.remove('background-2');
-                backgroundEl.classList.remove('background-3');
 
-                backgroundEl.classList.add(`background-${index}`);
-                // backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
-                // backgroundEl.style.backgroundSize = "cover";
-                // backgroundEl.style.backgroundRepeat = "no-repeat";
-                // console.log('New background setting: ', backgroundEl.style.background);
+                // TODO - FIX THIS!
+                // HACK FOR GITHUB PAGES
+                if (location.protocol !== "https:") {
+                    backgroundEl.style.background = "url('../img/hero/" + backgrounds[index] + "')";
+                }
+                else {
+                    backgroundEl.style.background = "url('~/../img/hero/" + backgrounds[index] + "')";
+                }                
+                backgroundEl.style.backgroundSize = "cover";            
+                backgroundEl.style.backgroundRepeat = "no-repeat";
+                backgroundEl.style.backgroundPosition = `50% 50%`;
+                
                 backgroundEl.classList.remove('fade-out');
                 backgroundEl.classList.add('fade-in');
             }, 600);                                 
@@ -107,7 +95,7 @@ carouselEls.forEach((item) => {
 });
 
 
-let scale = 1;
+// let scale = 1;
 
 // EFFECT 3:  PARALAXX
 window.addEventListener('scroll', () => {
@@ -124,16 +112,10 @@ window.addEventListener('scroll', () => {
     for (0; index < target.length; index++) {
         let current = target[index];
         var pos = window.pageYOffset * current.dataset.rate;       
-
-        // Adjust the scale as screen moves down
-        // let scrollPercent =  (window.pageYOffset / target[index].offsetHeight);
-        // let scaleAdjust = 0.15 * scrollPercent;         
-        // scale = 1.0 + scaleAdjust;
         
         const initialTransform = (current.dataset.transform != undefined) ? current.dataset.transform + " " : "";
         const move = initialTransform + 'translate3d(0px, '+pos+'px, 0px)';              
-        //const move = 'translate3d(0px, '+pos+'px, 0px)';  // Non-Scale adjust method                                           
-        // current.style.transform = "scale(" + scale + ") " + move;                     
+        
         current.style.transform = move;
     }
 });

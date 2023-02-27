@@ -14,19 +14,48 @@ Paralaxx:
 https://medium.com/@dailyfire/pure-css-parallax-simple-tricks-da102d0ffdb9
 
 
+// --------------------------------------------------------------
 
-Today:
+STACKING ORDER
 
-1.  Add click handler for image containers
-2.  Clone element as absolute positioning
-3.  Build transformation and animate.
-4.  Modalize it.
-5.  On exit click or modal lose focus (click off), deconstruct the modal 
-6.  Transform back to start.  
-7.  Delete node.
-8. Test
+[body]                                    0
+    |
+  [main]                                  2
+      |
+    [modal]                               100
+      |
+    [section *]                           4      
+      |
+    [section imagecollage]                110
+          |
+        [image modal]                     120
+          |
+        [modal-overlay]                   115
+      |  
+    [section projects]
+        |   
+      [projects-collage]                  10
 
 
+
+// --------------------------------------------------------------
+
+Approach an interview like you are going to go snowboarding with a group 
+of people for the first time.  
+
+  Here to have fun and get things done.
+  Confident in your abilities.  
+  An equal.  
+
+Approach the part time aspect like you have to leave at a certain time for 
+other responsibilities.  
+
+  This is how it is.  
+  Make the most of the time we have to get things done.
+  It won't impact the rest of our experience.
+
+
+// --------------------------------------------------------------
 
 
 Goals:

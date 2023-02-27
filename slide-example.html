@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">  
+  <title>Generic Slideshow Example</title> 
+  <link rel='stylesheet' href='css/slide-example.css' />
+  <link rel='stylesheet' href='js/components/horizontalSlider/horizontalSlider.css' />  
+  <link rel='stylesheet' href='css/control-grid.css' />
+
+  <style>
+
+    fieldset {
+        display: none;
+    }
+
+    .slide-group {
+        grid-auto-columns: 50%; /* controls viewport width....100% shows 1 slide, 50% shows 2 slides */
+        /* grid-gap: 0px 0px; */
+    }
+    .slide-viewer {
+        border: 1px solid black;
+    }
+
+    .slide {
+        inline-size: 100%;       /* controls spacing between slides */
+        block-size: 100%;
+        min-height: 30vh;  
+        padding: 0;
+        margin: 0;  
+
+        box-shadow: none;
+        border: 1px solid black;
+        border-radius: 0;    
+    }
+
+    .slide-contents {
+        width: 90%;
+        height: 90%;
+    }
+
+    .center {
+        display: grid; 
+        place-content: center;
+    }
+  </style>
+</head>
+
+<body>
+<main style='display: block; padding: 100px;'>
+
+    <!-- <h1>Universal Horizontal Slider Demo</h1> -->
+    <fieldset>
+        <p>
+            Selected Index: <span class='index'></span>
+        </p>
+        <div class='compound-slider'>
+            <div id='controlGrid1' class='control-grid'>Control Grid</div>
+            <div id='photoSlider1' class='photoSlider'></div>
+        </div>
+    </fieldset>
+    
+    <div style='margin: 0px auto; width: 70%;'>
+        <p style='margin-bottom: 20px;'>
+            Selected Index: <span class='index2'></span>
+        </p>
+        <div id='photoSlider2' class='photoSlider'></div>
+    </div>
+
+</main>
+</body>
+
+<script src="/js/components/horizontalSlider/horizontalSlider.js"></script>
+<!-- <script src="/Microanimations/js/components/horizontalSlider/horizontalSlider.js"></script> -->
+
+<script src="/js/controlGrid.js"></script>
+<!-- <script src="/Microanimations/js/controlGrid.js"></script> -->
+<script>
+
+    // GLOBAL DATA
+    let selectedIndex = 0;
+    const data = [{id: 1, text: "This is Slide 1", background: "#FFCF47"}, {id: 2, text: "Slide 2", background: "#7ADCEF"}, {id: 3, text: "3rd Slide", background: "#a78df5" }, {id:4, text:"Last Slide.  4", background: "#ff8686"}];
+
+    // Custom Render function for the slides
+    function renderSlide(item) {
+        let html = `
+            <div class='slide flex-center'> 
+                <div class='slide-contents flex-center hide-content' data-id=${item.id} style='background-color:${item.background}'>
+                    <span class=''>${item.text}</span> 
+                </div>
+            </div>
+        `;
+        return html;
+    }
+
+    // App loads    
+    let slideContainer1 = document.getElementById('photoSlider1');
+    const slider1 = new HorizontalSlider(slideContainer1, data, renderSlide, 100, true, 0);
+
+    let slideContainer2 = document.getElementById('photoSlider2');
+    const slider2 = new HorizontalSlider(slideContainer2, data, renderSlide, 50, false, 1);
+
+    // Listen for the slide to change
+    slideContainer1.addEventListener('onslide', (e) => {         
+        selectedIndex = e.detail.index;
+        document.querySelector('.index').textContent += " > " + selectedIndex;
+    })
+
+    // Listen for the slide change to complete
+    slideContainer1.addEventListener('onslidecomplete', (e) => {              
+        selectedIndex = e.detail.index;
+        document.querySelector('.index').textContent = selectedIndex;
+    })
+
+
+    // CONTROL GRID
+    let controlGridContainer1 = document.getElementById('controlGrid1');
+    const controlGrid1 = new ControlGrid(controlGridContainer1, data.length, selectedIndex);
+
+
+    controlGridContainer1.addEventListener('onindexchange', (e) => {
+        console.log("--------------------------");
+        console.log(e.detail.index);
+        slider1.setIndex(e.detail.index);
+    })
+    //
+
+    // ---------------------
+
+    // Listen for the slide to change
+    slideContainer2.addEventListener('onslide', (e) => {         
+        selectedIndex = e.detail.index;
+        document.querySelector('.index2').textContent += " > " + selectedIndex;
+    })
+
+    // Listen for the slide change to complete
+    slideContainer2.addEventListener('onslidecomplete', (e) => {              
+        selectedIndex = e.detail.index;
+        document.querySelector('.index2').textContent = selectedIndex;
+    })
+
+
+    // ---------------------
+
+
+    /*  HANDLE RESIZE  */
+    window.onresize = () => {  
+        console.log("Resize Event Detected");  
+        slider1.handleResize();
+    }   
+
+
+    // TESTING
+    window.setTimeout(() => {
+        //slider2.setSelectedIndex(1);
+    }, 1000);
+
+
+</script>
+
+</html>

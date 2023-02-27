@@ -1,4 +1,4 @@
-import events from '../data/data.js';
+import {events} from '../data/data.js';
 
 import {getElementsOnScreen, slideShow_SnapScrollToNewSlide} from '../js/animation.js';
 

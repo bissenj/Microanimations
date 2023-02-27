@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap'); */
 
 * {
     -moz-box-sizing: border-box;
@@ -15,7 +15,7 @@
 html { border: 0px solid brown;}
 
 body {
-    height: 500vh;
+    /* height: 500vh; */
     margin: 0;
 }
 
