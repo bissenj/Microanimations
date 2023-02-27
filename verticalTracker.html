@@ -20,16 +20,16 @@
 
 <script>
     const chairLiftElevation = 0;
+    const proxy = `https://cors-anywhere.herokuapp.com/`;
     const verticalTrackerAPI = 'https://skiwhitefish.com/vertical/search.php';
 
     function getVertical() {
          // Hit up the vertical tracker API to retrieve data    
         const data = new FormData();
-        data.append("search_term", "John Bissen");
+        data.append("search_term", "Jim");
 
-        fetch(verticalTrackerAPI, {
-            method: 'POST',
-            mode: 'cors',  
+        fetch(`${proxy}${verticalTrackerAPI}`, {
+            method: 'POST',            
             body: data
         })
         .then(res => res.json())
